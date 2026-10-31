@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renewables &amp; Storage — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Renewables &amp; Storage</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="../syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="../syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="../syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="../syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="../syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="../syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="../syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="../syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="../syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="../syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="../syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="../syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="../syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="../syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="../syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="../syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="../syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="../syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="ai-infrastructure.html">AI Infrastructure</a>
+<a href="semiconductors.html">Semiconductors</a>
+<a href="ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="renewables-storage.html">Renewables &amp; Storage</a>
+<a href="natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="data-center-cooling.html">Data-Center Cooling</a>
+<a href="critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="defense-security.html">Defense &amp; Security</a>
+<a href="infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="automation-robotics.html">Automation &amp; Robotics</a>
+<a href="humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="medtech-devices.html">MedTech &amp; Devices</a>
+<a href="biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="fintech-payments.html">Fintech &amp; Payments</a>
+<a href="tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="india-em-growth.html">India &amp; EM Growth</a>
+<a href="japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="us-megacap-quality.html">US Megacap Quality</a>
+<a href="asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="space-economy.html">Space Economy</a>
+<a href="quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">concept</span><span class="stamp">dated 2026-06-01</span><span class="stamp">investing</span><span class="stamp">trend</span><span class="stamp">energy</span><span class="stamp">solar</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="renewables-storage">Renewables &amp; Storage</h1>
+<p><strong>Definition:</strong> Solar, wind, and — most importantly for the investment case — <strong>battery energy<br />
+storage systems (BESS)</strong>: the fastest-to-deploy, increasingly cost-competitive supply that helps<br />
+meet surging electricity demand (<a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a>, <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a>). A core<br />
+sub-theme of <a class="wikilink" href="energy-transition.html">energy-transition</a>, but <strong>policy- and rate-sensitive</strong> and exposed to Chinese<br />
+manufacturing oversupply. Conviction 3 on the <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a> — storage is the bright spot;<br />
+solar/wind economics are mixed.</p>
+<blockquote>
+<p>Research/insight only — no buy/sell advice. Figures tagged (fact)/(est.)/(inference) with<br />
+period + source. "n/f" = no reliable figure found.</p>
+</blockquote>
+<hr />
+<h2 id="1-definition-scope">1. Definition &amp; scope</h2>
+<p>Three layers: (a) <strong>generation</strong> — utility-scale + distributed solar (First Solar, Enphase),<br />
+onshore/offshore wind (Vestas, Ørsted, GE Vernova wind); (b) <strong>storage</strong> — grid-scale BESS<br />
+(Tesla Megapack, Fluence) and residential storage (Enphase, Tesla Powerwall); (c) <strong>developers/<br />
+utilities</strong> with large renewable pipelines (NextEra). Storage is the highest-conviction layer — it<br />
+is the flexibility that makes the grid (and AI load) work and is growing fastest.</p>
+<h2 id="2-market-size-growth">2. Market size &amp; growth</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Period / base</th>
+<th>Source</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global battery-storage additions</td>
+<td><strong>record ~170+ GWh added</strong></td>
+<td>2025</td>
+<td>BloombergNEF / IEA</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Global renewable capacity additions</td>
+<td><strong>~660+ GW added (record; solar ~80% of it)</strong></td>
+<td>2025</td>
+<td>IEA (Renewables 2025)</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Battery pack prices</td>
+<td><strong>fell to ~$110–115/kWh (record low)</strong></td>
+<td>2025</td>
+<td>BloombergNEF</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>US BESS / grid-storage pipeline</td>
+<td><strong>storage = largest share of US interconnection queue</strong></td>
+<td>2025</td>
+<td>LBNL / EIA</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Global solar PV additions</td>
+<td><strong>~600 GW (record)</strong></td>
+<td>2025</td>
+<td>IEA</td>
+<td>(fact)</td>
+</tr>
+</tbody>
+</table>
+<p>Storage is the structural growth engine: falling battery costs + grid-flexibility need + AI demand<br />
+make BESS the fastest-scaling segment.</p>
+<h2 id="3-key-structural-drivers">3. Key structural drivers</h2>
+<p><strong>Demand:</strong> electricity-demand surge (AI/data centers, electrification) needs both new generation<br />
+and flexibility; solar is the cheapest new generation in most markets; BESS solves intermittency and<br />
+provides grid services (frequency, capacity, arbitrage). <strong>Supply/cost:</strong> battery pack prices at<br />
+record lows (~$110/kWh) on Chinese overcapacity — great for storage <em>deployers</em>, brutal for<br />
+<em>manufacturers'</em> margins. <strong>Headwinds:</strong> US policy/IRA-credit uncertainty, tariffs on Chinese<br />
+cells/modules, high rates pressuring project IRRs, interconnection-queue delays.</p>
+<h2 id="4-value-chain-linkage">4. Value-chain / linkage</h2>
+<p><a class="wikilink" href="critical-minerals.html">critical-minerals</a> (lithium, copper) → cells/modules (largely China: CATL, BYD) → BESS<br />
+integrators (Tesla, Fluence) / inverters (Enphase, SolarEdge) / panels (First Solar) → developers &amp;<br />
+utilities (NextEra) → <a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a> → serves <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a> load. Complements<br />
+<a class="wikilink" href="nuclear-uranium.html">nuclear-uranium</a> and <a class="wikilink" href="natural-gas-lng.html">natural-gas-lng</a> (firm vs intermittent power mix). Tightly coupled to<br />
+interest rates and policy (<a class="wikilink" href="../syntheses/macro-regime.html">macro-regime</a>).</p>
+<h2 id="5-competitive-landscape">5. Competitive landscape</h2>
+<p><strong>Solar manufacturing</strong> is brutal and commoditized — Chinese oversupply has crushed module prices<br />
+and margins; <strong>First Solar</strong> is the exception (US thin-film, IRA-advantaged, differentiated tech,<br />
+defensible US manufacturing). <strong>Inverters/residential</strong> (Enphase, SolarEdge) are cyclical and<br />
+rate-sensitive, having de-rated hard. <strong>Storage integration</strong> (Tesla Energy, Fluence) is the<br />
+healthiest layer — value sits in software/integration and offtake, not cells. <strong>Wind</strong> is<br />
+structurally challenged (Ørsted writedowns, Siemens Gamesa losses) outside select players.<br />
+<strong>Utilities/developers</strong> (NextEra) hold the scale, pipeline, and financing moat.</p>
+<h2 id="6-major-global-players-comparative-table">6. Major global players — comparative table</h2>
+<p>Market caps point-in-time (~late May 2026, est.). Other figures (fact) unless tagged. "n/f" = none found.</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Geo</th>
+<th>Segment/role</th>
+<th>Mkt cap (as-of)</th>
+<th>Revenue (period)</th>
+<th>Rev YoY</th>
+<th>Profitability</th>
+<th>Other</th>
+<th>Moat note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NextEra Energy</td>
+<td>NEE</td>
+<td>US</td>
+<td>Largest US renewables dev + utility</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>profitable</td>
+<td>huge renewables+storage backlog</td>
+<td>Scale, pipeline, low cost of capital</td>
+</tr>
+<tr>
+<td>First Solar</td>
+<td>FSLR</td>
+<td>US</td>
+<td>US thin-film solar manufacturer</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>profitable</td>
+<td>multi-year sold-out backlog; IRA credits</td>
+<td>US-made, tariff/IRA-advantaged, differentiated tech</td>
+</tr>
+<tr>
+<td>Tesla (Energy)</td>
+<td>TSLA</td>
+<td>US</td>
+<td>Megapack/Powerwall storage</td>
+<td>n/f (auto-dominated)</td>
+<td>Energy storage deploy record GWh</td>
+<td>growing fast</td>
+<td>Energy segment margin rising</td>
+<td>Megapack scale + software</td>
+<td>Storage brand + vertical integration</td>
+</tr>
+<tr>
+<td>Enphase Energy</td>
+<td>ENPH</td>
+<td>US</td>
+<td>Microinverters + residential storage</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>declining/recovering</td>
+<td>profitable but pressured</td>
+<td>rate-sensitive resi demand</td>
+<td>Microinverter tech moat; cyclical</td>
+</tr>
+<tr>
+<td>Fluence Energy</td>
+<td>FLNC</td>
+<td>US</td>
+<td>Grid-scale BESS integrator</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>thin/negative</td>
+<td>utility-scale storage backlog</td>
+<td>Pure-play storage integrator; competitive</td>
+</tr>
+<tr>
+<td>CATL</td>
+<td>300750.SZ</td>
+<td>CN</td>
+<td>World's largest battery maker</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>profitable, scale leader</td>
+<td>dominant global cell share</td>
+<td>Cost/scale leader; LFP &amp; grid storage</td>
+</tr>
+<tr>
+<td>Vestas Wind</td>
+<td>VWS.CO</td>
+<td>DK</td>
+<td>Onshore/offshore wind turbines</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>recovering</td>
+<td>large order backlog</td>
+<td>Wind OEM scale; margin-challenged</td>
+</tr>
+<tr>
+<td>Ørsted</td>
+<td>ORSTED.CO</td>
+<td>DK</td>
+<td>Offshore wind developer</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>impaired (writedowns)</td>
+<td>offshore pipeline troubled</td>
+<td>Offshore lead, but cost/rate damage</td>
+</tr>
+<tr>
+<td>GE Vernova (Wind)</td>
+<td>GEV</td>
+<td>US</td>
+<td>Wind turbines (part of GEV)</td>
+<td>$279.5B (8 May 26)</td>
+<td>n/f (wind segment)</td>
+<td>n/f</td>
+<td>wind drag on group</td>
+<td>onshore recovering, offshore weak</td>
+<td>Part of GEV power platform</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-competitiveness-read">7. Competitiveness read</h2>
+<p>The <strong>storage layer is the high-conviction part</strong> of this theme: record-low battery costs plus the<br />
+flexibility the grid needs make BESS the fastest-growing energy segment, and it directly serves the<br />
+AI-load build-out (<a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a>). <strong>First Solar</strong> stands out on the generation<br />
+side — IRA-advantaged US manufacturing, differentiated thin-film, sold-out backlog — a genuine moat<br />
+in an otherwise commoditized solar world. <strong>NextEra</strong> is the blue-chip way to own the whole<br />
+renewables+storage pipeline with a financing edge.</p>
+<p><strong>Weak/avoid:</strong> Chinese module oversupply has gutted solar-manufacturer economics; <strong>wind</strong> (Ørsted<br />
+impairments, Gamesa losses) remains structurally troubled; <strong>inverter/residential</strong> names (Enphase,<br />
+SolarEdge) are rate-sensitive and have de-rated. This is why the theme is conviction 3, not 4: the<br />
+demand is real but the equity quality is bifurcated and policy/rate-exposed.</p>
+<h2 id="8-risks-what-kills-the-thesis">8. Risks / what kills the thesis</h2>
+<ul>
+<li><strong>Policy:</strong> IRA tax-credit repeal/phase-down or tariff shifts reprice US project economics.</li>
+<li><strong>Rates:</strong> high interest rates compress renewable-project IRRs and developer valuations.</li>
+<li><strong>Chinese oversupply:</strong> continued module/cell glut keeps manufacturer margins depressed.</li>
+<li><strong>Interconnection bottlenecks:</strong> queue delays slow deployment (<a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a>).</li>
+<li><strong>Commodity swings:</strong> lithium/copper price moves (<a class="wikilink" href="critical-minerals.html">critical-minerals</a>) hit storage economics.</li>
+</ul>
+<h2 id="9-investable-instruments-candidates-not-recommendations">9. Investable instruments (candidates — not recommendations)</h2>
+<ul>
+<li><strong>ICLN</strong> (iShares Global Clean Energy) — broad solar/wind/storage.</li>
+<li><strong>TAN</strong> (Invesco Solar) — solar-focused.</li>
+<li><strong>GRID</strong> (First Trust Smart Grid Infra) — grid + storage tilt (also in <a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a>).</li>
+<li><strong>LIT</strong> (Global X Lithium &amp; Battery Tech) — battery supply chain.</li>
+<li>Representative securities: NEE, FSLR, TSLA, ENPH, FLNC, CATL, VWS.CO.</li>
+</ul>
+<h2 id="10-our-view-conviction-stage-horizon">10. Our view — conviction / stage / horizon</h2>
+<ul>
+<li><strong>Conviction 3/5</strong> — storage is a genuine high-growth, cost-curve-driven bright spot, but the<br />
+  theme overall is dragged down by commoditized solar manufacturing, troubled wind, and heavy<br />
+  policy/rate sensitivity. Held below the AI-equipment themes for those reasons.</li>
+<li><strong>Stage: accelerating (storage). Horizon: 3–10 years.</strong></li>
+<li><strong>Invalidation:</strong> US IRA credits repealed without replacement, OR battery-cost declines stall and<br />
+  storage-deployment growth flattens for 2+ quarters, OR sustained high rates freeze project pipelines.</li>
+</ul>
+<!-- auto:instrument-table -->
+
+<h2 id="instruments-live-data-auto-refreshed">Instruments — live data (auto-refreshed)</h2>
+<blockquote>
+<p>Pulled by <code>scripts/refresh_instruments.py</code>. <code>n/f</code> = no reliable figure. Conviction tag links to <a class="wikilink" href="../syntheses/decision-register.html">decision-register</a>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Role</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Mkt cap / AUM</th>
+<th style="text-align: right;">Fwd P/E · YTD</th>
+<th style="text-align: right;">Rev YoY · Yld</th>
+<th style="text-align: right;">Profit · Beta</th>
+<th style="text-align: right;">Off 52wHi</th>
+<th>Conv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ICLN</strong></td>
+<td>Clean energy</td>
+<td style="text-align: right;">$15.27</td>
+<td style="text-align: right;">$2.2B</td>
+<td style="text-align: right;">+4.1%</td>
+<td style="text-align: right;">1.1%</td>
+<td style="text-align: right;">n/f · 1.40</td>
+<td style="text-align: right;">-35.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TAN</strong></td>
+<td>Solar</td>
+<td style="text-align: right;">$39.92</td>
+<td style="text-align: right;">$900M</td>
+<td style="text-align: right;">-10.7%</td>
+<td style="text-align: right;">0.0%</td>
+<td style="text-align: right;">n/f · 1.87</td>
+<td style="text-align: right;">-47.2%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LIT</strong></td>
+<td>Battery supply chain</td>
+<td style="text-align: right;">$59.55</td>
+<td style="text-align: right;">$1.4B</td>
+<td style="text-align: right;">+5.9%</td>
+<td style="text-align: right;">0.7%</td>
+<td style="text-align: right;">n/f · 1.42</td>
+<td style="text-align: right;">-35.3%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>NEE</strong></td>
+<td>Largest utility + renewables</td>
+<td style="text-align: right;">$83.89</td>
+<td style="text-align: right;">$175.9B</td>
+<td style="text-align: right;">19.2x</td>
+<td style="text-align: right;">1.6%</td>
+<td style="text-align: right;">40.4% · 0.64</td>
+<td style="text-align: right;">-15.1%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>FSLR</strong></td>
+<td>Solar leader</td>
+<td style="text-align: right;">$170.75</td>
+<td style="text-align: right;">$18.4B</td>
+<td style="text-align: right;">7.3x</td>
+<td style="text-align: right;">-3.7%</td>
+<td style="text-align: right;">32.5% · 1.79</td>
+<td style="text-align: right;">-46.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ENPH</strong></td>
+<td>Inverters</td>
+<td style="text-align: right;">$24.79</td>
+<td style="text-align: right;">$3.3B</td>
+<td style="text-align: right;">17.2x</td>
+<td style="text-align: right;">-28.5%</td>
+<td style="text-align: right;">7.5% · 1.63</td>
+<td style="text-align: right;">-66.4%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>FLNC</strong></td>
+<td>Battery storage</td>
+<td style="text-align: right;">$5.61</td>
+<td style="text-align: right;">$1.1B</td>
+<td style="text-align: right;">-10.6x</td>
+<td style="text-align: right;">7.9%</td>
+<td style="text-align: right;">-3.1% · 2.77</td>
+<td style="text-align: right;">-83.2%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>SEDG</strong></td>
+<td>Inverters</td>
+<td style="text-align: right;">$29.40</td>
+<td style="text-align: right;">$1.8B</td>
+<td style="text-align: right;">36.8x</td>
+<td style="text-align: right;">19.6%</td>
+<td style="text-align: right;">-20.3% · 1.44</td>
+<td style="text-align: right;">-63.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TSLA</strong></td>
+<td>Storage/Mega-Pack</td>
+<td style="text-align: right;">$399.41</td>
+<td style="text-align: right;">$1.58T</td>
+<td style="text-align: right;">185.3x</td>
+<td style="text-align: right;">-0.2%</td>
+<td style="text-align: right;">3.1% · 1.92</td>
+<td style="text-align: right;">-19.9%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>601012.SS</strong></td>
+<td>LONGi Green Energy (China — solar module leader)</td>
+<td style="text-align: right;">¥11.00</td>
+<td style="text-align: right;">¥83.4B</td>
+<td style="text-align: right;">26.8x</td>
+<td style="text-align: right;">-17.3%</td>
+<td style="text-align: right;">-11.7% · 0.28</td>
+<td style="text-align: right;">-53.3%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>300750.SZ</strong></td>
+<td>CATL (China — largest EV battery)</td>
+<td style="text-align: right;">¥232.92</td>
+<td style="text-align: right;">¥1.08T</td>
+<td style="text-align: right;">9.9x</td>
+<td style="text-align: right;">58.6%</td>
+<td style="text-align: right;">15.0% · 0.47</td>
+<td style="text-align: right;">-50.3%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- auto:instrument-table -->
+
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Grid/demand: <a class="wikilink" href="power-grid-electrification.html">power-grid-electrification</a>, <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a>. Meta-force: <a class="wikilink" href="energy-transition.html">energy-transition</a>.<br />
+  Firm-power peers: <a class="wikilink" href="nuclear-uranium.html">nuclear-uranium</a>, <a class="wikilink" href="natural-gas-lng.html">natural-gas-lng</a>. Materials: <a class="wikilink" href="critical-minerals.html">critical-minerals</a>.<br />
+  Macro: <a class="wikilink" href="../syntheses/macro-regime.html">macro-regime</a>. Master: <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>. Linkage: <a class="wikilink" href="../syntheses/theme-linkage-map.html">theme-linkage-map</a>.</li>
+</ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Does storage's growth decouple from solar/wind's policy drag enough to deserve its own higher<br />
+  conviction sub-score?</li>
+<li>Can any Western cell/module manufacturer (beyond First Solar) build a durable moat against Chinese<br />
+  oversupply?</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>IEA (Renewables 2025); BloombergNEF (battery prices, storage additions); LBNL / EIA (interconnection<br />
+queue); company IR (NextEra, First Solar, Tesla, Enphase, Fluence, Ørsted, Vestas); ETF data<br />
+(iShares, Invesco, Global X), 2026.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

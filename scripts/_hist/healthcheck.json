@@ -1,0 +1,242 @@
+{
+ "checked_utc": "2026-10-30T16:16:45.418353+00:00",
+ "counts": {
+  "fresh": 17,
+  "due-soon": 3,
+  "overdue": 1,
+  "missing": 0
+ },
+ "rows": [
+  {
+   "id": "macro",
+   "label": "Macro snapshot (levels/CAPE/F&G)",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.01,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/refresh.py --macro",
+   "op": "REFRESH op \u00b7 AGENTS \u00a710"
+  },
+  {
+   "id": "instruments",
+   "label": "Instrument spot data (347)",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/refresh_instruments.py",
+   "op": "REFRESH op"
+  },
+  {
+   "id": "prices",
+   "label": "Price history 5y",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.01,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/fetch_history.py --inc",
+   "op": "REFRESH op"
+  },
+  {
+   "id": "signals",
+   "label": "Signals + sleeves",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/signals.py",
+   "op": "SOURCE op"
+  },
+  {
+   "id": "ffm",
+   "label": "FFM ratings (6-factor)",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/ffm_signals.py && scripts/ffm_score.py",
+   "op": "SOURCE op"
+  },
+  {
+   "id": "notes",
+   "label": "Per-ticker research notes",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/ffm_research_note.py --all",
+   "op": "SOURCE op"
+  },
+  {
+   "id": "workbench",
+   "label": "Analyst workbench build",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/build_workbench.py && scripts/inject_workbench.py",
+   "op": "REFRESH op"
+  },
+  {
+   "id": "dashboard",
+   "label": "Outlook dashboard build",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/build_dashboard_*.py + injectors",
+   "op": "REFRESH op"
+  },
+  {
+   "id": "consensus",
+   "label": "Analyst consensus",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "python -m scripts.sources.analysts.consensus",
+   "op": "SOURCE op"
+  },
+  {
+   "id": "archive",
+   "label": "Point-in-time snapshot archive",
+   "cadenceDays": 7,
+   "cadence": "weekly",
+   "ageDays": 0.0,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/snapshot_archive.py",
+   "op": "ARCHITECTURE \u00a78.9"
+  },
+  {
+   "id": "ledger",
+   "label": "Prediction-ledger review",
+   "cadenceDays": 10,
+   "cadence": "monthly",
+   "ageDays": 19.19,
+   "status": "overdue",
+   "badge": "\ud83d\udd34 overdue",
+   "updater": "MONITOR op (score matured P-calls)",
+   "op": "AGENTS \u00a710 MONITOR"
+  },
+  {
+   "id": "sa_grades",
+   "label": "Seeking Alpha grades (auth scrape)",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 26.94,
+   "status": "due-soon",
+   "badge": "\ud83d\udfe1 due soon",
+   "updater": "scripts/fetch_seekingalpha.py (operator-auth browser)",
+   "op": "analysts source"
+  },
+  {
+   "id": "sa_screener",
+   "label": "SA Top-Rated screener",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 34.99,
+   "status": "due-soon",
+   "badge": "\ud83d\udfe1 due soon",
+   "updater": "SA screener 96793299 via authenticated browser",
+   "op": "analysts source"
+  },
+  {
+   "id": "econ",
+   "label": "World Bank econ indicators",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 19.2,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "python -m scripts.sources.econ.fetch_worldbank",
+   "op": "econ source"
+  },
+  {
+   "id": "countries",
+   "label": "Country profiles (15)",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 19.2,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "python -m scripts.sources.countries.fetch_country",
+   "op": "countries source"
+  },
+  {
+   "id": "fundamentals",
+   "label": "Fundamentals history",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 19.2,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/fetch_fundamentals_history.py",
+   "op": "REFRESH op"
+  },
+  {
+   "id": "qae",
+   "label": "QAE book (quant desk)",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 19.19,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/qae.py",
+   "op": "ALPHA op \u00b7 monthly"
+  },
+  {
+   "id": "postmortem",
+   "label": "Post-mortem review",
+   "cadenceDays": 31,
+   "cadence": "monthly",
+   "ageDays": 26.99,
+   "status": "due-soon",
+   "badge": "\ud83d\udfe1 due soon",
+   "updater": "post-mortem op (score calls vs live tape)",
+   "op": "Review loop"
+  },
+  {
+   "id": "backtest",
+   "label": "Walk-forward backtest",
+   "cadenceDays": 95,
+   "cadence": "quarterly",
+   "ageDays": 19.19,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/backtest.py",
+   "op": "BACKTEST op \u00b7 quarterly REVIEW"
+  },
+  {
+   "id": "tournament",
+   "label": "Strategy tournament",
+   "cadenceDays": 95,
+   "cadence": "quarterly",
+   "ageDays": 19.19,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/tournament.py",
+   "op": "TOURNAMENT op \u00b7 quarterly"
+  },
+  {
+   "id": "prices10y",
+   "label": "10y price cache",
+   "cadenceDays": 95,
+   "cadence": "quarterly",
+   "ageDays": 19.2,
+   "status": "fresh",
+   "badge": "\ud83d\udfe2 fresh",
+   "updater": "scripts/fetch_history.py --years 10 --prices-only --out prices_10y.parquet",
+   "op": "TOURNAMENT prep"
+  }
+ ]
+}

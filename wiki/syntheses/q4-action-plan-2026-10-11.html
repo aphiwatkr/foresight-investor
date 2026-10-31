@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Month-end update (Sep) + Q4-2026 action plan — every security in the pipeline (2026-10-11) — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Month-end update (Sep) + Q4-2026 action plan — every security in the pipeline (2026-10-11)</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" class="active" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-10-11</span><span class="stamp">investing</span><span class="stamp">q4-plan</span><span class="stamp">month-end</span><span class="stamp">action-plan</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="month-end-update-sep-q4-2026-action-plan-every-security-in-the-pipeline">Month-end update (Sep) + Q4-2026 action plan — every security in the pipeline</h1>
+<p><strong>Bottom line:</strong> For the operator's own book — never advice to others. Data fully refreshed through the<br />
+<strong>2026-10-09</strong> close (monthly + quarterly chains, incl. 10y prices, backtest, tournament). Four things decide Q4:</p>
+<ol>
+<li><strong>The engine had four defects, now fixed.</strong> Two of them had zeroed the <strong>value and quality sleeves for every<br />
+   US name since at least the 09-25 vintage</strong> and partly corrupted FFM (<strong>225 of 338 composites change</strong> on clean<br />
+   signals). A third made the sleeve backtest hold <strong>crypto-only books in 18 of 61 months</strong>. The fourth — a<br />
+   look-ahead in the mechanic-stack gate — manufactured V3's Sharpe 2.46; corrected it is <strong>1.02, the worst<br />
+   variant</strong>. Several October conclusions built on these are corrected below (§1).</li>
+<li><strong>September closed well for the engine.</strong> <strong>P23 ✅</strong> (Tier-A <strong>+18.4% vs SPY −0.2%</strong>); the v2 book <strong>+2.9% vs<br />
+   SPY −0.7%</strong> (09-04 → 09-30); every open call tracks in the engine's favour <strong>except the Thai income sleeve<br />
+   (P33: −4.6% vs a −5% failure line)</strong>.</li>
+<li><strong>The regime gate reads 1/4 for a second week</strong> (real yields rising, HY credit below trend, silver lagging gold;<br />
+   only SPY's 40-week trend holds). Measured correctly it is <strong>modest tail insurance</strong>, so Q4 runs the momentum<br />
+   book at <strong>half size while the gate is ≤1</strong>, with <strong>no hedge-short and no leverage</strong>.</li>
+<li><strong>The tournament moved:</strong> the v2 two-engine system <strong>lost WINNER status</strong>; Engine A (pure momentum) is the<br />
+   confirmed systematic core. The 50% DBC leg steps down <strong>50% → 25% (11-04) → 0% (12-04)</strong> unless the December<br />
+   re-run restores it.</li>
+</ol>
+<p><strong>Actionable now (confirmed, not extended, catalyst-aware):</strong> <strong>MU</strong> BUY · <strong>SBLK, CSCO, PANW</strong> ACCUMULATE ·<br />
+<strong>NEM</strong> after its 10-23 print · first ⅓ tranches in <strong>HRMY, RELY, DAVE, DCTH, PNTG, ATEX</strong> (≤0.5% names) ·<br />
+<strong>ASIC</strong> after 10-22. <strong>Avoid / exit:</strong> CRWD, SMCI, NBIS, NVO, AXTI, the 10-name bottom decile. <strong>FENC suspended</strong><br />
+(its memo described the wrong product). Nothing written to <a class="wikilink" href="decision-register.html">decision-register</a> — that needs the operator's go.</p>
+<hr />
+<h2 id="1-data-refresh-engine-integrity-what-ran-what-broke-what-changed">1. Data refresh &amp; engine integrity (what ran, what broke, what changed)</h2>
+<p><strong>Ran 2026-10-11</strong> (mirrors <code>monthly_update.sh</code> + <code>quarterly_update.sh</code>, minus their auto-commit): macro →<br />
+instruments (343) → 5y prices → signals → FFM → research notes (338) → tables → consensus → econ → countries →<br />
+QAE → recommend → monitor → dashboards → workbench → fundamentals history → <strong>10y prices</strong> → <strong>backtest</strong> →<br />
+<strong>tournament</strong> → MDAEM v4 → score-Δ → point-in-time archive (<code>_hist/archive/2026-10-11/</code>) → healthcheck<br />
+(<strong>20 fresh / 1 overdue</strong>, the ledger review this page resolves). Signals as-of <strong>2026-10-09</strong>; SA grades remain<br />
+2026-10-03 (operator-auth scrape, not in the chain).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Defect (found 2026-10-11)</th>
+<th>Effect</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>signals.py</code> stamped fundamentals on <code>panel.max()</code> — on a weekend run that date holds only 24/7 assets</td>
+<td>every equity lost P/E, margins → value sleeve = 0 for all 343</td>
+<td>stamp on latest broad-coverage date (guard already used by the sleeve emitter)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5y cache carries US-holiday rows with NaN prices for US names; <code>rolling(252/200)</code> (default <code>min_periods</code>) then NaN for a year</td>
+<td>52w-high &amp; 200-dma gone → value <strong>and</strong> quality = 0 for all 287 US names (in the 09-25 vintage already); FFM momentum inputs degraded</td>
+<td>drop each ticker's no-price rows before its rolling windows</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>backtest.py</code> picked each month's book on the month's max date — often a Sat/Sun with only BTC/ETH/SOL</td>
+<td>18 of 61 months held crypto-only "top-20"</td>
+<td>latest broad-coverage date per month</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>backtest_mechanic_stack.py</code> gated &amp; hedged each month on <strong>that same month's</strong> final-week score</td>
+<td>V2/V3 tail-cuts and the 2.46 Sharpe were look-ahead</td>
+<td>prior-month-end score; corrected table in <a class="wikilink" href="alpha-mechanics-2026-10-06.html">alpha-mechanics-2026-10-06</a></td>
+</tr>
+</tbody>
+</table>
+<p>Also fixed: <code>mdaem_v4.py</code> was missing from the monthly chain (recommendations ran on <strong>2026-08-12</strong> MDAEM tiers)<br />
+and both scheduler scripts had a <code>#!/bin/bin/bash</code> shebang. Not fixed (logged): the sleeve backtest's value/quality<br />
+history has <strong>no point-in-time fundamentals</strong>, so it cannot judge those sleeves either way.</p>
+<p><strong>Conclusions corrected because of the above:</strong> <a class="wikilink" href="model-review-2026-10-03.html">model-review-2026-10-03</a> / <a class="wikilink" href="post-mortem-2026-10-03.html">post-mortem-2026-10-03</a><br />
+"value/quality sleeve decay → re-weigh" (measured on zero-filled sleeves — unproven); the 10-03 Δ-layer FFM moves<br />
+(e.g. KLAC/NBIS) are partly artifacts; <a class="wikilink" href="alpha-mechanics-2026-10-06.html">alpha-mechanics-2026-10-06</a> V3 "core gear" withdrawn.</p>
+<p><strong>Research-quality corrections (memos):</strong> <strong>FENC</strong> described the wrong product — Fennec sells <strong>PEDMARK</strong><br />
+(cisplatin ototoxicity), not "Otividex/Ménière's"; reported net product sales Q1-26 <strong>$15.1M (+73%)</strong>, Q2-26<br />
+<strong>$17.1M (+78%)</strong> (web: Fennec Q1/Q2 2026 releases, 2026-10-11) → rating <strong>suspended, re-underwrite</strong>. <strong>HRMY</strong>:<br />
+pitolisant is an H3-receptor antagonist/inverse agonist, not an "orexin antagonist" (thesis unaffected). <strong>ASIC</strong><br />
+IPO'd 2025, not 2024. <strong>OABI</strong>: frontmatter said BUY; its own QC says HOLD/WAIT. Correction blocks added to each memo,<br />
+<a class="wikilink" href="ic-book-2026-10-05.html">ic-book-2026-10-05</a> and the local <code>ic-report.html</code> (public on next deploy).</p>
+<h2 id="2-september-month-end-scorecard">2. September month-end scorecard</h2>
+<p><strong>Market, September (08-29 → 09-30) · October-to-date (→ 10-09) · YTD:</strong> SPY −0.6% · +2.1% · +15.1% ·<br />
+QQQ +3.4% · +1.6% · +22.7% · <strong>RSP −5.4%</strong> · +2.4% · +12.5% · IWM −5.8% · +0.4% · +14.1% · <strong>SMH +10.1%</strong> ·<br />
+−0.9% · +67.5% · GLD −6.9% · +1.0% · −3.0% · DBC +5.0% · +2.0% · +47.4% · HYG −2.6% · +0.5% · +0.1%<br />
+(yfinance adj., 2026-10-11). September was the narrowest month of the year: cap-weighted tech up, equal-weight<br />
+and small caps down ~5½%.</p>
+<p><strong>Engine books:</strong> v2 system (09-04 → 09-30): Engine-A ten <strong>+14.7%</strong>, DBC +1.3%, BIL +0.2% → book <strong>+2.9% vs SPY<br />
+−0.7%</strong>. October-to-date: book +1.35% vs SPY +2.09% (lagging slightly). 100x/IC sleeve since the 10-05 memos: flat<br />
+(−0.1%); momentum trio <strong>−12.1%</strong>; pending five −4.5%.</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>Status (2026-10-09)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P23</strong> Tier-A vs SPY, 21 sessions</td>
+<td>✅ <strong>RESOLVED: +18.43% vs −0.24%</strong> — scored two weeks late</td>
+</tr>
+<tr>
+<td>P24 Tier A vs Tier B (12-01)</td>
+<td>⏳ +23.0% vs +16.5%</td>
+</tr>
+<tr>
+<td>P25 avoid list vs SPY (12-01)</td>
+<td>⏳ −10.6% vs +1.5%</td>
+</tr>
+<tr>
+<td>P32 QAE-09-25 tranche &gt;SPY+2 (12-24)</td>
+<td>⏳ +7.0% vs +0.9%</td>
+</tr>
+<tr>
+<td><strong>P33 Thai sleeve ≥+8% (fail &lt;−5%)</strong></td>
+<td>⏳ <strong>−4.6% — at risk</strong> (KBANK −9.5% off a 09-21 ATH; no NPL/dividend news found)</td>
+</tr>
+<tr>
+<td>P34 confirmed vs gated (12-21)</td>
+<td>⏳ +6.5% vs +5.4%</td>
+</tr>
+<tr>
+<td>P35 AVGO &lt; confirmed (12-21)</td>
+<td>⏳ +1.3% vs +6.5%</td>
+</tr>
+</tbody>
+</table>
+<p>Ledger bookkeeping: P12's stale open row removed; the 2026-09-20 pair renumbered <strong>P34/P35</strong> after an ID collision<br />
+with the 2026-09-26 P32/P33. New calls P36/P37 (§7).</p>
+<h2 id="3-regime-trigger-board-live-2026-10-09">3. Regime &amp; trigger board (live 2026-10-09)</h2>
+<p><strong>Leading-indicator gate</strong> (TIP vs 10w · HYG vs 10w · SPY vs 40w · gold/silver ratio vs 10w): 08-28 → 09-04<br />
+<strong>3/4</strong> · 09-11 → 09-25 <strong>2/4</strong> · <strong>10-02 1/4 · 10-09 1/4</strong>. HYG below trend since 09-11 is the credit warning we<br />
+otherwise lack (HY-OAS is dark without a FRED key).</p>
+<table>
+<thead>
+<tr>
+<th>Trigger (09-25 memo)</th>
+<th>Level</th>
+<th style="text-align: right;">09-30</th>
+<th style="text-align: right;">10-09</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10Y &gt;5.5% → halve offense</td>
+<td>5.5%</td>
+<td style="text-align: right;">5.29%</td>
+<td style="text-align: right;"><strong>5.24%</strong></td>
+<td>🟡 (30Y 5.60%; long end hit 24-yr highs this week)</td>
+</tr>
+<tr>
+<td>SMH −12% from high → AI circuit breaker</td>
+<td>−12%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>−9.8%</strong></td>
+<td>🟡 2.2 pts away (10-08 AI-revenue scare)</td>
+</tr>
+<tr>
+<td>RSP new 3-month low → breadth break</td>
+<td>—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">+2.4% above</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>Brent &gt;$110</td>
+<td>$110</td>
+<td style="text-align: right;">$103.5</td>
+<td style="text-align: right;">$104.7</td>
+<td>🟡 above $100 warn</td>
+</tr>
+<tr>
+<td>USD/JPY &lt;154</td>
+<td>154</td>
+<td style="text-align: right;">157.4</td>
+<td style="text-align: right;">158.25</td>
+<td>🟢</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td>—</td>
+<td style="text-align: right;">16.3</td>
+<td style="text-align: right;">14.8</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<p>Context (web, 2026-10-09): S&amp;P 500 7,811.54 (+1.2% on the week, Nasdaq's 4th straight weekly gain); semis sold off<br />
+10-08 on a report that OpenAI's revenue run-rate was below prior signals; earnings season starting.</p>
+<h2 id="4-the-q4-operating-rules-what-changed-and-why">4. The Q4 operating rules (what changed and why)</h2>
+<p><strong>Factor view (trades) vs macro view (context only)</strong> — per <a class="wikilink" href="post-mortem-2026-10-03.html">post-mortem-2026-10-03</a>, discretionary macro does<br />
+not trade in a momentum-confirmed tape. Only the <em>measured</em> gate below scales exposure.</p>
+<ol>
+<li><strong>Systematic core = Engine A</strong> (<code>xs_mom_top10_iv_vt15</code>, WINNER in both the 09-06 and 10-11 tournaments, Sharpe<br />
+   1.12, maxDD −20%). Ten names at 3.5% of the engine each, 15% vol target, rebalanced <strong>11-04, 12-04, 2027-01-06</strong><br />
+   (the 10-06 rebalance was not filed — execute the current ten at the next session).</li>
+<li><strong>Weekly gate (measured, lag-correct):</strong> at each Friday close, score ≤1 → hold the momentum book at <strong>half<br />
+   weight</strong> the next week; ≥2 → full. Backtest (2017-12 → 2026-10): Sharpe 1.45 → 1.47, worst year −14.0% → +0.3%,<br />
+   ≈ −3 pts CAGR — insurance, not alpha. <strong>Currently ≤1 → half weight.</strong></li>
+<li><strong>No hedge-short, no leverage.</strong> Corrected, the hedge lowers Sharpe (1.33) and 1.25–1.5× gives maxDD −33 to −39%<br />
+   on a survivorship-flattered universe.</li>
+<li><strong>Engine B (DBC) demoted.</strong> All dual-momentum ensembles lost winner status. Step DBC <strong>50% → 25% at 11-04 → 0% at<br />
+   12-04</strong> unless the December tournament restores it; freed capital to T-bills (BIL ≈ 4.3%). P27/P28 keep testing<br />
+   the v2 system as filed.</li>
+<li><strong>Confirmation rule:</strong> full weight only when momentum (QAE top-15 / Engine A) <strong>and</strong> FFM ≥60 ungated agree;<br />
+   momentum-only names run at half weight with the 2.5×ATR stop; FFM ≥73 ungated outside the momentum book =<br />
+   accumulate on pullback.</li>
+<li><strong>Earnings rule:</strong> no new full-size entry inside 10 sessions of a print; stage ⅓ before, ⅔ after a confirming print.</li>
+<li><strong>100x sleeve rules:</strong> ≤0.5% per name, staged thirds; <strong>no initiation above the Street mean target or &gt;100% above<br />
+   the 200-dma</strong>; add only after the next print confirms the memo's key metric.</li>
+<li><strong>Caps</strong> (<a class="wikilink" href="portfolio-blueprint.html">portfolio-blueprint</a>): name ≤8%, theme ≤12%, AI-capex cluster ≤25%, cash ≥3%.</li>
+</ol>
+<h2 id="5-q4-calendar-dated">5. Q4 calendar (dated)</h2>
+<table>
+<thead>
+<tr>
+<th>Date (2026)</th>
+<th>Event</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every Friday</td>
+<td><strong>Gate re-check</strong> (<code>scripts/qc_weekly_gate.py</code> logic)</td>
+<td>sets next week's momentum-book size</td>
+</tr>
+<tr>
+<td>10-14</td>
+<td>US CPI (Sep) (web: BLS schedule)</td>
+<td>rate-path; 10Y 5.5% trigger</td>
+</tr>
+<tr>
+<td>10-15</td>
+<td><strong>TSM</strong> earnings</td>
+<td>AI-capex read; DR zone</td>
+</tr>
+<tr>
+<td>10-20 / 10-21 / 10-22</td>
+<td>RTX · <strong>KBANK</strong> (NPL read for P33) · LMT, <strong>ASIC</strong></td>
+<td>defense trend; Thai sleeve; first 100x print</td>
+</tr>
+<tr>
+<td>10-23</td>
+<td>NEM, SCCO, MXL</td>
+<td>gold/copper; trio stop</td>
+</tr>
+<tr>
+<td>10-27 – 10-30</td>
+<td>CNC, GLW, FCX · PSX, GEV, FLEX · FTNT, LLY, NOW, PTTEP, SIMO · ILMN, INTC, SNDK, AXTI</td>
+<td>dense core-book prints</td>
+</tr>
+<tr>
+<td><strong>10-28</strong></td>
+<td><strong>FOMC decision</strong> (web: Fed calendar)</td>
+<td>hiking cycle restarted Sep-16</td>
+</tr>
+<tr>
+<td><strong>10-30</strong></td>
+<td><strong>BoJ decision + Outlook</strong> (web: BoJ calendar)</td>
+<td>yen 158; carry</td>
+</tr>
+<tr>
+<td><strong>11-03</strong></td>
+<td><strong>US midterm elections</strong> · HRMY, DCTH, ADVANC</td>
+<td>event vol</td>
+</tr>
+<tr>
+<td><strong>11-04</strong></td>
+<td><strong>Engine A rebalance · DBC → 25%</strong> · AMD, SMCI, NVO prints</td>
+<td>system day</td>
+</tr>
+<tr>
+<td>11-05</td>
+<td>RELY, DAVE, IOVA, PNTG, NLST, OABI, GCT, SEZL prints</td>
+<td>100x sleeve confirm/deny</td>
+</tr>
+<tr>
+<td>11-10 / 11-12</td>
+<td>CPI (Oct) · ABCL, NBIS · FENC, HTFL, GRAL, ATEX, DGII, ECO</td>
+<td>sleeve prints</td>
+</tr>
+<tr>
+<td>11-13 → 11-25</td>
+<td>CSCO · SBLK · PANW · ZS</td>
+<td>accumulation names</td>
+</tr>
+<tr>
+<td>11-26</td>
+<td>US market holiday</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12-01</td>
+<td><strong>P24/P25 resolve</strong> · CRDO</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12-02 / 12-03</td>
+<td>OKTA, MRVL, CRWD · CRM</td>
+<td>core prints</td>
+</tr>
+<tr>
+<td><strong>12-04</strong></td>
+<td><strong>Engine A rebalance · DBC → 0%</strong> (unless restored)</td>
+<td>system day</td>
+</tr>
+<tr>
+<td><strong>12-08 → 12-09</strong></td>
+<td><strong>FOMC + SEP</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>12-10</td>
+<td>CPI (Nov) · AVGO, ADBE</td>
+<td>AVGO 200-dma test</td>
+</tr>
+<tr>
+<td>12-21 / 12-24 / 12-31</td>
+<td>P34/P35 · P32 · P5 resolve</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Dec (pre-holiday)</strong></td>
+<td><strong>Quarterly REVIEW</strong></td>
+<td>re-test value/quality on clean data; Engine B verdict; gate rule</td>
+</tr>
+<tr>
+<td>2027-01-06 / 01-11</td>
+<td>rebalance · P36/P37 resolve</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Earnings dates are yfinance calendars retrieved 2026-10-11 (DELL "11-28" and MU "12-24" look like estimates —<br />
+re-verify). FRO/HPE/BHP next dates unpublished.</p>
+<h2 id="6-recommendation-for-each-security-in-the-pipeline">6. Recommendation for each security in the pipeline</h2>
+<p><strong>Legend.</strong> Rating: <strong>BUY</strong> · <strong>ACCUMULATE</strong> (staged) · <strong>HOLD</strong> (keep, no adds) · <strong>HOLD-TRADE</strong> (half weight,<br />
+stop binds) · <strong>WAIT</strong> (entry condition unmet) · <strong>TRIM</strong> · <strong>EXIT</strong> · <strong>AVOID</strong> · <strong>RE-UNDERWRITE</strong>.<br />
+Conv. 1–5 (risk-adjusted; nothing earns 5). FFM = corrected 2026-10-09 composite (G = knockout gate). Stop =<br />
+2.5×ATR(20) from the 10-09 close. All prices yfinance 2026-10-09. Own book only.</p>
+<h3 id="6a-systematic-core-engine-a-ten-run-at-system-weight-half-weight-while-the-gate-1">6A. Systematic core — Engine A ten (run at system weight; <strong>half weight while the gate ≤1</strong>)</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: center;">Conv</th>
+<th>FFM</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Stop</th>
+<th style="text-align: right;">Street tgt</th>
+<th>Next print</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MU</strong></td>
+<td><strong>BUY</strong></td>
+<td style="text-align: center;">4</td>
+<td>SB 78.5</td>
+<td style="text-align: right;">1,029.00</td>
+<td style="text-align: right;">918.51</td>
+<td style="text-align: right;">1,555 (+51%)</td>
+<td>~12-24 (est.)</td>
+<td>Best risk/reward in the core: confirmed, 15% off its high, Street +51%; adds at system weight + discretionary to cap</td>
+</tr>
+<tr>
+<td>ECO</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>SB 80</td>
+<td style="text-align: right;">93.11</td>
+<td style="text-align: right;">83.20</td>
+<td style="text-align: right;">100</td>
+<td>11-12</td>
+<td>QAE #1, confirmed — but +85% above 200-dma and war-premium tanker; no extra add</td>
+</tr>
+<tr>
+<td>DELL</td>
+<td>HOLD</td>
+<td style="text-align: center;">3.5</td>
+<td>Buy 67</td>
+<td style="text-align: right;">586.06</td>
+<td style="text-align: right;">517.80</td>
+<td style="text-align: right;">586 (0%)</td>
+<td>late Nov</td>
+<td>Confirmed; at Street target; let the system weight run</td>
+</tr>
+<tr>
+<td>HPE</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>Buy 68.5</td>
+<td style="text-align: right;">73.46</td>
+<td style="text-align: right;">64.50</td>
+<td style="text-align: right;">72</td>
+<td>n/p</td>
+<td>Confirmed; +94% above 200-dma; system weight only</td>
+</tr>
+<tr>
+<td>PSX</td>
+<td>HOLD</td>
+<td style="text-align: center;">3.5</td>
+<td>Buy 68.5</td>
+<td style="text-align: right;">278.18</td>
+<td style="text-align: right;">254.50</td>
+<td style="text-align: right;">267</td>
+<td><strong>10-28</strong></td>
+<td>Confirmed refining value; no add before the print</td>
+</tr>
+<tr>
+<td>FRO</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>SB 83.5</td>
+<td style="text-align: right;">56.10</td>
+<td style="text-align: right;">51.16</td>
+<td style="text-align: right;">54</td>
+<td>n/p</td>
+<td>Confirmed tanker; above Street target</td>
+</tr>
+<tr>
+<td>OKTA</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>SB 81.5</td>
+<td style="text-align: right;">232.13</td>
+<td style="text-align: right;">206.93</td>
+<td style="text-align: right;">213</td>
+<td>12-02</td>
+<td>Confirmed but +101% above 200-dma, above target; software build-vs-buy caveat stands</td>
+</tr>
+<tr>
+<td>MRVL</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>Buy 60</td>
+<td style="text-align: right;">275.28</td>
+<td style="text-align: right;">240.49</td>
+<td style="text-align: right;">338 (+23%)</td>
+<td>12-02</td>
+<td>Engine A member, confirmed (just)</td>
+</tr>
+<tr>
+<td>ILMN</td>
+<td>HOLD-TRADE</td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td style="text-align: right;">278.17</td>
+<td style="text-align: right;">240.83</td>
+<td style="text-align: right;">234 (−16%)</td>
+<td><strong>10-30</strong></td>
+<td>Momentum-only (Growth D−, Value D−); above target</td>
+</tr>
+<tr>
+<td>FTNT</td>
+<td>HOLD-TRADE</td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td style="text-align: right;">194.75</td>
+<td style="text-align: right;">178.84</td>
+<td style="text-align: right;">164 (−16%)</td>
+<td><strong>10-29</strong></td>
+<td>Momentum-only; above target</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6b-qae-top-15-outside-engine-a">6B. QAE top-15 outside Engine A</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: center;">Conv</th>
+<th>FFM</th>
+<th>Why / trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SBLK</strong></td>
+<td><strong>ACCUMULATE</strong></td>
+<td style="text-align: center;">3</td>
+<td>SB 80.5</td>
+<td>Confirmed dry-bulk; 1m −3% pullback, Street +16%; diversifies the AI cluster. Print 11-19</td>
+</tr>
+<tr>
+<td><strong>PANW</strong></td>
+<td><strong>ACCUMULATE</strong> (small)</td>
+<td style="text-align: center;">3</td>
+<td>Buy 62.5</td>
+<td>Confirmed cyber; at Street target — size small. Print 11-20</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>HOLD</td>
+<td style="text-align: center;">3.5</td>
+<td>Buy 66</td>
+<td>Confirmed (cut from SB); print <strong>11-04</strong> = rebalance day → no add into it</td>
+</tr>
+<tr>
+<td>ARKG</td>
+<td>HOLD-TRADE</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 46</td>
+<td>Basket momentum, unconfirmed</td>
+</tr>
+<tr>
+<td>INTC</td>
+<td>HOLD-TRADE (if held)</td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td>Dropped out of the momentum top decile; −26% off high; print 10-30</td>
+</tr>
+<tr>
+<td>CRWD</td>
+<td><strong>AVOID / TRIM</strong></td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td>Momentum-only, above target; still fails MDAEM Gate 9 (DR reject)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6c-engine-generated-adds-recommendpy-top-20-mdaem-quant-dims-only-operator-dims-not-done">6C. Engine-generated adds (<code>recommend.py</code> top-20 — MDAEM quant dims only; operator dims not done)</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: center;">Conv</th>
+<th>FFM</th>
+<th>Why / trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CSCO</strong></td>
+<td><strong>ACCUMULATE</strong></td>
+<td style="text-align: center;">3.5</td>
+<td>SB 75</td>
+<td>Ungated quality, vol 34, Street +15%; print 11-13</td>
+</tr>
+<tr>
+<td>BEN</td>
+<td>ACCUMULATE (small)</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 73</td>
+<td>Low-vol asset manager; print 11-06</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>ACCUMULATE (small)</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 66</td>
+<td>Software rebound candidate, Street +24%; print 12-03</td>
+</tr>
+<tr>
+<td>ZS</td>
+<td>WAIT → ACCUMULATE</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 61</td>
+<td>+43% 1m rebound from −30%; after 11-25 print</td>
+</tr>
+<tr>
+<td>NOW</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 62</td>
+<td>Print 10-29 first</td>
+</tr>
+<tr>
+<td>FLEX</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 56</td>
+<td>Print 10-28 first; Street +34%</td>
+</tr>
+<tr>
+<td>CRDO</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 64</td>
+<td>Vol 95; after 12-01 print</td>
+</tr>
+<tr>
+<td>SOXX / SOXQ</td>
+<td>WAIT</td>
+<td style="text-align: center;">3</td>
+<td>Hold 48</td>
+<td>Basket add only at the DR's ≥20% drawdown (now −14%)</td>
+</tr>
+<tr>
+<td>ADBE</td>
+<td>WAIT</td>
+<td style="text-align: center;">2</td>
+<td>Buy 64</td>
+<td>Below 200-dma, −33% off high</td>
+</tr>
+<tr>
+<td>GOLD (Barrick)</td>
+<td>WAIT</td>
+<td style="text-align: center;">2</td>
+<td>Hold 50</td>
+<td>Below 200-dma; gold tactical flat</td>
+</tr>
+<tr>
+<td>BHP</td>
+<td>HOLD</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 50 G</td>
+<td>Growth D− gate; above Street target</td>
+</tr>
+<tr>
+<td>CNC</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 50 G</td>
+<td>Engine add rests on quant-only MDAEM; print 10-27</td>
+</tr>
+<tr>
+<td>KBANK.BK / PTT.BK</td>
+<td>HOLD</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 50 G</td>
+<td>Thai names — see 6H</td>
+</tr>
+<tr>
+<td>NBIS</td>
+<td><strong>AVOID</strong></td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td>Gated, vol 131, fell out of momentum top decile</td>
+</tr>
+<tr>
+<td>SMCI</td>
+<td><strong>AVOID</strong></td>
+<td style="text-align: center;">2</td>
+<td>Sell 30 G</td>
+<td>Gated; longterm sleeve 0.03</td>
+</tr>
+<tr>
+<td>SEZL</td>
+<td>see 6E</td>
+<td style="text-align: center;">—</td>
+<td>Sell 30 G</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6d-book-memo-decision-register-names">6D. Book-memo &amp; decision-register names</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: center;">Conv</th>
+<th>FFM</th>
+<th style="text-align: right;">Price</th>
+<th>Why / trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TSM</strong></td>
+<td>HOLD</td>
+<td style="text-align: center;">3.5</td>
+<td>Buy 74</td>
+<td style="text-align: right;">453.31</td>
+<td>Above the DR zone ($422 / $360–380); <strong>print 10-15</strong>; add only on a pullback into zone</td>
+</tr>
+<tr>
+<td><strong>LLY</strong></td>
+<td>HOLD</td>
+<td style="text-align: center;">2.5 ↓</td>
+<td>Sell 30 G</td>
+<td style="text-align: right;">1,179.27</td>
+<td>FFM gate (estimate cuts); no add before 10-29 print; DR conv 4 → 2.5</td>
+</tr>
+<tr>
+<td>CIBR / BUG</td>
+<td>HOLD</td>
+<td style="text-align: center;">3.5</td>
+<td>Hold 50 / 48</td>
+<td style="text-align: right;">—</td>
+<td>Basket is the preferred cyber expression over CRWD/FTNT</td>
+</tr>
+<tr>
+<td>SMH</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>Hold 48</td>
+<td style="text-align: right;">603.33</td>
+<td>Add only at −20% (DR rule); −12% is the warn breaker</td>
+</tr>
+<tr>
+<td>DXJ</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>Hold 50 G</td>
+<td style="text-align: right;">—</td>
+<td>Weak yen helps the hedged sleeve</td>
+</tr>
+<tr>
+<td>GRID</td>
+<td>HOLD</td>
+<td style="text-align: center;">3</td>
+<td>Sell 44</td>
+<td style="text-align: right;">—</td>
+<td>Momentum faded (0.52); no add</td>
+</tr>
+<tr>
+<td>ITA / LMT / RTX</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5 ↓</td>
+<td>Sell 40 / Hold 50 G</td>
+<td style="text-align: right;">LMT 509.59 · RTX 185.97</td>
+<td>Defense below 200-dma, −18 to −24% off highs; 10-20/10-22 prints decide; DR conv 4 → 2.5</td>
+</tr>
+<tr>
+<td>PHO / AWK</td>
+<td>HOLD</td>
+<td style="text-align: center;">2.5</td>
+<td>Sell 42 / Hold 50 G</td>
+<td style="text-align: right;">—</td>
+<td>Defensive; no add</td>
+</tr>
+<tr>
+<td><strong>AVGO</strong></td>
+<td>WAIT</td>
+<td style="text-align: center;">3</td>
+<td>Buy 66</td>
+<td style="text-align: right;">361.54</td>
+<td>Below 200-dma, −25% off high, Street +47%; re-enter on a 200-dma reclaim or after 12-10 (P35 tracking)</td>
+</tr>
+<tr>
+<td><strong>NEM</strong></td>
+<td><strong>ACCUMULATE</strong> after 10-23</td>
+<td style="text-align: center;">3</td>
+<td>Buy 73</td>
+<td style="text-align: right;">117.84</td>
+<td>Only ungated FFM ≥73 name outside the AI cluster; Street +17%</td>
+</tr>
+<tr>
+<td>SNDK</td>
+<td>WAIT → ACCUMULATE</td>
+<td style="text-align: center;">3</td>
+<td>SB 80</td>
+<td style="text-align: right;">1,581.82</td>
+<td>FFM SB on clean data; vol 110, −32% off high; after 10-30 print if NAND pricing holds</td>
+</tr>
+<tr>
+<td>SCCO / FCX</td>
+<td>HOLD-TRADE / HOLD</td>
+<td style="text-align: center;">2.5</td>
+<td>Sell 30 G / Hold 56</td>
+<td style="text-align: right;">—</td>
+<td>Copper momentum, fundamentals gated (SCCO above target)</td>
+</tr>
+<tr>
+<td>GLD</td>
+<td>HOLD (core ballast)</td>
+<td style="text-align: center;">3</td>
+<td>Sell 38</td>
+<td style="text-align: right;">384.58</td>
+<td>Below 200-dma; core B&amp;H only, tactical overlay flat</td>
+</tr>
+<tr>
+<td>DBC</td>
+<td><strong>STEP DOWN</strong> 50→25→0%</td>
+<td style="text-align: center;">2.5</td>
+<td>Hold 50 G</td>
+<td style="text-align: right;">32.96</td>
+<td>Engine B lost winner status (§4.4); 12m +47% still leads</td>
+</tr>
+<tr>
+<td>GEV</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td>Buy 62</td>
+<td style="text-align: right;">—</td>
+<td>DR valuation reject stands; print 10-28</td>
+</tr>
+<tr>
+<td>GLW</td>
+<td>WAIT</td>
+<td style="text-align: center;">2</td>
+<td>Hold 52</td>
+<td style="text-align: right;">—</td>
+<td>−39% off high</td>
+</tr>
+<tr>
+<td><strong>NVO</strong></td>
+<td><strong>EXIT / AVOID</strong></td>
+<td style="text-align: center;">2</td>
+<td>Hold 50 G</td>
+<td style="text-align: right;">—</td>
+<td>−37% off high, below 200-dma, MS underweight; print 11-04</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6e-100x-ic-sleeve-17-memod-names-outside-the-ffm-universe-except-sezl">6E. 100x / IC sleeve (17 memo'd names; outside the FFM universe except SEZL)</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: center;">Conv</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Street tgt</th>
+<th>Memo PT</th>
+<th style="text-align: right;">Since 10-05</th>
+<th>Next print</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FENC</strong></td>
+<td><strong>RE-UNDERWRITE</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: right;">10.71</td>
+<td style="text-align: right;">17.67</td>
+<td>—</td>
+<td style="text-align: right;">+0.8%</td>
+<td>11-12</td>
+<td>Memo thesis invalid (wrong product). Real PEDMARK growth +73–78% merits a new memo; no buying until then</td>
+</tr>
+<tr>
+<td><strong>HRMY</strong></td>
+<td>ACCUMULATE ⅓ now</td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: right;">40.28</td>
+<td style="text-align: right;">47.64</td>
+<td>—</td>
+<td style="text-align: right;">+0.9%</td>
+<td>11-03</td>
+<td>Profitable, net cash, buybacks; not extended</td>
+</tr>
+<tr>
+<td><strong>RELY</strong></td>
+<td>ACCUMULATE ⅓ now</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">24.13</td>
+<td style="text-align: right;">32.11</td>
+<td>—</td>
+<td style="text-align: right;">+5.3%</td>
+<td>11-05</td>
+<td>Street +33%, +22% vs 200-dma</td>
+</tr>
+<tr>
+<td><strong>DAVE</strong></td>
+<td>ACCUMULATE ⅓ now</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">368.42</td>
+<td style="text-align: right;">445.07</td>
+<td>$420–450</td>
+<td style="text-align: right;">−0.1%</td>
+<td>11-05</td>
+<td>Street +21%; staged</td>
+</tr>
+<tr>
+<td><strong>DCTH</strong></td>
+<td>ACCUMULATE ⅓ (small)</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">15.36</td>
+<td style="text-align: right;">24.00</td>
+<td>—</td>
+<td style="text-align: right;">−3.2%</td>
+<td>11-03</td>
+<td>Street +56%; dilution is the tax</td>
+</tr>
+<tr>
+<td><strong>PNTG</strong></td>
+<td>ACCUMULATE ⅓ (small)</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">39.73</td>
+<td style="text-align: right;">46.83</td>
+<td>—</td>
+<td style="text-align: right;">−1.4%</td>
+<td>11-05</td>
+<td>Leverage caps size</td>
+</tr>
+<tr>
+<td><strong>ATEX</strong></td>
+<td>ACCUMULATE starter</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">84.53</td>
+<td style="text-align: right;">112.33</td>
+<td>$95–110</td>
+<td style="text-align: right;">−1.3%</td>
+<td>11-12</td>
+<td>−22% off high, Street +33%</td>
+</tr>
+<tr>
+<td><strong>ASIC</strong></td>
+<td>ACCUMULATE after 10-22</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">25.93</td>
+<td style="text-align: right;">29.10</td>
+<td>—</td>
+<td style="text-align: right;">+0.8%</td>
+<td><strong>10-22</strong></td>
+<td>First Q4 print in the sleeve</td>
+</tr>
+<tr>
+<td>SEZL</td>
+<td>WAIT for print</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">(univ.)</td>
+<td style="text-align: right;">+30%</td>
+<td>$130–145</td>
+<td style="text-align: right;">—</td>
+<td>11-05</td>
+<td>FFM gated (Sell 30); −32% off high</td>
+</tr>
+<tr>
+<td>HTFL</td>
+<td>WAIT</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">49.74</td>
+<td style="text-align: right;">46.00</td>
+<td>$60–68</td>
+<td style="text-align: right;">−4.7%</td>
+<td>11-12</td>
+<td>Above Street target (rule 7); +90% in 3m</td>
+</tr>
+<tr>
+<td>IOVA</td>
+<td>WAIT</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">14.62</td>
+<td style="text-align: right;">13.30</td>
+<td>$22–26</td>
+<td style="text-align: right;">+3.3%</td>
+<td>11-05</td>
+<td>Above Street target, +544% 12m, +192% vs 200-dma — don't chase</td>
+</tr>
+<tr>
+<td>GRAL</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">140.58</td>
+<td style="text-align: right;">116.10</td>
+<td>$180–220</td>
+<td style="text-align: right;">−8.8%</td>
+<td>11-12</td>
+<td>Above target; FDA approval is binary</td>
+</tr>
+<tr>
+<td>NLST</td>
+<td>WAIT (hold existing ¼)</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">6.34</td>
+<td style="text-align: right;">15 (1 analyst)</td>
+<td>$8–11</td>
+<td style="text-align: right;">+12.2%</td>
+<td>11-05</td>
+<td>+130% vs 200-dma, vol 157; trim-at-2× rule</td>
+</tr>
+<tr>
+<td>OABI</td>
+<td>WAIT</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">4.79</td>
+<td style="text-align: right;">8.33</td>
+<td>$6.5–8</td>
+<td style="text-align: right;">−2.6%</td>
+<td>11-05</td>
+<td>Its own QC rating is HOLD/WAIT</td>
+</tr>
+<tr>
+<td>GCT</td>
+<td>WAIT for print</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">57.26</td>
+<td style="text-align: right;">61.33</td>
+<td>$65–75</td>
+<td style="text-align: right;">+4.8%</td>
+<td>11-05</td>
+<td>At 52w high; tariff overhang</td>
+</tr>
+<tr>
+<td>ABCL</td>
+<td>WAIT</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">12.54</td>
+<td style="text-align: right;">16.70</td>
+<td>$14–16</td>
+<td style="text-align: right;">−9.0%</td>
+<td>11-10</td>
+<td>Still +102% vs 200-dma</td>
+</tr>
+<tr>
+<td>DGII</td>
+<td>WAIT for print</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: right;">75.63</td>
+<td style="text-align: right;">85.40</td>
+<td>—</td>
+<td style="text-align: right;">+1.4%</td>
+<td>11-12</td>
+<td>Memo: accumulate post-print</td>
+</tr>
+</tbody>
+</table>
+<p>Tranche 1 (now): HRMY, RELY, DAVE, DCTH, PNTG, ATEX at ⅓ of 0.3–0.5% ≈ <strong>0.8–1.0% of book</strong>; ASIC after 10-22.</p>
+<h3 id="6f-momentum-trio-late-entry-cluster-trailing-stop-25-from-high-or-25atr">6F. Momentum trio (late-entry cluster; trailing stop −25% from high or 2.5×ATR)</h3>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Rating</th>
+<th style="text-align: right;">Since 10-05</th>
+<th style="text-align: right;">Off 52w high</th>
+<th>Next print</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AXTI</strong></td>
+<td><strong>EXIT</strong></td>
+<td style="text-align: right;">−21.0%</td>
+<td style="text-align: right;">−51%</td>
+<td>10-30</td>
+<td>Trailing stop long breached</td>
+</tr>
+<tr>
+<td>MXL</td>
+<td><strong>EXIT on a close below −25%</strong></td>
+<td style="text-align: right;">−8.8%</td>
+<td style="text-align: right;">−24.9%</td>
+<td>10-23</td>
+<td>At the stop line</td>
+</tr>
+<tr>
+<td>SIMO</td>
+<td>HOLD-TRADE</td>
+<td style="text-align: right;">−6.6%</td>
+<td style="text-align: right;">−21.5%</td>
+<td>10-29</td>
+<td>Stop at −25% from high</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6g-pending-mdaem-queue-wait-no-entry-until-the-framework-pillars-are-scored">6G. Pending MDAEM queue — <strong>WAIT (no entry until the framework pillars are scored)</strong></h3>
+<p>PAYS (at Street target, +102% vs 200-dma) · BDSX (−10.5% since 10-05) · OSCR (Street "hold") · ECOR · OESX (−14%).</p>
+<h3 id="6h-thai-income-sleeve-p33-hold-all-no-adds">6H. Thai income sleeve (P33) — <strong>HOLD all, no adds</strong></h3>
+<p>PTTEP.BK 147.00 (print 10-29) · ADVANC.BK 334.00 (below 200-dma; print 11-03) · KBANK.BK 228.00 (−12% off a 09-21<br />
+ATH; <strong>print 10-21 = the NPL read</strong>). Sleeve −4.6% vs the −5% failure line. The 09-25 → 10-09 monitor "exits" for<br />
+KBANK/PTTEP were the zero-filled-sleeve artifact (KBANK value is 0.91 on clean data; the engine now rates it ADD). A<br />
+weekly close below −5% is a <strong>review trigger, not an automatic sale</strong>; the thesis breaks on a dividend cut or NPL &gt;4%.</p>
+<h3 id="6i-avoid-list-qae-bottom-decile-fundamentals-agree-avoid">6I. Avoid list (QAE bottom decile, fundamentals agree) — <strong>AVOID</strong></h3>
+<p>PNR · OKLO · RGTI · HSAI · QUBT · ACM · LEU · PDD · CRH · KWEB. Several carry huge Street upside (OKLO +118%, QUBT<br />
++151%, RGTI +103%) — "the Street loves it, the tape doesn't"; no entry until the QAE score turns positive. OKLO/LEU<br />
+align with the nuclear downgrade (3 → 2.5); HSAI is a live warning against <a class="wikilink" href="../concepts/humanoid-robotics.html">humanoid-robotics</a> (P30).</p>
+<h2 id="7-falsifiable-calls-prediction-ledger">7. Falsifiable calls → <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Call</th>
+<th>Resolve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P36</strong></td>
+<td>Engine A's 10-09 ten (ECO, DELL, ILMN, FRO, HPE, PSX, MU, FTNT, MRVL, OKTA; eq-wt) beats SPY over 63 sessions</td>
+<td>2027-01-11</td>
+</tr>
+<tr>
+<td><strong>P37</strong></td>
+<td>IC names above their Street target on 10-09 (IOVA, GRAL, HTFL) underperform the rest of the sleeve (ex-FENC) over 63 sessions</td>
+<td>2027-01-11</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-confidence-gaps">8. Confidence &amp; gaps</h2>
+<p><strong>Confidence: moderate (3/5) on the systematic rules, low-moderate (2.5/5) on the 100x sleeve.</strong> Momentum's IC is<br />
+positive and slightly stronger (mom_12_1 +0.034, trend_q +0.037, vol_accum newly admitted — 3 of 14 factors now<br />
+clear the bar); every number still sits inside the tournament's +1.01 luck band and on a survivorship-flattered<br />
+universe (EW +7.6%/yr over SPY). Gaps: no HY-OAS (FRED key); value/quality history lacks point-in-time<br />
+fundamentals; SA grades 2026-10-03; 7 of 17 memos have no <code>pt_12m</code>; batch-3 memos (FENC/ASIC/PNTG) lack a sell-side<br />
+cross-check — the FENC error shows why that matters. The weekly gate is insurance, and insurance costs ~3 pts/yr.</p>
+<h2 id="connections">Connections</h2>
+<p>Methodology: <a class="wikilink" href="strategy-tournament-2026-09-06.html">strategy-tournament-2026-09-06</a> · <a class="wikilink" href="alpha-mechanics-2026-10-06.html">alpha-mechanics-2026-10-06</a> · <a class="wikilink" href="../concepts/quant-alpha-methodology.html">quant-alpha-methodology</a> ·<br />
+<a class="wikilink" href="../concepts/foresight-factor-model.html">foresight-factor-model</a>. Pipeline: <a class="wikilink" href="ic-book-2026-10-05.html">ic-book-2026-10-05</a> · <a class="wikilink" href="qualified-100x-list-2026-10-05.html">qualified-100x-list-2026-10-05</a> ·<br />
+<a class="wikilink" href="book-rec-2026-09-25.html">book-rec-2026-09-25</a> · <a class="wikilink" href="decision-register.html">decision-register</a> · <a class="wikilink" href="watchlist.html">watchlist</a>. Accountability: <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a> ·<br />
+<a class="wikilink" href="post-mortem-2026-10-03.html">post-mortem-2026-10-03</a> · <a class="wikilink" href="track-record.html">track-record</a>. Caps: <a class="wikilink" href="portfolio-blueprint.html">portfolio-blueprint</a>.</p>
+<h2 id="sources">Sources</h2>
+<p>Engine outputs re-run 2026-10-11 (<code>scripts/_hist/</code>: qae_report.md, ffm_ratings.json, sleeves.json,<br />
+recommendations.json, monitor_alerts.json, tournament_report.md, backtest_results.json, mechanic_stack_backtest.json,<br />
+qc_weekly_gate.json; archive <code>_hist/archive/2026-10-11/</code>). Market data: yfinance, retrieved 2026-10-11T11:13Z.<br />
+Calendars: Federal Reserve FOMC schedule (Oct 27–28, Dec 8–9), BoJ (Oct 29–30), BLS CPI (Oct 14, Nov 10, Dec 10) —<br />
+web, 2026-10-11. Fennec PEDMARK sales: company Q1/Q2-2026 releases (web, 2026-10-11). Market wrap: Yahoo Finance /<br />
+TheStreet, Oct 9 2026 (web). All figures retrieved live on 2026-10-11; no values drawn from model training.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture — Foresight Investor System</title>
+<style>
+  :root{
+    --bg:#0b0f17; --panel:#121826; --panel2:#0e1420; --line:#232c40; --ink:#dbe4f5; --dim:#8a93a8;
+    --blue:#5b9dff; --teal:#5fe0a8; --amber:#ffb673; --red:#ff5c6c; --violet:#b48cff; --gold:#ffd479;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:13px/1.45 -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;padding:18px 20px 26px}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  h1{font-size:19px;letter-spacing:.2px}
+  h1 .sub{color:var(--dim);font-weight:400;font-size:12px;margin-left:10px}
+  .meta{color:var(--dim);font-size:11px;text-align:right}
+  .meta b{color:var(--teal);font-weight:600}
+  .grid{display:grid;grid-template-columns:218px 26px 1fr 26px 218px;grid-auto-rows:auto;row-gap:10px;align-items:stretch}
+  .rail{display:flex;flex-direction:column;gap:10px}
+  .rail.left{grid-column:1} .rail.right{grid-column:5}
+  .center{grid-column:3;display:flex;flex-direction:column;gap:10px}
+  .layer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .layer h2{font-size:11.5px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px}
+  .b{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+  .b .t{font-weight:600;font-size:12px;margin-bottom:2px}
+  .b .d{color:var(--dim);font-size:10.5px;line-height:1.35}
+  .b .d code{color:var(--blue);font-size:10px;font-family:ui-monospace,Menlo,monospace}
+  .arrow{ text-align:center;color:var(--dim);font-size:15px;line-height:1;padding:1px 0;user-select:none}
+  .arrow small{display:block;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:#5a6478}
+  .flow{display:flex;flex-direction:column;gap:8px}
+  .rb{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;flex:1}
+  .rb .t{font-weight:600;font-size:11.5px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .rb .d{color:var(--dim);font-size:10.5px;line-height:1.4}
+  .rb .d b{color:var(--ink);font-weight:600}
+  .loop{border-color:#3a2f55}
+  .foot{margin-top:14px;color:var(--dim);font-size:10.5px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .foot a{color:var(--blue);text-decoration:none}
+  .qc .t{color:var(--teal)} .ops .t{color:var(--amber)} .acct .t{color:var(--violet)}
+  @media (max-width:960px){
+    .grid{grid-template-columns:1fr}
+    .rail{flex-direction:row;flex-wrap:wrap}
+    .rail .rb{min-width:240px}
+    .center{grid-column:1}
+    .rail.left{grid-column:1;grid-row:2}.rail.right{grid-column:1;grid-row:3}
+  }
+  @media print{body{background:#fff;color:#111}.layer,.rb,.b{background:#fafbfe;border-color:#ccc}.b .d,.rb .d,.arrow,.foot,.meta{color:#555}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Architecture — Foresight Investor System<span class="sub">one-page block diagram</span></h1>
+    <div class="meta">Built <b>2026-09-26</b> · data as-of <b>2026-09-25</b><br>
+      35 themes · 340 instruments · 435 wiki pages · 45+ modules<br>
+      <a href="ARCHITECTURE.html" style="color:var(--blue);text-decoration:none">full ARCHITECTURE.md</a> ·
+      <a href="SYSTEM-RESEARCH-LOG.html" style="color:var(--blue);text-decoration:none">research log</a> ·
+      <a href="analyst-workbench.html" style="color:var(--blue);text-decoration:none">workbench</a> ·
+      <a href="site-index.html" style="color:var(--blue);text-decoration:none">site map</a> ·
+      <a href="index.html" style="color:var(--blue);text-decoration:none">dashboard</a></div>
+  </header>
+
+  <div class="grid">
+
+    <!-- LEFT RAIL: QUALITY CONTROL -->
+    <div class="rail left">
+      <div class="rb qc"><div class="t">⨀ QUALITY CONTROL</div><div class="d">
+        <b>Provenance</b> on every figure — <code>value|source|url|as_of|utc</code><br>
+        <b>UNAVAILABLE &gt; fabricated</b> — never guess a number<br>
+        <b>Asset-class honesty</b> — non-equity = momentum-only grades<br>
+        <b>Cross-validation</b> — FFM × SA table; track-record scoring<br>
+        <b>Deploy pre-flight</b> — no source md · no secrets · confidential file hard-excluded<br>
+        <b>Vault lint</b> — frontmatter · links resolve · 0 orphans</div></div>
+      <div class="rb qc"><div class="t">🗄 DATA DISCIPLINE</div><div class="d">
+        <code>_hist/</code> point-in-time — append, never rewrite<br>
+        <code>raw/</code> immutable sources<br>
+        Staleness &gt;10 trading days = flagged, not used<br>
+        Weekend-safe date selection (broad coverage, not <code>max()</code>)</div></div>
+    </div>
+
+    <!-- CENTER FLOW -->
+    <div class="center">
+      <div class="layer">
+        <h2><span class="dot" style="background:var(--dim)"></span>1 · External sources — keyless</h2>
+        <div class="blocks">
+          <div class="b"><div class="t">yfinance</div><div class="d">340 global tickers · 14 currencies · prices/fundamentals</div></div>
+          <div class="b"><div class="t">World Bank API</div><div class="d">11 indicators × 19 countries</div></div>
+          <div class="b"><div class="t">FRED csv</div><div class="d">macro series (no key); HY-OAS dark w/o <code>.fred_key</code></div></div>
+          <div class="b"><div class="t">Seeking Alpha</div><div class="d">operator-auth browser scrape · ~8s pacing</div></div>
+          <div class="b"><div class="t">Human notes</div><div class="d"><code>wiki/research/human/</code></div></div>
+        </div>
+      </div>
+      <div class="arrow">▼<small>fetch weekly / on demand</small></div>
+
+      <div class="layer">
+        <h2><span class="dot" style="background:var(--blue)"></span>2 · Fetch layer</h2>
+        <div class="blocks">
+          <div class="b"><div class="t">refresh_instruments</div><div class="d">spot + fundamentals, currency-aware → <code>_instruments.json</code></div></div>
+          <div class="b"><div class="t">fetch_history</div><div class="d">5y + 10y price parquets · <code>--inc</code> incremental</div></div>
+          <div class="b"><div class="t">refresh --macro</div><div class="d">snapshot + provenance + <code>macro.csv</code></div></div>
+          <div class="b"><div class="t">sources/*</div><div class="d">analysts (Yahoo/SA/consensus) · econ · countries</div></div>
+        </div>
+      </div>
+      <div class="arrow">▼<small>cache to scripts/_hist (87 MB)</small></div>
+
+      <div class="layer">
+        <h2><span class="dot" style="background:var(--teal)"></span>3 · Engine layer</h2>
+        <div class="blocks">
+          <div class="b"><div class="t">FFM</div><div class="d">6 factors → A+…F grades → Strong Buy…Strong Sell · regime-weighted · 336 rated</div></div>
+          <div class="b"><div class="t">Sleeves ×6</div><div class="d">momentum · value · quality · macro-rot · contrarian · long-term</div></div>
+          <div class="b"><div class="t">MDAEM v4</div><div class="d">quant dims 3/5/6/7/9 + composite (10 gates upstream)</div></div>
+          <div class="b"><div class="t">Backtest</div><div class="d">walk-forward · top-20/sleeve · monthly rebalance</div></div>
+          <div class="b"><div class="t">QAE</div><div class="d">14 factors · rank-IC (NW-corrected) · inverse-vol 10% book</div></div>
+          <div class="b"><div class="t">Tournament</div><div class="d">39 strategies · split-sample gate · deflation N</div></div>
+          <div class="b"><div class="t">FFM×SA</div><div class="d">external calibration · 68% agreement / gaps table</div></div>
+        </div>
+      </div>
+      <div class="arrow">▼<small>signals → sized decisions</small></div>
+
+      <div class="layer">
+        <h2><span class="dot" style="background:var(--amber)"></span>4 · Decision layer — own book only</h2>
+        <div class="blocks">
+          <div class="b"><div class="t">Allocator</div><div class="d">3 risks × 6 lenses · caps: name 5–10% · theme 8–15% · AI 20–30% · cash floor · high-cash honest</div></div>
+          <div class="b"><div class="t">Recommend / Monitor</div><div class="d">T1 adds · threshold alerts · continuous research</div></div>
+          <div class="b"><div class="t">Book memos</div><div class="d"><code>book-rec-*</code> · <code>qae-book-*</code> · de-risk triggers</div></div>
+        </div>
+      </div>
+      <div class="arrow">▼<small>render & publish</small></div>
+
+      <div class="layer">
+        <h2><span class="dot" style="background:var(--violet)"></span>5 · Surface layer</h2>
+        <div class="blocks">
+          <div class="b"><div class="t">Analyst Workbench</div><div class="d">11 tabs · FFM grades · allocator · event-watch chips · <code>build_workbench → inject</code></div></div>
+          <div class="b"><div class="t">Outlook Dashboard</div><div class="d">themes × macro · public landing page</div></div>
+          <div class="b"><div class="t">Quant Desk</div><div class="d">QAE IC study + book + curriculum</div></div>
+          <div class="b"><div class="t">Wiki (Obsidian)</div><div class="d">435 pages · 336 auto research notes · accountability hubs</div></div>
+          <div class="b"><div class="t">GitHub Pages</div><div class="d"><code>build_web → deploy_web</code> · 430+ rendered pages · isolated push</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT RAIL: OPS + ACCOUNTABILITY -->
+    <div class="rail right">
+      <div class="rb ops"><div class="t">⏱ OPERATING CADENCE <span style="font-weight:400;color:var(--dim)">(CADENCE.md)</span></div><div class="d">
+        <b>MONITOR</b> weekly — <code>weekly_refresh.sh</code> full chain (launchd pending fix)<br>
+        <b>SOURCE</b> daily — signal screen → shortlist<br>
+        <b>ALPHA</b> monthly — <code>qae.py</code> → quant desk<br>
+        <b>SCAN</b> monthly — radar convictions + P-call scoring<br>
+        <b>TOURNAMENT / REVIEW</b> quarterly — backtest + deflation</div></div>
+      <div class="rb acct loop"><div class="t">🔁 ACCOUNTABILITY LOOP</div><div class="d">
+        <b>signal-monitor</b> sensors 🔴🟡🟢<br>→ <b>decision-register</b> sized ADD/TRIM/EXIT<br>→ <b>prediction-ledger</b> falsifiable P-calls + resolve-by<br>→ <b>track-record</b> scored hit-rate · calibration<br>
+        Wrong calls are kept, not hidden.</div></div>
+      <div class="rb acct"><div class="t">🧭 ONBOARDING CONTRACT</div><div class="d">
+        Read <b>hotcache → ARCHITECTURE → AGENTS</b> before touching anything.<br>
+        System research → append to <b>SYSTEM-RESEARCH-LOG</b> (dated, append-only).</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>Guardrails: decisions for the operator's own book only · never personalized advice · past performance ≠ future results.</div>
+    <div>Change protocol &amp; extension recipes: <b>ARCHITECTURE.md §9–10</b> · maintainer: operator + AI agent</div>
+  </div>
+</div>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet"><style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+
+
+
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .fi-topstrip,.fi-rail,.fi-crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.fi-topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.fi-brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.fi-brand:hover{text-decoration:none;color:var(--ink)}
+.fi-brand .bmark{color:var(--link)}
+.fi-crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.fi-crumb a{color:var(--ink-3)}
+.fi-searchbox{position:relative;width:min(320px,34vw)}
+.fi-searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.fi-searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.fi-searchbox .fi-sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.fi-searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.fi-sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.fi-sresults.open{display:block}
+.fi-sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.fi-sr-group:first-child{border-top:none}
+.fi-sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.fi-sr-item:first-child{border-top:none}
+.fi-sr-item:hover,.fi-sr-item.sel{background:var(--wash-navy)}
+.fi-sr-item b{font-weight:600}
+.fi-sr-item .fi-sr-meta{font-size:11.5px;color:var(--ink-3)}
+.fi-sr-item .fi-sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fi-sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.fi-rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.fi-rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.fi-rail section{margin:2px 0 14px}
+.fi-rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.fi-rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.fi-rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.fi-rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.fi-rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.fi-rail details{margin:0}
+.fi-rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.fi-rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.fi-rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.fi-rail details[open] summary{color:var(--ink);font-weight:600}
+.fi-rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+body{padding-top:52px !important}
+.fi-rail{transform:translateX(-100%);transition:transform .18s ease}
+.fi-rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+.fi-railtoggle{display:block !important}
+.fi-crumb{display:none}
+</style><div class="fi-topstrip"><button class="fi-railtoggle" id="fi-railtoggle" aria-label="Toggle module map">☰</button><a class="fi-brand" href="index.html"><span style="color:var(--link)">◼</span> Foresight Investor</a><div class="fi-searchbox"><span class="fi-sicon">⌕</span><input id="fi-sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault"><kbd>⌘K</kbd></div></div><nav class="fi-rail" id="fi-rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="index.html" title="Home — live state, module map, search">Console</a>
+<a href="analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="wiki/syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="wiki/syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="wiki/syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="wiki/syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="wiki/syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="wiki/syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="wiki/syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="wiki/syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="wiki/syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="wiki/syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="wiki/concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="wiki/concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="wiki/syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="wiki/syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="wiki/syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="wiki/syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="wiki/concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="wiki/syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="wiki/syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="wiki/syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="wiki/syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="home.html" title="The original orientation page">Start Here</a>
+<a href="catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="wiki/concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="wiki/concepts/semiconductors.html">Semiconductors</a>
+<a href="wiki/concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="wiki/concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="wiki/concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="wiki/concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="wiki/concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="wiki/concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="wiki/concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="wiki/concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="wiki/concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="wiki/concepts/defense-security.html">Defense &amp; Security</a>
+<a href="wiki/concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="wiki/concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="wiki/concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="wiki/concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="wiki/concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="wiki/concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="wiki/concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="wiki/concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="wiki/concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="wiki/concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="wiki/concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="wiki/concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="wiki/concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="wiki/concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="wiki/concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="wiki/concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="wiki/concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="wiki/concepts/space-economy.html">Space Economy</a>
+<a href="wiki/concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav><div class="fi-sresults" id="fi-sresults" role="listbox"></div><script>
+(function(){
+  var box=document.getElementById('fi-sbox'),panel=document.getElementById('fi-sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="fi-sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="fi-sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="fi-sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="fi-sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="fi-sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('fi-railtoggle'),railEl=document.getElementById('fi-rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script></body>
+</html>

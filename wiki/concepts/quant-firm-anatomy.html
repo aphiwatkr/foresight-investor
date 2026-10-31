@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anatomy of a Leading Quant Firm — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Anatomy of a Leading Quant Firm</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="../syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="../syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="../syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="../syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="../syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="../syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="../syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="../syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="../syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="../syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="../syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="../syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="../syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="../syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="../syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="../syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="../syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="../syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="ai-infrastructure.html">AI Infrastructure</a>
+<a href="semiconductors.html">Semiconductors</a>
+<a href="ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="renewables-storage.html">Renewables &amp; Storage</a>
+<a href="natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="data-center-cooling.html">Data-Center Cooling</a>
+<a href="critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="defense-security.html">Defense &amp; Security</a>
+<a href="infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="automation-robotics.html">Automation &amp; Robotics</a>
+<a href="humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="medtech-devices.html">MedTech &amp; Devices</a>
+<a href="biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="fintech-payments.html">Fintech &amp; Payments</a>
+<a href="tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="india-em-growth.html">India &amp; EM Growth</a>
+<a href="japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="us-megacap-quality.html">US Megacap Quality</a>
+<a href="asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="space-economy.html">Space Economy</a>
+<a href="quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">concept</span><span class="stamp">dated 2026-08-29</span><span class="stamp">quant</span><span class="stamp">trading</span><span class="stamp">hedge-fund</span><span class="stamp">market-structure</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="anatomy-of-a-leading-quant-firm">Anatomy of a Leading Quant Firm</h1>
+<p><strong>Definition:</strong> How the top systematic trading firms are actually organized — the four<br />
+business models, the six-stage production line every one of them runs, and the economics<br />
+(Sharpe, breadth, capacity, decay) that decide which strategies they can and cannot run.</p>
+<blockquote>
+<p><strong>Scope.</strong> Descriptive market-structure knowledge, assembled for the operator's own<br />
+methodology design. Firm-internal details are not public; everything below is either<br />
+cited, or marked <code>(industry knowledge)</code> where it is well-documented consensus rather<br />
+than a live-verified figure. No claim here is investment advice.</p>
+</blockquote>
+<hr />
+<h2 id="1-the-four-business-models">1. The four business models</h2>
+<p>They are all called "quant," but they make money in four structurally different ways.<br />
+Confusing them is the single most common beginner error — the risk, capital, latency and<br />
+skill requirements barely overlap.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Firms</th>
+<th>Holding period</th>
+<th>Edge comes from</th>
+<th>Sharpe (typical)</th>
+<th>Capacity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Market making / HFT</strong></td>
+<td>Jane Street, Citadel Securities, Jump, HRT, Optiver, IMC, SIG</td>
+<td>microseconds → hours</td>
+<td>Spread capture + inventory management + speed</td>
+<td>very high (&gt;5)</td>
+<td>Low relative to AUM; limited by flow</td>
+</tr>
+<tr>
+<td><strong>Statistical arbitrage</strong></td>
+<td>Renaissance (Medallion), Two Sigma, DE Shaw, PDT, Voleon</td>
+<td>minutes → days</td>
+<td>Many weak, decaying, mean-reverting patterns, traded at huge breadth</td>
+<td>high (2–5+)</td>
+<td>Hard-capped; Medallion returns capital and is closed to outside money</td>
+</tr>
+<tr>
+<td><strong>Multi-manager "pod shops"</strong></td>
+<td>Millennium, Citadel, Point72, Balyasny, ExodusPoint</td>
+<td>days → months</td>
+<td><em>Diversification across many independent books</em> + brutal risk discipline; the alpha per pod is modest</td>
+<td>1–2 per pod, 3–5+ at fund level</td>
+<td>Very high — the model scales by adding pods</td>
+</tr>
+<tr>
+<td><strong>Systematic factor / macro / CTA</strong></td>
+<td>AQR, Man AHL, Winton, Dimensional, Bridgewater (systematic-discretionary)</td>
+<td>weeks → years</td>
+<td>Documented risk premia (value, momentum, carry, trend, quality) harvested cheaply at scale</td>
+<td>0.4–1.0</td>
+<td>Enormous — tens of billions</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The relevant read for a single operator with daily data:</strong> you cannot compete in rows 1<br />
+or 2 (they are latency and infrastructure races) and you have no LP capital for row 3.<br />
+Row 4 — plus the slower, weekly-to-monthly end of row 2 — is the <em>only</em> space where an<br />
+individual can hold a real edge, because the edge there is behavioral and structural<br />
+rather than technological (inference). This is what <a class="wikilink" href="quant-alpha-methodology.html">quant-alpha-methodology</a> targets.</p>
+<h3 id="renaissance-medallion-the-archetype-of-row-2">Renaissance / Medallion — the archetype of row 2</h3>
+<p>Executes very large numbers of short-horizon trades globally, driven by statistical<br />
+pattern detection rather than causal narrative; explicitly does not try to explain <em>why</em><br />
+a pattern exists, only that it is non-random and persistent<br />
+(web: quartr.com / Wikipedia RenTech overview, retrieved 2026-08-29). Inputs span prices,<br />
+volumes and order flow plus alternative data, over decades of history. Risk control is<br />
+structural, not discretionary: short holding periods limit exposure, and the book is run<br />
+close to market-neutral so index direction is not the bet.</p>
+<h3 id="the-pod-shops-the-archetype-of-row-3">The pod shops — the archetype of row 3</h3>
+<p>The defining feature is not signal quality, it is <strong>stop-loss culture</strong>. At Millennium the<br />
+documented thresholds are ~5% drawdown from a portfolio manager's peak triggering a halving<br />
+of capital and ~7.5% triggering termination of the pod; Citadel and Point72 use comparable<br />
+limits negotiated per PM rather than one firm-wide number<br />
+(web: youngandcalculated.substack.com / navnoorbawa.substack.com, retrieved 2026-08-29).<br />
+Millennium runs on the order of 330+ independent teams; Point72 185+ investing teams;<br />
+Citadel fewer pods with larger allocations each (same sources). Capital is re-allocated<br />
+<strong>daily</strong>, not quarterly. Risk sits in a group reporting to the CEO, independent of every<br />
+investment team.</p>
+<p><strong>The transferable lesson:</strong> these firms do not generate their headline Sharpe from<br />
+brilliant individual signals. They generate it from (a) <em>many</em> weakly-correlated books and<br />
+(b) <em>mechanical, pre-committed loss limits</em> that are enforced by someone who does not care<br />
+about the thesis. Both are copyable by a solo operator. Neither requires technology.</p>
+<hr />
+<h2 id="2-the-six-stage-production-line">2. The six-stage production line</h2>
+<p>Every serious systematic shop runs some version of this pipeline. The names differ; the<br />
+stages do not (industry knowledge).</p>
+<pre><code>1. DATA  →  2. ALPHA RESEARCH  →  3. SIGNAL COMBINATION  →
+4. PORTFOLIO CONSTRUCTION  →  5. EXECUTION  →  6. RISK &amp; ATTRIBUTION
+                    ↑______________ feedback ______________|
+</code></pre>
+<p><strong>1. Data engineering.</strong> Point-in-time correctness is the whole game. A price series that<br />
+has been retroactively adjusted, a fundamental that "knows" the restated number, an index<br />
+membership list without the delisted names — each silently manufactures alpha that does not<br />
+exist. Survivorship bias and look-ahead bias kill more backtests than bad ideas do.</p>
+<p><strong>2. Alpha research.</strong> One researcher, one hypothesis, one <em>measurable</em> prediction. The<br />
+industry-standard measurement is the <strong>information coefficient (IC)</strong> — the cross-sectional<br />
+rank correlation between a signal today and forward returns. Realistic IC for an equity<br />
+factor is <strong>0.02–0.06</strong>; anything above ~0.10 on a broad universe is a data error until<br />
+proven otherwise (industry knowledge). Signals are judged by IC <em>mean/std</em> (the information<br />
+ratio of the signal), by IC decay across horizons, and by whether the IC survives after<br />
+removing the obvious risk exposures.</p>
+<p><strong>3. Signal combination.</strong> Dozens to thousands of raw alphas are z-scored, winsorized,<br />
+orthogonalized against each other and against risk factors, then blended — weighted by<br />
+measured IR, not by conviction. Firms differ mostly in how they handle correlation between<br />
+alphas and how much they let a machine choose weights.</p>
+<p><strong>4. Portfolio construction.</strong> The signal says <em>what to rank</em>; construction decides <em>what to<br />
+own</em>. A mean-variance or risk-parity optimizer maximizes expected alpha minus a risk penalty<br />
+minus a transaction-cost penalty, subject to constraints: sector/theme caps, single-name<br />
+caps, beta and factor neutrality, liquidity limits, gross and net exposure. This stage is<br />
+where most of the realized Sharpe is created or destroyed.</p>
+<p><strong>5. Execution.</strong> Alpha is measured in basis points; so is slippage. Orders are sliced<br />
+(VWAP/TWAP/POV/implementation-shortfall), routed to minimize market impact, and measured<br />
+against arrival price. A strategy with 300% annual turnover and 15bps of round-trip cost<br />
+pays ~4.5% a year — enough to erase a good factor entirely.</p>
+<p><strong>6. Risk &amp; attribution.</strong> Daily: ex-ante risk model (factor + idiosyncratic), stress tests,<br />
+scenario shocks, VaR, and <em>attribution</em> — which factor, which sector, which name made or<br />
+lost the money. Attribution is what separates "we were right" from "we were lucky."</p>
+<hr />
+<h2 id="3-the-economics-that-decide-what-is-tradable">3. The economics that decide what is tradable</h2>
+<h3 id="the-fundamental-law-of-active-management-grinold">The Fundamental Law of Active Management (Grinold)</h3>
+<p>$$IR \approx IC \times \sqrt{Breadth}$$<br />
+Information ratio ≈ skill per bet × square root of the number of <em>independent</em> bets per year.</p>
+<p>This one equation explains the entire industry structure:<br />
+- Medallion has a modest IC and astronomic breadth (millions of bets) → extreme IR.<br />
+- A concentrated stock-picker may have a large IC on 10 positions a year → mediocre IR.<br />
+- A solo operator with a 300-name universe rebalanced monthly has breadth ≈ 300 × 12 = 3,600<br />
+<em>nominally</em>, but far less <strong>independently</strong> (the names are correlated) — realistically a few<br />
+  hundred. With IC = 0.03 that implies IR ≈ 0.03 × √300 ≈ 0.5 before costs (inference).<br />
+- <strong>Therefore:</strong> the fastest way for an individual to raise IR is not a cleverer signal — it<br />
+  is <em>more independent bets</em> (more names, more asset classes, more weakly-correlated factors)<br />
+  and <em>lower correlation between them</em>.</p>
+<h3 id="capacity-and-decay">Capacity and decay</h3>
+<p>Every alpha has a capacity (how much money it absorbs before its own market impact kills it)<br />
+and a half-life (how fast it is arbitraged away once published). Published academic anomalies<br />
+decay materially post-publication (well-documented in the factor literature, e.g. McLean–Pontiff<br />
+2016) (industry knowledge). This is why firms run rolling research: the portfolio of alphas is<br />
+replaced faster than any single alpha lasts.</p>
+<h3 id="costs-and-why-they-are-the-real-enemy">Costs, and why they are the real enemy</h3>
+<p>Round-trip cost ≈ half-spread + commission + market impact. Impact scales roughly with<br />
+√(order size / daily volume). The practical implication for a small book is <em>favorable</em>: a<br />
+solo operator trading $10k–$1M in liquid names has near-zero market impact and can harvest<br />
+capacity-constrained edges that a $50B fund physically cannot touch. <strong>Small size is the<br />
+one structural advantage an individual has over Citadel.</strong> Use it (inference).</p>
+<hr />
+<h2 id="4-what-the-top-firms-actually-agree-on">4. What the top firms actually agree on</h2>
+<p>Strip the marketing and the four models converge on five practices:</p>
+<ol>
+<li><strong>Diversify the bets, not the conviction.</strong> Many small, weakly-correlated positions beat<br />
+   a few large ones at the same expected return, because variance falls faster than return.</li>
+<li><strong>Size by risk, not by dollars.</strong> Position size ∝ 1/volatility, scaled to a portfolio<br />
+   volatility target. Equal-dollar weighting is an unmanaged bet on whichever name is most<br />
+   volatile.</li>
+<li><strong>Pre-commit the exit.</strong> Stops and de-grossing rules are set before entry and enforced<br />
+   mechanically. The pod-shop 5%/7.5% ladder is the industrial version of this.</li>
+<li><strong>Measure everything, especially the failures.</strong> Every call is scored. Hit rate, IC,<br />
+   attribution, and calibration are tracked continuously — the vault's <a class="wikilink" href="../syntheses/prediction-ledger.html">prediction-ledger</a><br />
+   and <a class="wikilink" href="../syntheses/track-record.html">track-record</a> are the retail equivalent.</li>
+<li><strong>Assume the edge is decaying.</strong> Re-validate signals on new data; retire what stops working.</li>
+</ol>
+<h2 id="5-what-they-do-that-a-solo-operator-should-not-copy">5. What they do that a solo operator should <em>not</em> copy</h2>
+<ul>
+<li><strong>Leverage.</strong> Pod shops run 4–8x gross because they are market- and factor-neutral with a<br />
+  professional risk overlay and prime-broker financing. Copying the leverage without the<br />
+  neutrality is how retail accounts die.</li>
+<li><strong>Shorting single names</strong> without borrow, margin discipline, and hard stops — unbounded<br />
+  loss, borrow-cost drag, and squeeze risk. Use the short list as an <em>avoid/trim</em> list<br />
+  instead (<a class="wikilink" href="quant-alpha-methodology.html">quant-alpha-methodology</a> does exactly this).</li>
+<li><strong>Latency-sensitive signals.</strong> Anything with an intraday horizon is a fight you lose by<br />
+  construction.</li>
+<li><strong>Complex ML on small data.</strong> These firms have decades of tick data and dedicated<br />
+  infrastructure. On ~5y of daily bars for 300 names, a deep model will overfit; a small<br />
+  set of well-understood, economically-motivated factors will not.</li>
+</ul>
+<hr />
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Implemented for this vault as <a class="wikilink" href="quant-alpha-methodology.html">quant-alpha-methodology</a> (the QAE engine).</li>
+<li>The learning path is <a class="wikilink" href="quant-trader-curriculum.html">quant-trader-curriculum</a>.</li>
+<li>Complements <a class="wikilink" href="foresight-factor-model.html">foresight-factor-model</a> (single-name grading) and <a class="wikilink" href="../syntheses/strategy-sleeves.html">strategy-sleeves</a><br />
+  (long-only thematic sleeves) — QAE adds the cross-sectional/risk-sizing layer.</li>
+<li>Risk discipline feeds <a class="wikilink" href="../syntheses/portfolio-blueprint.html">portfolio-blueprint</a> and <a class="wikilink" href="../syntheses/decision-register.html">decision-register</a>.</li>
+</ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Does the vault's 330-name universe give enough <em>independent</em> breadth, or does theme<br />
+  clustering (AI-capex especially) collapse effective breadth to ~5–10 bets?</li>
+<li>Can point-in-time fundamentals (SEC EDGAR) be added so value/quality factors become<br />
+  backtestable without look-ahead? (Standing v4 backlog item.)</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>web: quartr.com — "Renaissance Technologies and The Medallion Fund", retrieved 2026-08-29.</li>
+<li>web: en.wikipedia.org/wiki/Renaissance_Technologies, retrieved 2026-08-29.</li>
+<li>web: youngandcalculated.substack.com — "What Risk Managers at Pod Shops Actually Do All Day" /<br />
+  "How Multi-Manager Hedge Funds Actually Work Internally", retrieved 2026-08-29.</li>
+<li>web: navnoorbawa.substack.com — "How Millennium, Citadel &amp; Point72 Structure Pods", retrieved 2026-08-29.</li>
+<li>Grinold &amp; Kahn, <em>Active Portfolio Management</em> — Fundamental Law (definition, from knowledge).</li>
+<li>McLean &amp; Pontiff (2016), <em>Does Academic Research Destroy Stock Return Predictability?</em> (from knowledge).</li>
+</ul>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

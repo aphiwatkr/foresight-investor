@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automation &amp; Robotics — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Automation &amp; Robotics</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="../syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="../syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="../syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="../syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="../syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="../syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="../syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="../syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="../syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="../syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="../syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="../syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="../syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="../syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="../syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="../syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="../syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="../syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="ai-infrastructure.html">AI Infrastructure</a>
+<a href="semiconductors.html">Semiconductors</a>
+<a href="ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="renewables-storage.html">Renewables &amp; Storage</a>
+<a href="natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="data-center-cooling.html">Data-Center Cooling</a>
+<a href="critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="defense-security.html">Defense &amp; Security</a>
+<a href="infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="automation-robotics.html">Automation &amp; Robotics</a>
+<a href="humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="medtech-devices.html">MedTech &amp; Devices</a>
+<a href="biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="fintech-payments.html">Fintech &amp; Payments</a>
+<a href="tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="india-em-growth.html">India &amp; EM Growth</a>
+<a href="japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="us-megacap-quality.html">US Megacap Quality</a>
+<a href="asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="space-economy.html">Space Economy</a>
+<a href="quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">concept</span><span class="stamp">dated 2026-06-01</span><span class="stamp">investing</span><span class="stamp">trend</span><span class="stamp">automation</span><span class="stamp">robotics</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="automation-robotics">Automation &amp; Robotics</h1>
+<p><strong>Definition:</strong> Industrial automation, factory robotics, motion/control, machine vision, and the<br />
+emerging <strong>humanoid / embodied-AI</strong> frontier. The physical-productivity answer to labor scarcity,<br />
+reshoring, and rising wages — and a downstream beneficiary of AI (<a class="wikilink" href="ai-software-agents.html">ai-software-agents</a> →<br />
+embodied AI). Part of the <strong>Reindustrialization &amp; Defense</strong> meta-force, tightly linked to<br />
+<a class="wikilink" href="reshoring-supply-chain.html">reshoring-supply-chain</a> and <a class="wikilink" href="infrastructure-capex.html">infrastructure-capex</a>. Conviction 3 on the <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a> —<br />
+strong secular logic, but the core industrial-automation cycle is currently soft and humanoids are<br />
+still speculative.</p>
+<blockquote>
+<p>Research/insight only — no buy/sell advice. Figures tagged (fact)/(est.)/(inference) with<br />
+period + source. "n/f" = no reliable figure found.</p>
+</blockquote>
+<hr />
+<h2 id="1-definition-scope">1. Definition &amp; scope</h2>
+<p>(a) <strong>Industrial automation / motion &amp; control</strong> — Rockwell, Siemens, ABB, Emerson, Schneider,<br />
+Keyence, Fanuc, Yaskawa; (b) <strong>factory robotics &amp; cobots</strong> — Fanuc, ABB, KUKA, Yaskawa; (c)<br />
+<strong>machine vision / sensors</strong> — Keyence, Cognex; (d) <strong>humanoid / embodied AI</strong> — Tesla (Optimus),<br />
+NVIDIA (robotics platforms, <a class="wikilink" href="semiconductors.html">semiconductors</a>), Figure (private), and Chinese entrants (Unitree).<br />
+The near-term investable cash flows sit in (a)/(b)/(c); humanoids are the optionality.</p>
+<h2 id="2-market-size-growth">2. Market size &amp; growth</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Period / base</th>
+<th>Source</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global industrial-robot installations</td>
+<td><strong>~540,000+ units/yr (~4M operational stock)</strong></td>
+<td>2024</td>
+<td>IFR (World Robotics 2025)</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>China share of robot installations</td>
+<td><strong>&gt;50% of global installs</strong></td>
+<td>2024</td>
+<td>IFR</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Humanoid-robot market (long-run TAM)</td>
+<td><strong>wide range; est. $38B by 2035 (Goldman) to far higher (bull cases)</strong></td>
+<td>2035E</td>
+<td>Goldman Sachs / industry</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Industrial-automation market</td>
+<td><strong>~$200B+, mid-single-digit CAGR</strong></td>
+<td>2025</td>
+<td>industry research</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Cobot segment growth</td>
+<td><strong>double-digit CAGR (fastest robotics sub-segment)</strong></td>
+<td>2025</td>
+<td>IFR / industry</td>
+<td>(est.)</td>
+</tr>
+</tbody>
+</table>
+<p>Long-run TAM is large, but the current industrial cycle is soft — robotics demand is cyclical and<br />
+tied to manufacturing capex.</p>
+<h2 id="3-key-structural-drivers">3. Key structural drivers</h2>
+<p><strong>Demand:</strong> labor scarcity + rising wages; reshoring/nearshoring building new automated plants<br />
+(<a class="wikilink" href="reshoring-supply-chain.html">reshoring-supply-chain</a>); productivity pressure; AI making robots more capable (vision,<br />
+manipulation, autonomy). <strong>Embodied-AI catalyst:</strong> LLM/vision advances (<a class="wikilink" href="ai-software-agents.html">ai-software-agents</a>,<br />
+NVIDIA platforms) are the technology unlock for general-purpose humanoids. <strong>Headwinds (why<br />
+conviction is 3):</strong> the short-cycle automation market has been in a destocking/soft-demand phase;<br />
+China dominates installs and is climbing the value chain (pricing pressure); humanoid economics are<br />
+unproven.</p>
+<h2 id="4-value-chain-linkage">4. Value-chain / linkage</h2>
+<p><a class="wikilink" href="semiconductors.html">semiconductors</a> (compute, sensors) + <a class="wikilink" href="critical-minerals.html">critical-minerals</a> (magnets, motors) → motion/control,<br />
+robots, vision (Rockwell, Fanuc, Keyence, ABB) → system integrators → end-users (factories, logistics,<br />
+<a class="wikilink" href="reshoring-supply-chain.html">reshoring-supply-chain</a> plants). Humanoids pull on <a class="wikilink" href="ai-software-agents.html">ai-software-agents</a> + NVIDIA robotics<br />
+compute. Demand driven by reshoring/<a class="wikilink" href="infrastructure-capex.html">infrastructure-capex</a>; partially overlaps <a class="wikilink" href="defense-security.html">defense-security</a><br />
+(autonomous systems). Cyclical exposure ties to <a class="wikilink" href="../syntheses/macro-regime.html">macro-regime</a> (manufacturing PMI, rates).</p>
+<h2 id="5-competitive-landscape">5. Competitive landscape</h2>
+<p><strong>Industrial automation</strong> is a high-quality oligopoly with deep moats — installed-base lock-in,<br />
+switching costs (PLCs/control software), and distribution. <strong>Rockwell</strong> (US pure-play), <strong>Siemens</strong><br />
+(Digital Industries), <strong>ABB</strong>, <strong>Emerson</strong>, <strong>Keyence</strong> (extraordinary ~50% operating margins via<br />
+direct-sales + vision) and <strong>Fanuc/Yaskawa</strong> (Japanese robot leaders) dominate. Margins and returns<br />
+are excellent, but growth is currently cyclical-soft. <strong>Humanoids</strong> are wide-open and pre-commercial<br />
+— Tesla (Optimus), Figure, and Chinese players (Unitree, UBTech) compete; NVIDIA supplies the<br />
+"brains." Moats there are unproven; outcomes binary.</p>
+<h2 id="6-major-global-players-comparative-table">6. Major global players — comparative table</h2>
+<p>Market caps point-in-time (~late May 2026, est.). Other figures (fact) unless tagged. "n/f" = none found.</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Geo</th>
+<th>Segment/role</th>
+<th>Mkt cap (as-of)</th>
+<th>Revenue (period)</th>
+<th>Rev YoY</th>
+<th>Profitability</th>
+<th>Other</th>
+<th>Moat note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rockwell Automation</td>
+<td>ROK</td>
+<td>US</td>
+<td>Industrial automation pure-play</td>
+<td>n/f</td>
+<td>~$8B (FY25)</td>
+<td>soft/flat</td>
+<td>~20% op margin</td>
+<td>cycle-soft orders</td>
+<td>US automation lock-in; installed base</td>
+</tr>
+<tr>
+<td>Siemens</td>
+<td>SIE.DE</td>
+<td>DE</td>
+<td>Digital Industries (automation)</td>
+<td>n/f</td>
+<td>large (group)</td>
+<td>mixed</td>
+<td>solid</td>
+<td>spinning out segments</td>
+<td>Breadth + Digital Industries scale</td>
+</tr>
+<tr>
+<td>ABB</td>
+<td>ABBN.SW</td>
+<td>CH</td>
+<td>Robotics + electrification/automation</td>
+<td>~$194B (29 May 26)</td>
+<td>$33.2B (FY25)</td>
+<td>+9%</td>
+<td>18.2% op</td>
+<td>spinning off Robotics</td>
+<td>Robotics + electrification scale</td>
+</tr>
+<tr>
+<td>Keyence</td>
+<td>6861.T</td>
+<td>JP</td>
+<td>Machine vision / sensors</td>
+<td>n/f</td>
+<td>high</td>
+<td>steady</td>
+<td><strong>~50% op margin</strong></td>
+<td>direct-sales model</td>
+<td>Exceptional margins; vision moat</td>
+</tr>
+<tr>
+<td>Fanuc</td>
+<td>6954.T</td>
+<td>JP</td>
+<td>Factory robots / CNC</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>cycle-soft</td>
+<td>strong</td>
+<td>China-exposed</td>
+<td>Robot/CNC leader; reliability moat</td>
+</tr>
+<tr>
+<td>Emerson Electric</td>
+<td>EMR</td>
+<td>US</td>
+<td>Automation / process control</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>mid-single %</td>
+<td>solid</td>
+<td>post-AspenTech</td>
+<td>Process automation + software pivot</td>
+</tr>
+<tr>
+<td>Yaskawa</td>
+<td>6506.T</td>
+<td>JP</td>
+<td>Robots + motion/drives</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>cycle-soft</td>
+<td>solid</td>
+<td>servo/robot leader</td>
+<td>Motion-control + robot scale</td>
+</tr>
+<tr>
+<td>Tesla (Optimus)</td>
+<td>TSLA</td>
+<td>US</td>
+<td>Humanoid robot (pre-commercial)</td>
+<td>n/f (auto-dominated)</td>
+<td>~$0 (Optimus)</td>
+<td>n/a</td>
+<td>pre-revenue</td>
+<td>Optimus roadmap</td>
+<td>Embodied-AI optionality; unproven</td>
+</tr>
+<tr>
+<td>Cognex</td>
+<td>CGNX</td>
+<td>US</td>
+<td>Machine vision</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>cycle-soft</td>
+<td>profitable</td>
+<td>logistics/factory vision</td>
+<td>Vision pure-play; cyclical</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-competitiveness-read">7. Competitiveness read</h2>
+<p>The <strong>highest-quality assets</strong> are the industrial-automation incumbents — <strong>Keyence</strong> (~50%<br />
+operating margins, vision/sensors), <strong>Rockwell</strong> (US automation lock-in), <strong>ABB</strong> (robotics +<br />
+electrification scale, spinning off Robotics to surface value), <strong>Fanuc/Yaskawa</strong> (Japanese robot<br />
+leaders). These are durable compounders, but the <strong>current cycle is soft</strong> (destocking, weak<br />
+manufacturing capex), which caps near-term upside and is the main reason this theme is conviction 3<br />
+rather than 4.</p>
+<p>The <strong>humanoid/embodied-AI</strong> layer (Tesla Optimus, Figure, NVIDIA-powered) is the exciting<br />
+optionality but remains <strong>pre-commercial and speculative</strong> — large TAM, unproven unit economics,<br />
+binary outcomes. The cleanest "shovel" exposure to humanoids may actually be NVIDIA (robotics<br />
+compute, <a class="wikilink" href="semiconductors.html">semiconductors</a>) and the motion/actuator suppliers rather than the robot makers<br />
+themselves. Reshoring (<a class="wikilink" href="reshoring-supply-chain.html">reshoring-supply-chain</a>) is the structural demand catalyst that could<br />
+re-accelerate the core cycle.</p>
+<h2 id="8-risks-what-kills-the-thesis">8. Risks / what kills the thesis</h2>
+<ul>
+<li><strong>Cyclical downturn:</strong> automation is short-cycle; weak manufacturing PMI / capex extends the soft<br />
+  patch (<a class="wikilink" href="../syntheses/macro-regime.html">macro-regime</a>).</li>
+<li><strong>China competition:</strong> Chinese robot/automation makers climbing the value chain compress Western<br />
+  pricing and share.</li>
+<li><strong>Humanoid disappointment:</strong> Optimus/Figure timelines slip or economics fail to close — the<br />
+  optionality evaporates.</li>
+<li><strong>AI-capex correlation (humanoids):</strong> embodied-AI narrative partly rides the AI cycle.</li>
+<li><strong>Valuation:</strong> premium incumbents (Keyence) and humanoid narratives can de-rate on cyclical misses.</li>
+</ul>
+<h2 id="9-investable-instruments-candidates-not-recommendations">9. Investable instruments (candidates — not recommendations)</h2>
+<ul>
+<li><strong>ROBO</strong> (ROBO Global Robotics &amp; Automation) — broad robotics/automation.</li>
+<li><strong>BOTZ</strong> (Global X Robotics &amp; AI) — robotics + AI tilt.</li>
+<li><strong>ARKQ</strong> (ARK Autonomous Tech &amp; Robotics) — disruptive/humanoid tilt.</li>
+<li>Representative securities: ROK, ABBN.SW, 6861.T (Keyence), 6954.T (Fanuc), EMR, TSLA (Optimus optionality).</li>
+</ul>
+<h2 id="10-our-view-conviction-stage-horizon">10. Our view — conviction / stage / horizon</h2>
+<ul>
+<li><strong>Conviction 3/5</strong> — excellent long-run secular logic (labor scarcity + reshoring + embodied AI)<br />
+  and high-quality incumbents, but held back by a currently soft industrial cycle, Chinese<br />
+  competition, and the speculative/pre-commercial state of humanoids.</li>
+<li><strong>Stage: accelerating (secular) / cycle-soft (near-term). Horizon: 3–10 years.</strong></li>
+<li><strong>Invalidation:</strong> automation order growth stays negative for 4+ quarters with no reshoring-driven<br />
+  reacceleration, OR humanoid programs broadly stall, capping the optionality.</li>
+</ul>
+<!-- auto:instrument-table -->
+
+<h2 id="instruments-live-data-auto-refreshed">Instruments — live data (auto-refreshed)</h2>
+<blockquote>
+<p>Pulled by <code>scripts/refresh_instruments.py</code>. <code>n/f</code> = no reliable figure. Conviction tag links to <a class="wikilink" href="../syntheses/decision-register.html">decision-register</a>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Role</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Mkt cap / AUM</th>
+<th style="text-align: right;">Fwd P/E · YTD</th>
+<th style="text-align: right;">Rev YoY · Yld</th>
+<th style="text-align: right;">Profit · Beta</th>
+<th style="text-align: right;">Off 52wHi</th>
+<th>Conv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ROBO</strong></td>
+<td>Robotics</td>
+<td style="text-align: right;">$74.43</td>
+<td style="text-align: right;">$2.0B</td>
+<td style="text-align: right;">+16.3%</td>
+<td style="text-align: right;">0.4%</td>
+<td style="text-align: right;">n/f · 1.78</td>
+<td style="text-align: right;">-17.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>BOTZ</strong></td>
+<td>Robotics</td>
+<td style="text-align: right;">$32.33</td>
+<td style="text-align: right;">$3.3B</td>
+<td style="text-align: right;">-2.4%</td>
+<td style="text-align: right;">0.5%</td>
+<td style="text-align: right;">n/f · 1.84</td>
+<td style="text-align: right;">-22.5%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ARKQ</strong></td>
+<td>ARK autonomy</td>
+<td style="text-align: right;">$111.32</td>
+<td style="text-align: right;">$1.9B</td>
+<td style="text-align: right;">+5.8%</td>
+<td style="text-align: right;">0.2%</td>
+<td style="text-align: right;">n/f · 1.80</td>
+<td style="text-align: right;">-22.9%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ROK</strong></td>
+<td>Industrial automation</td>
+<td style="text-align: right;">$441.21</td>
+<td style="text-align: right;">$49.1B</td>
+<td style="text-align: right;">29.6x</td>
+<td style="text-align: right;">7.9%</td>
+<td style="text-align: right;">13.4% · 1.50</td>
+<td style="text-align: right;">-11.3%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>EMR</strong></td>
+<td>Process automation</td>
+<td style="text-align: right;">$166.42</td>
+<td style="text-align: right;">$92.8B</td>
+<td style="text-align: right;">22.9x</td>
+<td style="text-align: right;">7.0%</td>
+<td style="text-align: right;">13.8% · 1.21</td>
+<td style="text-align: right;">-2.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CGNX</strong></td>
+<td>Machine vision</td>
+<td style="text-align: right;">$55.83</td>
+<td style="text-align: right;">$9.4B</td>
+<td style="text-align: right;">27.6x</td>
+<td style="text-align: right;">16.9%</td>
+<td style="text-align: right;">16.1% · 1.48</td>
+<td style="text-align: right;">-23.4%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>NVDA</strong></td>
+<td>Robotics compute</td>
+<td style="text-align: right;">$204.94</td>
+<td style="text-align: right;">$4.95T</td>
+<td style="text-align: right;">12.9x</td>
+<td style="text-align: right;">105.9%</td>
+<td style="text-align: right;">63.7% · 2.22</td>
+<td style="text-align: right;">-15.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TSLA</strong></td>
+<td>Optimus humanoid</td>
+<td style="text-align: right;">$399.41</td>
+<td style="text-align: right;">$1.58T</td>
+<td style="text-align: right;">185.3x</td>
+<td style="text-align: right;">-0.2%</td>
+<td style="text-align: right;">3.1% · 1.92</td>
+<td style="text-align: right;">-19.9%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- auto:instrument-table -->
+
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Reindustrialization peers: <a class="wikilink" href="reshoring-supply-chain.html">reshoring-supply-chain</a>, <a class="wikilink" href="infrastructure-capex.html">infrastructure-capex</a>, <a class="wikilink" href="defense-security.html">defense-security</a>.<br />
+  Embodied-AI: <a class="wikilink" href="ai-software-agents.html">ai-software-agents</a>, <a class="wikilink" href="semiconductors.html">semiconductors</a>. Materials: <a class="wikilink" href="critical-minerals.html">critical-minerals</a>.<br />
+  Master: <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>. Linkage: <a class="wikilink" href="../syntheses/theme-linkage-map.html">theme-linkage-map</a>. Macro: <a class="wikilink" href="../syntheses/macro-regime.html">macro-regime</a>.</li>
+</ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Is the best humanoid exposure the "brains/shovels" (NVIDIA, actuators) rather than the robot OEMs?</li>
+<li>Does reshoring re-accelerate the core automation cycle enough to lift this to conviction 4?</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>IFR (World Robotics 2025); Goldman Sachs humanoid TAM; company IR/10-K (Rockwell, ABB, Keyence,<br />
+Fanuc, Emerson, Yaskawa, Cognex, Tesla); ETF data (ROBO Global, Global X, ARK), 2026.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

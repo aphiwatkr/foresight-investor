@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLP-1 / Obesity / Metabolic — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › GLP-1 / Obesity / Metabolic</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="../syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="../syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="../syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="../syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="../syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="../syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="../syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="../syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="../syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="../syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="../syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="../syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="../syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="../syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="../syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="../syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="../syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="../syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="ai-infrastructure.html">AI Infrastructure</a>
+<a href="semiconductors.html">Semiconductors</a>
+<a href="ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="renewables-storage.html">Renewables &amp; Storage</a>
+<a href="natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="data-center-cooling.html">Data-Center Cooling</a>
+<a href="critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="defense-security.html">Defense &amp; Security</a>
+<a href="infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="automation-robotics.html">Automation &amp; Robotics</a>
+<a href="humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="medtech-devices.html">MedTech &amp; Devices</a>
+<a href="biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="fintech-payments.html">Fintech &amp; Payments</a>
+<a href="tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="india-em-growth.html">India &amp; EM Growth</a>
+<a href="japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="us-megacap-quality.html">US Megacap Quality</a>
+<a href="asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="space-economy.html">Space Economy</a>
+<a href="quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">concept</span><span class="stamp">dated 2026-06-01</span><span class="stamp">investing</span><span class="stamp">trend</span><span class="stamp">healthcare</span><span class="stamp">glp1</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="glp-1-obesity-metabolic">GLP-1 / Obesity / Metabolic</h1>
+<p><strong>Definition:</strong> GLP-1 receptor agonists and multi-agonist successors — incretin drugs that began as<br />
+type-2-diabetes therapies and are now the dominant obesity treatment. The theme spans branded<br />
+injectables (tirzepatide, semaglutide), the new <strong>oral</strong> class, next-gen multi-agonists, CDMO<br />
+capacity, and the second-order disruption to food, medtech and adjacent industries. The single most<br />
+powerful structural demand story in healthcare. Conviction 4 on the <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>.</p>
+<blockquote>
+<p>Research/insight only — no buy/sell advice. Figures tagged (fact)/(est.)/(inference) with<br />
+period + source. "n/f" = no reliable figure found.</p>
+</blockquote>
+<hr />
+<h2 id="1-definition-scope">1. Definition &amp; scope</h2>
+<p>Core: branded GLP-1 / GIP-GLP-1 drugs (Lilly tirzepatide — Mounjaro/Zepbound; Novo semaglutide —<br />
+Ozempic/Wegovy) plus the <strong>oral inflection</strong> (Lilly orforglipron/Foundayo; oral Wegovy) and next-gen<br />
+multi-agonists (retatrutide, CagriSema, amycretin, Amgen MariTide). Adjacencies: peptide/small-molecule<br />
+CDMOs (capacity was the chokepoint), telehealth distribution (Hims), and read-through to<br />
+<a class="wikilink" href="medtech-devices.html">medtech-devices</a> (CGM tailwind; bariatric/ortho debate) and packaged food.</p>
+<h2 id="2-market-size-growth">2. Market size &amp; growth</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Period / base</th>
+<th>Source</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Obesity/incretin market</td>
+<td><strong>~$95B</strong> (cut from ~$130B prior)</td>
+<td>by 2030</td>
+<td>Goldman Sachs Research</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Incretin market (higher est.)</td>
+<td><strong>~$200B</strong></td>
+<td>by 2030</td>
+<td>J.P. Morgan Research</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Lilly FY2026 revenue guide</td>
+<td><strong>$82–85B</strong> (raised from $80–83B)</td>
+<td>FY2026</td>
+<td>Eli Lilly (2026-04-30)</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Lilly Q1 2026 revenue</td>
+<td><strong>$19.80B (+55.5% YoY)</strong></td>
+<td>Q1 2026</td>
+<td>Eli Lilly</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Lilly GLP-1 share</td>
+<td><strong>~60%</strong></td>
+<td>May 2026</td>
+<td>reported (Yahoo/AOL)</td>
+<td>(est.)</td>
+</tr>
+</tbody>
+</table>
+<p>TAM is large but <strong>contested</strong> — Goldman's cut from $130B to $95B shows real dispersion; long-term<br />
+persistence/adherence is unproven.</p>
+<h2 id="3-key-structural-drivers">3. Key structural drivers</h2>
+<p><strong>Demand:</strong> ~40%+ US adult obesity prevalence + rising globally; <strong>label expansion</strong> (cardiovascular,<br />
+sleep apnea, MASH, kidney, addiction) widens the eligible pool far beyond cosmetic weight loss; oral<br />
+formulations (orforglipron approved 2026; oral Wegovy ~1.3M scripts Q1) remove the injection barrier;<br />
+employer/payer + international reimbursement (Mounjaro on China NRDL). <strong>Supply:</strong> capacity was the<br />
+binding constraint — tens of $B of capex eased 2025 shortages; <strong>orals shift the cost curve</strong> (cheap<br />
+small molecules scale far better than peptides). <strong>Competition:</strong> duopoly opening to a broader field<br />
+(Viking, Amgen, Roche/Zealand) chasing ~20%+ efficacy.</p>
+<h2 id="4-value-chain-linkage">4. Value-chain / linkage</h2>
+<p>Peptide/small-molecule API + CDMOs (historic chokepoint) → branded pharma (Lilly, Novo capture the<br />
+bulk of economics) → PBMs/payers gating access → widening prescriber base (now primary care via pills).<br />
+Second-order: tailwind for CGM/metabolic monitoring (<a class="wikilink" href="medtech-devices.html">medtech-devices</a>); debated headwind for<br />
+bariatric surgery and some cardiac/ortho volumes; capital-allocation spillover into <a class="wikilink" href="biotech-genomics.html">biotech-genomics</a><br />
+(Lilly/Novo war chests buying innovation); negative read for snacking/packaged food.</p>
+<h2 id="5-competitive-landscape">5. Competitive landscape</h2>
+<p>A <strong>two-firm oligopoly</strong> (Lilly + Novo) controls the overwhelming majority of revenue, with <strong>Lilly<br />
+pulling decisively ahead</strong> on efficacy (tirzepatide head-to-head) and the first unrestricted oral<br />
+(orforglipron). Moats: clinical efficacy/label breadth, manufacturing scale, the oral transition, and<br />
+pipeline depth (triple-agonist retatrutide in Ph3). Challengers (Viking VK2735, Amgen MariTide) compete<br />
+on mechanism/dosing convenience but are years behind commercialization. Viking is the most-cited M&amp;A<br />
+target.</p>
+<h2 id="6-major-global-players-comparative-table">6. Major global players — comparative table</h2>
+<p>Market caps point-in-time (~late May 2026, est.); ranges where sources diverge. Other figures (fact) unless tagged.</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Geo</th>
+<th>Segment/role</th>
+<th>Mkt cap (as-of)</th>
+<th>Revenue (period)</th>
+<th>Rev YoY</th>
+<th>Profitability</th>
+<th>Other</th>
+<th>Moat note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eli Lilly</td>
+<td>LLY</td>
+<td>US</td>
+<td>GLP-1 leader (tirzepatide, orforglipron)</td>
+<td>~$0.89–1.08T (May 26)</td>
+<td>$19.80B (Q1'26)</td>
+<td>+55.5%</td>
+<td>Net income $7.40B (~2x YoY)</td>
+<td>~60% GLP-1 share; 1st unrestricted oral</td>
+<td>Efficacy + oral lead + pipeline</td>
+</tr>
+<tr>
+<td>Novo Nordisk</td>
+<td>NVO</td>
+<td>DK</td>
+<td>GLP-1 co-leader (semaglutide)</td>
+<td>~$202B (May 26)</td>
+<td>$15.17B (Q1'26)</td>
+<td>guides FY -4% to -12% cc</td>
+<td>Net profit $7.61B (Q1'26)</td>
+<td>oral Wegovy ~$354M Q1, ~1.3M scripts</td>
+<td>Brand + oral Wegovy; ceding share</td>
+</tr>
+<tr>
+<td>Viking Therapeutics</td>
+<td>VKTX</td>
+<td>US</td>
+<td>Emerging (VK2735 inj + oral)</td>
+<td>~$3.97B (18 May 26)</td>
+<td>n/f (clinical)</td>
+<td>n/a</td>
+<td>pre-revenue burn</td>
+<td>oral Ph2 12.2% wt loss @13wk; Ph3 Q3'26</td>
+<td>Clean next-gen asset; M&amp;A target</td>
+</tr>
+<tr>
+<td>Amgen</td>
+<td>AMGN</td>
+<td>US</td>
+<td>Challenger (MariTide)</td>
+<td>~$181B (31 May 26)</td>
+<td>$8.62B (Q1'26)</td>
+<td>+6%</td>
+<td>non-GAAP EPS +5%</td>
+<td>MariTide Ph2 up to ~20% wt loss</td>
+<td>Monthly dosing; data mixed</td>
+</tr>
+<tr>
+<td>Zealand Pharma</td>
+<td>ZEAL</td>
+<td>DK</td>
+<td>Petrelintide (Roche partner)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>amylin-based; Roche deal</td>
+<td>Mechanism diversification</td>
+</tr>
+<tr>
+<td>Roche</td>
+<td>ROG</td>
+<td>CH</td>
+<td>Late entrant (CT-388, oral)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>acquired Carmot</td>
+<td>Scale + cash to buy in</td>
+</tr>
+<tr>
+<td>Hims &amp; Hers</td>
+<td>HIMS</td>
+<td>US</td>
+<td>Compounded/telehealth distribution</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>GLP-1 access channel</td>
+<td>Distribution not IP; regulatory risk</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-competitiveness-read">7. Competitiveness read</h2>
+<p><strong>Lilly is clearly winning:</strong> superior head-to-head tirzepatide efficacy, the first unrestricted oral<br />
+(Foundayo/orforglipron), a triple-agonist (retatrutide) in Ph3, highest share (~60%), and Q1'26 +55%<br />
+growth with a guidance raise. <strong>Novo is the share-loser of the two</strong> — Ozempic fell ~8%, FY guidance<br />
+implies a sales contraction, and it leans on the oral Wegovy launch (~$354M beat) to stabilize; the<br />
+stock recovered on the pill beat even as franchise revenue contracts, so the narrative hinges on<br />
+CagriSema (US decision Q4'26). Among challengers, <strong>Viking</strong> has the cleanest emerging asset and is the<br />
+top M&amp;A target; <strong>Amgen</strong>'s MariTide showed strong absolute weight loss but disappointed some on<br />
+tolerability. Net: a one-horse race at the top with a deep but lagging chase pack.</p>
+<h2 id="8-risks-what-kills-the-thesis">8. Risks / what kills the thesis</h2>
+<ul>
+<li><strong>Pricing/reimbursement compression</strong> — Medicare negotiation (IRA), payer pushback, and cheap orals<br />
+  could collapse net pricing faster than volume grows.</li>
+<li><strong>Competitive erosion</strong> — next-gen orals/multi-agonists fragment the duopoly post-2027.</li>
+<li><strong>Tolerability / long-term safety</strong> signals (GI, muscle loss) at population scale.</li>
+<li><strong>Patent cliffs</strong> — semaglutide composition-of-matter expiries open biosimilars later this decade.</li>
+<li><strong>Compounded/grey-market substitution</strong> pressuring branded volume.</li>
+<li><strong>Contested TAM</strong> — Goldman's cut shows demand-curve uncertainty; persistence unproven.</li>
+</ul>
+<h2 id="9-investable-instruments-candidates-not-recommendations">9. Investable instruments (candidates — not recommendations)</h2>
+<ul>
+<li><strong>XLV</strong> (Health Care Select Sector) — large LLY/pharma weight.</li>
+<li><strong>IHE</strong> (US Pharmaceuticals).</li>
+<li>Thematic obesity/GLP-1 ETFs (verify holdings — hold LLY, NVO, suppliers; tickers n/f).</li>
+<li>Representative securities: LLY (core), NVO (turnaround/value), VKTX (high-beta/M&amp;A), AMGN (diversified + optionality).</li>
+</ul>
+<h2 id="10-our-view-conviction-stage-horizon">10. Our view — conviction / stage / horizon</h2>
+<ul>
+<li><strong>Conviction 4/5</strong> — durable, demographically-backed demand with expanding labels and the oral<br />
+  inflection just beginning; a genuine megatrend, not a fad. Held below 5 by contested TAM, pricing<br />
+  risk, and single-name dependence on Lilly.</li>
+<li><strong>Stage: accelerating. Horizon: 3–7 years.</strong></li>
+<li><strong>Invalidation:</strong> evidence real-world persistence collapses, OR a payer-driven net-price reset that<br />
+  breaks the volume-for-price trade.</li>
+</ul>
+<!-- auto:instrument-table -->
+
+<h2 id="instruments-live-data-auto-refreshed">Instruments — live data (auto-refreshed)</h2>
+<blockquote>
+<p>Pulled by <code>scripts/refresh_instruments.py</code>. <code>n/f</code> = no reliable figure. Conviction tag links to <a class="wikilink" href="../syntheses/decision-register.html">decision-register</a>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Role</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Mkt cap / AUM</th>
+<th style="text-align: right;">Fwd P/E · YTD</th>
+<th style="text-align: right;">Rev YoY · Yld</th>
+<th style="text-align: right;">Profit · Beta</th>
+<th style="text-align: right;">Off 52wHi</th>
+<th>Conv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>XLV</strong></td>
+<td>Health (broad)</td>
+<td style="text-align: right;">$185.60</td>
+<td style="text-align: right;">$43.4B</td>
+<td style="text-align: right;">+10.1%</td>
+<td style="text-align: right;">1.5%</td>
+<td style="text-align: right;">n/f · 0.52</td>
+<td style="text-align: right;">-1.3%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>IHE</strong></td>
+<td>Pharma</td>
+<td style="text-align: right;">$107.85</td>
+<td style="text-align: right;">$1.6B</td>
+<td style="text-align: right;">+19.5%</td>
+<td style="text-align: right;">1.4%</td>
+<td style="text-align: right;">n/f · 0.50</td>
+<td style="text-align: right;">-1.4%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>LLY</strong></td>
+<td>GLP-1 + Zepbound leader</td>
+<td style="text-align: right;">$1,424.00</td>
+<td style="text-align: right;">$1.27T</td>
+<td style="text-align: right;">28.9x</td>
+<td style="text-align: right;">38.6%</td>
+<td style="text-align: right;">31.9% · n/f</td>
+<td style="text-align: right;">-1.8%</td>
+<td>🟢 ADD 5–7%</td>
+</tr>
+<tr>
+<td><strong>NVO</strong></td>
+<td>Wegovy/Ozempic co-leader</td>
+<td style="text-align: right;">$39.78</td>
+<td style="text-align: right;">$175.5B</td>
+<td style="text-align: right;">11.6x</td>
+<td style="text-align: right;">2.1%</td>
+<td style="text-align: right;">35.3% · 0.38</td>
+<td style="text-align: right;">-38.0%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>VKTX</strong></td>
+<td>Oral GLP-1 contender</td>
+<td style="text-align: right;">$26.92</td>
+<td style="text-align: right;">$3.4B</td>
+<td style="text-align: right;">-5.3x</td>
+<td style="text-align: right;">n/f</td>
+<td style="text-align: right;">0.0% · 0.65</td>
+<td style="text-align: right;">-37.6%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>AMGN</strong></td>
+<td>MariTride</td>
+<td style="text-align: right;">$470.33</td>
+<td style="text-align: right;">$254.2B</td>
+<td style="text-align: right;">19.2x</td>
+<td style="text-align: right;">9.5%</td>
+<td style="text-align: right;">23.0% · 0.41</td>
+<td style="text-align: right;">-1.1%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>HIMS</strong></td>
+<td>Generic GLP-1 compounding</td>
+<td style="text-align: right;">$27.37</td>
+<td style="text-align: right;">$6.4B</td>
+<td style="text-align: right;">37.1x</td>
+<td style="text-align: right;">38.2%</td>
+<td style="text-align: right;">-5.5% · 2.43</td>
+<td style="text-align: right;">-43.4%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- auto:instrument-table -->
+
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Spillover: <a class="wikilink" href="medtech-devices.html">medtech-devices</a> (CGM tailwind / procedure debate), <a class="wikilink" href="biotech-genomics.html">biotech-genomics</a> (capital<br />
+  redeployment), <a class="wikilink" href="healthcare-aging-services.html">healthcare-aging-services</a> (cost trend). Master: <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>. Linkage:<br />
+  <a class="wikilink" href="../syntheses/theme-linkage-map.html">theme-linkage-map</a>. Calls: <a class="wikilink" href="../syntheses/prediction-ledger.html">prediction-ledger</a>.</li>
+</ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Does the oral class expand the market enough to offset net-price erosion?</li>
+<li>Is Viking acquired before its Ph3 oral reads out, and at what premium?</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>Eli Lilly Q1 2026 release (2026-04-30); Novo Nordisk Q1 2026; FDA orforglipron/Foundayo approval;<br />
+Goldman Sachs &amp; J.P. Morgan obesity-TAM research; Amgen Q1 2026 8-K; Viking Therapeutics releases;<br />
+market caps (stockanalysis/companiesmarketcap), 2026.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

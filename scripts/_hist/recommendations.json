@@ -1,0 +1,6520 @@
+{
+  "meta": {
+    "generated_utc": "2026-10-30T16:16:42Z",
+    "as_of": "2026-10-30",
+    "mdaem_as_of": "2026-10-09",
+    "universe_size": 322,
+    "book_size": 44,
+    "min_tier": "STARTER",
+    "top_n": 20
+  },
+  "summary": {
+    "add": 25,
+    "start": 78,
+    "hold": 34,
+    "watch": 72,
+    "trim": 2,
+    "reject": 0
+  },
+  "recommendations": [
+    {
+      "ticker": "SEZL",
+      "action": "ADD",
+      "confidence": 90,
+      "confidence_rationale": "multi-sleeve (mom, macro); off 32% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 82,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.897,
+        "value": 0.424,
+        "quality": 0.371,
+        "macro": 0.941,
+        "contrarian": 0.255,
+        "longterm": 0.938
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 19.3,
+      "rev_yoy": 0.52,
+      "off_52w_high": -0.318,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 90%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AAPL",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, quality); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.879,
+        "value": 0.64,
+        "quality": 0.91,
+        "macro": 0.86,
+        "contrarian": 0.606,
+        "longterm": 0.857
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 35.1,
+      "rev_yoy": 0.16,
+      "off_52w_high": -0.013,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 88%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CNC",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (value, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.841,
+        "value": 0.931,
+        "quality": 0.093,
+        "macro": 0.882,
+        "contrarian": 0.683,
+        "longterm": 0.646
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.2,
+      "rev_yoy": 0.05,
+      "off_52w_high": -0.058,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 84%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRM",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.891,
+        "value": 0.783,
+        "quality": 0.573,
+        "macro": 0.866,
+        "contrarian": 0.543,
+        "longterm": 0.488
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.3,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.133,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 89%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "J",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.869,
+        "value": 0.936,
+        "quality": 0.249,
+        "macro": 0.832,
+        "contrarian": 0.854,
+        "longterm": 0.264
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.8,
+      "rev_yoy": 0.34,
+      "off_52w_high": -0.145,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 87%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "KBANK.BK",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (value, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.826,
+        "value": 0.97,
+        "quality": 0.461,
+        "macro": 0.873,
+        "contrarian": 0.72,
+        "longterm": 0.829
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.0,
+      "rev_yoy": 0.03,
+      "off_52w_high": -0.116,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 83%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MCK",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.9,
+        "value": 0.867,
+        "quality": 0.146,
+        "macro": 0.851,
+        "contrarian": 0.811,
+        "longterm": 0.32
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.6,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.055,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 90%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "URI",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.866,
+        "value": 0.882,
+        "quality": 0.486,
+        "macro": 0.87,
+        "contrarian": 0.826,
+        "longterm": 0.72
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.4,
+      "rev_yoy": 0.12,
+      "off_52w_high": -0.093,
+      "themes": [
+        "infrastructure-capex"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 87%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ZS",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); off 30% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.991,
+        "value": 0.222,
+        "quality": 0.24,
+        "macro": 0.972,
+        "contrarian": 0.183,
+        "longterm": 0.211
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 41.6,
+      "rev_yoy": 0.25,
+      "off_52w_high": -0.305,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 99%); fwd P/E expands above 54x (now 41.6x); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ADBE",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "cheap; off 33% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.648,
+        "value": 0.596,
+        "quality": 0.76,
+        "macro": 0.547,
+        "contrarian": 0.326,
+        "longterm": 0.447
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 8.8,
+      "rev_yoy": 0.13,
+      "off_52w_high": -0.327,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BEN",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "top-value; cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.617,
+        "value": 0.877,
+        "quality": 0.467,
+        "macro": 0.699,
+        "contrarian": 0.609,
+        "longterm": 0.773
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.1,
+      "rev_yoy": 0.14,
+      "off_52w_high": -0.096,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CSCO",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (quality, longterm); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.67,
+        "value": 0.552,
+        "quality": 0.882,
+        "macro": 0.742,
+        "contrarian": 0.41,
+        "longterm": 0.925
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 21.1,
+      "rev_yoy": 0.18,
+      "off_52w_high": -0.082,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DXCM",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.85,
+        "value": 0.631,
+        "quality": 0.536,
+        "macro": 0.901,
+        "contrarian": 0.516,
+        "longterm": 0.674
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 26.9,
+      "rev_yoy": 0.13,
+      "off_52w_high": -0.089,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 85%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GOLD",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "cheap; off 34% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.252,
+        "value": 0.429,
+        "quality": 0.081,
+        "macro": 0.286,
+        "contrarian": 0.208,
+        "longterm": 0.335
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.9,
+      "rev_yoy": 0.99,
+      "off_52w_high": -0.344,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SCCO",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (quality, longterm); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.614,
+        "value": 0.478,
+        "quality": 0.875,
+        "macro": 0.599,
+        "contrarian": 0.379,
+        "longterm": 0.888
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.8,
+      "rev_yoy": 0.41,
+      "off_52w_high": -0.048,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SONY",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.885,
+        "value": 0.626,
+        "quality": 0.271,
+        "macro": 0.863,
+        "contrarian": 0.441,
+        "longterm": 0.242
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 20.3,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.203,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 88%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "VG",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "top-mom; cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.86,
+        "value": 0.744,
+        "quality": 0.243,
+        "macro": 0.811,
+        "contrarian": 0.5,
+        "longterm": 0.835
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.1,
+      "rev_yoy": 0.48,
+      "off_52w_high": -0.246,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 86%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AEM",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-quality; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.514,
+        "value": 0.419,
+        "quality": 0.885,
+        "macro": 0.264,
+        "contrarian": 0.23,
+        "longterm": 0.73
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.3,
+      "rev_yoy": 0.35,
+      "off_52w_high": -0.247,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AMAT",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-longterm; off 30% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 76,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.355,
+        "value": 0.192,
+        "quality": 0.474,
+        "macro": 0.37,
+        "contrarian": 0.118,
+        "longterm": 0.901
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.4,
+      "rev_yoy": 0.25,
+      "off_52w_high": -0.298,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BLK",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-value; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.754,
+        "value": 0.921,
+        "quality": 0.763,
+        "macro": 0.733,
+        "contrarian": 0.839,
+        "longterm": 0.665
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.9,
+      "rev_yoy": 0.31,
+      "off_52w_high": -0.081,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    }
+  ],
+  "full_ranking": [
+    {
+      "ticker": "SEZL",
+      "action": "ADD",
+      "confidence": 90,
+      "confidence_rationale": "multi-sleeve (mom, macro); off 32% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 82,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.897,
+        "value": 0.424,
+        "quality": 0.371,
+        "macro": 0.941,
+        "contrarian": 0.255,
+        "longterm": 0.938
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 19.3,
+      "rev_yoy": 0.52,
+      "off_52w_high": -0.318,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 90%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AAPL",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, quality); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.879,
+        "value": 0.64,
+        "quality": 0.91,
+        "macro": 0.86,
+        "contrarian": 0.606,
+        "longterm": 0.857
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 35.1,
+      "rev_yoy": 0.16,
+      "off_52w_high": -0.013,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 88%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CNC",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (value, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.841,
+        "value": 0.931,
+        "quality": 0.093,
+        "macro": 0.882,
+        "contrarian": 0.683,
+        "longterm": 0.646
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.2,
+      "rev_yoy": 0.05,
+      "off_52w_high": -0.058,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 84%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRM",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.891,
+        "value": 0.783,
+        "quality": 0.573,
+        "macro": 0.866,
+        "contrarian": 0.543,
+        "longterm": 0.488
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.3,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.133,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 89%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "J",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.869,
+        "value": 0.936,
+        "quality": 0.249,
+        "macro": 0.832,
+        "contrarian": 0.854,
+        "longterm": 0.264
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.8,
+      "rev_yoy": 0.34,
+      "off_52w_high": -0.145,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 87%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "KBANK.BK",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (value, macro); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.826,
+        "value": 0.97,
+        "quality": 0.461,
+        "macro": 0.873,
+        "contrarian": 0.72,
+        "longterm": 0.829
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.0,
+      "rev_yoy": 0.03,
+      "off_52w_high": -0.116,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 83%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MCK",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.9,
+        "value": 0.867,
+        "quality": 0.146,
+        "macro": 0.851,
+        "contrarian": 0.811,
+        "longterm": 0.32
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.6,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.055,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 90%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "URI",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.866,
+        "value": 0.882,
+        "quality": 0.486,
+        "macro": 0.87,
+        "contrarian": 0.826,
+        "longterm": 0.72
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.4,
+      "rev_yoy": 0.12,
+      "off_52w_high": -0.093,
+      "themes": [
+        "infrastructure-capex"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 87%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ZS",
+      "action": "ADD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); off 30% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.991,
+        "value": 0.222,
+        "quality": 0.24,
+        "macro": 0.972,
+        "contrarian": 0.183,
+        "longterm": 0.211
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 41.6,
+      "rev_yoy": 0.25,
+      "off_52w_high": -0.305,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 99%); fwd P/E expands above 54x (now 41.6x); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ADBE",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "cheap; off 33% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.648,
+        "value": 0.596,
+        "quality": 0.76,
+        "macro": 0.547,
+        "contrarian": 0.326,
+        "longterm": 0.447
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 8.8,
+      "rev_yoy": 0.13,
+      "off_52w_high": -0.327,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BEN",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "top-value; cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.617,
+        "value": 0.877,
+        "quality": 0.467,
+        "macro": 0.699,
+        "contrarian": 0.609,
+        "longterm": 0.773
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.1,
+      "rev_yoy": 0.14,
+      "off_52w_high": -0.096,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CSCO",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (quality, longterm); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.67,
+        "value": 0.552,
+        "quality": 0.882,
+        "macro": 0.742,
+        "contrarian": 0.41,
+        "longterm": 0.925
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 21.1,
+      "rev_yoy": 0.18,
+      "off_52w_high": -0.082,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DXCM",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.85,
+        "value": 0.631,
+        "quality": 0.536,
+        "macro": 0.901,
+        "contrarian": 0.516,
+        "longterm": 0.674
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 26.9,
+      "rev_yoy": 0.13,
+      "off_52w_high": -0.089,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 85%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GOLD",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "cheap; off 34% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.252,
+        "value": 0.429,
+        "quality": 0.081,
+        "macro": 0.286,
+        "contrarian": 0.208,
+        "longterm": 0.335
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.9,
+      "rev_yoy": 0.99,
+      "off_52w_high": -0.344,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SCCO",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (quality, longterm); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.614,
+        "value": 0.478,
+        "quality": 0.875,
+        "macro": 0.599,
+        "contrarian": 0.379,
+        "longterm": 0.888
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.8,
+      "rev_yoy": 0.41,
+      "off_52w_high": -0.048,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SONY",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.885,
+        "value": 0.626,
+        "quality": 0.271,
+        "macro": 0.863,
+        "contrarian": 0.441,
+        "longterm": 0.242
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 20.3,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.203,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 88%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "VG",
+      "action": "ADD",
+      "confidence": 80,
+      "confidence_rationale": "top-mom; cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.86,
+        "value": 0.744,
+        "quality": 0.243,
+        "macro": 0.811,
+        "contrarian": 0.5,
+        "longterm": 0.835
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.1,
+      "rev_yoy": 0.48,
+      "off_52w_high": -0.246,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 86%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AEM",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-quality; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.514,
+        "value": 0.419,
+        "quality": 0.885,
+        "macro": 0.264,
+        "contrarian": 0.23,
+        "longterm": 0.73
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.3,
+      "rev_yoy": 0.35,
+      "off_52w_high": -0.247,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AMAT",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-longterm; off 30% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 76,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.355,
+        "value": 0.192,
+        "quality": 0.474,
+        "macro": 0.37,
+        "contrarian": 0.118,
+        "longterm": 0.901
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.4,
+      "rev_yoy": 0.25,
+      "off_52w_high": -0.298,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BLK",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-value; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.754,
+        "value": 0.921,
+        "quality": 0.763,
+        "macro": 0.733,
+        "contrarian": 0.839,
+        "longterm": 0.665
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.9,
+      "rev_yoy": 0.31,
+      "off_52w_high": -0.081,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRSP",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "top-value; off 29% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.604,
+        "value": 0.911,
+        "quality": 0.044,
+        "macro": 0.469,
+        "contrarian": 0.519,
+        "longterm": 0.081
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -15.2,
+      "rev_yoy": 10.41,
+      "off_52w_high": -0.287,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NU",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.153,
+        "value": 0.389,
+        "quality": 0.187,
+        "macro": 0.174,
+        "contrarian": 0.205,
+        "longterm": 0.127
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.3,
+      "rev_yoy": 0.52,
+      "off_52w_high": -0.141,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PYPL",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "cheap; off 26% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.748,
+        "value": 0.788,
+        "quality": 0.19,
+        "macro": 0.786,
+        "contrarian": 0.497,
+        "longterm": 0.189
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 9.6,
+      "rev_yoy": 0.05,
+      "off_52w_high": -0.259,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SMCI",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "cheap; off 28% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 82,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.738,
+        "value": 0.468,
+        "quality": 0.037,
+        "macro": 0.727,
+        "contrarian": 0.227,
+        "longterm": 0.022
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 7.9,
+      "rev_yoy": 0.93,
+      "off_52w_high": -0.278,
+      "themes": [
+        "ai-infrastructure",
+        "data-center-cooling"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "XYZ",
+      "action": "ADD",
+      "confidence": 75,
+      "confidence_rationale": "cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.595,
+        "value": 0.798,
+        "quality": 0.171,
+        "macro": 0.665,
+        "contrarian": 0.562,
+        "longterm": 0.236
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.9,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.09,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FBTC",
+      "action": "START",
+      "confidence": 73,
+      "confidence_rationale": "off 32% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 76,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.685,
+        "value": 0,
+        "quality": 0.361,
+        "macro": 0.571,
+        "contrarian": 0.55,
+        "longterm": 0.174
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.322,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IBIT",
+      "action": "START",
+      "confidence": 73,
+      "confidence_rationale": "off 32% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 76,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.682,
+        "value": 0,
+        "quality": 0.358,
+        "macro": 0.568,
+        "contrarian": 0.547,
+        "longterm": 0.171
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.323,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AFRM",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 77,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.66,
+        "value": 0.685,
+        "quality": 0.436,
+        "macro": 0.711,
+        "contrarian": 0.466,
+        "longterm": 0.401
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.7,
+      "rev_yoy": 0.33,
+      "off_52w_high": -0.059,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CGNX",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.464,
+        "value": 0.365,
+        "quality": 0.464,
+        "macro": 0.46,
+        "contrarian": 0.286,
+        "longterm": 0.621
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 31.0,
+      "rev_yoy": 0.17,
+      "off_52w_high": -0.13,
+      "themes": [
+        "automation-robotics"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CLS",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 78,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.056,
+        "value": 0.291,
+        "quality": 0.078,
+        "macro": 0.109,
+        "contrarian": 0.152,
+        "longterm": 0.09
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.4,
+      "rev_yoy": 0.62,
+      "off_52w_high": -0.233,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "COHR",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 27% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.044,
+        "value": 0.182,
+        "quality": 0.109,
+        "macro": 0.059,
+        "contrarian": 0.096,
+        "longterm": 0.531
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 22.3,
+      "rev_yoy": 0.34,
+      "off_52w_high": -0.268,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRDO",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 28% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 82,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.181,
+        "value": 0.197,
+        "quality": 0.389,
+        "macro": 0.18,
+        "contrarian": 0.102,
+        "longterm": 0.317
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 22.3,
+      "rev_yoy": 1.15,
+      "off_52w_high": -0.284,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FIX",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 74,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.059,
+        "value": 0.232,
+        "quality": 0.174,
+        "macro": 0.118,
+        "contrarian": 0.158,
+        "longterm": 0.382
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 28.5,
+      "rev_yoy": 0.5,
+      "off_52w_high": -0.169,
+      "themes": [
+        "data-center-cooling",
+        "infrastructure-capex"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FLEX",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 26% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 79,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.302,
+        "value": 0.276,
+        "quality": 0.069,
+        "macro": 0.283,
+        "contrarian": 0.14,
+        "longterm": 0.255
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 17.0,
+      "rev_yoy": 0.21,
+      "off_52w_high": -0.261,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "LRCX",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 26% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.308,
+        "value": 0.202,
+        "quality": 0.47,
+        "macro": 0.267,
+        "contrarian": 0.124,
+        "longterm": 0.832
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.1,
+      "rev_yoy": 0.3,
+      "off_52w_high": -0.263,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MUFG",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.745,
+        "value": 0.69,
+        "quality": 0.368,
+        "macro": 0.795,
+        "contrarian": 0.525,
+        "longterm": 0.671
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 21.7,
+      "rev_yoy": 0.29,
+      "off_52w_high": -0.073,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NBIS",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 80,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.343,
+        "value": 0.488,
+        "quality": 0.199,
+        "macro": 0.388,
+        "contrarian": 0.196,
+        "longterm": 0.556
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -62.1,
+      "rev_yoy": 4.54,
+      "off_52w_high": -0.229,
+      "themes": [
+        "ai-infrastructure"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NOW",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 26% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.567,
+        "value": 0.212,
+        "quality": 0.296,
+        "macro": 0.615,
+        "contrarian": 0.13,
+        "longterm": 0.18
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 28.1,
+      "rev_yoy": 0.24,
+      "off_52w_high": -0.256,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NVT",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 77,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.259,
+        "value": 0.34,
+        "quality": 0.268,
+        "macro": 0.217,
+        "contrarian": 0.236,
+        "longterm": 0.506
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 25.7,
+      "rev_yoy": 0.53,
+      "off_52w_high": -0.091,
+      "themes": [
+        "data-center-cooling"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PWR",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 77,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.424,
+        "value": 0.33,
+        "quality": 0.168,
+        "macro": 0.335,
+        "contrarian": 0.298,
+        "longterm": 0.497
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 35.7,
+      "rev_yoy": 0.41,
+      "off_52w_high": -0.101,
+      "themes": [
+        "power-grid-electrification",
+        "infrastructure-capex",
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "QCOM",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "off 29% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.536,
+        "value": 0.404,
+        "quality": 0.514,
+        "macro": 0.401,
+        "contrarian": 0.233,
+        "longterm": 0.413
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 17.2,
+      "rev_yoy": -0.04,
+      "off_52w_high": -0.294,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SCC.BK",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.766,
+        "value": 0.754,
+        "quality": 0.128,
+        "macro": 0.801,
+        "contrarian": 0.581,
+        "longterm": 0.304
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 19.1,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.004,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CPN.BK",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "multi-sleeve (value, quality); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.573,
+        "value": 0.862,
+        "quality": 0.944,
+        "macro": 0.534,
+        "contrarian": 0.63,
+        "longterm": 0.879
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.3,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.101,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "REGN",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.931,
+        "value": 0.985,
+        "quality": 0.52,
+        "macro": 0.916,
+        "contrarian": 0.891,
+        "longterm": 0.767
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.1,
+      "rev_yoy": 0.17,
+      "off_52w_high": -0.124,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 93%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ROP",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap; off 29% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.925,
+        "value": 0.966,
+        "quality": 0.844,
+        "macro": 0.925,
+        "contrarian": 0.876,
+        "longterm": 0.699
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.9,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.29,
+      "themes": [
+        "water-resource-scarcity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 92%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SWKS",
+      "action": "START",
+      "confidence": 70,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.935,
+        "value": 0.916,
+        "quality": 0.14,
+        "macro": 0.913,
+        "contrarian": 0.686,
+        "longterm": 0.292
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.4,
+      "rev_yoy": -0.03,
+      "off_52w_high": -0.165,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 94%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ARKF",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.564,
+        "value": 0,
+        "quality": 0.48,
+        "macro": 0.516,
+        "contrarian": 0.599,
+        "longterm": 0.227
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.188,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BITQ",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.271,
+        "value": 0,
+        "quality": 0.277,
+        "macro": 0.196,
+        "contrarian": 0.531,
+        "longterm": 0.143
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.205,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SOL-USD",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.741,
+        "value": 0,
+        "quality": 0.206,
+        "macro": 0.845,
+        "contrarian": 0.621,
+        "longterm": 0.276
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.106,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SOXQ",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.483,
+        "value": 0,
+        "quality": 0.498,
+        "macro": 0.503,
+        "contrarian": 0.578,
+        "longterm": 0.758
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.14,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SOXX",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.477,
+        "value": 0,
+        "quality": 0.477,
+        "macro": 0.509,
+        "contrarian": 0.565,
+        "longterm": 0.807
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.145,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "XSD",
+      "action": "START",
+      "confidence": 68,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.399,
+        "value": 0,
+        "quality": 0.452,
+        "macro": 0.351,
+        "contrarian": 0.534,
+        "longterm": 0.587
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.187,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MSTR",
+      "action": "START",
+      "confidence": 65,
+      "confidence_rationale": "cheap; off 52% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 77,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.561,
+        "value": 0.355,
+        "quality": 0.121,
+        "macro": 0.242,
+        "contrarian": 0.149,
+        "longterm": 0.075
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 3.1,
+      "rev_yoy": 0.07,
+      "off_52w_high": -0.518,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CHKP",
+      "action": "START",
+      "confidence": 65,
+      "confidence_rationale": "top-quality; cheap; off 33% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.816,
+        "value": 0.571,
+        "quality": 0.935,
+        "macro": 0.835,
+        "contrarian": 0.342,
+        "longterm": 0.581
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.2,
+      "rev_yoy": 0.01,
+      "off_52w_high": -0.329,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 82%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MDT",
+      "action": "START",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.882,
+        "value": 0.926,
+        "quality": 0.785,
+        "macro": 0.82,
+        "contrarian": 0.711,
+        "longterm": 0.705
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.8,
+      "rev_yoy": 0.14,
+      "off_52w_high": -0.132,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 88%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "VLTO",
+      "action": "START",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, value)",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.916,
+        "value": 0.897,
+        "quality": 0.779,
+        "macro": 0.91,
+        "contrarian": 0.848,
+        "longterm": 0.727
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 20.2,
+      "rev_yoy": 0.07,
+      "off_52w_high": -0.071,
+      "themes": [
+        "water-resource-scarcity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 92%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "VRTX",
+      "action": "START",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, quality)",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.919,
+        "value": 0.818,
+        "quality": 0.913,
+        "macro": 0.898,
+        "contrarian": 0.717,
+        "longterm": 0.898
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 25.2,
+      "rev_yoy": 0.12,
+      "off_52w_high": -0.086,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 92%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BZ=F",
+      "action": "START",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.875,
+        "value": 0,
+        "quality": 0.38,
+        "macro": 0.78,
+        "contrarian": 0.932,
+        "longterm": 0.863
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.115,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 88%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IBB",
+      "action": "START",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.907,
+        "value": 0,
+        "quality": 0.704,
+        "macro": 0.888,
+        "contrarian": 0.975,
+        "longterm": 0.814
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.048,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 91%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IHE",
+      "action": "START",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.857,
+        "value": 0,
+        "quality": 0.754,
+        "macro": 0.842,
+        "contrarian": 0.978,
+        "longterm": 0.866
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.072,
+      "themes": [
+        "glp1-obesity-metabolic"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 86%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "USO",
+      "action": "START",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.928,
+        "value": 0,
+        "quality": 0.483,
+        "macro": 0.922,
+        "contrarian": 0.984,
+        "longterm": 0.957
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.084,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 93%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "XLV",
+      "action": "START",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.91,
+        "value": 0,
+        "quality": 0.766,
+        "macro": 0.885,
+        "contrarian": 0.984,
+        "longterm": 0.776
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.024,
+      "themes": [
+        "glp1-obesity-metabolic",
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 91%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "USDCNH=X",
+      "action": "START",
+      "confidence": 62,
+      "confidence_rationale": "MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 70,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0,
+        "value": 0,
+        "quality": 0,
+        "macro": 0.596,
+        "contrarian": 0.72,
+        "longterm": 0.398
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "HIMS",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "off 51% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 81,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.498,
+        "value": 0.123,
+        "quality": 0.134,
+        "macro": 0.522,
+        "contrarian": 0.121,
+        "longterm": 0.106
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 41.9,
+      "rev_yoy": 0.38,
+      "off_52w_high": -0.507,
+      "themes": [
+        "glp1-obesity-metabolic"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); fwd P/E expands above 55x (now 41.9x); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "QUBT",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "off 66% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 71,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.078,
+        "value": 0.31,
+        "quality": 0.009,
+        "macro": 0.121,
+        "contrarian": 0.093,
+        "longterm": 0.006
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -31.4,
+      "rev_yoy": 90.0,
+      "off_52w_high": -0.658,
+      "themes": [
+        "quantum-computing"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AOT.BK",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (quality, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.623,
+        "value": 0.576,
+        "quality": 0.866,
+        "macro": 0.661,
+        "contrarian": 0.475,
+        "longterm": 0.922
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 28.0,
+      "rev_yoy": -0.03,
+      "off_52w_high": -0.131,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BABA",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "cheap; off 38% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.134,
+        "value": 0.35,
+        "quality": 0.259,
+        "macro": 0.143,
+        "contrarian": 0.174,
+        "longterm": 0.121
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.0,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.375,
+      "themes": [
+        "china-contrarian"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GPN",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "top-value; cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 60,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.81,
+        "value": 0.98,
+        "quality": 0.315,
+        "macro": 0.817,
+        "contrarian": 0.82,
+        "longterm": 0.463
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 5.1,
+      "rev_yoy": 0.69,
+      "off_52w_high": -0.131,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 81%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IBN",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "top-value; cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 60,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.726,
+        "value": 0.887,
+        "quality": 0.33,
+        "macro": 0.717,
+        "contrarian": 0.677,
+        "longterm": 0.267
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.9,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.146,
+      "themes": [
+        "india-em-growth"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "LMT",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (value, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.785,
+        "value": 0.906,
+        "quality": 0.231,
+        "macro": 0.857,
+        "contrarian": 0.705,
+        "longterm": 0.519
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.6,
+      "rev_yoy": 0.1,
+      "off_52w_high": -0.237,
+      "themes": [
+        "defense-security"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NVO",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "cheap; off 37% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.293,
+        "value": 0.463,
+        "quality": 0.841,
+        "macro": 0.326,
+        "contrarian": 0.248,
+        "longterm": 0.5
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 11.7,
+      "rev_yoy": 0.02,
+      "off_52w_high": -0.366,
+      "themes": [
+        "glp1-obesity-metabolic"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PDD",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "cheap; off 41% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.215,
+        "value": 0.443,
+        "quality": 0.583,
+        "macro": 0.205,
+        "contrarian": 0.193,
+        "longterm": 0.224
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 6.6,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.411,
+      "themes": [
+        "china-contrarian"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "TCS.NS",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "cheap; off 33% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.526,
+        "value": 0.65,
+        "quality": 0.399,
+        "macro": 0.609,
+        "contrarian": 0.413,
+        "longterm": 0.261
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.4,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.327,
+      "themes": [
+        "india-em-growth"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "TSM",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (quality, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.551,
+        "value": 0.611,
+        "quality": 0.969,
+        "macro": 0.59,
+        "contrarian": 0.447,
+        "longterm": 0.932
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 20.7,
+      "rev_yoy": 0.36,
+      "off_52w_high": -0.067,
+      "themes": [
+        "ai-infrastructure",
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "WMB",
+      "action": "START",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (quality, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.707,
+        "value": 0.7,
+        "quality": 0.925,
+        "macro": 0.581,
+        "contrarian": 0.593,
+        "longterm": 0.91
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.5,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.071,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NG=F",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "off 57% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 81,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.452,
+        "value": 0,
+        "quality": 0.224,
+        "macro": 0.481,
+        "contrarian": 0.27,
+        "longterm": 0.196
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.568,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ARKG",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.969,
+        "value": 0,
+        "quality": 0.196,
+        "macro": 0.966,
+        "contrarian": 0.72,
+        "longterm": 0.761
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.096,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 97%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BIL",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (quality, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.632,
+        "value": 0,
+        "quality": 0.919,
+        "macro": 0.559,
+        "contrarian": 0.984,
+        "longterm": 0.652
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cash-rates"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DBC",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (contrarian, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.801,
+        "value": 0,
+        "quality": 0.726,
+        "macro": 0.767,
+        "contrarian": 0.963,
+        "longterm": 0.873
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.021,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 80%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IHF",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (macro, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.847,
+        "value": 0,
+        "quality": 0.629,
+        "macro": 0.854,
+        "contrarian": 0.953,
+        "longterm": 0.627
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.021,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 85%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PDBC",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (contrarian, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.798,
+        "value": 0,
+        "quality": 0.698,
+        "macro": 0.764,
+        "contrarian": 0.96,
+        "longterm": 0.876
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.022,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "RSP",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (quality, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.72,
+        "value": 0,
+        "quality": 0.857,
+        "macro": 0.696,
+        "contrarian": 0.957,
+        "longterm": 0.708
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.04,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SGOV",
+      "action": "START",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (quality, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.636,
+        "value": 0,
+        "quality": 0.922,
+        "macro": 0.565,
+        "contrarian": 0.984,
+        "longterm": 0.661
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cash-rates"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "INTC",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "extreme valuation; off 26% from high; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.125,
+        "value": 0.059,
+        "quality": 0.04,
+        "macro": 0.099,
+        "contrarian": 0.037,
+        "longterm": 0.472
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 50.3,
+      "rev_yoy": 0.25,
+      "off_52w_high": -0.257,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); fwd P/E expands above 65x (now 50.3x); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ANET",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.461,
+        "value": 0.286,
+        "quality": 0.869,
+        "macro": 0.531,
+        "contrarian": 0.258,
+        "longterm": 0.717
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 41.5,
+      "rev_yoy": 0.38,
+      "off_52w_high": 0.0,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); fwd P/E expands above 54x (now 41.5x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AVGO",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.168,
+        "value": 0.409,
+        "quality": 0.953,
+        "macro": 0.202,
+        "contrarian": 0.245,
+        "longterm": 0.686
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.6,
+      "rev_yoy": 0.85,
+      "off_52w_high": -0.247,
+      "themes": [
+        "ai-infrastructure",
+        "semiconductors",
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CFG",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.52,
+        "value": 0.837,
+        "quality": 0.377,
+        "macro": 0.478,
+        "contrarian": 0.537,
+        "longterm": 0.54
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 9.8,
+      "rev_yoy": 0.15,
+      "off_52w_high": -0.149,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CPALL.BK",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.383,
+        "value": 0.749,
+        "quality": 0.28,
+        "macro": 0.444,
+        "contrarian": 0.484,
+        "longterm": 0.27
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 11.5,
+      "rev_yoy": 0.04,
+      "off_52w_high": -0.181,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CVS",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.664,
+        "value": 0.773,
+        "quality": 0.215,
+        "macro": 0.705,
+        "contrarian": 0.491,
+        "longterm": 0.323
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.1,
+      "rev_yoy": 0.07,
+      "off_52w_high": -0.216,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "EW",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.776,
+        "value": 0.764,
+        "quality": 0.872,
+        "macro": 0.755,
+        "contrarian": 0.658,
+        "longterm": 0.764
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 25.2,
+      "rev_yoy": 0.14,
+      "off_52w_high": -0.105,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "F",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap; off 30% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.371,
+        "value": 0.645,
+        "quality": 0.125,
+        "macro": 0.475,
+        "contrarian": 0.335,
+        "longterm": 0.161
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 6.3,
+      "rev_yoy": -0.04,
+      "off_52w_high": -0.295,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FN",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "off 35% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 60,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.025,
+        "value": 0.138,
+        "quality": 0.062,
+        "macro": 0.028,
+        "contrarian": 0.065,
+        "longterm": 0.068
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 22.3,
+      "rev_yoy": 0.45,
+      "off_52w_high": -0.349,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GLW",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "off 39% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.137,
+        "value": 0.099,
+        "quality": 0.159,
+        "macro": 0.152,
+        "contrarian": 0.062,
+        "longterm": 0.512
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 35.8,
+      "rev_yoy": 0.17,
+      "off_52w_high": -0.386,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GOOGL",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.112,
+        "value": 0.379,
+        "quality": 0.96,
+        "macro": 0.149,
+        "contrarian": 0.252,
+        "longterm": 0.811
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 23.1,
+      "rev_yoy": 0.24,
+      "off_52w_high": -0.125,
+      "themes": [
+        "ai-infrastructure",
+        "us-megacap-quality",
+        "quantum-computing"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "HCA",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.676,
+        "value": 0.808,
+        "quality": 0.455,
+        "macro": 0.736,
+        "contrarian": 0.553,
+        "longterm": 0.46
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.1,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.168,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "HSAI",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "off 44% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.037,
+        "value": 0.163,
+        "quality": 0.165,
+        "macro": 0.047,
+        "contrarian": 0.068,
+        "longterm": 0.084
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.2,
+      "rev_yoy": 0.22,
+      "off_52w_high": -0.444,
+      "themes": [
+        "humanoid-robotics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "JD",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.187,
+        "value": 0.729,
+        "quality": 0.1,
+        "macro": 0.273,
+        "contrarian": 0.422,
+        "longterm": 0.087
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 6.4,
+      "rev_yoy": -0.03,
+      "off_52w_high": -0.198,
+      "themes": [
+        "china-contrarian"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "KLAC",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "off 35% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.234,
+        "value": 0.148,
+        "quality": 0.617,
+        "macro": 0.301,
+        "contrarian": 0.112,
+        "longterm": 0.798
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 29.0,
+      "rev_yoy": 0.15,
+      "off_52w_high": -0.351,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "KMI",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-longterm",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.76,
+        "value": 0.847,
+        "quality": 0.813,
+        "macro": 0.686,
+        "contrarian": 0.807,
+        "longterm": 0.86
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 21.0,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.044,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MRVL",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "top-longterm",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.695,
+        "value": 0.172,
+        "quality": 0.355,
+        "macro": 0.789,
+        "contrarian": 0.143,
+        "longterm": 0.963
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 37.8,
+      "rev_yoy": 0.36,
+      "off_52w_high": -0.13,
+      "themes": [
+        "semiconductors",
+        "networking-optical"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ON",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "off 42% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.143,
+        "value": 0.271,
+        "quality": 0.209,
+        "macro": 0.146,
+        "contrarian": 0.137,
+        "longterm": 0.565
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 17.1,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.421,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "RIO",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.324,
+        "value": 0.621,
+        "quality": 0.523,
+        "macro": 0.214,
+        "contrarian": 0.354,
+        "longterm": 0.571
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 11.1,
+      "rev_yoy": 0.15,
+      "off_52w_high": -0.135,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "TM",
+      "action": "START",
+      "confidence": 55,
+      "confidence_rationale": "cheap; off 25% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.486,
+        "value": 0.68,
+        "quality": 0.265,
+        "macro": 0.556,
+        "contrarian": 0.432,
+        "longterm": 0.248
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 11.7,
+      "rev_yoy": 0.1,
+      "off_52w_high": -0.254,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MU",
+      "action": "HOLD",
+      "confidence": 100,
+      "confidence_rationale": "multi-sleeve (mom, quality); cheap; T1",
+      "tier": "T1",
+      "mdaem_composite": 92,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.938,
+        "value": 0.695,
+        "quality": 0.978,
+        "macro": 0.95,
+        "contrarian": 0.37,
+        "longterm": 1.0
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 5.0,
+      "rev_yoy": 3.79,
+      "off_52w_high": -0.152,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 94%); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.02
+    },
+    {
+      "ticker": "SNDK",
+      "action": "HOLD",
+      "confidence": 100,
+      "confidence_rationale": "top-longterm; cheap; off 32% from high; T1",
+      "tier": "T1",
+      "mdaem_composite": 85,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.408,
+        "value": 0.345,
+        "quality": 0.72,
+        "macro": 0.398,
+        "contrarian": 0.146,
+        "longterm": 0.988
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 5.9,
+      "rev_yoy": 3.72,
+      "off_52w_high": -0.323,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "FRO",
+      "action": "HOLD",
+      "confidence": 90,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 79,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.988,
+        "value": 0.956,
+        "quality": 0.966,
+        "macro": 0.975,
+        "contrarian": 0.832,
+        "longterm": 0.994
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.7,
+      "rev_yoy": 0.96,
+      "off_52w_high": -0.003,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 99%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "PSX",
+      "action": "HOLD",
+      "confidence": 90,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 79,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.972,
+        "value": 0.951,
+        "quality": 0.227,
+        "macro": 0.96,
+        "contrarian": 0.702,
+        "longterm": 0.916
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.2,
+      "rev_yoy": 0.53,
+      "off_52w_high": -0.012,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 97%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "PTT.BK",
+      "action": "HOLD",
+      "confidence": 90,
+      "confidence_rationale": "multi-sleeve (mom, value); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 75,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.863,
+        "value": 0.99,
+        "quality": 0.408,
+        "macro": 0.848,
+        "contrarian": 0.894,
+        "longterm": 0.714
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 10.6,
+      "rev_yoy": 0.23,
+      "off_52w_high": -0.043,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 86%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "AMD",
+      "action": "HOLD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 72,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.872,
+        "value": 0.32,
+        "quality": 0.508,
+        "macro": 0.932,
+        "contrarian": 0.264,
+        "longterm": 0.966
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 38.7,
+      "rev_yoy": 0.5,
+      "off_52w_high": -0.064,
+      "themes": [
+        "ai-infrastructure",
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 87%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.02
+    },
+    {
+      "ticker": "ECO",
+      "action": "HOLD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, value); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 79,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.997,
+        "value": 0.941,
+        "quality": 0.972,
+        "macro": 0.994,
+        "contrarian": 0.863,
+        "longterm": 0.997
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.7,
+      "rev_yoy": 2.39,
+      "off_52w_high": -0.014,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 100%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.065
+    },
+    {
+      "ticker": "HPE",
+      "action": "HOLD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (mom, macro); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 77,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.975,
+        "value": 0.532,
+        "quality": 0.218,
+        "macro": 0.981,
+        "contrarian": 0.339,
+        "longterm": 0.929
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.6,
+      "rev_yoy": 0.34,
+      "off_52w_high": 0.0,
+      "themes": [
+        "ai-infrastructure"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 98%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.06
+    },
+    {
+      "ticker": "SBLK",
+      "action": "HOLD",
+      "confidence": 85,
+      "confidence_rationale": "multi-sleeve (value, longterm); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 78,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.751,
+        "value": 0.872,
+        "quality": 0.66,
+        "macro": 0.798,
+        "contrarian": 0.587,
+        "longterm": 0.919
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 8.4,
+      "rev_yoy": 0.45,
+      "off_52w_high": -0.086,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "JXN",
+      "action": "HOLD",
+      "confidence": 83,
+      "confidence_rationale": "multi-sleeve (value, contrarian); cheap; MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.813,
+        "value": 1.0,
+        "quality": 0.564,
+        "macro": 0.814,
+        "contrarian": 0.885,
+        "longterm": 0.823
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 4.1,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.072,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); momentum score falls below 50th percentile (now 81%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "BHP",
+      "action": "HOLD",
+      "confidence": 80,
+      "confidence_rationale": "multi-sleeve (quality, longterm); MED-HIGH",
+      "tier": "MED-HIGH",
+      "mdaem_composite": 73,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.542,
+        "value": 0.616,
+        "quality": 0.95,
+        "macro": 0.537,
+        "contrarian": 0.435,
+        "longterm": 0.944
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 18.6,
+      "rev_yoy": 0.18,
+      "off_52w_high": -0.102,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "MDAEM composite drops below 55 (STARTER); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "PTTEP.BK",
+      "action": "HOLD",
+      "confidence": 70,
+      "confidence_rationale": "multi-sleeve (value, quality); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.829,
+        "value": 0.995,
+        "quality": 0.931,
+        "macro": 0.804,
+        "contrarian": 0.907,
+        "longterm": 0.969
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 8.1,
+      "rev_yoy": 0.37,
+      "off_52w_high": -0.062,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 83%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "DELL",
+      "action": "HOLD",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.966,
+        "value": 0.453,
+        "quality": 0.112,
+        "macro": 0.984,
+        "contrarian": 0.276,
+        "longterm": 0.87
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 20.1,
+      "rev_yoy": 0.58,
+      "off_52w_high": -0.004,
+      "themes": [
+        "ai-infrastructure"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 97%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    },
+    {
+      "ticker": "ILMN",
+      "action": "HOLD",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.96,
+        "value": 0.256,
+        "quality": 0.293,
+        "macro": 0.969,
+        "contrarian": 0.261,
+        "longterm": 0.953
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 45.5,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.053,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 96%); fwd P/E expands above 59x (now 45.5x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.025
+    },
+    {
+      "ticker": "LLY",
+      "action": "HOLD",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (mom, quality)",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.956,
+        "value": 0.833,
+        "quality": 0.975,
+        "macro": 0.944,
+        "contrarian": 0.814,
+        "longterm": 0.991
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 24.8,
+      "rev_yoy": 0.48,
+      "off_52w_high": -0.079,
+      "themes": [
+        "glp1-obesity-metabolic"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 96%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.04
+    },
+    {
+      "ticker": "NVDA",
+      "action": "HOLD",
+      "confidence": 65,
+      "confidence_rationale": "multi-sleeve (quality, longterm); cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.548,
+        "value": 0.739,
+        "quality": 0.991,
+        "macro": 0.578,
+        "contrarian": 0.512,
+        "longterm": 0.885
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 14.4,
+      "rev_yoy": 1.06,
+      "off_52w_high": -0.042,
+      "themes": [
+        "ai-infrastructure",
+        "semiconductors",
+        "automation-robotics",
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.04
+    },
+    {
+      "ticker": "BUG",
+      "action": "HOLD",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.981,
+        "value": 0,
+        "quality": 0.402,
+        "macro": 0.978,
+        "contrarian": 0.913,
+        "longterm": 0.696
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 98%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "HACK",
+      "action": "HOLD",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.941,
+        "value": 0,
+        "quality": 0.539,
+        "macro": 0.947,
+        "contrarian": 0.904,
+        "longterm": 0.77
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 94%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "WCLD",
+      "action": "HOLD",
+      "confidence": 63,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.95,
+        "value": 0,
+        "quality": 0.29,
+        "macro": 0.957,
+        "contrarian": 0.916,
+        "longterm": 0.469
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 95%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "ELV",
+      "action": "HOLD",
+      "confidence": 60,
+      "confidence_rationale": "top-value; cheap",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.788,
+        "value": 0.892,
+        "quality": 0.212,
+        "macro": 0.77,
+        "contrarian": 0.661,
+        "longterm": 0.438
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 13.9,
+      "rev_yoy": 0.01,
+      "off_52w_high": -0.029,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.015
+    },
+    {
+      "ticker": "IRWD",
+      "action": "HOLD",
+      "confidence": 60,
+      "confidence_rationale": "top-longterm; cheap; off 29% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.165,
+        "value": 0.601,
+        "quality": 0.53,
+        "macro": 0.208,
+        "contrarian": 0.283,
+        "longterm": 0.981
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 2.5,
+      "rev_yoy": 0.33,
+      "off_52w_high": -0.291,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "PLD",
+      "action": "HOLD",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (quality, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.296,
+        "value": 0.384,
+        "quality": 0.988,
+        "macro": 0.36,
+        "contrarian": 0.373,
+        "longterm": 0.894
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 38.8,
+      "rev_yoy": 0.12,
+      "off_52w_high": -0.13,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.04
+    },
+    {
+      "ticker": "SPG",
+      "action": "HOLD",
+      "confidence": 60,
+      "confidence_rationale": "multi-sleeve (quality, longterm)",
+      "tier": "STARTER",
+      "mdaem_composite": 60,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.713,
+        "value": 0.606,
+        "quality": 1.0,
+        "macro": 0.72,
+        "contrarian": 0.528,
+        "longterm": 0.984
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 29.4,
+      "rev_yoy": 0.2,
+      "off_52w_high": -0.148,
+      "themes": [
+        "reits"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.04
+    },
+    {
+      "ticker": "CIBR",
+      "action": "HOLD",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (mom, macro)",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.913,
+        "value": 0,
+        "quality": 0.567,
+        "macro": 0.935,
+        "contrarian": 0.72,
+        "longterm": 0.693
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 91%); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "UUP",
+      "action": "HOLD",
+      "confidence": 58,
+      "confidence_rationale": "multi-sleeve (quality, contrarian)",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.704,
+        "value": 0,
+        "quality": 0.888,
+        "macro": 0.643,
+        "contrarian": 0.966,
+        "longterm": 0.64
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.001,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "ASML",
+      "action": "HOLD",
+      "confidence": 55,
+      "confidence_rationale": "top-longterm",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.583,
+        "value": 0.399,
+        "quality": 0.782,
+        "macro": 0.63,
+        "contrarian": 0.32,
+        "longterm": 0.904
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 30.6,
+      "rev_yoy": 0.21,
+      "off_52w_high": -0.104,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "QUAL",
+      "action": "HOLD",
+      "confidence": 53,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.698,
+        "value": 0,
+        "quality": 0.86,
+        "macro": 0.689,
+        "contrarian": 0.72,
+        "longterm": 0.68
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": 0.0,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "SPY",
+      "action": "HOLD",
+      "confidence": 53,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.654,
+        "value": 0,
+        "quality": 0.854,
+        "macro": 0.646,
+        "contrarian": 0.72,
+        "longterm": 0.655
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.001,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "VOO",
+      "action": "HOLD",
+      "confidence": 53,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.657,
+        "value": 0,
+        "quality": 0.85,
+        "macro": 0.649,
+        "contrarian": 0.72,
+        "longterm": 0.658
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.001,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "OKTA",
+      "action": "HOLD",
+      "confidence": 50,
+      "confidence_rationale": "multi-sleeve (mom, macro); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 1.0,
+        "value": 0.251,
+        "quality": 0.221,
+        "macro": 1.0,
+        "contrarian": 0.314,
+        "longterm": 0.941
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 53.0,
+      "rev_yoy": 0.11,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 100%); fwd P/E expands above 69x (now 53.0x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    },
+    {
+      "ticker": "DXJ",
+      "action": "HOLD",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.673,
+        "value": 0,
+        "quality": 0.788,
+        "macro": 0.677,
+        "contrarian": 0.72,
+        "longterm": 0.786
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.01,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "MAGS",
+      "action": "HOLD",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.579,
+        "value": 0,
+        "quality": 0.688,
+        "macro": 0.606,
+        "contrarian": 0.72,
+        "longterm": 0.503
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.002,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.0
+    },
+    {
+      "ticker": "DDOG",
+      "action": "HOLD",
+      "confidence": 45,
+      "confidence_rationale": "multi-sleeve (mom, macro); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.888,
+        "value": 0.02,
+        "quality": 0.43,
+        "macro": 0.953,
+        "contrarian": 0.099,
+        "longterm": 0.842
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 98.6,
+      "rev_yoy": 0.36,
+      "off_52w_high": 0.0,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 89%); fwd P/E expands above 128x (now 98.6x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    },
+    {
+      "ticker": "FTNT",
+      "action": "HOLD",
+      "confidence": 45,
+      "confidence_rationale": "multi-sleeve (macro, longterm); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 60,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.822,
+        "value": 0.118,
+        "quality": 0.81,
+        "macro": 0.929,
+        "contrarian": 0.155,
+        "longterm": 0.947
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 51.6,
+      "rev_yoy": 0.26,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 82%); fwd P/E expands above 67x (now 51.6x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    },
+    {
+      "ticker": "CL=F",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.819,
+        "value": 0,
+        "quality": 0.336,
+        "macro": 0.758,
+        "contrarian": 0.898,
+        "longterm": 0.839
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.187,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ETH-USD",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-macro",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.807,
+        "value": 0,
+        "quality": 0.287,
+        "macro": 0.876,
+        "contrarian": 0.655,
+        "longterm": 0.332
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.105,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FCG",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.782,
+        "value": 0,
+        "quality": 0.626,
+        "macro": 0.739,
+        "contrarian": 0.984,
+        "longterm": 0.845
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.075,
+      "themes": [
+        "natural-gas-lng"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "HG=F",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.701,
+        "value": 0,
+        "quality": 0.717,
+        "macro": 0.693,
+        "contrarian": 0.929,
+        "longterm": 0.702
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.016,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IPAY",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.62,
+        "value": 0,
+        "quality": 0.57,
+        "macro": 0.584,
+        "contrarian": 0.879,
+        "longterm": 0.307
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.16,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PAVE",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.34,
+        "value": 0,
+        "quality": 0.745,
+        "macro": 0.416,
+        "contrarian": 0.87,
+        "longterm": 0.615
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.107,
+      "themes": [
+        "power-grid-electrification",
+        "data-center-cooling",
+        "infrastructure-capex",
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SI=F",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "off 47% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.09,
+        "value": 0,
+        "quality": 0.349,
+        "macro": 0.075,
+        "contrarian": 0.301,
+        "longterm": 0.298
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.47,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "USDCAD=X",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.576,
+        "value": 0,
+        "quality": 0.894,
+        "macro": 0.575,
+        "contrarian": 0.72,
+        "longterm": 0.568
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.003,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "USDINR=X",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-quality",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.601,
+        "value": 0,
+        "quality": 0.9,
+        "macro": 0.55,
+        "contrarian": 0.72,
+        "longterm": 0.649
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.001,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "USDTHB=X",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.692,
+        "value": 0,
+        "quality": 0.807,
+        "macro": 0.637,
+        "contrarian": 0.969,
+        "longterm": 0.562
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.007,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "XBI",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.791,
+        "value": 0,
+        "quality": 0.604,
+        "macro": 0.792,
+        "contrarian": 0.888,
+        "longterm": 0.78
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.093,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "XHE",
+      "action": "WATCH",
+      "confidence": 53,
+      "confidence_rationale": "top-contrarian",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.729,
+        "value": 0,
+        "quality": 0.542,
+        "macro": 0.745,
+        "contrarian": 0.925,
+        "longterm": 0.516
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.077,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ABT",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.804,
+        "value": 0.675,
+        "quality": 0.607,
+        "macro": 0.776,
+        "contrarian": 0.46,
+        "longterm": 0.407
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.4,
+      "rev_yoy": 0.13,
+      "off_52w_high": -0.236,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AMZN",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.393,
+        "value": 0.537,
+        "quality": 0.685,
+        "macro": 0.366,
+        "contrarian": 0.429,
+        "longterm": 0.59
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 25.1,
+      "rev_yoy": 0.2,
+      "off_52w_high": -0.076,
+      "themes": [
+        "ai-infrastructure",
+        "us-megacap-quality"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BDMS.BK",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.71,
+        "value": 0.823,
+        "quality": 0.445,
+        "macro": 0.64,
+        "contrarian": 0.612,
+        "longterm": 0.404
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 17.6,
+      "rev_yoy": 0.01,
+      "off_52w_high": -0.103,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CAT",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.084,
+        "value": 0.246,
+        "quality": 0.308,
+        "macro": 0.13,
+        "contrarian": 0.165,
+        "longterm": 0.366
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 24.7,
+      "rev_yoy": 0.24,
+      "off_52w_high": -0.247,
+      "themes": [
+        "infrastructure-capex"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CEG",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "off 26% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.287,
+        "value": 0.374,
+        "quality": 0.184,
+        "macro": 0.295,
+        "contrarian": 0.239,
+        "longterm": 0.118
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 22.4,
+      "rev_yoy": 0.23,
+      "off_52w_high": -0.258,
+      "themes": [
+        "power-grid-electrification",
+        "nuclear-uranium"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CIEN",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "off 28% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.081,
+        "value": 0.108,
+        "quality": 0.143,
+        "macro": 0.096,
+        "contrarian": 0.078,
+        "longterm": 0.789
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 38.0,
+      "rev_yoy": 0.37,
+      "off_52w_high": -0.283,
+      "themes": [
+        "networking-optical"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "COR",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.769,
+        "value": 0.778,
+        "quality": 0.137,
+        "macro": 0.702,
+        "contrarian": 0.556,
+        "longterm": 0.214
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.4,
+      "rev_yoy": 0.05,
+      "off_52w_high": -0.131,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ECL",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.838,
+        "value": 0.714,
+        "quality": 0.654,
+        "macro": 0.783,
+        "contrarian": 0.64,
+        "longterm": 0.689
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 30.0,
+      "rev_yoy": 0.1,
+      "off_52w_high": -0.079,
+      "themes": [
+        "water-resource-scarcity"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "EMR",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.832,
+        "value": 0.828,
+        "quality": 0.701,
+        "macro": 0.826,
+        "contrarian": 0.671,
+        "longterm": 0.748
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 22.3,
+      "rev_yoy": 0.07,
+      "off_52w_high": -0.012,
+      "themes": [
+        "automation-robotics"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ETN",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.361,
+        "value": 0.483,
+        "quality": 0.439,
+        "macro": 0.32,
+        "contrarian": 0.366,
+        "longterm": 0.379
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 26.4,
+      "rev_yoy": 0.21,
+      "off_52w_high": -0.066,
+      "themes": [
+        "power-grid-electrification",
+        "infrastructure-capex",
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FCX",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.645,
+        "value": 0.591,
+        "quality": 0.411,
+        "macro": 0.621,
+        "contrarian": 0.398,
+        "longterm": 0.801
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 17.1,
+      "rev_yoy": -0.07,
+      "off_52w_high": -0.078,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FLR",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.442,
+        "value": 0.66,
+        "quality": 0.05,
+        "macro": 0.317,
+        "contrarian": 0.438,
+        "longterm": 0.109
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.1,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.119,
+      "themes": [
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GEV",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.174,
+        "value": 0.241,
+        "quality": 0.283,
+        "macro": 0.236,
+        "contrarian": 0.211,
+        "longterm": 0.711
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 39.9,
+      "rev_yoy": 0.22,
+      "off_52w_high": -0.145,
+      "themes": [
+        "power-grid-electrification"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GULF.BK",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.639,
+        "value": 0.665,
+        "quality": 0.576,
+        "macro": 0.658,
+        "contrarian": 0.522,
+        "longterm": 0.82
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 23.7,
+      "rev_yoy": 0.15,
+      "off_52w_high": -0.107,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ISRG",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "off 28% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.505,
+        "value": 0.315,
+        "quality": 0.826,
+        "macro": 0.472,
+        "contrarian": 0.242,
+        "longterm": 0.491
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 35.0,
+      "rev_yoy": 0.18,
+      "off_52w_high": -0.285,
+      "themes": [
+        "medtech-devices"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "JCI",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.679,
+        "value": 0.709,
+        "quality": 0.548,
+        "macro": 0.674,
+        "contrarian": 0.596,
+        "longterm": 0.739
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 25.8,
+      "rev_yoy": 0.09,
+      "off_52w_high": -0.008,
+      "themes": [
+        "power-grid-electrification",
+        "data-center-cooling"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PLTR",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "multi-sleeve (mom, quality); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.947,
+        "value": 0.079,
+        "quality": 0.947,
+        "macro": 0.907,
+        "contrarian": 0.189,
+        "longterm": 0.742
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 88.9,
+      "rev_yoy": 0.93,
+      "off_52w_high": 0.0,
+      "themes": [
+        "ai-software-agents",
+        "defense-security"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "off 26% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.221,
+        "value": 0.512,
+        "quality": 0.433,
+        "macro": 0.211,
+        "contrarian": 0.317,
+        "longterm": 0.252
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 16.4,
+      "rev_yoy": 0.3,
+      "off_52w_high": -0.262,
+      "themes": [
+        "india-em-growth"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ROK",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.642,
+        "value": 0.557,
+        "quality": 0.695,
+        "macro": 0.68,
+        "contrarian": 0.469,
+        "longterm": 0.733
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 29.0,
+      "rev_yoy": 0.08,
+      "off_52w_high": -0.124,
+      "themes": [
+        "automation-robotics",
+        "reshoring-supply-chain"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "TT",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.206,
+        "value": 0.498,
+        "quality": 0.533,
+        "macro": 0.276,
+        "contrarian": 0.385,
+        "longterm": 0.435
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 27.1,
+      "rev_yoy": 0.11,
+      "off_52w_high": -0.05,
+      "themes": [
+        "infrastructure-capex"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "VST",
+      "action": "WATCH",
+      "confidence": 50,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.255,
+        "value": 0.502,
+        "quality": 0.302,
+        "macro": 0.289,
+        "contrarian": 0.295,
+        "longterm": 0.199
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 15.5,
+      "rev_yoy": -0.06,
+      "off_52w_high": -0.23,
+      "themes": [
+        "power-grid-electrification",
+        "nuclear-uranium"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "AIQ",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.586,
+        "value": 0,
+        "quality": 0.639,
+        "macro": 0.624,
+        "contrarian": 0.72,
+        "longterm": 0.575
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.05,
+      "themes": [
+        "ai-infrastructure"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ARKX",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.265,
+        "value": 0,
+        "quality": 0.632,
+        "macro": 0.329,
+        "contrarian": 0.649,
+        "longterm": 0.429
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.147,
+      "themes": [
+        "space-economy"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BLOK",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.321,
+        "value": 0,
+        "quality": 0.458,
+        "macro": 0.239,
+        "contrarian": 0.59,
+        "longterm": 0.23
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.19,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "BTC-USD",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.779,
+        "value": 0,
+        "quality": 0.421,
+        "macro": 0.829,
+        "contrarian": 0.72,
+        "longterm": 0.441
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.047,
+      "themes": [
+        "hedging-fx-vol-crypto"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "COPX",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.421,
+        "value": 0,
+        "quality": 0.526,
+        "macro": 0.292,
+        "contrarian": 0.602,
+        "longterm": 0.543
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.111,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DBA",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.495,
+        "value": 0,
+        "quality": 0.829,
+        "macro": 0.435,
+        "contrarian": 0.72,
+        "longterm": 0.596
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.039,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "EWJ",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.598,
+        "value": 0,
+        "quality": 0.748,
+        "macro": 0.612,
+        "contrarian": 0.72,
+        "longterm": 0.668
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.015,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "FINX",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "off 28% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.449,
+        "value": 0,
+        "quality": 0.417,
+        "macro": 0.357,
+        "contrarian": 0.559,
+        "longterm": 0.202
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.285,
+      "themes": [
+        "fintech-payments"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GDX",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.458,
+        "value": 0,
+        "quality": 0.405,
+        "macro": 0.255,
+        "contrarian": 0.506,
+        "longterm": 0.388
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.229,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GDXJ",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "off 27% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.212,
+        "value": 0,
+        "quality": 0.352,
+        "macro": 0.186,
+        "contrarian": 0.457,
+        "longterm": 0.329
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.267,
+      "themes": [
+        "commodities-gold-real-assets"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "GRID",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 58,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.224,
+        "value": 0,
+        "quality": 0.657,
+        "macro": 0.298,
+        "contrarian": 0.714,
+        "longterm": 0.528
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.089,
+      "themes": [
+        "power-grid-electrification"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "HEWJ",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.629,
+        "value": 0,
+        "quality": 0.791,
+        "macro": 0.627,
+        "contrarian": 0.72,
+        "longterm": 0.724
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.011,
+      "themes": [
+        "japan-corporate-reform"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IGV",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.794,
+        "value": 0,
+        "quality": 0.489,
+        "macro": 0.807,
+        "contrarian": 0.72,
+        "longterm": 0.295
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.037,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "KOID",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.246,
+        "value": 0,
+        "quality": 0.586,
+        "macro": 0.311,
+        "contrarian": 0.618,
+        "longterm": 0.494
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.181,
+      "themes": [
+        "humanoid-robotics"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "QQQ",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.555,
+        "value": 0,
+        "quality": 0.751,
+        "macro": 0.587,
+        "contrarian": 0.72,
+        "longterm": 0.602
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.011,
+      "themes": [
+        "us-megacap-quality"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "QTUM",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.47,
+        "value": 0,
+        "quality": 0.595,
+        "macro": 0.463,
+        "contrarian": 0.652,
+        "longterm": 0.599
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.095,
+      "themes": [
+        "quantum-computing"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ROBO",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.436,
+        "value": 0,
+        "quality": 0.664,
+        "macro": 0.354,
+        "contrarian": 0.693,
+        "longterm": 0.537
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.101,
+      "themes": [
+        "automation-robotics"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "SMH",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.517,
+        "value": 0,
+        "quality": 0.545,
+        "macro": 0.562,
+        "contrarian": 0.634,
+        "longterm": 0.752
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.098,
+      "themes": [
+        "ai-infrastructure",
+        "semiconductors",
+        "networking-optical"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ZC=F",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 64,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.492,
+        "value": 0,
+        "quality": 0.442,
+        "macro": 0.429,
+        "contrarian": 0.696,
+        "longterm": 0.351
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.116,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ZS=F",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 63,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.651,
+        "value": 0,
+        "quality": 0.555,
+        "macro": 0.618,
+        "contrarian": 0.72,
+        "longterm": 0.522
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.027,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ZW=F",
+      "action": "WATCH",
+      "confidence": 48,
+      "confidence_rationale": "quant screen",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "contrarian",
+      "sleeve_scores": {
+        "mom": 0.467,
+        "value": 0,
+        "quality": 0.346,
+        "macro": 0.425,
+        "contrarian": 0.646,
+        "longterm": 0.37
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": null,
+      "rev_yoy": NaN,
+      "off_52w_high": -0.125,
+      "themes": [
+        "commodities-broad"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ALB",
+      "action": "WATCH",
+      "confidence": 45,
+      "confidence_rationale": "cheap; off 53% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.04,
+        "value": 0.236,
+        "quality": 0.115,
+        "macro": 0.031,
+        "contrarian": 0.09,
+        "longterm": 0.146
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 9.0,
+      "rev_yoy": 0.31,
+      "off_52w_high": -0.528,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ORCL",
+      "action": "WATCH",
+      "confidence": 45,
+      "confidence_rationale": "cheap; off 54% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 67,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.209,
+        "value": 0.296,
+        "quality": 0.449,
+        "macro": 0.177,
+        "contrarian": 0.134,
+        "longterm": 0.168
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 12.9,
+      "rev_yoy": 0.3,
+      "off_52w_high": -0.542,
+      "themes": [
+        "ai-infrastructure"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "S",
+      "action": "WATCH",
+      "confidence": 45,
+      "confidence_rationale": "multi-sleeve (mom, macro); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 69,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.963,
+        "value": 0.281,
+        "quality": 0.09,
+        "macro": 0.963,
+        "contrarian": 0.376,
+        "longterm": 0.484
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 57.0,
+      "rev_yoy": 0.21,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ARM",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "extreme valuation; off 39% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 62,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.377,
+        "value": 0.01,
+        "quality": 0.642,
+        "macro": 0.348,
+        "contrarian": 0.006,
+        "longterm": 0.792
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 86.9,
+      "rev_yoy": 0.22,
+      "off_52w_high": -0.394,
+      "themes": [
+        "semiconductors"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "ASTS",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 62% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.034,
+        "value": 0.227,
+        "quality": 0.087,
+        "macro": 0.037,
+        "contrarian": 0.053,
+        "longterm": 0.059
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -39.6,
+      "rev_yoy": 26.27,
+      "off_52w_high": -0.617,
+      "themes": [
+        "space-economy"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRCL",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "extreme valuation; off 44% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.445,
+        "value": 0.054,
+        "quality": 0.047,
+        "macro": 0.158,
+        "contrarian": 0.056,
+        "longterm": 0.043
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 59.8,
+      "rev_yoy": 0.07,
+      "off_52w_high": -0.438,
+      "themes": [
+        "tokenization-digital-assets"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "IONQ",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 51% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.053,
+        "value": 0.325,
+        "quality": 0.072,
+        "macro": 0.065,
+        "contrarian": 0.106,
+        "longterm": 0.05
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -30.9,
+      "rev_yoy": 2.87,
+      "off_52w_high": -0.514,
+      "themes": [
+        "quantum-computing"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "LUNR",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 71% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.031,
+        "value": 0.143,
+        "quality": 0.019,
+        "macro": 0.009,
+        "contrarian": 0.031,
+        "longterm": 0.034
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -85.1,
+      "rev_yoy": 3.1,
+      "off_52w_high": -0.711,
+      "themes": [
+        "space-economy"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NTLA",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 53% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 59,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.455,
+        "value": 0.724,
+        "quality": 0.025,
+        "macro": 0.373,
+        "contrarian": 0.351,
+        "longterm": 0.062
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -5.1,
+      "rev_yoy": -0.46,
+      "off_52w_high": -0.533,
+      "themes": [
+        "biotech-genomics"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "PL",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 67% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.012,
+        "value": 0.187,
+        "quality": 0.016,
+        "macro": 0.006,
+        "contrarian": 0.04,
+        "longterm": 0.065
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -13744.0,
+      "rev_yoy": 0.58,
+      "off_52w_high": -0.666,
+      "themes": [
+        "space-economy"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "RGTI",
+      "action": "WATCH",
+      "confidence": 40,
+      "confidence_rationale": "off 75% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 68,
+      "best_sleeve": "value",
+      "sleeve_scores": {
+        "mom": 0.05,
+        "value": 0.177,
+        "quality": 0.075,
+        "macro": 0.053,
+        "contrarian": 0.034,
+        "longterm": 0.047
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": -68.1,
+      "rev_yoy": 1.85,
+      "off_52w_high": -0.751,
+      "themes": [
+        "quantum-computing"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DELTA.BK",
+      "action": "WATCH",
+      "confidence": 35,
+      "confidence_rationale": "extreme valuation; off 26% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 55,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.069,
+        "value": 0.049,
+        "quality": 0.234,
+        "macro": 0.112,
+        "contrarian": 0.05,
+        "longterm": 0.342
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 66.2,
+      "rev_yoy": 0.47,
+      "off_52w_high": -0.264,
+      "themes": [
+        "asean-thailand"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "DLR",
+      "action": "WATCH",
+      "confidence": 35,
+      "confidence_rationale": "extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.305,
+        "value": 0.158,
+        "quality": 0.723,
+        "macro": 0.379,
+        "contrarian": 0.267,
+        "longterm": 0.677
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 64.7,
+      "rev_yoy": 0.3,
+      "off_52w_high": -0.111,
+      "themes": [
+        "reits"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "EQIX",
+      "action": "WATCH",
+      "confidence": 35,
+      "confidence_rationale": "extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.539,
+        "value": 0.266,
+        "quality": 0.673,
+        "macro": 0.441,
+        "contrarian": 0.348,
+        "longterm": 0.795
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 55.4,
+      "rev_yoy": 0.17,
+      "off_52w_high": -0.076,
+      "themes": [
+        "reits"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "WELL",
+      "action": "WATCH",
+      "confidence": 35,
+      "confidence_rationale": "extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 66,
+      "best_sleeve": "longterm",
+      "sleeve_scores": {
+        "mom": 0.735,
+        "value": 0.153,
+        "quality": 0.611,
+        "macro": 0.748,
+        "contrarian": 0.311,
+        "longterm": 0.804
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 70.9,
+      "rev_yoy": 0.39,
+      "off_52w_high": -0.102,
+      "themes": [
+        "healthcare-aging-services"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "MP",
+      "action": "WATCH",
+      "confidence": 25,
+      "confidence_rationale": "extreme valuation; off 53% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 57,
+      "best_sleeve": "quality",
+      "sleeve_scores": {
+        "mom": 0.1,
+        "value": 0.064,
+        "quality": 0.106,
+        "macro": 0.056,
+        "contrarian": 0.059,
+        "longterm": 0.078
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 57.8,
+      "rev_yoy": 1.2,
+      "off_52w_high": -0.532,
+      "themes": [
+        "critical-minerals"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "NET",
+      "action": "WATCH",
+      "confidence": 20,
+      "confidence_rationale": "extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.717,
+        "value": 0.015,
+        "quality": 0.321,
+        "macro": 0.839,
+        "contrarian": 0.081,
+        "longterm": 0.578
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 215.3,
+      "rev_yoy": 0.36,
+      "off_52w_high": 0.0,
+      "themes": [
+        "cybersecurity"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "RKLB",
+      "action": "WATCH",
+      "confidence": 10,
+      "confidence_rationale": "extreme valuation; off 55% from high",
+      "tier": "STARTER",
+      "mdaem_composite": 56,
+      "best_sleeve": "mom",
+      "sleeve_scores": {
+        "mom": 0.118,
+        "value": 0.005,
+        "quality": 0.053,
+        "macro": 0.093,
+        "contrarian": 0.003,
+        "longterm": 0.102
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 1158.5,
+      "rev_yoy": 0.62,
+      "off_52w_high": -0.546,
+      "themes": [
+        "space-economy"
+      ],
+      "invalidation": "n/a \u2014 not in book",
+      "in_book": false,
+      "book_weight": 0
+    },
+    {
+      "ticker": "CRWD",
+      "action": "TRIM",
+      "confidence": 35,
+      "confidence_rationale": "multi-sleeve (mom, macro); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 61,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.994,
+        "value": 0.039,
+        "quality": 0.396,
+        "macro": 0.997,
+        "contrarian": 0.161,
+        "longterm": 0.935
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 171.3,
+      "rev_yoy": 0.26,
+      "off_52w_high": -0.014,
+      "themes": [
+        "ai-software-agents",
+        "cybersecurity"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 99%); fwd P/E expands above 223x (now 171.3x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    },
+    {
+      "ticker": "SNOW",
+      "action": "TRIM",
+      "confidence": 30,
+      "confidence_rationale": "multi-sleeve (mom, macro); extreme valuation",
+      "tier": "STARTER",
+      "mdaem_composite": 65,
+      "best_sleeve": "macro",
+      "sleeve_scores": {
+        "mom": 0.978,
+        "value": 0.025,
+        "quality": 0.131,
+        "macro": 0.988,
+        "contrarian": 0.109,
+        "longterm": 0.283
+      },
+      "price": null,
+      "mkt_cap_b": null,
+      "fwd_pe": 122.8,
+      "rev_yoy": 0.35,
+      "off_52w_high": 0.0,
+      "themes": [
+        "ai-software-agents"
+      ],
+      "invalidation": "MDAEM composite drops below 40 (PASS); momentum score falls below 50th percentile (now 98%); fwd P/E expands above 160x (now 122.8x); price breaks below 200-day SMA; market regime flips to bear (VIX>25 + SPX<-15%)",
+      "in_book": true,
+      "book_weight": 0.045
+    }
+  ]
+}

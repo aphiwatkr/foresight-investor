@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy tournament — 39 systematic strategies, 10 years, split-sample selection — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Strategy tournament — 39 systematic strategies, 10 years, split-sample selection</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-09-06</span><span class="stamp">quant</span><span class="stamp">backtest</span><span class="stamp">tournament</span><span class="stamp">momentum</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="strategy-tournament-39-systematic-strategies-10-years-split-sample-selection">Strategy tournament — 39 systematic strategies, 10 years, split-sample selection</h1>
+<blockquote>
+<p><strong>Update 2026-10-11 (quarterly re-run, window 2017-10-20 → 2026-10-09):</strong> the proposed v2 system<br />
+<code>ens_R2_top10vt15+dualdef</code> is <strong>no longer a WINNER</strong> — it still beat SPY in half 2 but fell out of<br />
+half 1's top quartile (full Sharpe 0.985 → 0.877). All three dual-momentum ensembles lost winner<br />
+status; all six winners are now pure cross-sectional momentum (Engine A <code>xs_mom_top10_iv_vt15</code>:<br />
+Sharpe 1.118, winner both runs). A one-month window shift flipping the verdict is itself a fragility<br />
+finding. P27/P28 stay tracked as filed. Q4 consequence: <a class="wikilink" href="q4-action-plan-2026-10-11.html">q4-action-plan-2026-10-11</a> §4.</p>
+</blockquote>
+<p><strong>Bottom line:</strong> Of 39 pre-registered systematic strategies run over 2017-09 → 2026-09 with<br />
+costs, <strong>six passed the two-gate protocol</strong> (top-quartile Sharpe on the first half <em>and</em> beat<br />
+SPY on Sharpe on the second half they were not selected on). All six are variants of one<br />
+idea: <strong>concentrated cross-sectional momentum with the position size set by volatility,<br />
+diversified with an asset-class dual-momentum leg.</strong> The proposed system —<br />
+<code>ens_R2_top10vt15+dualdef</code> — delivered <strong>+18.2% CAGR at 15.7% vol, Sharpe 0.98, max drawdown<br />
+−23%</strong> against SPY's +15.1% / 18.8% / 0.71 / −33.7%, was <strong>up +9.6% in the 2022 bear</strong> when<br />
+SPY fell 18%, and held a Sharpe of 0.99 → 0.98 across the two halves. It survives a 25 bps<br />
+cost assumption. It does <strong>not</strong> clear the multiple-testing luck band — nothing does — and the<br />
+stock leg sits on a survivor-biased universe. Both are quantified below.</p>
+<blockquote>
+<p><strong>Scope.</strong> Research on the operator's own methodology, never advice to others. Every figure<br />
+is produced by <code>scripts/tournament.py</code> from <code>scripts/_hist/prices_10y.parquet</code><br />
+(896,729 rows, 332 tickers, yfinance, retrieved 2026-09-06T14:36Z). Past performance ≠<br />
+future results.</p>
+</blockquote>
+<hr />
+<h2 id="1-why-a-tournament-and-why-this-protocol">1. Why a tournament, and why this protocol</h2>
+<p><a class="wikilink" href="../concepts/quant-alpha-methodology.html">quant-alpha-methodology</a> v1 measured factors one at a time and found one honest signal<br />
+(momentum). The next question a desk asks is not "which factor" but <strong>"which <em>system</em>" —<br />
+signal + construction + risk overlay + diversifier</strong> — and that can only be answered by<br />
+running many complete systems on the same days with the same costs and then applying a<br />
+selection rule that was written <em>before</em> looking at the results.</p>
+<p>The rule: a strategy is a <strong>winner</strong> only if it is (a) top-quartile by Sharpe in<br />
+2017-09-18 → 2022-03-10 <strong>and</strong> (b) beats SPY's Sharpe in 2022-03-10 → 2026-09-04.<br />
+Stock-picking strategies must also (c) beat the <em>equal-weight of their own universe</em> in the<br />
+confirmation half, because that universe is survivor-biased (§5). Everything else is a<br />
+candidate, not a result.</p>
+<p><strong>Simulator honesty:</strong> daily P&amp;L with weight drift; signals use data through close <em>t</em>, trades<br />
+fill at <em>t+1</em>; 10 bps per side on every unit of turnover; cash earns the T-bill ETF (BIL);<br />
+gross never exceeds 100%. One look-ahead bug was caught and fixed during the build (the<br />
+realized-vol scaler was reading its own future curve); the bugged version had produced a<br />
+"winner" that vanished once fixed. That is the whole reason to run the thing twice.</p>
+<h2 id="2-the-field">2. The field</h2>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Strategies</th>
+<th>What it tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controls</td>
+<td>SPY, RSP (equal-weight S&amp;P 500), 60/40, equal-weight universe, low-vol stocks, 5-day reversal</td>
+<td>Benchmarks and known-negative-IC factors</td>
+</tr>
+<tr>
+<td>Cross-sectional momentum</td>
+<td>QAE composite (12-1 momentum + trend quality), top 10/20/30, equal vs inverse-vol weight, stocks-only</td>
+<td>Does concentration pay? Does vol weighting?</td>
+</tr>
+<tr>
+<td>Vol-managed</td>
+<td>10% / 15% ex-ante vol target; Barroso–Santa-Clara realized-vol scaling</td>
+<td>Does risk targeting improve Sharpe, not just lower vol?</td>
+</tr>
+<tr>
+<td>Regime</td>
+<td>SPY-200dma gate to a defensive basket; Daniel–Moskowitz crash filter</td>
+<td>Can a market filter tame momentum crashes?</td>
+</tr>
+<tr>
+<td>Time-series momentum</td>
+<td>16 asset-class ETFs, long if trailing return &gt; T-bills, 6m / 12m / 1-3-6-12 blend</td>
+<td>The CTA idea, long-only</td>
+</tr>
+<tr>
+<td>Dual momentum</td>
+<td>Antonacci: best relative-momentum asset if it beats T-bills, else bonds; <strong>R2:</strong> defensive leg picks the best of IEF/TLT/GLD/BIL</td>
+<td>Cross-asset timing</td>
+</tr>
+<tr>
+<td>Theme rotation</td>
+<td>~90 theme ETFs by 6-1 / 12-1 momentum, top 3/5/8, cash gate</td>
+<td>Does chasing hot themes work?</td>
+</tr>
+<tr>
+<td>Risk parity</td>
+<td>Inverse-vol across SPY/TLT/IEF/GLD/DBC/VNQ</td>
+<td>The all-weather idea, unlevered</td>
+</tr>
+<tr>
+<td>Machine learning</td>
+<td>Walk-forward ridge on the 14 QAE factors, 24-month training window</td>
+<td>Does a model beat a hand-weighted composite?</td>
+</tr>
+<tr>
+<td>Ensembles</td>
+<td>Blends of the strongest <em>independent</em> engines</td>
+<td>Diversification across engines</td>
+</tr>
+</tbody>
+</table>
+<p>Round 1 was 30 strategies; round 2 added 9 (concentration + vol management, a crash filter, a<br />
+defensive-momentum leg, and their ensembles) after reading round 1. <strong>All 39 count in the<br />
+multiple-testing arithmetic.</strong></p>
+<h2 id="3-results-the-numbers-that-matter">3. Results — the numbers that matter</h2>
+<p>Full window 2017-09-18 → 2026-09-04 (8.94y), 10 bps/side.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th style="text-align: right;">CAGR</th>
+<th style="text-align: right;">Vol</th>
+<th style="text-align: right;">Sharpe</th>
+<th style="text-align: right;">MaxDD</th>
+<th style="text-align: right;">Calmar</th>
+<th style="text-align: right;">β</th>
+<th style="text-align: right;">α vs SPY</th>
+<th style="text-align: right;">α vs EW-univ</th>
+<th style="text-align: right;">h1 → h2 Sharpe</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>ens_R2_top10vt15+dualdef</code></strong> ← proposed</td>
+<td style="text-align: right;"><strong>+18.2%</strong></td>
+<td style="text-align: right;">15.7%</td>
+<td style="text-align: right;"><strong>0.98</strong></td>
+<td style="text-align: right;"><strong>−23.0%</strong></td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">+9.8%</td>
+<td style="text-align: right;">+6.7%</td>
+<td style="text-align: right;">0.99 → 0.98</td>
+<td><strong>WINNER</strong></td>
+</tr>
+<tr>
+<td><code>xs_mom_top10_iv_vt15</code> (the stock engine alone)</td>
+<td style="text-align: right;">+16.9%</td>
+<td style="text-align: right;">13.6%</td>
+<td style="text-align: right;"><strong>1.03</strong></td>
+<td style="text-align: right;">−18.6%</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">+9.6%</td>
+<td style="text-align: right;">+5.5%</td>
+<td style="text-align: right;">0.87 → 1.20</td>
+<td><strong>WINNER</strong></td>
+</tr>
+<tr>
+<td><code>ens_R2_top10vmm+dualdef</code></td>
+<td style="text-align: right;">+18.8%</td>
+<td style="text-align: right;">16.8%</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">−25.1%</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">+9.8%</td>
+<td style="text-align: right;">+6.3%</td>
+<td style="text-align: right;">0.90 → 1.03</td>
+<td><strong>WINNER</strong></td>
+</tr>
+<tr>
+<td><code>ens_R2_top10vmm+dualdef+tsmom</code> (3-engine)</td>
+<td style="text-align: right;">+14.5%</td>
+<td style="text-align: right;">12.9%</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">−21.4%</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">+7.4%</td>
+<td style="text-align: right;">+4.9%</td>
+<td style="text-align: right;">0.90 → 0.95</td>
+<td><strong>WINNER</strong></td>
+</tr>
+<tr>
+<td><code>xs_mom_top10_iv</code> (unmanaged)</td>
+<td style="text-align: right;">+34.8%</td>
+<td style="text-align: right;">33.1%</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">−36.4%</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">1.06</td>
+<td style="text-align: right;">+18.5%</td>
+<td style="text-align: right;">+8.0%</td>
+<td style="text-align: right;">0.87 → 1.10</td>
+<td>WINNER</td>
+</tr>
+<tr>
+<td><code>xs_mom_top10_ew</code></td>
+<td style="text-align: right;">+42.0%</td>
+<td style="text-align: right;">41.6%</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">−44.2%</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">+22.4%</td>
+<td style="text-align: right;">+9.2%</td>
+<td style="text-align: right;">0.86 → 1.11</td>
+<td>WINNER</td>
+</tr>
+<tr>
+<td><code>dual_mom_broad_def</code> (the diversifier alone)</td>
+<td style="text-align: right;">+18.4%</td>
+<td style="text-align: right;">21.9%</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">−34.9%</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">+10.1%</td>
+<td style="text-align: right;">+8.0%</td>
+<td style="text-align: right;">0.91 → 0.63</td>
+<td>selected, failed h2</td>
+</tr>
+<tr>
+<td><code>ml_ridge_top20_iv</code></td>
+<td style="text-align: right;">+34.5%</td>
+<td style="text-align: right;">36.0%</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">−40.6%</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">+15.7%</td>
+<td style="text-align: right;">+2.6%</td>
+<td style="text-align: right;">0.92 → 0.97</td>
+<td>selected, failed h2 vs EW</td>
+</tr>
+<tr>
+<td><code>tsmom_blend_vt10</code></td>
+<td style="text-align: right;">+5.8%</td>
+<td style="text-align: right;">7.9%</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">−14.5%</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">+2.8%</td>
+<td style="text-align: right;">+2.1%</td>
+<td style="text-align: right;">0.65 → 0.22</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>theme_rot_top5_12m</code> (best theme rotation)</td>
+<td style="text-align: right;">+12.5%</td>
+<td style="text-align: right;">29.6%</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">−37.5%</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">+0.3%</td>
+<td style="text-align: right;">−7.8%</td>
+<td style="text-align: right;">0.65 → 0.29</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>risk_parity</code></td>
+<td style="text-align: right;">+5.5%</td>
+<td style="text-align: right;">7.8%</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">−19.6%</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">+1.9%</td>
+<td style="text-align: right;">+0.7%</td>
+<td style="text-align: right;">0.71 → 0.09</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>sixty_forty</code></td>
+<td style="text-align: right;">+9.7%</td>
+<td style="text-align: right;">11.1%</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">−21.2%</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">+0.8%</td>
+<td style="text-align: right;">−1.3%</td>
+<td style="text-align: right;">0.85 → 0.48</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ew_stocks</code> (universe equal-weight)</td>
+<td style="text-align: right;">+25.2%</td>
+<td style="text-align: right;">22.3%</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">−33.9%</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: right;">+7.7%</td>
+<td style="text-align: right;">0.0%</td>
+<td style="text-align: right;">0.94 → 1.08</td>
+<td>control</td>
+</tr>
+<tr>
+<td><code>rsp_bh</code> (true equal-weight S&amp;P 500)</td>
+<td style="text-align: right;">+11.8%</td>
+<td style="text-align: right;">19.1%</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">−39.0%</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">−2.2%</td>
+<td style="text-align: right;">−6.0%</td>
+<td style="text-align: right;">0.63 → 0.46</td>
+<td>control</td>
+</tr>
+<tr>
+<td><strong><code>spy_bh</code></strong></td>
+<td style="text-align: right;">+15.1%</td>
+<td style="text-align: right;">18.8%</td>
+<td style="text-align: right;"><strong>0.71</strong></td>
+<td style="text-align: right;">−33.7%</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.0%</td>
+<td style="text-align: right;">−3.5%</td>
+<td style="text-align: right;">0.72 → 0.71</td>
+<td>benchmark</td>
+</tr>
+</tbody>
+</table>
+<p>Full 39-row tables for all three windows: <code>scripts/_hist/tournament_report.md</code>.</p>
+<h3 id="how-the-finalists-behaved-when-it-mattered">How the finalists behaved when it mattered</h3>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">SPY</th>
+<th style="text-align: right;">Stock engine (<code>top10_iv_vt15</code>)</th>
+<th style="text-align: right;">Diversifier (<code>dual_mom_broad_def</code>)</th>
+<th style="text-align: right;"><strong>Proposed 2-engine</strong></th>
+<th style="text-align: right;">3-engine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018 Q4 sell-off</td>
+<td style="text-align: right;">−13.5%</td>
+<td style="text-align: right;">−9.6%</td>
+<td style="text-align: right;">−14.8%</td>
+<td style="text-align: right;"><strong>−12.1%</strong></td>
+<td style="text-align: right;">−11.1%</td>
+</tr>
+<tr>
+<td>2020 COVID (Jan–Mar)</td>
+<td style="text-align: right;">−19.5%</td>
+<td style="text-align: right;">−5.5%</td>
+<td style="text-align: right;">−15.3%</td>
+<td style="text-align: right;"><strong>−10.3%</strong></td>
+<td style="text-align: right;">−11.5%</td>
+</tr>
+<tr>
+<td>2020 full year</td>
+<td style="text-align: right;">+18.3%</td>
+<td style="text-align: right;">+28.3%</td>
+<td style="text-align: right;">+20.7%</td>
+<td style="text-align: right;"><strong>+25.2%</strong></td>
+<td style="text-align: right;">+16.0%</td>
+</tr>
+<tr>
+<td><strong>2022 bear (full year)</strong></td>
+<td style="text-align: right;"><strong>−18.2%</strong></td>
+<td style="text-align: right;">−0.4%</td>
+<td style="text-align: right;">+19.3%</td>
+<td style="text-align: right;"><strong>+9.6%</strong></td>
+<td style="text-align: right;">+5.8%</td>
+</tr>
+<tr>
+<td>2022 max drawdown</td>
+<td style="text-align: right;">−23.9%</td>
+<td style="text-align: right;">−8.3%</td>
+<td style="text-align: right;">−17.0%</td>
+<td style="text-align: right;"><strong>−12.6%</strong></td>
+<td style="text-align: right;">−7.6%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">+26.2%</td>
+<td style="text-align: right;">+33.9%</td>
+<td style="text-align: right;">+13.7%</td>
+<td style="text-align: right;">+23.6%</td>
+<td style="text-align: right;">+20.5%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">+24.9%</td>
+<td style="text-align: right;">+30.3%</td>
+<td style="text-align: right;">+21.3%</td>
+<td style="text-align: right;">+26.0%</td>
+<td style="text-align: right;">+24.3%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">+17.7%</td>
+<td style="text-align: right;">+17.0%</td>
+<td style="text-align: right;">+60.3%</td>
+<td style="text-align: right;">+37.8%</td>
+<td style="text-align: right;">+26.6%</td>
+</tr>
+<tr>
+<td>2026 YTD (to 09-04)</td>
+<td style="text-align: right;">+13.5%</td>
+<td style="text-align: right;">+16.3%</td>
+<td style="text-align: right;">−8.2%</td>
+<td style="text-align: right;">+4.0%</td>
+<td style="text-align: right;">+4.0%</td>
+</tr>
+</tbody>
+</table>
+<p>The two engines are doing different jobs: the stock engine wins the bull years and loses<br />
+little in the crashes because the vol target cuts its gross exposure when volatility spikes;<br />
+the dual-momentum leg carried 2022 (it was in commodities and then T-bills) and 2025 (it rode<br />
+the commodity move). Their correlation is what makes the blend's drawdown smaller than either<br />
+leg's in most episodes.</p>
+<h3 id="cost-robustness-25-bpsside-a-realistic-retail-all-in">Cost robustness (25 bps/side — a realistic retail all-in)</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th style="text-align: right;">Sharpe @10bps</th>
+<th style="text-align: right;">Sharpe @25bps</th>
+<th style="text-align: right;">CAGR @25bps</th>
+<th>Verdict @25bps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ens_R2_top10vt15+dualdef</code></td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;"><strong>0.94</strong></td>
+<td style="text-align: right;">+17.4%</td>
+<td>WINNER</td>
+</tr>
+<tr>
+<td><code>xs_mom_top10_iv_vt15</code></td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;">+16.4%</td>
+<td>WINNER</td>
+</tr>
+<tr>
+<td><code>reversal_5d_top20</code></td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">+15.7%</td>
+<td>— (80× turnover/yr; the edge was the spread)</td>
+</tr>
+</tbody>
+</table>
+<p>The finalists turn over 3–5× a year; their result barely moves. The reversal control loses<br />
+40% of its Sharpe — a reminder that turnover is the first thing to check on any high-Sharpe<br />
+backtest.</p>
+<h2 id="4-what-the-exploration-taught-in-order-of-how-much-it-changes-behaviour">4. What the exploration taught (in order of how much it changes behaviour)</h2>
+<ol>
+<li><strong>Volatility targeting is the largest single improvement, and it is free.</strong> The same<br />
+   ten momentum names run unmanaged: Sharpe 0.99, drawdown −36%. With gross exposure scaled<br />
+   to a 15% ex-ante vol: Sharpe 1.03, drawdown <strong>−18.6%</strong>, and the 2020 crash becomes −5.5%<br />
+   instead of −19.5% for SPY. Nothing about the <em>selection</em> changed.</li>
+<li><strong>Concentration paid.</strong> Top-10 beat top-20 beat top-30 on every metric (Sharpe 0.99 →<br />
+   0.87 → 0.74). The signal is strongest in the tail of the ranking; diluting it with names 11–30<br />
+   adds beta, not alpha. (Note the 8% single-name cap binds on all ten names, so "top-10<br />
+   inverse-vol" is in practice ten equal 8% weights at 80% gross — the vol-target version then<br />
+   scales that.)</li>
+<li><strong>Diversify across <em>engines</em>, not across more names.</strong> The blend with dual momentum has a<br />
+<em>lower</em> Sharpe than the stock engine alone (0.98 vs 1.03) but a far more stable one across<br />
+   halves (0.99/0.98 vs 0.87/1.20), a lower beta (0.51), and it was positive in 2022. Stability<br />
+   across regimes is what "winning again" actually requires.</li>
+<li><strong>Theme-ETF rotation failed badly.</strong> Every variant had a <em>negative</em> alpha vs SPY and<br />
+   −8% to −16% vs the equal-weight universe. Buying last season's hot theme at 9–13× annual<br />
+   turnover is the opposite of the vault's multi-year thematic approach — and the tournament<br />
+   says the <em>tactical</em> version does not work. This is the most useful negative result here.</li>
+<li><strong>Long-only time-series momentum and risk parity were weak in this decade</strong> (Sharpe<br />
+   0.3–0.44). Bonds spent 2022 falling with equities, which removes the diversifier these<br />
+   systems rely on. TSMOM earns its place only as the third leg of an ensemble.</li>
+<li><strong>The ridge model did not beat the hand-weighted composite</strong> (0.93 vs 0.99) and failed the<br />
+   equal-weight test in half 2. Fourteen noisy factors and two years of training rows is not<br />
+   where machine learning wins.</li>
+<li><strong>The 200-dma regime gate hurt</strong> (0.63 vs 0.87). It exits after the fall and re-enters after<br />
+   the rebound. Scaling by <em>volatility</em> beat switching on <em>direction</em>.</li>
+</ol>
+<h2 id="5-what-is-still-wrong-with-these-numbers-read-before-believing-them">5. What is still wrong with these numbers (read before believing them)</h2>
+<p><strong>Survivorship bias is large and quantified.</strong> The equal-weight of the <em>tracked universe</em><br />
+returned <strong>+25.2%/yr</strong>; the equal-weight S&amp;P 500 ETF (RSP), which has no hindsight in it,<br />
+returned <strong>+11.8%/yr</strong>. That ~13-point gap is the cost of building a universe from names that<br />
+are interesting <em>today</em>. Consequences:<br />
+- Absolute CAGRs of every stock-selection strategy are inflated. Do not quote them.<br />
+- The <strong>α vs EW-universe column is the honest one</strong> for stock engines: the proposed system's<br />
+  +6.7%/yr and the stock engine's +5.5%/yr survive that benchmark. That is the momentum<br />
+  effect <em>within</em> the universe, net of the universe's own bias.<br />
+- The dual-momentum and TSMOM legs use broad ETFs (SPY, QQQ, INDA, GLD, DBC, VNQ, bonds) that<br />
+  exist regardless of hindsight — they are essentially free of this bias.</p>
+<p><strong>Multiple testing.</strong> With 39 trials over 8.9 years, the best of 39 <em>zero-skill</em> strategies<br />
+would show a Sharpe about <strong>+1.01 above SPY</strong> by luck (SE of a Sharpe estimate ≈ 0.375). The<br />
+proposed system's edge is +0.27. <strong>No result here is statistically distinguishable from luck<br />
+at the family-max level.</strong> The split-sample gate is the mitigation, not a cure; the real<br />
+defence is that the winning components are the two most-replicated effects in the literature<br />
+(cross-sectional momentum; absolute/relative momentum across asset classes) and the<br />
+construction rules (vol targeting, concentration) have theory behind them.</p>
+<p><strong>Momentum's known tail.</strong> The 2009-style momentum crash — a violent bear-market rebound in<br />
+which the losers you are <em>not</em> holding double — did not occur in this window. The vol target<br />
+and the 8% cap reduce it; nothing removes it.</p>
+<p><strong>One regime for the diversifier.</strong> Dual momentum's half-2 Sharpe fell to 0.63; its 2026 YTD<br />
+is −8.2% (it rotated into commodities as they peaked). This is the leg most likely to<br />
+disappoint next.</p>
+<h2 id="6-the-proposed-methodology-what-win-again-looks-like-in-rules">6. The proposed methodology (what "win again" looks like in rules)</h2>
+<p><strong>Two engines, each 50% of capital, rebalanced on the same day every 21 trading days.</strong></p>
+<p><strong>Engine A — Momentum-10, vol-targeted</strong> (<code>xs_mom_top10_iv_vt15</code>)<br />
+1. Universe: <a class="wikilink" href="../concepts/quant-alpha-methodology.html">quant-alpha-methodology</a> Stage-1 filters (liquidity, history, structural-decay<br />
+   and vol-collapse guards). Today: 270 names.<br />
+2. Score = 0.5 × z(12-1 momentum) + 0.5 × z(126d trend quality), z-scored within stocks/ETFs.<br />
+3. Take the top 10 with at most 3 per theme; weight ∝ 1/σ₆₃ (floored at 60% of 1y vol), cap 8%.<br />
+4. Scale the whole leg so ex-ante vol = <strong>15%</strong> (ρ = 0.5); remainder in T-bills. Never levered.<br />
+5. Per-name stop 2.5 × ATR(20). Book-level ladder −5% / −8% / −12% as in v1.</p>
+<p><strong>Engine B — Dual momentum with a defensive-momentum leg</strong> (<code>dual_mom_broad_def</code>)<br />
+1. Candidates: SPY, QQQ, INDA, GLD, DBC, VNQ.<br />
+2. Hold the single candidate with the highest trailing-12-month return <strong>if</strong> it beats<br />
+   T-bills' 12-month return.<br />
+3. Otherwise hold the best 12-month performer among IEF, TLT, GLD, BIL.</p>
+<p><strong>Risk-averse variant:</strong> add a third engine (multi-asset 1/3/6/12-month trend, 10% vol target)<br />
+in equal thirds — Sharpe 0.92, max DD −21.4%, 2022 drawdown −7.6%, at the cost of ~4 points of<br />
+CAGR.</p>
+<p><strong>Invalidation of the system</strong> (written now, before it runs live):<br />
+- Engine A: the 12-1 momentum factor's rolling 12-month rank IC turns negative → Engine A to<br />
+  T-bills until it recovers.<br />
+- Engine B: two consecutive years underperforming a 60/40 by &gt;5 points → replace with the<br />
+  3-engine variant.<br />
+- System: a −15% peak-to-trough drawdown, which the backtest never produced, is treated as<br />
+  evidence the regime has changed, not as a dip to buy.</p>
+<p>Today's positions under this system are filed in <a class="wikilink" href="qae-book-2026-09-06.html">qae-book-2026-09-06</a>.</p>
+<h2 id="7-falsifiable-calls-prediction-ledger">7. Falsifiable calls → <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Call</th>
+<th>Resolve by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P27</td>
+<td>The proposed 2-engine system beats SPY on Sharpe over the 12 months from 2026-09-08 (simulated live, same rules, same costs)</td>
+<td>2027-09-15</td>
+</tr>
+<tr>
+<td>P28</td>
+<td>The proposed system's max drawdown over those 12 months is smaller than SPY's</td>
+<td>2027-09-15</td>
+</tr>
+<tr>
+<td>P29</td>
+<td>The best theme-rotation variant (<code>theme_rot_top5_12m</code>) again underperforms SPY over the same 12 months — the negative result is a feature of the strategy, not of the sample</td>
+<td>2027-09-15</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Method: <a class="wikilink" href="../concepts/quant-alpha-methodology.html">quant-alpha-methodology</a> (v1 factors; v2 = this system) · Theory: <a class="wikilink" href="../concepts/quant-firm-anatomy.html">quant-firm-anatomy</a> · Learning: <a class="wikilink" href="../concepts/quant-trader-curriculum.html">quant-trader-curriculum</a> (the tournament is Module 6 in practice)</li>
+<li>Prior book: <a class="wikilink" href="qae-book-2026-08-29.html">qae-book-2026-08-29</a> · Today's book: <a class="wikilink" href="qae-book-2026-09-06.html">qae-book-2026-09-06</a></li>
+<li>Construction rules: <a class="wikilink" href="portfolio-blueprint.html">portfolio-blueprint</a> · Accountability: <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a>, <a class="wikilink" href="track-record.html">track-record</a></li>
+</ul>
+<h2 id="data-freshness-log">Data freshness log</h2>
+<ul>
+<li><code>scripts/_hist/prices_10y.parquet</code> — 896,729 rows · 332 tickers · 2016-09-05 → 2026-09-04 (last complete US session; 09-05/06 are weekend rows for 24h markets) · yfinance · retrieved 2026-09-06T14:36Z. Includes TLT, IEF, SHY, BIL, SGOV, LQD, HYG, TIP pulled as extras for the multi-asset legs.</li>
+<li><code>scripts/_hist/tournament_results.json</code> / <code>tournament_report.md</code> — generated 2026-09-06T14:44:57Z (10 bps). <code>tournament_results_25bps.json</code> — the cost-robustness run.</li>
+<li><code>scripts/_hist/ffm_ratings.json</code> — fundamental grades as of 2026-08-12 (used only for the tier labels in <a class="wikilink" href="qae-book-2026-09-06.html">qae-book-2026-09-06</a>).</li>
+</ul>
+<p>All price figures retrieved live on 2026-09-06; no values drawn from model training. Past performance ≠ future results.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

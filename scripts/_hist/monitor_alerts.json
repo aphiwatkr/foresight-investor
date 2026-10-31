@@ -1,0 +1,5978 @@
+{
+  "meta": {
+    "generated_utc": "2026-10-30T16:16:42Z",
+    "as_of": "2026-10-30",
+    "threshold": 0.15,
+    "previous_as_of": "2026-10-09"
+  },
+  "summary": {
+    "total": 608,
+    "high": 239,
+    "medium": 369,
+    "low": 0,
+    "entries": 60,
+    "exits": 67,
+    "moves": 481,
+    "tier_changes": 0
+  },
+  "alerts": {
+    "high": [
+      {
+        "ticker": "IHE",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.978,
+        "severity": "high",
+        "message": "IHE entered top decile in contrarian sleeve (72% \u2192 98%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.745,
+        "new_score": 0.956,
+        "severity": "high",
+        "message": "LLY entered top decile in mom sleeve (74% \u2192 96%)"
+      },
+      {
+        "ticker": "MLPX",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.981,
+        "severity": "high",
+        "message": "MLPX entered top decile in contrarian sleeve (72% \u2192 98%)"
+      },
+      {
+        "ticker": "PTTEP.BK",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.882,
+        "new_score": 0.969,
+        "severity": "high",
+        "message": "PTTEP.BK entered top decile in longterm sleeve (88% \u2192 97%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.475,
+        "new_score": 0.966,
+        "severity": "high",
+        "message": "ROP entered top decile in value sleeve (48% \u2192 97%)"
+      },
+      {
+        "ticker": "PDBC",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.96,
+        "severity": "high",
+        "message": "PDBC entered top decile in contrarian sleeve (72% \u2192 96%)"
+      },
+      {
+        "ticker": "USO",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.984,
+        "severity": "high",
+        "message": "USO entered top decile in contrarian sleeve (72% \u2192 98%)"
+      },
+      {
+        "ticker": "FCG",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.984,
+        "severity": "high",
+        "message": "FCG entered top decile in contrarian sleeve (72% \u2192 98%)"
+      },
+      {
+        "ticker": "DBC",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.963,
+        "severity": "high",
+        "message": "DBC entered top decile in contrarian sleeve (72% \u2192 96%)"
+      },
+      {
+        "ticker": "AMGN",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.81,
+        "new_score": 0.953,
+        "severity": "high",
+        "message": "AMGN entered top decile in mom sleeve (81% \u2192 95%)"
+      },
+      {
+        "ticker": "JNJ",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.899,
+        "new_score": 0.95,
+        "severity": "high",
+        "message": "JNJ entered top decile in longterm sleeve (90% \u2192 95%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.858,
+        "new_score": 0.985,
+        "severity": "high",
+        "message": "REGN entered top decile in value sleeve (86% \u2192 98%)"
+      },
+      {
+        "ticker": "HEWJ",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.956,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "HEWJ dropped out of top decile in contrarian sleeve (96% \u2192 72%)"
+      },
+      {
+        "ticker": "NET",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.958,
+        "new_score": 0.717,
+        "severity": "high",
+        "message": "NET dropped out of top decile in mom sleeve (96% \u2192 72%)"
+      },
+      {
+        "ticker": "NET",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.964,
+        "new_score": 0.839,
+        "severity": "high",
+        "message": "NET dropped out of top decile in macro sleeve (96% \u2192 84%)"
+      },
+      {
+        "ticker": "DDOG",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.985,
+        "new_score": 0.888,
+        "severity": "high",
+        "message": "DDOG dropped out of top decile in mom sleeve (98% \u2192 89%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.953,
+        "new_score": 0.695,
+        "severity": "high",
+        "message": "MRVL dropped out of top decile in mom sleeve (95% \u2192 70%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.959,
+        "new_score": 0.789,
+        "severity": "high",
+        "message": "MRVL dropped out of top decile in macro sleeve (96% \u2192 79%)"
+      },
+      {
+        "ticker": "600519.SS",
+        "type": "exit",
+        "sleeve": "quality",
+        "old_score": 0.988,
+        "new_score": 0,
+        "severity": "high",
+        "message": "600519.SS dropped out of top decile in quality sleeve (99% \u2192 0%)"
+      },
+      {
+        "ticker": "USDCAD=X",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.964,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "USDCAD=X dropped out of top decile in contrarian sleeve (96% \u2192 72%)"
+      },
+      {
+        "ticker": "LRCX",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.97,
+        "new_score": 0.832,
+        "severity": "high",
+        "message": "LRCX dropped out of top decile in longterm sleeve (97% \u2192 83%)"
+      },
+      {
+        "ticker": "QUAL",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.982,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "QUAL dropped out of top decile in contrarian sleeve (98% \u2192 72%)"
+      },
+      {
+        "ticker": "MAGS",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.967,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "MAGS dropped out of top decile in contrarian sleeve (97% \u2192 72%)"
+      },
+      {
+        "ticker": "CIBR",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.982,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "CIBR dropped out of top decile in contrarian sleeve (98% \u2192 72%)"
+      },
+      {
+        "ticker": "DXJ",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.959,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "DXJ dropped out of top decile in contrarian sleeve (96% \u2192 72%)"
+      },
+      {
+        "ticker": "VOO",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.97,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "VOO dropped out of top decile in contrarian sleeve (97% \u2192 72%)"
+      },
+      {
+        "ticker": "USDINR=X",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.979,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "USDINR=X dropped out of top decile in contrarian sleeve (98% \u2192 72%)"
+      },
+      {
+        "ticker": "SPY",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.976,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "SPY dropped out of top decile in contrarian sleeve (98% \u2192 72%)"
+      },
+      {
+        "ticker": "FTNT",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.976,
+        "new_score": 0.822,
+        "severity": "high",
+        "message": "FTNT dropped out of top decile in mom sleeve (98% \u2192 82%)"
+      },
+      {
+        "ticker": "KLAC",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.967,
+        "new_score": 0.798,
+        "severity": "high",
+        "message": "KLAC dropped out of top decile in longterm sleeve (97% \u2192 80%)"
+      },
+      {
+        "ticker": "QQQ",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.953,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "QQQ dropped out of top decile in contrarian sleeve (95% \u2192 72%)"
+      },
+      {
+        "ticker": "EWJ",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.95,
+        "new_score": 0.72,
+        "severity": "high",
+        "message": "EWJ dropped out of top decile in contrarian sleeve (95% \u2192 72%)"
+      },
+      {
+        "ticker": "ELV",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.963,
+        "new_score": 0.892,
+        "severity": "high",
+        "message": "ELV dropped out of top decile in value sleeve (96% \u2192 89%)"
+      },
+      {
+        "ticker": "0939.HK",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 1.0,
+        "new_score": 0,
+        "severity": "high",
+        "message": "0939.HK dropped out of top decile in value sleeve (100% \u2192 0%)"
+      },
+      {
+        "ticker": "HPE",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.973,
+        "new_score": 0.532,
+        "severity": "high",
+        "message": "HPE dropped out of top decile in value sleeve (97% \u2192 53%)"
+      },
+      {
+        "ticker": "SCCO",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.95,
+        "new_score": 0.888,
+        "severity": "high",
+        "message": "SCCO dropped out of top decile in longterm sleeve (95% \u2192 89%)"
+      },
+      {
+        "ticker": "SBLK",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.959,
+        "new_score": 0.872,
+        "severity": "high",
+        "message": "SBLK dropped out of top decile in value sleeve (96% \u2192 87%)"
+      },
+      {
+        "ticker": "AMD",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.97,
+        "new_score": 0.872,
+        "severity": "high",
+        "message": "AMD dropped out of top decile in mom sleeve (97% \u2192 87%)"
+      },
+      {
+        "ticker": "INTC",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.908,
+        "new_score": 0.099,
+        "delta": -0.809,
+        "severity": "high",
+        "message": "INTC \u25bc macro: 91% \u2192 10% (-81%)"
+      },
+      {
+        "ticker": "INTC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.893,
+        "new_score": 0.125,
+        "delta": -0.768,
+        "severity": "high",
+        "message": "INTC \u25bc mom: 89% \u2192 12% (-77%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.923,
+        "new_score": 0.18,
+        "delta": -0.743,
+        "severity": "high",
+        "message": "CRDO \u25bc macro: 92% \u2192 18% (-74%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.917,
+        "new_score": 0.181,
+        "delta": -0.736,
+        "severity": "high",
+        "message": "CRDO \u25bc mom: 92% \u2192 18% (-74%)"
+      },
+      {
+        "ticker": "IONQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.74,
+        "new_score": 0.065,
+        "delta": -0.675,
+        "severity": "high",
+        "message": "IONQ \u25bc macro: 74% \u2192 6% (-68%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.186,
+        "new_score": 0.857,
+        "delta": 0.671,
+        "severity": "high",
+        "message": "LMT \u25b2 macro: 19% \u2192 86% (+67%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.251,
+        "new_score": 0.876,
+        "delta": 0.625,
+        "severity": "high",
+        "message": "ROP \u25b2 contrarian: 25% \u2192 88% (+62%)"
+      },
+      {
+        "ticker": "NVT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.84,
+        "new_score": 0.217,
+        "delta": -0.623,
+        "severity": "high",
+        "message": "NVT \u25bc macro: 84% \u2192 22% (-62%)"
+      },
+      {
+        "ticker": "IONQ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.671,
+        "new_score": 0.053,
+        "delta": -0.618,
+        "severity": "high",
+        "message": "IONQ \u25bc mom: 67% \u2192 5% (-62%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.178,
+        "new_score": 0.785,
+        "delta": 0.607,
+        "severity": "high",
+        "message": "LMT \u25b2 mom: 18% \u2192 78% (+61%)"
+      },
+      {
+        "ticker": "FLEX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.888,
+        "new_score": 0.283,
+        "delta": -0.605,
+        "severity": "high",
+        "message": "FLEX \u25bc macro: 89% \u2192 28% (-60%)"
+      },
+      {
+        "ticker": "DELL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.87,
+        "new_score": 0.276,
+        "delta": -0.594,
+        "severity": "high",
+        "message": "DELL \u25bc contrarian: 87% \u2192 28% (-59%)"
+      },
+      {
+        "ticker": "FLEX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.878,
+        "new_score": 0.302,
+        "delta": -0.576,
+        "severity": "high",
+        "message": "FLEX \u25bc mom: 88% \u2192 30% (-58%)"
+      },
+      {
+        "ticker": "FLEX",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.825,
+        "new_score": 0.255,
+        "delta": -0.57,
+        "severity": "high",
+        "message": "FLEX \u25bc longterm: 82% \u2192 26% (-57%)"
+      },
+      {
+        "ticker": "WIT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.098,
+        "new_score": 0.668,
+        "delta": 0.57,
+        "severity": "high",
+        "message": "WIT \u25b2 macro: 10% \u2192 67% (+57%)"
+      },
+      {
+        "ticker": "ARM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.917,
+        "new_score": 0.348,
+        "delta": -0.569,
+        "severity": "high",
+        "message": "ARM \u25bc macro: 92% \u2192 35% (-57%)"
+      },
+      {
+        "ticker": "NVT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.819,
+        "new_score": 0.259,
+        "delta": -0.56,
+        "severity": "high",
+        "message": "NVT \u25bc mom: 82% \u2192 26% (-56%)"
+      },
+      {
+        "ticker": "CLS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.611,
+        "new_score": 0.056,
+        "delta": -0.555,
+        "severity": "high",
+        "message": "CLS \u25bc mom: 61% \u2192 6% (-55%)"
+      },
+      {
+        "ticker": "VG",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.287,
+        "new_score": 0.835,
+        "delta": 0.548,
+        "severity": "high",
+        "message": "VG \u25b2 longterm: 29% \u2192 84% (+55%)"
+      },
+      {
+        "ticker": "HPE",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.885,
+        "new_score": 0.339,
+        "delta": -0.546,
+        "severity": "high",
+        "message": "HPE \u25bc contrarian: 88% \u2192 34% (-55%)"
+      },
+      {
+        "ticker": "FIX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.599,
+        "new_score": 0.059,
+        "delta": -0.54,
+        "severity": "high",
+        "message": "FIX \u25bc mom: 60% \u2192 6% (-54%)"
+      },
+      {
+        "ticker": "SNDK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.935,
+        "new_score": 0.398,
+        "delta": -0.537,
+        "severity": "high",
+        "message": "SNDK \u25bc macro: 94% \u2192 40% (-54%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.872,
+        "new_score": 0.343,
+        "delta": -0.529,
+        "severity": "high",
+        "message": "NBIS \u25bc mom: 87% \u2192 34% (-53%)"
+      },
+      {
+        "ticker": "LRCX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.787,
+        "new_score": 0.267,
+        "delta": -0.52,
+        "severity": "high",
+        "message": "LRCX \u25bc macro: 79% \u2192 27% (-52%)"
+      },
+      {
+        "ticker": "ARM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.896,
+        "new_score": 0.377,
+        "delta": -0.519,
+        "severity": "high",
+        "message": "ARM \u25bc mom: 90% \u2192 38% (-52%)"
+      },
+      {
+        "ticker": "GOOGL",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.629,
+        "new_score": 0.112,
+        "delta": -0.517,
+        "severity": "high",
+        "message": "GOOGL \u25bc mom: 63% \u2192 11% (-52%)"
+      },
+      {
+        "ticker": "FIX",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.896,
+        "new_score": 0.382,
+        "delta": -0.514,
+        "severity": "high",
+        "message": "FIX \u25bc longterm: 90% \u2192 38% (-51%)"
+      },
+      {
+        "ticker": "MSTR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.754,
+        "new_score": 0.242,
+        "delta": -0.512,
+        "severity": "high",
+        "message": "MSTR \u25bc macro: 75% \u2192 24% (-51%)"
+      },
+      {
+        "ticker": "XSD",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.861,
+        "new_score": 0.351,
+        "delta": -0.51,
+        "severity": "high",
+        "message": "XSD \u25bc macro: 86% \u2192 35% (-51%)"
+      },
+      {
+        "ticker": "FIX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.624,
+        "new_score": 0.118,
+        "delta": -0.506,
+        "severity": "high",
+        "message": "FIX \u25bc macro: 62% \u2192 12% (-51%)"
+      },
+      {
+        "ticker": "SNDK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.914,
+        "new_score": 0.408,
+        "delta": -0.506,
+        "severity": "high",
+        "message": "SNDK \u25bc mom: 91% \u2192 41% (-51%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.893,
+        "new_score": 0.388,
+        "delta": -0.505,
+        "severity": "high",
+        "message": "NBIS \u25bc macro: 89% \u2192 39% (-50%)"
+      },
+      {
+        "ticker": "COHR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.537,
+        "new_score": 0.044,
+        "delta": -0.493,
+        "severity": "high",
+        "message": "COHR \u25bc mom: 54% \u2192 4% (-49%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.475,
+        "new_score": 0.966,
+        "delta": 0.491,
+        "severity": "high",
+        "message": "ROP \u25b2 value: 48% \u2192 97% (+49%)"
+      },
+      {
+        "ticker": "CHKP",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.329,
+        "new_score": 0.816,
+        "delta": 0.487,
+        "severity": "high",
+        "message": "CHKP \u25b2 mom: 33% \u2192 82% (+49%)"
+      },
+      {
+        "ticker": "COHR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.541,
+        "new_score": 0.059,
+        "delta": -0.482,
+        "severity": "high",
+        "message": "COHR \u25bc macro: 54% \u2192 6% (-48%)"
+      },
+      {
+        "ticker": "CLS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.58,
+        "new_score": 0.109,
+        "delta": -0.471,
+        "severity": "high",
+        "message": "CLS \u25bc macro: 58% \u2192 11% (-47%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.447,
+        "new_score": 0.916,
+        "delta": 0.469,
+        "severity": "high",
+        "message": "REGN \u25b2 macro: 45% \u2192 92% (+47%)"
+      },
+      {
+        "ticker": "GOOGL",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.612,
+        "new_score": 0.149,
+        "delta": -0.463,
+        "severity": "high",
+        "message": "GOOGL \u25bc macro: 61% \u2192 15% (-46%)"
+      },
+      {
+        "ticker": "NU",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.636,
+        "new_score": 0.174,
+        "delta": -0.462,
+        "severity": "high",
+        "message": "NU \u25bc macro: 64% \u2192 17% (-46%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.778,
+        "new_score": 0.317,
+        "delta": -0.461,
+        "severity": "high",
+        "message": "CRDO \u25bc longterm: 78% \u2192 32% (-46%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.374,
+        "new_score": 0.835,
+        "delta": 0.461,
+        "severity": "high",
+        "message": "AWK \u25b2 mom: 37% \u2192 84% (+46%)"
+      },
+      {
+        "ticker": "DELL",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.913,
+        "new_score": 0.453,
+        "delta": -0.46,
+        "severity": "high",
+        "message": "DELL \u25bc value: 91% \u2192 45% (-46%)"
+      },
+      {
+        "ticker": "PWR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.793,
+        "new_score": 0.335,
+        "delta": -0.458,
+        "severity": "high",
+        "message": "PWR \u25bc macro: 79% \u2192 34% (-46%)"
+      },
+      {
+        "ticker": "XSD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.852,
+        "new_score": 0.399,
+        "delta": -0.453,
+        "severity": "high",
+        "message": "XSD \u25bc mom: 85% \u2192 40% (-45%)"
+      },
+      {
+        "ticker": "RTX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.299,
+        "new_score": 0.752,
+        "delta": 0.453,
+        "severity": "high",
+        "message": "RTX \u25b2 macro: 30% \u2192 75% (+45%)"
+      },
+      {
+        "ticker": "AMAT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.822,
+        "new_score": 0.37,
+        "delta": -0.452,
+        "severity": "high",
+        "message": "AMAT \u25bc macro: 82% \u2192 37% (-45%)"
+      },
+      {
+        "ticker": "IBM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.22,
+        "new_score": 0.667,
+        "delta": 0.447,
+        "severity": "high",
+        "message": "IBM \u25b2 mom: 22% \u2192 67% (+45%)"
+      },
+      {
+        "ticker": "TCS.NS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.163,
+        "new_score": 0.609,
+        "delta": 0.446,
+        "severity": "high",
+        "message": "TCS.NS \u25b2 macro: 16% \u2192 61% (+45%)"
+      },
+      {
+        "ticker": "CAT",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.811,
+        "new_score": 0.366,
+        "delta": -0.445,
+        "severity": "high",
+        "message": "CAT \u25bc longterm: 81% \u2192 37% (-45%)"
+      },
+      {
+        "ticker": "CHKP",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.391,
+        "new_score": 0.835,
+        "delta": 0.444,
+        "severity": "high",
+        "message": "CHKP \u25b2 macro: 39% \u2192 84% (+44%)"
+      },
+      {
+        "ticker": "HPE",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.973,
+        "new_score": 0.532,
+        "delta": -0.441,
+        "severity": "high",
+        "message": "HPE \u25bc value: 97% \u2192 53% (-44%)"
+      },
+      {
+        "ticker": "ANET",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.89,
+        "new_score": 0.461,
+        "delta": -0.429,
+        "severity": "high",
+        "message": "ANET \u25bc mom: 89% \u2192 46% (-43%)"
+      },
+      {
+        "ticker": "INFY",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.112,
+        "new_score": 0.54,
+        "delta": 0.428,
+        "severity": "high",
+        "message": "INFY \u25b2 macro: 11% \u2192 54% (+43%)"
+      },
+      {
+        "ticker": "NTLA",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.297,
+        "new_score": 0.724,
+        "delta": 0.427,
+        "severity": "high",
+        "message": "NTLA \u25b2 value: 30% \u2192 72% (+43%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.346,
+        "new_score": 0.773,
+        "delta": 0.427,
+        "severity": "high",
+        "message": "AWK \u25b2 macro: 35% \u2192 77% (+43%)"
+      },
+      {
+        "ticker": "BITQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.621,
+        "new_score": 0.196,
+        "delta": -0.425,
+        "severity": "high",
+        "message": "BITQ \u25bc macro: 62% \u2192 20% (-42%)"
+      },
+      {
+        "ticker": "NOC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.056,
+        "new_score": 0.48,
+        "delta": 0.424,
+        "severity": "high",
+        "message": "NOC \u25b2 mom: 6% \u2192 48% (+42%)"
+      },
+      {
+        "ticker": "VG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.439,
+        "new_score": 0.86,
+        "delta": 0.421,
+        "severity": "high",
+        "message": "VG \u25b2 mom: 44% \u2192 86% (+42%)"
+      },
+      {
+        "ticker": "INFY.NS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.104,
+        "new_score": 0.525,
+        "delta": 0.421,
+        "severity": "high",
+        "message": "INFY.NS \u25b2 macro: 10% \u2192 52% (+42%)"
+      },
+      {
+        "ticker": "WIT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.139,
+        "new_score": 0.558,
+        "delta": 0.419,
+        "severity": "high",
+        "message": "WIT \u25b2 mom: 14% \u2192 56% (+42%)"
+      },
+      {
+        "ticker": "QCOM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.817,
+        "new_score": 0.401,
+        "delta": -0.416,
+        "severity": "high",
+        "message": "QCOM \u25bc macro: 82% \u2192 40% (-42%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.9,
+        "new_score": 0.488,
+        "delta": -0.412,
+        "severity": "high",
+        "message": "NBIS \u25bc value: 90% \u2192 49% (-41%)"
+      },
+      {
+        "ticker": "DELTA.BK",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.749,
+        "new_score": 0.342,
+        "delta": -0.407,
+        "severity": "high",
+        "message": "DELTA.BK \u25bc longterm: 75% \u2192 34% (-41%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.521,
+        "new_score": 0.925,
+        "delta": 0.404,
+        "severity": "high",
+        "message": "ROP \u25b2 macro: 52% \u2192 92% (+40%)"
+      },
+      {
+        "ticker": "RTX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.353,
+        "new_score": 0.757,
+        "delta": 0.404,
+        "severity": "high",
+        "message": "RTX \u25b2 mom: 35% \u2192 76% (+40%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.525,
+        "new_score": 0.925,
+        "delta": 0.4,
+        "severity": "high",
+        "message": "ROP \u25b2 mom: 52% \u2192 92% (+40%)"
+      },
+      {
+        "ticker": "HCA",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.337,
+        "new_score": 0.736,
+        "delta": 0.399,
+        "severity": "high",
+        "message": "HCA \u25b2 macro: 34% \u2192 74% (+40%)"
+      },
+      {
+        "ticker": "IBM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.317,
+        "new_score": 0.714,
+        "delta": 0.397,
+        "severity": "high",
+        "message": "IBM \u25b2 macro: 32% \u2192 71% (+40%)"
+      },
+      {
+        "ticker": "LRCX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.7,
+        "new_score": 0.308,
+        "delta": -0.392,
+        "severity": "high",
+        "message": "LRCX \u25bc mom: 70% \u2192 31% (-39%)"
+      },
+      {
+        "ticker": "ON",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.538,
+        "new_score": 0.146,
+        "delta": -0.392,
+        "severity": "high",
+        "message": "ON \u25bc macro: 54% \u2192 15% (-39%)"
+      },
+      {
+        "ticker": "NU",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.776,
+        "new_score": 0.389,
+        "delta": -0.387,
+        "severity": "high",
+        "message": "NU \u25bc value: 78% \u2192 39% (-39%)"
+      },
+      {
+        "ticker": "J",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.47,
+        "new_score": 0.854,
+        "delta": 0.384,
+        "severity": "high",
+        "message": "J \u25b2 contrarian: 47% \u2192 85% (+38%)"
+      },
+      {
+        "ticker": "SOXX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.861,
+        "new_score": 0.477,
+        "delta": -0.384,
+        "severity": "high",
+        "message": "SOXX \u25bc mom: 86% \u2192 48% (-38%)"
+      },
+      {
+        "ticker": "CIEN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.479,
+        "new_score": 0.096,
+        "delta": -0.383,
+        "severity": "high",
+        "message": "CIEN \u25bc macro: 48% \u2192 10% (-38%)"
+      },
+      {
+        "ticker": "HIMS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.881,
+        "new_score": 0.498,
+        "delta": -0.383,
+        "severity": "high",
+        "message": "HIMS \u25bc mom: 88% \u2192 50% (-38%)"
+      },
+      {
+        "ticker": "PWR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.804,
+        "new_score": 0.424,
+        "delta": -0.38,
+        "severity": "high",
+        "message": "PWR \u25bc mom: 80% \u2192 42% (-38%)"
+      },
+      {
+        "ticker": "USDMXN=X",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.395,
+        "new_score": 0.773,
+        "delta": 0.378,
+        "severity": "high",
+        "message": "USDMXN=X \u25b2 mom: 40% \u2192 77% (+38%)"
+      },
+      {
+        "ticker": "NOC",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.074,
+        "new_score": 0.45,
+        "delta": 0.376,
+        "severity": "high",
+        "message": "NOC \u25b2 macro: 7% \u2192 45% (+38%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.555,
+        "new_score": 0.931,
+        "delta": 0.376,
+        "severity": "high",
+        "message": "REGN \u25b2 mom: 56% \u2192 93% (+38%)"
+      },
+      {
+        "ticker": "SOXQ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.858,
+        "new_score": 0.483,
+        "delta": -0.375,
+        "severity": "high",
+        "message": "SOXQ \u25bc mom: 86% \u2192 48% (-38%)"
+      },
+      {
+        "ticker": "GD",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.349,
+        "new_score": 0.724,
+        "delta": 0.375,
+        "severity": "high",
+        "message": "GD \u25b2 macro: 35% \u2192 72% (+38%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.331,
+        "new_score": 0.705,
+        "delta": 0.374,
+        "severity": "high",
+        "message": "LMT \u25b2 contrarian: 33% \u2192 70% (+37%)"
+      },
+      {
+        "ticker": "ABT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.402,
+        "new_score": 0.776,
+        "delta": 0.374,
+        "severity": "high",
+        "message": "ABT \u25b2 macro: 40% \u2192 78% (+37%)"
+      },
+      {
+        "ticker": "PTTEP.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.432,
+        "new_score": 0.804,
+        "delta": 0.372,
+        "severity": "high",
+        "message": "PTTEP.BK \u25b2 macro: 43% \u2192 80% (+37%)"
+      },
+      {
+        "ticker": "INTC",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.843,
+        "new_score": 0.472,
+        "delta": -0.371,
+        "severity": "high",
+        "message": "INTC \u25bc longterm: 84% \u2192 47% (-37%)"
+      },
+      {
+        "ticker": "INFY.NS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.134,
+        "new_score": 0.502,
+        "delta": 0.368,
+        "severity": "high",
+        "message": "INFY.NS \u25b2 mom: 13% \u2192 50% (+37%)"
+      },
+      {
+        "ticker": "BITQ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.638,
+        "new_score": 0.271,
+        "delta": -0.367,
+        "severity": "high",
+        "message": "BITQ \u25bc mom: 64% \u2192 27% (-37%)"
+      },
+      {
+        "ticker": "SOXQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.87,
+        "new_score": 0.503,
+        "delta": -0.367,
+        "severity": "high",
+        "message": "SOXQ \u25bc macro: 87% \u2192 50% (-37%)"
+      },
+      {
+        "ticker": "SOXX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.876,
+        "new_score": 0.509,
+        "delta": -0.367,
+        "severity": "high",
+        "message": "SOXX \u25bc macro: 88% \u2192 51% (-37%)"
+      },
+      {
+        "ticker": "ANET",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.896,
+        "new_score": 0.531,
+        "delta": -0.365,
+        "severity": "high",
+        "message": "ANET \u25bc macro: 90% \u2192 53% (-36%)"
+      },
+      {
+        "ticker": "HIMS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.885,
+        "new_score": 0.522,
+        "delta": -0.363,
+        "severity": "high",
+        "message": "HIMS \u25bc macro: 88% \u2192 52% (-36%)"
+      },
+      {
+        "ticker": "KLAC",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.663,
+        "new_score": 0.301,
+        "delta": -0.362,
+        "severity": "high",
+        "message": "KLAC \u25bc macro: 66% \u2192 30% (-36%)"
+      },
+      {
+        "ticker": "AMAT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.715,
+        "new_score": 0.355,
+        "delta": -0.36,
+        "severity": "high",
+        "message": "AMAT \u25bc mom: 72% \u2192 36% (-36%)"
+      },
+      {
+        "ticker": "TT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.564,
+        "new_score": 0.206,
+        "delta": -0.358,
+        "severity": "high",
+        "message": "TT \u25bc mom: 56% \u2192 21% (-36%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.548,
+        "new_score": 0.906,
+        "delta": 0.358,
+        "severity": "high",
+        "message": "LMT \u25b2 value: 55% \u2192 91% (+36%)"
+      },
+      {
+        "ticker": "PTTEP.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.472,
+        "new_score": 0.829,
+        "delta": 0.357,
+        "severity": "high",
+        "message": "PTTEP.BK \u25b2 mom: 47% \u2192 83% (+36%)"
+      },
+      {
+        "ticker": "QTUM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.82,
+        "new_score": 0.463,
+        "delta": -0.357,
+        "severity": "high",
+        "message": "QTUM \u25bc macro: 82% \u2192 46% (-36%)"
+      },
+      {
+        "ticker": "NOW",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.92,
+        "new_score": 0.567,
+        "delta": -0.353,
+        "severity": "high",
+        "message": "NOW \u25bc mom: 92% \u2192 57% (-35%)"
+      },
+      {
+        "ticker": "COIN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.485,
+        "new_score": 0.137,
+        "delta": -0.348,
+        "severity": "high",
+        "message": "COIN \u25bc macro: 48% \u2192 14% (-35%)"
+      },
+      {
+        "ticker": "NVT",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.852,
+        "new_score": 0.506,
+        "delta": -0.346,
+        "severity": "high",
+        "message": "NVT \u25bc longterm: 85% \u2192 51% (-35%)"
+      },
+      {
+        "ticker": "TM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.213,
+        "new_score": 0.556,
+        "delta": 0.343,
+        "severity": "high",
+        "message": "TM \u25b2 macro: 21% \u2192 56% (+34%)"
+      },
+      {
+        "ticker": "IHI",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.34,
+        "new_score": 0.683,
+        "delta": 0.343,
+        "severity": "high",
+        "message": "IHI \u25b2 macro: 34% \u2192 68% (+34%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.55,
+        "new_score": 0.891,
+        "delta": 0.341,
+        "severity": "high",
+        "message": "REGN \u25b2 contrarian: 55% \u2192 89% (+34%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.852,
+        "new_score": 0.512,
+        "delta": -0.34,
+        "severity": "high",
+        "message": "NVDA \u25bc contrarian: 85% \u2192 51% (-34%)"
+      },
+      {
+        "ticker": "QTUM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.807,
+        "new_score": 0.47,
+        "delta": -0.337,
+        "severity": "high",
+        "message": "QTUM \u25bc mom: 81% \u2192 47% (-34%)"
+      },
+      {
+        "ticker": "NU",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.49,
+        "new_score": 0.153,
+        "delta": -0.337,
+        "severity": "high",
+        "message": "NU \u25bc mom: 49% \u2192 15% (-34%)"
+      },
+      {
+        "ticker": "PNR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.015,
+        "new_score": 0.352,
+        "delta": 0.337,
+        "severity": "high",
+        "message": "PNR \u25b2 mom: 2% \u2192 35% (+34%)"
+      },
+      {
+        "ticker": "GEV",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.51,
+        "new_score": 0.174,
+        "delta": -0.336,
+        "severity": "high",
+        "message": "GEV \u25bc mom: 51% \u2192 17% (-34%)"
+      },
+      {
+        "ticker": "KLAC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.57,
+        "new_score": 0.234,
+        "delta": -0.336,
+        "severity": "high",
+        "message": "KLAC \u25bc mom: 57% \u2192 23% (-34%)"
+      },
+      {
+        "ticker": "GEV",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.571,
+        "new_score": 0.236,
+        "delta": -0.335,
+        "severity": "high",
+        "message": "GEV \u25bc macro: 57% \u2192 24% (-34%)"
+      },
+      {
+        "ticker": "SMH",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.849,
+        "new_score": 0.517,
+        "delta": -0.332,
+        "severity": "high",
+        "message": "SMH \u25bc mom: 85% \u2192 52% (-33%)"
+      },
+      {
+        "ticker": "COHR",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.861,
+        "new_score": 0.531,
+        "delta": -0.33,
+        "severity": "high",
+        "message": "COHR \u25bc longterm: 86% \u2192 53% (-33%)"
+      },
+      {
+        "ticker": "BLOK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.565,
+        "new_score": 0.239,
+        "delta": -0.326,
+        "severity": "high",
+        "message": "BLOK \u25bc macro: 56% \u2192 24% (-33%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.596,
+        "new_score": 0.922,
+        "delta": 0.326,
+        "severity": "high",
+        "message": "LNG \u25b2 mom: 60% \u2192 92% (+33%)"
+      },
+      {
+        "ticker": "HCA",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.35,
+        "new_score": 0.676,
+        "delta": 0.326,
+        "severity": "high",
+        "message": "HCA \u25b2 mom: 35% \u2192 68% (+33%)"
+      },
+      {
+        "ticker": "MDT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.558,
+        "new_score": 0.882,
+        "delta": 0.324,
+        "severity": "high",
+        "message": "MDT \u25b2 mom: 56% \u2192 88% (+32%)"
+      },
+      {
+        "ticker": "MDT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.497,
+        "new_score": 0.82,
+        "delta": 0.323,
+        "severity": "high",
+        "message": "MDT \u25b2 macro: 50% \u2192 82% (+32%)"
+      },
+      {
+        "ticker": "VMC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.107,
+        "new_score": 0.43,
+        "delta": 0.323,
+        "severity": "high",
+        "message": "VMC \u25b2 mom: 11% \u2192 43% (+32%)"
+      },
+      {
+        "ticker": "FTNT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.476,
+        "new_score": 0.155,
+        "delta": -0.321,
+        "severity": "high",
+        "message": "FTNT \u25bc contrarian: 48% \u2192 16% (-32%)"
+      },
+      {
+        "ticker": "CAT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.45,
+        "new_score": 0.13,
+        "delta": -0.32,
+        "severity": "high",
+        "message": "CAT \u25bc macro: 45% \u2192 13% (-32%)"
+      },
+      {
+        "ticker": "INFY",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.154,
+        "new_score": 0.474,
+        "delta": 0.32,
+        "severity": "high",
+        "message": "INFY \u25b2 mom: 15% \u2192 47% (+32%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.876,
+        "new_score": 0.556,
+        "delta": -0.32,
+        "severity": "high",
+        "message": "NBIS \u25bc longterm: 88% \u2192 56% (-32%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.595,
+        "new_score": 0.91,
+        "delta": 0.315,
+        "severity": "high",
+        "message": "VLTO \u25b2 macro: 60% \u2192 91% (+32%)"
+      },
+      {
+        "ticker": "SPG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.398,
+        "new_score": 0.713,
+        "delta": 0.315,
+        "severity": "high",
+        "message": "SPG \u25b2 mom: 40% \u2192 71% (+31%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.385,
+        "new_score": 0.699,
+        "delta": 0.314,
+        "severity": "high",
+        "message": "ROP \u25b2 longterm: 38% \u2192 70% (+31%)"
+      },
+      {
+        "ticker": "ANET",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.571,
+        "new_score": 0.258,
+        "delta": -0.313,
+        "severity": "high",
+        "message": "ANET \u25bc contrarian: 57% \u2192 26% (-31%)"
+      },
+      {
+        "ticker": "ETN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.63,
+        "new_score": 0.32,
+        "delta": -0.31,
+        "severity": "high",
+        "message": "ETN \u25bc macro: 63% \u2192 32% (-31%)"
+      },
+      {
+        "ticker": "MSTR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.869,
+        "new_score": 0.561,
+        "delta": -0.308,
+        "severity": "high",
+        "message": "MSTR \u25bc mom: 87% \u2192 56% (-31%)"
+      },
+      {
+        "ticker": "CAT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.392,
+        "new_score": 0.084,
+        "delta": -0.308,
+        "severity": "high",
+        "message": "CAT \u25bc mom: 39% \u2192 8% (-31%)"
+      },
+      {
+        "ticker": "PHO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.405,
+        "new_score": 0.708,
+        "delta": 0.303,
+        "severity": "high",
+        "message": "PHO \u25b2 macro: 40% \u2192 71% (+30%)"
+      },
+      {
+        "ticker": "SMH",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.864,
+        "new_score": 0.562,
+        "delta": -0.302,
+        "severity": "high",
+        "message": "SMH \u25bc macro: 86% \u2192 56% (-30%)"
+      },
+      {
+        "ticker": "MLM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.068,
+        "new_score": 0.368,
+        "delta": 0.3,
+        "severity": "high",
+        "message": "MLM \u25b2 mom: 7% \u2192 37% (+30%)"
+      },
+      {
+        "ticker": "SOXX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.864,
+        "new_score": 0.565,
+        "delta": -0.299,
+        "severity": "high",
+        "message": "SOXX \u25bc contrarian: 86% \u2192 56% (-30%)"
+      },
+      {
+        "ticker": "IBN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.42,
+        "new_score": 0.717,
+        "delta": 0.297,
+        "severity": "high",
+        "message": "IBN \u25b2 macro: 42% \u2192 72% (+30%)"
+      },
+      {
+        "ticker": "CL=F",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.522,
+        "new_score": 0.819,
+        "delta": 0.297,
+        "severity": "high",
+        "message": "CL=F \u25b2 mom: 52% \u2192 82% (+30%)"
+      },
+      {
+        "ticker": "SNOW",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.58,
+        "new_score": 0.283,
+        "delta": -0.297,
+        "severity": "high",
+        "message": "SNOW \u25bc longterm: 58% \u2192 28% (-30%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.562,
+        "new_score": 0.857,
+        "delta": 0.295,
+        "severity": "high",
+        "message": "AWK \u25b2 contrarian: 56% \u2192 86% (+29%)"
+      },
+      {
+        "ticker": "SOXQ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.873,
+        "new_score": 0.578,
+        "delta": -0.295,
+        "severity": "high",
+        "message": "SOXQ \u25bc contrarian: 87% \u2192 58% (-30%)"
+      },
+      {
+        "ticker": "PHO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.469,
+        "new_score": 0.763,
+        "delta": 0.294,
+        "severity": "high",
+        "message": "PHO \u25b2 mom: 47% \u2192 76% (+29%)"
+      },
+      {
+        "ticker": "GRID",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.516,
+        "new_score": 0.224,
+        "delta": -0.292,
+        "severity": "high",
+        "message": "GRID \u25bc mom: 52% \u2192 22% (-29%)"
+      },
+      {
+        "ticker": "GLW",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.802,
+        "new_score": 0.512,
+        "delta": -0.29,
+        "severity": "high",
+        "message": "GLW \u25bc longterm: 80% \u2192 51% (-29%)"
+      },
+      {
+        "ticker": "NOW",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.905,
+        "new_score": 0.615,
+        "delta": -0.29,
+        "severity": "high",
+        "message": "NOW \u25bc macro: 90% \u2192 62% (-29%)"
+      },
+      {
+        "ticker": "VMC",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.142,
+        "new_score": 0.432,
+        "delta": 0.29,
+        "severity": "high",
+        "message": "VMC \u25b2 macro: 14% \u2192 43% (+29%)"
+      },
+      {
+        "ticker": "ZW=F",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.713,
+        "new_score": 0.425,
+        "delta": -0.288,
+        "severity": "high",
+        "message": "ZW=F \u25bc macro: 71% \u2192 42% (-29%)"
+      },
+      {
+        "ticker": "WIT",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.26,
+        "new_score": 0.547,
+        "delta": 0.287,
+        "severity": "high",
+        "message": "WIT \u25b2 value: 26% \u2192 55% (+29%)"
+      },
+      {
+        "ticker": "NVT",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.626,
+        "new_score": 0.34,
+        "delta": -0.286,
+        "severity": "high",
+        "message": "NVT \u25bc value: 63% \u2192 34% (-29%)"
+      },
+      {
+        "ticker": "NU",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.491,
+        "new_score": 0.205,
+        "delta": -0.286,
+        "severity": "high",
+        "message": "NU \u25bc contrarian: 49% \u2192 20% (-29%)"
+      },
+      {
+        "ticker": "IRWD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.451,
+        "new_score": 0.165,
+        "delta": -0.286,
+        "severity": "high",
+        "message": "IRWD \u25bc mom: 45% \u2192 16% (-29%)"
+      },
+      {
+        "ticker": "SPG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.435,
+        "new_score": 0.72,
+        "delta": 0.285,
+        "severity": "high",
+        "message": "SPG \u25b2 macro: 44% \u2192 72% (+28%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.632,
+        "new_score": 0.916,
+        "delta": 0.284,
+        "severity": "high",
+        "message": "VLTO \u25b2 mom: 63% \u2192 92% (+28%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.571,
+        "new_score": 0.854,
+        "delta": 0.283,
+        "severity": "high",
+        "message": "LNG \u25b2 longterm: 57% \u2192 85% (+28%)"
+      },
+      {
+        "ticker": "SYK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.13,
+        "new_score": 0.413,
+        "delta": 0.283,
+        "severity": "high",
+        "message": "SYK \u25b2 macro: 13% \u2192 41% (+28%)"
+      },
+      {
+        "ticker": "NET",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.858,
+        "new_score": 0.578,
+        "delta": -0.28,
+        "severity": "high",
+        "message": "NET \u25bc longterm: 86% \u2192 58% (-28%)"
+      },
+      {
+        "ticker": "ARKF",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.796,
+        "new_score": 0.516,
+        "delta": -0.28,
+        "severity": "high",
+        "message": "ARKF \u25bc macro: 80% \u2192 52% (-28%)"
+      },
+      {
+        "ticker": "URI",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.441,
+        "new_score": 0.72,
+        "delta": 0.279,
+        "severity": "high",
+        "message": "URI \u25b2 longterm: 44% \u2192 72% (+28%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.536,
+        "new_score": 0.814,
+        "delta": 0.278,
+        "severity": "high",
+        "message": "LLY \u25b2 contrarian: 54% \u2192 81% (+28%)"
+      },
+      {
+        "ticker": "CVS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.386,
+        "new_score": 0.664,
+        "delta": 0.278,
+        "severity": "high",
+        "message": "CVS \u25b2 mom: 39% \u2192 66% (+28%)"
+      },
+      {
+        "ticker": "CGNX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.737,
+        "new_score": 0.46,
+        "delta": -0.277,
+        "severity": "high",
+        "message": "CGNX \u25bc macro: 74% \u2192 46% (-28%)"
+      },
+      {
+        "ticker": "TT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.553,
+        "new_score": 0.276,
+        "delta": -0.277,
+        "severity": "high",
+        "message": "TT \u25bc macro: 55% \u2192 28% (-28%)"
+      },
+      {
+        "ticker": "ABT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.528,
+        "new_score": 0.804,
+        "delta": 0.276,
+        "severity": "high",
+        "message": "ABT \u25b2 mom: 53% \u2192 80% (+28%)"
+      },
+      {
+        "ticker": "AMZN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.668,
+        "new_score": 0.393,
+        "delta": -0.275,
+        "severity": "high",
+        "message": "AMZN \u25bc mom: 67% \u2192 39% (-28%)"
+      },
+      {
+        "ticker": "ETN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.635,
+        "new_score": 0.361,
+        "delta": -0.274,
+        "severity": "high",
+        "message": "ETN \u25bc mom: 64% \u2192 36% (-27%)"
+      },
+      {
+        "ticker": "ARKF",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.837,
+        "new_score": 0.564,
+        "delta": -0.273,
+        "severity": "high",
+        "message": "ARKF \u25bc mom: 84% \u2192 56% (-27%)"
+      },
+      {
+        "ticker": "AMZN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.639,
+        "new_score": 0.366,
+        "delta": -0.273,
+        "severity": "high",
+        "message": "AMZN \u25bc macro: 64% \u2192 37% (-27%)"
+      },
+      {
+        "ticker": "EW",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.504,
+        "new_score": 0.776,
+        "delta": 0.272,
+        "severity": "high",
+        "message": "EW \u25b2 mom: 50% \u2192 78% (+27%)"
+      },
+      {
+        "ticker": "CLS",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.361,
+        "new_score": 0.09,
+        "delta": -0.271,
+        "severity": "high",
+        "message": "CLS \u25bc longterm: 36% \u2192 9% (-27%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.633,
+        "new_score": 0.904,
+        "delta": 0.271,
+        "severity": "high",
+        "message": "LNG \u25b2 macro: 63% \u2192 90% (+27%)"
+      },
+      {
+        "ticker": "FIW",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.385,
+        "new_score": 0.655,
+        "delta": 0.27,
+        "severity": "high",
+        "message": "FIW \u25b2 macro: 38% \u2192 66% (+27%)"
+      },
+      {
+        "ticker": "AIQ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.855,
+        "new_score": 0.586,
+        "delta": -0.269,
+        "severity": "high",
+        "message": "AIQ \u25bc mom: 86% \u2192 59% (-27%)"
+      },
+      {
+        "ticker": "IBN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.457,
+        "new_score": 0.726,
+        "delta": 0.269,
+        "severity": "high",
+        "message": "IBN \u25b2 mom: 46% \u2192 73% (+27%)"
+      },
+      {
+        "ticker": "GDXJ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.481,
+        "new_score": 0.212,
+        "delta": -0.269,
+        "severity": "high",
+        "message": "GDXJ \u25bc mom: 48% \u2192 21% (-27%)"
+      },
+      {
+        "ticker": "TCS.NS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.258,
+        "new_score": 0.526,
+        "delta": 0.268,
+        "severity": "high",
+        "message": "TCS.NS \u25b2 mom: 26% \u2192 53% (+27%)"
+      },
+      {
+        "ticker": "NVT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.503,
+        "new_score": 0.236,
+        "delta": -0.267,
+        "severity": "high",
+        "message": "NVT \u25bc contrarian: 50% \u2192 24% (-27%)"
+      },
+      {
+        "ticker": "ARKX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.531,
+        "new_score": 0.265,
+        "delta": -0.266,
+        "severity": "high",
+        "message": "ARKX \u25bc mom: 53% \u2192 26% (-27%)"
+      },
+      {
+        "ticker": "QCOM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.801,
+        "new_score": 0.536,
+        "delta": -0.265,
+        "severity": "high",
+        "message": "QCOM \u25bc mom: 80% \u2192 54% (-26%)"
+      },
+      {
+        "ticker": "SYK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.116,
+        "new_score": 0.38,
+        "delta": 0.264,
+        "severity": "high",
+        "message": "SYK \u25b2 mom: 12% \u2192 38% (+26%)"
+      },
+      {
+        "ticker": "TSLA",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.362,
+        "new_score": 0.626,
+        "delta": 0.264,
+        "severity": "high",
+        "message": "TSLA \u25b2 mom: 36% \u2192 63% (+26%)"
+      },
+      {
+        "ticker": "MLPX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.46,
+        "new_score": 0.723,
+        "delta": 0.263,
+        "severity": "high",
+        "message": "MLPX \u25b2 mom: 46% \u2192 72% (+26%)"
+      },
+      {
+        "ticker": "CIEN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.344,
+        "new_score": 0.081,
+        "delta": -0.263,
+        "severity": "high",
+        "message": "CIEN \u25bc mom: 34% \u2192 8% (-26%)"
+      },
+      {
+        "ticker": "QUAL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.982,
+        "new_score": 0.72,
+        "delta": -0.262,
+        "severity": "high",
+        "message": "QUAL \u25bc contrarian: 98% \u2192 72% (-26%)"
+      },
+      {
+        "ticker": "BDMS.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.448,
+        "new_score": 0.71,
+        "delta": 0.262,
+        "severity": "high",
+        "message": "BDMS.BK \u25b2 mom: 45% \u2192 71% (+26%)"
+      },
+      {
+        "ticker": "CIBR",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.982,
+        "new_score": 0.72,
+        "delta": -0.262,
+        "severity": "high",
+        "message": "CIBR \u25bc contrarian: 98% \u2192 72% (-26%)"
+      },
+      {
+        "ticker": "URI",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.565,
+        "new_score": 0.826,
+        "delta": 0.261,
+        "severity": "high",
+        "message": "URI \u25b2 contrarian: 56% \u2192 83% (+26%)"
+      },
+      {
+        "ticker": "VST",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.55,
+        "new_score": 0.289,
+        "delta": -0.261,
+        "severity": "high",
+        "message": "VST \u25bc macro: 55% \u2192 29% (-26%)"
+      },
+      {
+        "ticker": "NTLA",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.092,
+        "new_score": 0.351,
+        "delta": 0.259,
+        "severity": "high",
+        "message": "NTLA \u25b2 contrarian: 9% \u2192 35% (+26%)"
+      },
+      {
+        "ticker": "USO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.984,
+        "delta": 0.259,
+        "severity": "high",
+        "message": "USO \u25b2 contrarian: 72% \u2192 98% (+26%)"
+      },
+      {
+        "ticker": "GILD",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.66,
+        "new_score": 0.919,
+        "delta": 0.259,
+        "severity": "high",
+        "message": "GILD \u25b2 macro: 66% \u2192 92% (+26%)"
+      },
+      {
+        "ticker": "FCG",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.984,
+        "delta": 0.259,
+        "severity": "high",
+        "message": "FCG \u25b2 contrarian: 72% \u2192 98% (+26%)"
+      },
+      {
+        "ticker": "USDINR=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.979,
+        "new_score": 0.72,
+        "delta": -0.259,
+        "severity": "high",
+        "message": "USDINR=X \u25bc contrarian: 98% \u2192 72% (-26%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.953,
+        "new_score": 0.695,
+        "delta": -0.258,
+        "severity": "high",
+        "message": "MRVL \u25bc mom: 95% \u2192 70% (-26%)"
+      },
+      {
+        "ticker": "SMH",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.891,
+        "new_score": 0.634,
+        "delta": -0.257,
+        "severity": "high",
+        "message": "SMH \u25bc contrarian: 89% \u2192 63% (-26%)"
+      },
+      {
+        "ticker": "ECL",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.582,
+        "new_score": 0.838,
+        "delta": 0.256,
+        "severity": "high",
+        "message": "ECL \u25b2 mom: 58% \u2192 84% (+26%)"
+      },
+      {
+        "ticker": "ECL",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.527,
+        "new_score": 0.783,
+        "delta": 0.256,
+        "severity": "high",
+        "message": "ECL \u25b2 macro: 53% \u2192 78% (+26%)"
+      },
+      {
+        "ticker": "MLPX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.981,
+        "delta": 0.256,
+        "severity": "high",
+        "message": "MLPX \u25b2 contrarian: 72% \u2192 98% (+26%)"
+      },
+      {
+        "ticker": "SPY",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.976,
+        "new_score": 0.72,
+        "delta": -0.256,
+        "severity": "high",
+        "message": "SPY \u25bc contrarian: 98% \u2192 72% (-26%)"
+      },
+      {
+        "ticker": "CL=F",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.503,
+        "new_score": 0.758,
+        "delta": 0.255,
+        "severity": "high",
+        "message": "CL=F \u25b2 macro: 50% \u2192 76% (+26%)"
+      },
+      {
+        "ticker": "FCX",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.845,
+        "new_score": 0.591,
+        "delta": -0.254,
+        "severity": "high",
+        "message": "FCX \u25bc value: 84% \u2192 59% (-25%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.266,
+        "new_score": 0.519,
+        "delta": 0.253,
+        "severity": "high",
+        "message": "LMT \u25b2 longterm: 27% \u2192 52% (+25%)"
+      },
+      {
+        "ticker": "IHE",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.978,
+        "delta": 0.253,
+        "severity": "high",
+        "message": "IHE \u25b2 contrarian: 72% \u2192 98% (+25%)"
+      },
+      {
+        "ticker": "VOO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.97,
+        "new_score": 0.72,
+        "delta": -0.25,
+        "severity": "high",
+        "message": "VOO \u25bc contrarian: 97% \u2192 72% (-25%)"
+      }
+    ],
+    "medium": [
+      {
+        "ticker": "MDT",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.813,
+        "new_score": 0.926,
+        "severity": "medium",
+        "message": "MDT entered top decile in value sleeve (81% \u2192 93%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.548,
+        "new_score": 0.906,
+        "severity": "medium",
+        "message": "LMT entered top decile in value sleeve (55% \u2192 91%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.79,
+        "new_score": 0.944,
+        "severity": "medium",
+        "message": "LLY entered top decile in macro sleeve (79% \u2192 94%)"
+      },
+      {
+        "ticker": "IGF",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.935,
+        "severity": "medium",
+        "message": "IGF entered top decile in contrarian sleeve (72% \u2192 94%)"
+      },
+      {
+        "ticker": "WMB",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.822,
+        "new_score": 0.91,
+        "severity": "medium",
+        "message": "WMB entered top decile in longterm sleeve (82% \u2192 91%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.682,
+        "new_score": 0.919,
+        "severity": "medium",
+        "message": "VRTX entered top decile in mom sleeve (68% \u2192 92%)"
+      },
+      {
+        "ticker": "XHE",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.925,
+        "severity": "medium",
+        "message": "XHE entered top decile in contrarian sleeve (72% \u2192 92%)"
+      },
+      {
+        "ticker": "VNQ",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.922,
+        "severity": "medium",
+        "message": "VNQ entered top decile in contrarian sleeve (72% \u2192 92%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.763,
+        "new_score": 0.901,
+        "severity": "medium",
+        "message": "AWK entered top decile in value sleeve (76% \u2192 90%)"
+      },
+      {
+        "ticker": "J",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.694,
+        "new_score": 0.936,
+        "severity": "medium",
+        "message": "J entered top decile in value sleeve (69% \u2192 94%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.632,
+        "new_score": 0.916,
+        "severity": "medium",
+        "message": "VLTO entered top decile in mom sleeve (63% \u2192 92%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.595,
+        "new_score": 0.91,
+        "severity": "medium",
+        "message": "VLTO entered top decile in macro sleeve (60% \u2192 91%)"
+      },
+      {
+        "ticker": "SWKS",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.875,
+        "new_score": 0.935,
+        "severity": "medium",
+        "message": "SWKS entered top decile in mom sleeve (88% \u2192 94%)"
+      },
+      {
+        "ticker": "SWKS",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.717,
+        "new_score": 0.916,
+        "severity": "medium",
+        "message": "SWKS entered top decile in value sleeve (72% \u2192 92%)"
+      },
+      {
+        "ticker": "SWKS",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.855,
+        "new_score": 0.913,
+        "severity": "medium",
+        "message": "SWKS entered top decile in macro sleeve (86% \u2192 91%)"
+      },
+      {
+        "ticker": "GBPUSD=X",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.944,
+        "severity": "medium",
+        "message": "GBPUSD=X entered top decile in contrarian sleeve (72% \u2192 94%)"
+      },
+      {
+        "ticker": "DXCM",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.834,
+        "new_score": 0.901,
+        "severity": "medium",
+        "message": "DXCM entered top decile in macro sleeve (83% \u2192 90%)"
+      },
+      {
+        "ticker": "PTTEP.BK",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.907,
+        "severity": "medium",
+        "message": "PTTEP.BK entered top decile in contrarian sleeve (72% \u2192 91%)"
+      },
+      {
+        "ticker": "AAPL",
+        "type": "entry",
+        "sleeve": "quality",
+        "old_score": 0.875,
+        "new_score": 0.91,
+        "severity": "medium",
+        "message": "AAPL entered top decile in quality sleeve (88% \u2192 91%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.525,
+        "new_score": 0.925,
+        "severity": "medium",
+        "message": "ROP entered top decile in mom sleeve (52% \u2192 92%)"
+      },
+      {
+        "ticker": "ROP",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.521,
+        "new_score": 0.925,
+        "severity": "medium",
+        "message": "ROP entered top decile in macro sleeve (52% \u2192 92%)"
+      },
+      {
+        "ticker": "USO",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.816,
+        "new_score": 0.928,
+        "severity": "medium",
+        "message": "USO entered top decile in mom sleeve (82% \u2192 93%)"
+      },
+      {
+        "ticker": "USO",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.825,
+        "new_score": 0.922,
+        "severity": "medium",
+        "message": "USO entered top decile in macro sleeve (82% \u2192 92%)"
+      },
+      {
+        "ticker": "GILD",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.727,
+        "new_score": 0.944,
+        "severity": "medium",
+        "message": "GILD entered top decile in mom sleeve (73% \u2192 94%)"
+      },
+      {
+        "ticker": "GILD",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.66,
+        "new_score": 0.919,
+        "severity": "medium",
+        "message": "GILD entered top decile in macro sleeve (66% \u2192 92%)"
+      },
+      {
+        "ticker": "GILD",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.82,
+        "new_score": 0.907,
+        "severity": "medium",
+        "message": "GILD entered top decile in longterm sleeve (82% \u2192 91%)"
+      },
+      {
+        "ticker": "SEZL",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.84,
+        "new_score": 0.938,
+        "severity": "medium",
+        "message": "SEZL entered top decile in longterm sleeve (84% \u2192 94%)"
+      },
+      {
+        "ticker": "AMLP",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.938,
+        "severity": "medium",
+        "message": "AMLP entered top decile in contrarian sleeve (72% \u2192 94%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.596,
+        "new_score": 0.922,
+        "severity": "medium",
+        "message": "LNG entered top decile in mom sleeve (60% \u2192 92%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.633,
+        "new_score": 0.904,
+        "severity": "medium",
+        "message": "LNG entered top decile in macro sleeve (63% \u2192 90%)"
+      },
+      {
+        "ticker": "REET",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.901,
+        "severity": "medium",
+        "message": "REET entered top decile in contrarian sleeve (72% \u2192 90%)"
+      },
+      {
+        "ticker": "BZ=F",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.932,
+        "severity": "medium",
+        "message": "BZ=F entered top decile in contrarian sleeve (72% \u2192 93%)"
+      },
+      {
+        "ticker": "PSX",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.891,
+        "new_score": 0.916,
+        "severity": "medium",
+        "message": "PSX entered top decile in longterm sleeve (89% \u2192 92%)"
+      },
+      {
+        "ticker": "AMGN",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.877,
+        "new_score": 0.946,
+        "severity": "medium",
+        "message": "AMGN entered top decile in value sleeve (88% \u2192 95%)"
+      },
+      {
+        "ticker": "AMGN",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.76,
+        "new_score": 0.938,
+        "severity": "medium",
+        "message": "AMGN entered top decile in macro sleeve (76% \u2192 94%)"
+      },
+      {
+        "ticker": "AUDUSD=X",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.947,
+        "severity": "medium",
+        "message": "AUDUSD=X entered top decile in contrarian sleeve (72% \u2192 95%)"
+      },
+      {
+        "ticker": "FXY",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.941,
+        "severity": "medium",
+        "message": "FXY entered top decile in contrarian sleeve (72% \u2192 94%)"
+      },
+      {
+        "ticker": "AOT.BK",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0.885,
+        "new_score": 0.922,
+        "severity": "medium",
+        "message": "AOT.BK entered top decile in longterm sleeve (88% \u2192 92%)"
+      },
+      {
+        "ticker": "MCK",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.724,
+        "new_score": 0.9,
+        "severity": "medium",
+        "message": "MCK entered top decile in mom sleeve (72% \u2192 90%)"
+      },
+      {
+        "ticker": "MA",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.766,
+        "new_score": 0.903,
+        "severity": "medium",
+        "message": "MA entered top decile in mom sleeve (77% \u2192 90%)"
+      },
+      {
+        "ticker": "XLV",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.718,
+        "new_score": 0.91,
+        "severity": "medium",
+        "message": "XLV entered top decile in mom sleeve (72% \u2192 91%)"
+      },
+      {
+        "ticker": "PLTR",
+        "type": "entry",
+        "sleeve": "quality",
+        "old_score": 0.878,
+        "new_score": 0.947,
+        "severity": "medium",
+        "message": "PLTR entered top decile in quality sleeve (88% \u2192 95%)"
+      },
+      {
+        "ticker": "CRSP",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.758,
+        "new_score": 0.911,
+        "severity": "medium",
+        "message": "CRSP entered top decile in value sleeve (76% \u2192 91%)"
+      },
+      {
+        "ticker": "BLK",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.84,
+        "new_score": 0.921,
+        "severity": "medium",
+        "message": "BLK entered top decile in value sleeve (84% \u2192 92%)"
+      },
+      {
+        "ticker": "IBB",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.769,
+        "new_score": 0.907,
+        "severity": "medium",
+        "message": "IBB entered top decile in mom sleeve (77% \u2192 91%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.555,
+        "new_score": 0.931,
+        "severity": "medium",
+        "message": "REGN entered top decile in mom sleeve (56% \u2192 93%)"
+      },
+      {
+        "ticker": "REGN",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.447,
+        "new_score": 0.916,
+        "severity": "medium",
+        "message": "REGN entered top decile in macro sleeve (45% \u2192 92%)"
+      },
+      {
+        "ticker": "IYR",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.919,
+        "severity": "medium",
+        "message": "IYR entered top decile in contrarian sleeve (72% \u2192 92%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.917,
+        "new_score": 0.181,
+        "severity": "medium",
+        "message": "CRDO dropped out of top decile in mom sleeve (92% \u2192 18%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.923,
+        "new_score": 0.18,
+        "severity": "medium",
+        "message": "CRDO dropped out of top decile in macro sleeve (92% \u2192 18%)"
+      },
+      {
+        "ticker": "NOW",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.92,
+        "new_score": 0.567,
+        "severity": "medium",
+        "message": "NOW dropped out of top decile in mom sleeve (92% \u2192 57%)"
+      },
+      {
+        "ticker": "NOW",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.905,
+        "new_score": 0.615,
+        "severity": "medium",
+        "message": "NOW dropped out of top decile in macro sleeve (90% \u2192 62%)"
+      },
+      {
+        "ticker": "SCC.BK",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.932,
+        "new_score": 0.754,
+        "severity": "medium",
+        "message": "SCC.BK dropped out of top decile in value sleeve (93% \u2192 75%)"
+      },
+      {
+        "ticker": "BEN",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.927,
+        "new_score": 0.877,
+        "severity": "medium",
+        "message": "BEN dropped out of top decile in value sleeve (93% \u2192 88%)"
+      },
+      {
+        "ticker": "AIQ",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.92,
+        "new_score": 0.72,
+        "severity": "medium",
+        "message": "AIQ dropped out of top decile in contrarian sleeve (92% \u2192 72%)"
+      },
+      {
+        "ticker": "DDOG",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.911,
+        "new_score": 0.842,
+        "severity": "medium",
+        "message": "DDOG dropped out of top decile in longterm sleeve (91% \u2192 84%)"
+      },
+      {
+        "ticker": "INTC",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.908,
+        "new_score": 0.099,
+        "severity": "medium",
+        "message": "INTC dropped out of top decile in macro sleeve (91% \u2192 10%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.9,
+        "new_score": 0.488,
+        "severity": "medium",
+        "message": "NBIS dropped out of top decile in value sleeve (90% \u2192 49%)"
+      },
+      {
+        "ticker": "USDJPY=X",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.935,
+        "new_score": 0.72,
+        "severity": "medium",
+        "message": "USDJPY=X dropped out of top decile in contrarian sleeve (94% \u2192 72%)"
+      },
+      {
+        "ticker": "SMCI",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.935,
+        "new_score": 0.738,
+        "severity": "medium",
+        "message": "SMCI dropped out of top decile in mom sleeve (94% \u2192 74%)"
+      },
+      {
+        "ticker": "SMCI",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.911,
+        "new_score": 0.727,
+        "severity": "medium",
+        "message": "SMCI dropped out of top decile in macro sleeve (91% \u2192 73%)"
+      },
+      {
+        "ticker": "SEZL",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.926,
+        "new_score": 0.897,
+        "severity": "medium",
+        "message": "SEZL dropped out of top decile in mom sleeve (93% \u2192 90%)"
+      },
+      {
+        "ticker": "CNC",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.914,
+        "new_score": 0.882,
+        "severity": "medium",
+        "message": "CNC dropped out of top decile in macro sleeve (91% \u2192 88%)"
+      },
+      {
+        "ticker": "ARM",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.917,
+        "new_score": 0.348,
+        "severity": "medium",
+        "message": "ARM dropped out of top decile in macro sleeve (92% \u2192 35%)"
+      },
+      {
+        "ticker": "ARM",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.914,
+        "new_score": 0.792,
+        "severity": "medium",
+        "message": "ARM dropped out of top decile in longterm sleeve (91% \u2192 79%)"
+      },
+      {
+        "ticker": "MU",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.918,
+        "new_score": 0.695,
+        "severity": "medium",
+        "message": "MU dropped out of top decile in value sleeve (92% \u2192 70%)"
+      },
+      {
+        "ticker": "BTC-USD",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.926,
+        "new_score": 0.72,
+        "severity": "medium",
+        "message": "BTC-USD dropped out of top decile in contrarian sleeve (93% \u2192 72%)"
+      },
+      {
+        "ticker": "FTNT",
+        "type": "exit",
+        "sleeve": "quality",
+        "old_score": 0.914,
+        "new_score": 0.81,
+        "severity": "medium",
+        "message": "FTNT dropped out of top decile in quality sleeve (91% \u2192 81%)"
+      },
+      {
+        "ticker": "MSFT",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.911,
+        "new_score": 0.844,
+        "severity": "medium",
+        "message": "MSFT dropped out of top decile in mom sleeve (91% \u2192 84%)"
+      },
+      {
+        "ticker": "PSX",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.902,
+        "new_score": 0.702,
+        "severity": "medium",
+        "message": "PSX dropped out of top decile in contrarian sleeve (90% \u2192 70%)"
+      },
+      {
+        "ticker": "EURUSD=X",
+        "type": "exit",
+        "sleeve": "quality",
+        "old_score": 0.902,
+        "new_score": 0.897,
+        "severity": "medium",
+        "message": "EURUSD=X dropped out of top decile in quality sleeve (90% \u2192 90%)"
+      },
+      {
+        "ticker": "DELL",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.913,
+        "new_score": 0.453,
+        "severity": "medium",
+        "message": "DELL dropped out of top decile in value sleeve (91% \u2192 45%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.905,
+        "new_score": 0.66,
+        "severity": "medium",
+        "message": "AFRM dropped out of top decile in mom sleeve (90% \u2192 66%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.904,
+        "new_score": 0.685,
+        "severity": "medium",
+        "message": "AFRM dropped out of top decile in value sleeve (90% \u2192 68%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.902,
+        "new_score": 0.711,
+        "severity": "medium",
+        "message": "AFRM dropped out of top decile in macro sleeve (90% \u2192 71%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.941,
+        "new_score": 0.739,
+        "severity": "medium",
+        "message": "NVDA dropped out of top decile in value sleeve (94% \u2192 74%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.92,
+        "new_score": 0.885,
+        "severity": "medium",
+        "message": "NVDA dropped out of top decile in longterm sleeve (92% \u2192 88%)"
+      },
+      {
+        "ticker": "000333.SZ",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.922,
+        "new_score": 0,
+        "severity": "medium",
+        "message": "000333.SZ dropped out of top decile in value sleeve (92% \u2192 0%)"
+      },
+      {
+        "ticker": "IGV",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.902,
+        "new_score": 0.794,
+        "severity": "medium",
+        "message": "IGV dropped out of top decile in mom sleeve (90% \u2192 79%)"
+      },
+      {
+        "ticker": "IGV",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.932,
+        "new_score": 0.72,
+        "severity": "medium",
+        "message": "IGV dropped out of top decile in contrarian sleeve (93% \u2192 72%)"
+      },
+      {
+        "ticker": "0939.HK",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.917,
+        "new_score": 0,
+        "severity": "medium",
+        "message": "0939.HK dropped out of top decile in contrarian sleeve (92% \u2192 0%)"
+      },
+      {
+        "ticker": "GOOGL",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.938,
+        "new_score": 0.811,
+        "severity": "medium",
+        "message": "GOOGL dropped out of top decile in longterm sleeve (94% \u2192 81%)"
+      },
+      {
+        "ticker": "SOL-USD",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.938,
+        "new_score": 0.741,
+        "severity": "medium",
+        "message": "SOL-USD dropped out of top decile in mom sleeve (94% \u2192 74%)"
+      },
+      {
+        "ticker": "SOL-USD",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.926,
+        "new_score": 0.845,
+        "severity": "medium",
+        "message": "SOL-USD dropped out of top decile in macro sleeve (93% \u2192 84%)"
+      },
+      {
+        "ticker": "SNDK",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.914,
+        "new_score": 0.408,
+        "severity": "medium",
+        "message": "SNDK dropped out of top decile in mom sleeve (91% \u2192 41%)"
+      },
+      {
+        "ticker": "SNDK",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.935,
+        "new_score": 0.398,
+        "severity": "medium",
+        "message": "SNDK dropped out of top decile in macro sleeve (94% \u2192 40%)"
+      },
+      {
+        "ticker": "FRO",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.908,
+        "new_score": 0.832,
+        "severity": "medium",
+        "message": "FRO dropped out of top decile in contrarian sleeve (91% \u2192 83%)"
+      },
+      {
+        "ticker": "SOXX",
+        "type": "exit",
+        "sleeve": "longterm",
+        "old_score": 0.917,
+        "new_score": 0.807,
+        "severity": "medium",
+        "message": "SOXX dropped out of top decile in longterm sleeve (92% \u2192 81%)"
+      },
+      {
+        "ticker": "ETH-USD",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.908,
+        "new_score": 0.807,
+        "severity": "medium",
+        "message": "ETH-USD dropped out of top decile in mom sleeve (91% \u2192 81%)"
+      },
+      {
+        "ticker": "COST",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.343,
+        "new_score": 0.593,
+        "delta": 0.25,
+        "severity": "medium",
+        "message": "COST \u25b2 macro: 34% \u2192 59% (+25%)"
+      },
+      {
+        "ticker": "DELTA.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.361,
+        "new_score": 0.112,
+        "delta": -0.249,
+        "severity": "medium",
+        "message": "DELTA.BK \u25bc macro: 36% \u2192 11% (-25%)"
+      },
+      {
+        "ticker": "CEG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.544,
+        "new_score": 0.295,
+        "delta": -0.249,
+        "severity": "medium",
+        "message": "CEG \u25bc macro: 54% \u2192 30% (-25%)"
+      },
+      {
+        "ticker": "GD",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.426,
+        "new_score": 0.674,
+        "delta": 0.248,
+        "severity": "medium",
+        "message": "GD \u25b2 contrarian: 43% \u2192 67% (+25%)"
+      },
+      {
+        "ticker": "MAGS",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.967,
+        "new_score": 0.72,
+        "delta": -0.247,
+        "severity": "medium",
+        "message": "MAGS \u25bc contrarian: 97% \u2192 72% (-25%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.795,
+        "new_score": 0.548,
+        "delta": -0.247,
+        "severity": "medium",
+        "message": "NVDA \u25bc mom: 80% \u2192 55% (-25%)"
+      },
+      {
+        "ticker": "JNJ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.608,
+        "new_score": 0.854,
+        "delta": 0.246,
+        "severity": "medium",
+        "message": "JNJ \u25b2 mom: 61% \u2192 85% (+25%)"
+      },
+      {
+        "ticker": "VRT",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.63,
+        "new_score": 0.385,
+        "delta": -0.245,
+        "severity": "medium",
+        "message": "VRT \u25bc longterm: 63% \u2192 38% (-24%)"
+      },
+      {
+        "ticker": "SHLD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.157,
+        "new_score": 0.402,
+        "delta": 0.245,
+        "severity": "medium",
+        "message": "SHLD \u25b2 mom: 16% \u2192 40% (+25%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.905,
+        "new_score": 0.66,
+        "delta": -0.245,
+        "severity": "medium",
+        "message": "AFRM \u25bc mom: 90% \u2192 66% (-24%)"
+      },
+      {
+        "ticker": "USDCAD=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.964,
+        "new_score": 0.72,
+        "delta": -0.244,
+        "severity": "medium",
+        "message": "USDCAD=X \u25bc contrarian: 96% \u2192 72% (-24%)"
+      },
+      {
+        "ticker": "QTUM",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.896,
+        "new_score": 0.652,
+        "delta": -0.244,
+        "severity": "medium",
+        "message": "QTUM \u25bc contrarian: 90% \u2192 65% (-24%)"
+      },
+      {
+        "ticker": "AVGO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.412,
+        "new_score": 0.168,
+        "delta": -0.244,
+        "severity": "medium",
+        "message": "AVGO \u25bc mom: 41% \u2192 17% (-24%)"
+      },
+      {
+        "ticker": "ROBO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.598,
+        "new_score": 0.354,
+        "delta": -0.244,
+        "severity": "medium",
+        "message": "ROBO \u25bc macro: 60% \u2192 35% (-24%)"
+      },
+      {
+        "ticker": "ARKQ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.867,
+        "new_score": 0.624,
+        "delta": -0.243,
+        "severity": "medium",
+        "message": "ARKQ \u25bc contrarian: 87% \u2192 62% (-24%)"
+      },
+      {
+        "ticker": "VG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.568,
+        "new_score": 0.811,
+        "delta": 0.243,
+        "severity": "medium",
+        "message": "VG \u25b2 macro: 57% \u2192 81% (+24%)"
+      },
+      {
+        "ticker": "PNR",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.205,
+        "new_score": 0.448,
+        "delta": 0.243,
+        "severity": "medium",
+        "message": "PNR \u25b2 value: 20% \u2192 45% (+24%)"
+      },
+      {
+        "ticker": "J",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.694,
+        "new_score": 0.936,
+        "delta": 0.242,
+        "severity": "medium",
+        "message": "J \u25b2 value: 69% \u2192 94% (+24%)"
+      },
+      {
+        "ticker": "NET",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.958,
+        "new_score": 0.717,
+        "delta": -0.241,
+        "severity": "medium",
+        "message": "NET \u25bc mom: 96% \u2192 72% (-24%)"
+      },
+      {
+        "ticker": "BDMS.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.399,
+        "new_score": 0.64,
+        "delta": 0.241,
+        "severity": "medium",
+        "message": "BDMS.BK \u25b2 macro: 40% \u2192 64% (+24%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.607,
+        "new_score": 0.848,
+        "delta": 0.241,
+        "severity": "medium",
+        "message": "VLTO \u25b2 contrarian: 61% \u2192 85% (+24%)"
+      },
+      {
+        "ticker": "DXJ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.959,
+        "new_score": 0.72,
+        "delta": -0.239,
+        "severity": "medium",
+        "message": "DXJ \u25bc contrarian: 96% \u2192 72% (-24%)"
+      },
+      {
+        "ticker": "DBC",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.963,
+        "delta": 0.238,
+        "severity": "medium",
+        "message": "DBC \u25b2 contrarian: 72% \u2192 96% (+24%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.682,
+        "new_score": 0.919,
+        "delta": 0.237,
+        "severity": "medium",
+        "message": "VRTX \u25b2 mom: 68% \u2192 92% (+24%)"
+      },
+      {
+        "ticker": "SHLD",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.148,
+        "new_score": 0.385,
+        "delta": 0.237,
+        "severity": "medium",
+        "message": "SHLD \u25b2 macro: 15% \u2192 38% (+24%)"
+      },
+      {
+        "ticker": "HEWJ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.956,
+        "new_score": 0.72,
+        "delta": -0.236,
+        "severity": "medium",
+        "message": "HEWJ \u25bc contrarian: 96% \u2192 72% (-24%)"
+      },
+      {
+        "ticker": "PDBC",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.96,
+        "delta": 0.235,
+        "severity": "medium",
+        "message": "PDBC \u25b2 contrarian: 72% \u2192 96% (+24%)"
+      },
+      {
+        "ticker": "NBIS",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.429,
+        "new_score": 0.196,
+        "delta": -0.233,
+        "severity": "medium",
+        "message": "NBIS \u25bc contrarian: 43% \u2192 20% (-23%)"
+      },
+      {
+        "ticker": "RIO",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.854,
+        "new_score": 0.621,
+        "delta": -0.233,
+        "severity": "medium",
+        "message": "RIO \u25bc value: 85% \u2192 62% (-23%)"
+      },
+      {
+        "ticker": "FCG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.549,
+        "new_score": 0.782,
+        "delta": 0.233,
+        "severity": "medium",
+        "message": "FCG \u25b2 mom: 55% \u2192 78% (+23%)"
+      },
+      {
+        "ticker": "QQQ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.953,
+        "new_score": 0.72,
+        "delta": -0.233,
+        "severity": "medium",
+        "message": "QQQ \u25bc contrarian: 95% \u2192 72% (-23%)"
+      },
+      {
+        "ticker": "BOTZ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.858,
+        "new_score": 0.627,
+        "delta": -0.231,
+        "severity": "medium",
+        "message": "BOTZ \u25bc contrarian: 86% \u2192 63% (-23%)"
+      },
+      {
+        "ticker": "EWJ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.95,
+        "new_score": 0.72,
+        "delta": -0.23,
+        "severity": "medium",
+        "message": "EWJ \u25bc contrarian: 95% \u2192 72% (-23%)"
+      },
+      {
+        "ticker": "META",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.772,
+        "new_score": 0.542,
+        "delta": -0.23,
+        "severity": "medium",
+        "message": "META \u25bc value: 77% \u2192 54% (-23%)"
+      },
+      {
+        "ticker": "AIQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.852,
+        "new_score": 0.624,
+        "delta": -0.228,
+        "severity": "medium",
+        "message": "AIQ \u25bc macro: 85% \u2192 62% (-23%)"
+      },
+      {
+        "ticker": "GOOGL",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.607,
+        "new_score": 0.379,
+        "delta": -0.228,
+        "severity": "medium",
+        "message": "GOOGL \u25bc value: 61% \u2192 38% (-23%)"
+      },
+      {
+        "ticker": "SWKS",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.459,
+        "new_score": 0.686,
+        "delta": 0.227,
+        "severity": "medium",
+        "message": "SWKS \u25b2 contrarian: 46% \u2192 69% (+23%)"
+      },
+      {
+        "ticker": "COR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.476,
+        "new_score": 0.702,
+        "delta": 0.226,
+        "severity": "medium",
+        "message": "COR \u25b2 macro: 48% \u2192 70% (+23%)"
+      },
+      {
+        "ticker": "TSM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.777,
+        "new_score": 0.551,
+        "delta": -0.226,
+        "severity": "medium",
+        "message": "TSM \u25bc mom: 78% \u2192 55% (-23%)"
+      },
+      {
+        "ticker": "FCX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.624,
+        "new_score": 0.398,
+        "delta": -0.226,
+        "severity": "medium",
+        "message": "FCX \u25bc contrarian: 62% \u2192 40% (-23%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.367,
+        "new_score": 0.143,
+        "delta": -0.224,
+        "severity": "medium",
+        "message": "MRVL \u25bc contrarian: 37% \u2192 14% (-22%)"
+      },
+      {
+        "ticker": "CL=F",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.615,
+        "new_score": 0.839,
+        "delta": 0.224,
+        "severity": "medium",
+        "message": "CL=F \u25b2 longterm: 62% \u2192 84% (+22%)"
+      },
+      {
+        "ticker": "NEE",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.122,
+        "new_score": 0.346,
+        "delta": 0.224,
+        "severity": "medium",
+        "message": "NEE \u25b2 mom: 12% \u2192 35% (+22%)"
+      },
+      {
+        "ticker": "COPX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.515,
+        "new_score": 0.292,
+        "delta": -0.223,
+        "severity": "medium",
+        "message": "COPX \u25bc macro: 52% \u2192 29% (-22%)"
+      },
+      {
+        "ticker": "MU",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.918,
+        "new_score": 0.695,
+        "delta": -0.223,
+        "severity": "medium",
+        "message": "MU \u25bc value: 92% \u2192 70% (-22%)"
+      },
+      {
+        "ticker": "AUDUSD=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.947,
+        "delta": 0.222,
+        "severity": "medium",
+        "message": "AUDUSD=X \u25b2 contrarian: 72% \u2192 95% (+22%)"
+      },
+      {
+        "ticker": "IRWD",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.429,
+        "new_score": 0.208,
+        "delta": -0.221,
+        "severity": "medium",
+        "message": "IRWD \u25bc macro: 43% \u2192 21% (-22%)"
+      },
+      {
+        "ticker": "AMGN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.645,
+        "new_score": 0.866,
+        "delta": 0.221,
+        "severity": "medium",
+        "message": "AMGN \u25b2 contrarian: 64% \u2192 87% (+22%)"
+      },
+      {
+        "ticker": "MLM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.086,
+        "new_score": 0.307,
+        "delta": 0.221,
+        "severity": "medium",
+        "message": "MLM \u25b2 macro: 9% \u2192 31% (+22%)"
+      },
+      {
+        "ticker": "TCS.NS",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.429,
+        "new_score": 0.65,
+        "delta": 0.221,
+        "severity": "medium",
+        "message": "TCS.NS \u25b2 value: 43% \u2192 65% (+22%)"
+      },
+      {
+        "ticker": "BLK",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.618,
+        "new_score": 0.839,
+        "delta": 0.221,
+        "severity": "medium",
+        "message": "BLK \u25b2 contrarian: 62% \u2192 84% (+22%)"
+      },
+      {
+        "ticker": "GULF.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.438,
+        "new_score": 0.658,
+        "delta": 0.22,
+        "severity": "medium",
+        "message": "GULF.BK \u25b2 macro: 44% \u2192 66% (+22%)"
+      },
+      {
+        "ticker": "KOID",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.466,
+        "new_score": 0.246,
+        "delta": -0.22,
+        "severity": "medium",
+        "message": "KOID \u25bc mom: 47% \u2192 25% (-22%)"
+      },
+      {
+        "ticker": "BLOK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.54,
+        "new_score": 0.321,
+        "delta": -0.219,
+        "severity": "medium",
+        "message": "BLOK \u25bc mom: 54% \u2192 32% (-22%)"
+      },
+      {
+        "ticker": "GBPUSD=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.944,
+        "delta": 0.219,
+        "severity": "medium",
+        "message": "GBPUSD=X \u25b2 contrarian: 72% \u2192 94% (+22%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.904,
+        "new_score": 0.685,
+        "delta": -0.219,
+        "severity": "medium",
+        "message": "AFRM \u25bc value: 90% \u2192 68% (-22%)"
+      },
+      {
+        "ticker": "QQQ",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.774,
+        "new_score": 0.555,
+        "delta": -0.219,
+        "severity": "medium",
+        "message": "QQQ \u25bc mom: 77% \u2192 56% (-22%)"
+      },
+      {
+        "ticker": "NG=F",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.698,
+        "new_score": 0.481,
+        "delta": -0.217,
+        "severity": "medium",
+        "message": "NG=F \u25bc macro: 70% \u2192 48% (-22%)"
+      },
+      {
+        "ticker": "GILD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.727,
+        "new_score": 0.944,
+        "delta": 0.217,
+        "severity": "medium",
+        "message": "GILD \u25b2 mom: 73% \u2192 94% (+22%)"
+      },
+      {
+        "ticker": "SNDK",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.562,
+        "new_score": 0.345,
+        "delta": -0.217,
+        "severity": "medium",
+        "message": "SNDK \u25bc value: 56% \u2192 34% (-22%)"
+      },
+      {
+        "ticker": "RIO",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.787,
+        "new_score": 0.571,
+        "delta": -0.216,
+        "severity": "medium",
+        "message": "RIO \u25bc longterm: 79% \u2192 57% (-22%)"
+      },
+      {
+        "ticker": "WELL",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.519,
+        "new_score": 0.735,
+        "delta": 0.216,
+        "severity": "medium",
+        "message": "WELL \u25b2 mom: 52% \u2192 74% (+22%)"
+      },
+      {
+        "ticker": "FXY",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.941,
+        "delta": 0.216,
+        "severity": "medium",
+        "message": "FXY \u25b2 contrarian: 72% \u2192 94% (+22%)"
+      },
+      {
+        "ticker": "USDJPY=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.935,
+        "new_score": 0.72,
+        "delta": -0.215,
+        "severity": "medium",
+        "message": "USDJPY=X \u25bc contrarian: 94% \u2192 72% (-22%)"
+      },
+      {
+        "ticker": "KMI",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.546,
+        "new_score": 0.76,
+        "delta": 0.214,
+        "severity": "medium",
+        "message": "KMI \u25b2 mom: 55% \u2192 76% (+21%)"
+      },
+      {
+        "ticker": "WMB",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.493,
+        "new_score": 0.707,
+        "delta": 0.214,
+        "severity": "medium",
+        "message": "WMB \u25b2 mom: 49% \u2192 71% (+21%)"
+      },
+      {
+        "ticker": "IHI",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.309,
+        "new_score": 0.523,
+        "delta": 0.214,
+        "severity": "medium",
+        "message": "IHI \u25b2 mom: 31% \u2192 52% (+21%)"
+      },
+      {
+        "ticker": "CGNX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.677,
+        "new_score": 0.464,
+        "delta": -0.213,
+        "severity": "medium",
+        "message": "CGNX \u25bc mom: 68% \u2192 46% (-21%)"
+      },
+      {
+        "ticker": "IHE",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.644,
+        "new_score": 0.857,
+        "delta": 0.213,
+        "severity": "medium",
+        "message": "IHE \u25b2 mom: 64% \u2192 86% (+21%)"
+      },
+      {
+        "ticker": "AMLP",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.938,
+        "delta": 0.213,
+        "severity": "medium",
+        "message": "AMLP \u25b2 contrarian: 72% \u2192 94% (+21%)"
+      },
+      {
+        "ticker": "QUBT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.291,
+        "new_score": 0.078,
+        "delta": -0.213,
+        "severity": "medium",
+        "message": "QUBT \u25bc mom: 29% \u2192 8% (-21%)"
+      },
+      {
+        "ticker": "GLW",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.364,
+        "new_score": 0.152,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "GLW \u25bc macro: 36% \u2192 15% (-21%)"
+      },
+      {
+        "ticker": "ANET",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.498,
+        "new_score": 0.286,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "ANET \u25bc value: 50% \u2192 29% (-21%)"
+      },
+      {
+        "ticker": "TSM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.802,
+        "new_score": 0.59,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "TSM \u25bc macro: 80% \u2192 59% (-21%)"
+      },
+      {
+        "ticker": "MSFT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.855,
+        "new_score": 0.643,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "MSFT \u25bc contrarian: 86% \u2192 64% (-21%)"
+      },
+      {
+        "ticker": "IGV",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.932,
+        "new_score": 0.72,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "IGV \u25bc contrarian: 93% \u2192 72% (-21%)"
+      },
+      {
+        "ticker": "ARKX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.861,
+        "new_score": 0.649,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "ARKX \u25bc contrarian: 86% \u2192 65% (-21%)"
+      },
+      {
+        "ticker": "GOOGL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.464,
+        "new_score": 0.252,
+        "delta": -0.212,
+        "severity": "medium",
+        "message": "GOOGL \u25bc contrarian: 46% \u2192 25% (-21%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.745,
+        "new_score": 0.956,
+        "delta": 0.211,
+        "severity": "medium",
+        "message": "LLY \u25b2 mom: 74% \u2192 96% (+21%)"
+      },
+      {
+        "ticker": "GPN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.609,
+        "new_score": 0.82,
+        "delta": 0.211,
+        "severity": "medium",
+        "message": "GPN \u25b2 contrarian: 61% \u2192 82% (+21%)"
+      },
+      {
+        "ticker": "FTNT",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.329,
+        "new_score": 0.118,
+        "delta": -0.211,
+        "severity": "medium",
+        "message": "FTNT \u25bc value: 33% \u2192 12% (-21%)"
+      },
+      {
+        "ticker": "NOC",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.306,
+        "new_score": 0.517,
+        "delta": 0.211,
+        "severity": "medium",
+        "message": "NOC \u25b2 value: 31% \u2192 52% (+21%)"
+      },
+      {
+        "ticker": "IGF",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.935,
+        "delta": 0.21,
+        "severity": "medium",
+        "message": "IGF \u25b2 contrarian: 72% \u2192 94% (+21%)"
+      },
+      {
+        "ticker": "FN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.234,
+        "new_score": 0.025,
+        "delta": -0.209,
+        "severity": "medium",
+        "message": "FN \u25bc mom: 23% \u2192 2% (-21%)"
+      },
+      {
+        "ticker": "GULF.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.43,
+        "new_score": 0.639,
+        "delta": 0.209,
+        "severity": "medium",
+        "message": "GULF.BK \u25b2 mom: 43% \u2192 64% (+21%)"
+      },
+      {
+        "ticker": "GD",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.648,
+        "new_score": 0.857,
+        "delta": 0.209,
+        "severity": "medium",
+        "message": "GD \u25b2 value: 65% \u2192 86% (+21%)"
+      },
+      {
+        "ticker": "RIO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.423,
+        "new_score": 0.214,
+        "delta": -0.209,
+        "severity": "medium",
+        "message": "RIO \u25bc macro: 42% \u2192 21% (-21%)"
+      },
+      {
+        "ticker": "FCG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.53,
+        "new_score": 0.739,
+        "delta": 0.209,
+        "severity": "medium",
+        "message": "FCG \u25b2 macro: 53% \u2192 74% (+21%)"
+      },
+      {
+        "ticker": "COR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.561,
+        "new_score": 0.769,
+        "delta": 0.208,
+        "severity": "medium",
+        "message": "COR \u25b2 mom: 56% \u2192 77% (+21%)"
+      },
+      {
+        "ticker": "FLEX",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.484,
+        "new_score": 0.276,
+        "delta": -0.208,
+        "severity": "medium",
+        "message": "FLEX \u25bc value: 48% \u2192 28% (-21%)"
+      },
+      {
+        "ticker": "JNJ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.621,
+        "new_score": 0.829,
+        "delta": 0.208,
+        "severity": "medium",
+        "message": "JNJ \u25b2 contrarian: 62% \u2192 83% (+21%)"
+      },
+      {
+        "ticker": "CRH",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.042,
+        "new_score": 0.249,
+        "delta": 0.207,
+        "severity": "medium",
+        "message": "CRH \u25b2 mom: 4% \u2192 25% (+21%)"
+      },
+      {
+        "ticker": "BZ=F",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.932,
+        "delta": 0.207,
+        "severity": "medium",
+        "message": "BZ=F \u25b2 contrarian: 72% \u2192 93% (+21%)"
+      },
+      {
+        "ticker": "FIX",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.438,
+        "new_score": 0.232,
+        "delta": -0.206,
+        "severity": "medium",
+        "message": "FIX \u25bc value: 44% \u2192 23% (-21%)"
+      },
+      {
+        "ticker": "CL=F",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.692,
+        "new_score": 0.898,
+        "delta": 0.206,
+        "severity": "medium",
+        "message": "CL=F \u25b2 contrarian: 69% \u2192 90% (+21%)"
+      },
+      {
+        "ticker": "BTC-USD",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.926,
+        "new_score": 0.72,
+        "delta": -0.206,
+        "severity": "medium",
+        "message": "BTC-USD \u25bc contrarian: 93% \u2192 72% (-21%)"
+      },
+      {
+        "ticker": "PNR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.024,
+        "new_score": 0.23,
+        "delta": 0.206,
+        "severity": "medium",
+        "message": "PNR \u25b2 macro: 2% \u2192 23% (+21%)"
+      },
+      {
+        "ticker": "INFY",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.233,
+        "new_score": 0.438,
+        "delta": 0.205,
+        "severity": "medium",
+        "message": "INFY \u25b2 value: 23% \u2192 44% (+20%)"
+      },
+      {
+        "ticker": "O",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.11,
+        "new_score": 0.315,
+        "delta": 0.205,
+        "severity": "medium",
+        "message": "O \u25b2 mom: 11% \u2192 32% (+20%)"
+      },
+      {
+        "ticker": "TT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.589,
+        "new_score": 0.385,
+        "delta": -0.204,
+        "severity": "medium",
+        "message": "TT \u25bc contrarian: 59% \u2192 38% (-20%)"
+      },
+      {
+        "ticker": "MAGS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.783,
+        "new_score": 0.579,
+        "delta": -0.204,
+        "severity": "medium",
+        "message": "MAGS \u25bc mom: 78% \u2192 58% (-20%)"
+      },
+      {
+        "ticker": "SCCO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.583,
+        "new_score": 0.379,
+        "delta": -0.204,
+        "severity": "medium",
+        "message": "SCCO \u25bc contrarian: 58% \u2192 38% (-20%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.695,
+        "new_score": 0.898,
+        "delta": 0.203,
+        "severity": "medium",
+        "message": "VRTX \u25b2 macro: 70% \u2192 90% (+20%)"
+      },
+      {
+        "ticker": "FIX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.361,
+        "new_score": 0.158,
+        "delta": -0.203,
+        "severity": "medium",
+        "message": "FIX \u25bc contrarian: 36% \u2192 16% (-20%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.781,
+        "new_score": 0.578,
+        "delta": -0.203,
+        "severity": "medium",
+        "message": "NVDA \u25bc macro: 78% \u2192 58% (-20%)"
+      },
+      {
+        "ticker": "MCK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.648,
+        "new_score": 0.851,
+        "delta": 0.203,
+        "severity": "medium",
+        "message": "MCK \u25b2 macro: 65% \u2192 85% (+20%)"
+      },
+      {
+        "ticker": "COPX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.623,
+        "new_score": 0.421,
+        "delta": -0.202,
+        "severity": "medium",
+        "message": "COPX \u25bc mom: 62% \u2192 42% (-20%)"
+      },
+      {
+        "ticker": "VMC",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.384,
+        "new_score": 0.586,
+        "delta": 0.202,
+        "severity": "medium",
+        "message": "VMC \u25b2 value: 38% \u2192 59% (+20%)"
+      },
+      {
+        "ticker": "CLS",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.493,
+        "new_score": 0.291,
+        "delta": -0.202,
+        "severity": "medium",
+        "message": "CLS \u25bc value: 49% \u2192 29% (-20%)"
+      },
+      {
+        "ticker": "LNG",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.68,
+        "new_score": 0.882,
+        "delta": 0.202,
+        "severity": "medium",
+        "message": "LNG \u25b2 contrarian: 68% \u2192 88% (+20%)"
+      },
+      {
+        "ticker": "NVDA",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.941,
+        "new_score": 0.739,
+        "delta": -0.202,
+        "severity": "medium",
+        "message": "NVDA \u25bc value: 94% \u2192 74% (-20%)"
+      },
+      {
+        "ticker": "TM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.285,
+        "new_score": 0.486,
+        "delta": 0.201,
+        "severity": "medium",
+        "message": "TM \u25b2 mom: 28% \u2192 49% (+20%)"
+      },
+      {
+        "ticker": "FLR",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.518,
+        "new_score": 0.317,
+        "delta": -0.201,
+        "severity": "medium",
+        "message": "FLR \u25bc macro: 52% \u2192 32% (-20%)"
+      },
+      {
+        "ticker": "MLPX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.47,
+        "new_score": 0.671,
+        "delta": 0.201,
+        "severity": "medium",
+        "message": "MLPX \u25b2 macro: 47% \u2192 67% (+20%)"
+      },
+      {
+        "ticker": "AMLP",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.487,
+        "new_score": 0.688,
+        "delta": 0.201,
+        "severity": "medium",
+        "message": "AMLP \u25b2 mom: 49% \u2192 69% (+20%)"
+      },
+      {
+        "ticker": "AIQ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.92,
+        "new_score": 0.72,
+        "delta": -0.2,
+        "severity": "medium",
+        "message": "AIQ \u25bc contrarian: 92% \u2192 72% (-20%)"
+      },
+      {
+        "ticker": "XHE",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.925,
+        "delta": 0.2,
+        "severity": "medium",
+        "message": "XHE \u25b2 contrarian: 72% \u2192 92% (+20%)"
+      },
+      {
+        "ticker": "CPN.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.334,
+        "new_score": 0.534,
+        "delta": 0.2,
+        "severity": "medium",
+        "message": "CPN.BK \u25b2 macro: 33% \u2192 53% (+20%)"
+      },
+      {
+        "ticker": "PSX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.902,
+        "new_score": 0.702,
+        "delta": -0.2,
+        "severity": "medium",
+        "message": "PSX \u25bc contrarian: 90% \u2192 70% (-20%)"
+      },
+      {
+        "ticker": "SWKS",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.717,
+        "new_score": 0.916,
+        "delta": 0.199,
+        "severity": "medium",
+        "message": "SWKS \u25b2 value: 72% \u2192 92% (+20%)"
+      },
+      {
+        "ticker": "IBN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.479,
+        "new_score": 0.677,
+        "delta": 0.198,
+        "severity": "medium",
+        "message": "IBN \u25b2 contrarian: 48% \u2192 68% (+20%)"
+      },
+      {
+        "ticker": "AMD",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.462,
+        "new_score": 0.264,
+        "delta": -0.198,
+        "severity": "medium",
+        "message": "AMD \u25bc contrarian: 46% \u2192 26% (-20%)"
+      },
+      {
+        "ticker": "VNQ",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.922,
+        "delta": 0.197,
+        "severity": "medium",
+        "message": "VNQ \u25b2 contrarian: 72% \u2192 92% (+20%)"
+      },
+      {
+        "ticker": "SMCI",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.935,
+        "new_score": 0.738,
+        "delta": -0.197,
+        "severity": "medium",
+        "message": "SMCI \u25bc mom: 94% \u2192 74% (-20%)"
+      },
+      {
+        "ticker": "SOL-USD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.938,
+        "new_score": 0.741,
+        "delta": -0.197,
+        "severity": "medium",
+        "message": "SOL-USD \u25bc mom: 94% \u2192 74% (-20%)"
+      },
+      {
+        "ticker": "META",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.725,
+        "new_score": 0.528,
+        "delta": -0.197,
+        "severity": "medium",
+        "message": "META \u25bc macro: 72% \u2192 53% (-20%)"
+      },
+      {
+        "ticker": "COHR",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.379,
+        "new_score": 0.182,
+        "delta": -0.197,
+        "severity": "medium",
+        "message": "COHR \u25bc value: 38% \u2192 18% (-20%)"
+      },
+      {
+        "ticker": "JD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.383,
+        "new_score": 0.187,
+        "delta": -0.196,
+        "severity": "medium",
+        "message": "JD \u25bc mom: 38% \u2192 19% (-20%)"
+      },
+      {
+        "ticker": "EW",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.559,
+        "new_score": 0.755,
+        "delta": 0.196,
+        "severity": "medium",
+        "message": "EW \u25b2 macro: 56% \u2192 76% (+20%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.521,
+        "new_score": 0.717,
+        "delta": 0.196,
+        "severity": "medium",
+        "message": "VRTX \u25b2 contrarian: 52% \u2192 72% (+20%)"
+      },
+      {
+        "ticker": "GRID",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.494,
+        "new_score": 0.298,
+        "delta": -0.196,
+        "severity": "medium",
+        "message": "GRID \u25bc macro: 49% \u2192 30% (-20%)"
+      },
+      {
+        "ticker": "FN",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.263,
+        "new_score": 0.068,
+        "delta": -0.195,
+        "severity": "medium",
+        "message": "FN \u25bc longterm: 26% \u2192 7% (-20%)"
+      },
+      {
+        "ticker": "META",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.586,
+        "new_score": 0.391,
+        "delta": -0.195,
+        "severity": "medium",
+        "message": "META \u25bc contrarian: 59% \u2192 39% (-19%)"
+      },
+      {
+        "ticker": "ROBO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.888,
+        "new_score": 0.693,
+        "delta": -0.195,
+        "severity": "medium",
+        "message": "ROBO \u25bc contrarian: 89% \u2192 69% (-20%)"
+      },
+      {
+        "ticker": "XSD",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.781,
+        "new_score": 0.587,
+        "delta": -0.194,
+        "severity": "medium",
+        "message": "XSD \u25bc longterm: 78% \u2192 59% (-19%)"
+      },
+      {
+        "ticker": "CSCO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.864,
+        "new_score": 0.67,
+        "delta": -0.194,
+        "severity": "medium",
+        "message": "CSCO \u25bc mom: 86% \u2192 67% (-19%)"
+      },
+      {
+        "ticker": "CRCL",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.352,
+        "new_score": 0.158,
+        "delta": -0.194,
+        "severity": "medium",
+        "message": "CRCL \u25bc macro: 35% \u2192 16% (-19%)"
+      },
+      {
+        "ticker": "MLM",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.279,
+        "new_score": 0.473,
+        "delta": 0.194,
+        "severity": "medium",
+        "message": "MLM \u25b2 value: 28% \u2192 47% (+19%)"
+      },
+      {
+        "ticker": "TCS.NS",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.219,
+        "new_score": 0.413,
+        "delta": 0.194,
+        "severity": "medium",
+        "message": "TCS.NS \u25b2 contrarian: 22% \u2192 41% (+19%)"
+      },
+      {
+        "ticker": "IYR",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.919,
+        "delta": 0.194,
+        "severity": "medium",
+        "message": "IYR \u25b2 contrarian: 72% \u2192 92% (+19%)"
+      },
+      {
+        "ticker": "MDT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.518,
+        "new_score": 0.711,
+        "delta": 0.193,
+        "severity": "medium",
+        "message": "MDT \u25b2 contrarian: 52% \u2192 71% (+19%)"
+      },
+      {
+        "ticker": "NEM",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.863,
+        "new_score": 0.67,
+        "delta": -0.193,
+        "severity": "medium",
+        "message": "NEM \u25bc value: 86% \u2192 67% (-19%)"
+      },
+      {
+        "ticker": "GOLD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.445,
+        "new_score": 0.252,
+        "delta": -0.193,
+        "severity": "medium",
+        "message": "GOLD \u25bc mom: 44% \u2192 25% (-19%)"
+      },
+      {
+        "ticker": "SI=F",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.491,
+        "new_score": 0.298,
+        "delta": -0.193,
+        "severity": "medium",
+        "message": "SI=F \u25bc longterm: 49% \u2192 30% (-19%)"
+      },
+      {
+        "ticker": "CSCO",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.744,
+        "new_score": 0.552,
+        "delta": -0.192,
+        "severity": "medium",
+        "message": "CSCO \u25bc value: 74% \u2192 55% (-19%)"
+      },
+      {
+        "ticker": "ON",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.335,
+        "new_score": 0.143,
+        "delta": -0.192,
+        "severity": "medium",
+        "message": "ON \u25bc mom: 34% \u2192 14% (-19%)"
+      },
+      {
+        "ticker": "INDY",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.246,
+        "new_score": 0.438,
+        "delta": 0.192,
+        "severity": "medium",
+        "message": "INDY \u25b2 macro: 25% \u2192 44% (+19%)"
+      },
+      {
+        "ticker": "ENPH",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.26,
+        "new_score": 0.068,
+        "delta": -0.192,
+        "severity": "medium",
+        "message": "ENPH \u25bc macro: 26% \u2192 7% (-19%)"
+      },
+      {
+        "ticker": "XLV",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.718,
+        "new_score": 0.91,
+        "delta": 0.192,
+        "severity": "medium",
+        "message": "XLV \u25b2 mom: 72% \u2192 91% (+19%)"
+      },
+      {
+        "ticker": "FCG",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.654,
+        "new_score": 0.845,
+        "delta": 0.191,
+        "severity": "medium",
+        "message": "FCG \u25b2 longterm: 65% \u2192 84% (+19%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.902,
+        "new_score": 0.711,
+        "delta": -0.191,
+        "severity": "medium",
+        "message": "AFRM \u25bc macro: 90% \u2192 71% (-19%)"
+      },
+      {
+        "ticker": "AFRM",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.657,
+        "new_score": 0.466,
+        "delta": -0.191,
+        "severity": "medium",
+        "message": "AFRM \u25bc contrarian: 66% \u2192 47% (-19%)"
+      },
+      {
+        "ticker": "QQQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.778,
+        "new_score": 0.587,
+        "delta": -0.191,
+        "severity": "medium",
+        "message": "QQQ \u25bc macro: 78% \u2192 59% (-19%)"
+      },
+      {
+        "ticker": "SONY",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.672,
+        "new_score": 0.863,
+        "delta": 0.191,
+        "severity": "medium",
+        "message": "SONY \u25b2 macro: 67% \u2192 86% (+19%)"
+      },
+      {
+        "ticker": "J",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.642,
+        "new_score": 0.832,
+        "delta": 0.19,
+        "severity": "medium",
+        "message": "J \u25b2 macro: 64% \u2192 83% (+19%)"
+      },
+      {
+        "ticker": "VMC",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.254,
+        "new_score": 0.444,
+        "delta": 0.19,
+        "severity": "medium",
+        "message": "VMC \u25b2 contrarian: 25% \u2192 44% (+19%)"
+      },
+      {
+        "ticker": "ETN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.556,
+        "new_score": 0.366,
+        "delta": -0.19,
+        "severity": "medium",
+        "message": "ETN \u25bc contrarian: 56% \u2192 37% (-19%)"
+      },
+      {
+        "ticker": "GLW",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.326,
+        "new_score": 0.137,
+        "delta": -0.189,
+        "severity": "medium",
+        "message": "GLW \u25bc mom: 33% \u2192 14% (-19%)"
+      },
+      {
+        "ticker": "ARKQ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.459,
+        "new_score": 0.27,
+        "delta": -0.189,
+        "severity": "medium",
+        "message": "ARKQ \u25bc macro: 46% \u2192 27% (-19%)"
+      },
+      {
+        "ticker": "WIT",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.115,
+        "new_score": 0.304,
+        "delta": 0.189,
+        "severity": "medium",
+        "message": "WIT \u25b2 contrarian: 12% \u2192 30% (+19%)"
+      },
+      {
+        "ticker": "SCCO",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.667,
+        "new_score": 0.478,
+        "delta": -0.189,
+        "severity": "medium",
+        "message": "SCCO \u25bc value: 67% \u2192 48% (-19%)"
+      },
+      {
+        "ticker": "TSM",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.799,
+        "new_score": 0.611,
+        "delta": -0.188,
+        "severity": "medium",
+        "message": "TSM \u25bc value: 80% \u2192 61% (-19%)"
+      },
+      {
+        "ticker": "INDY",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.208,
+        "new_score": 0.396,
+        "delta": 0.188,
+        "severity": "medium",
+        "message": "INDY \u25b2 mom: 21% \u2192 40% (+19%)"
+      },
+      {
+        "ticker": "AOT.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.436,
+        "new_score": 0.623,
+        "delta": 0.187,
+        "severity": "medium",
+        "message": "AOT.BK \u25b2 mom: 44% \u2192 62% (+19%)"
+      },
+      {
+        "ticker": "ADC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.104,
+        "new_score": 0.29,
+        "delta": 0.186,
+        "severity": "medium",
+        "message": "ADC \u25b2 mom: 10% \u2192 29% (+19%)"
+      },
+      {
+        "ticker": "IGF",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.302,
+        "new_score": 0.488,
+        "delta": 0.186,
+        "severity": "medium",
+        "message": "IGF \u25b2 macro: 30% \u2192 49% (+19%)"
+      },
+      {
+        "ticker": "KMI",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.5,
+        "new_score": 0.686,
+        "delta": 0.186,
+        "severity": "medium",
+        "message": "KMI \u25b2 macro: 50% \u2192 69% (+19%)"
+      },
+      {
+        "ticker": "DELTA.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.255,
+        "new_score": 0.069,
+        "delta": -0.186,
+        "severity": "medium",
+        "message": "DELTA.BK \u25bc mom: 26% \u2192 7% (-19%)"
+      },
+      {
+        "ticker": "ZW=F",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.653,
+        "new_score": 0.467,
+        "delta": -0.186,
+        "severity": "medium",
+        "message": "ZW=F \u25bc mom: 65% \u2192 47% (-19%)"
+      },
+      {
+        "ticker": "GRID",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.899,
+        "new_score": 0.714,
+        "delta": -0.185,
+        "severity": "medium",
+        "message": "GRID \u25bc contrarian: 90% \u2192 71% (-19%)"
+      },
+      {
+        "ticker": "ITA",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.207,
+        "new_score": 0.391,
+        "delta": 0.184,
+        "severity": "medium",
+        "message": "ITA \u25b2 macro: 21% \u2192 39% (+18%)"
+      },
+      {
+        "ticker": "IGF",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.249,
+        "new_score": 0.433,
+        "delta": 0.184,
+        "severity": "medium",
+        "message": "IGF \u25b2 mom: 25% \u2192 43% (+18%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.356,
+        "new_score": 0.172,
+        "delta": -0.184,
+        "severity": "medium",
+        "message": "MRVL \u25bc value: 36% \u2192 17% (-18%)"
+      },
+      {
+        "ticker": "PPA",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.21,
+        "new_score": 0.394,
+        "delta": 0.184,
+        "severity": "medium",
+        "message": "PPA \u25b2 macro: 21% \u2192 39% (+18%)"
+      },
+      {
+        "ticker": "CPN.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.389,
+        "new_score": 0.573,
+        "delta": 0.184,
+        "severity": "medium",
+        "message": "CPN.BK \u25b2 mom: 39% \u2192 57% (+18%)"
+      },
+      {
+        "ticker": "SMCI",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.911,
+        "new_score": 0.727,
+        "delta": -0.184,
+        "severity": "medium",
+        "message": "SMCI \u25bc macro: 91% \u2192 73% (-18%)"
+      },
+      {
+        "ticker": "ROBO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.62,
+        "new_score": 0.436,
+        "delta": -0.184,
+        "severity": "medium",
+        "message": "ROBO \u25bc mom: 62% \u2192 44% (-18%)"
+      },
+      {
+        "ticker": "ECL",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.506,
+        "new_score": 0.689,
+        "delta": 0.183,
+        "severity": "medium",
+        "message": "ECL \u25b2 longterm: 51% \u2192 69% (+18%)"
+      },
+      {
+        "ticker": "MU",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.553,
+        "new_score": 0.37,
+        "delta": -0.183,
+        "severity": "medium",
+        "message": "MU \u25bc contrarian: 55% \u2192 37% (-18%)"
+      },
+      {
+        "ticker": "TT",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.68,
+        "new_score": 0.498,
+        "delta": -0.182,
+        "severity": "medium",
+        "message": "TT \u25bc value: 68% \u2192 50% (-18%)"
+      },
+      {
+        "ticker": "EQT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.275,
+        "new_score": 0.457,
+        "delta": 0.182,
+        "severity": "medium",
+        "message": "EQT \u25b2 macro: 28% \u2192 46% (+18%)"
+      },
+      {
+        "ticker": "PTTEP.BK",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.907,
+        "delta": 0.182,
+        "severity": "medium",
+        "message": "PTTEP.BK \u25b2 contrarian: 72% \u2192 91% (+18%)"
+      },
+      {
+        "ticker": "AUDUSD=X",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.407,
+        "new_score": 0.589,
+        "delta": 0.182,
+        "severity": "medium",
+        "message": "AUDUSD=X \u25b2 mom: 41% \u2192 59% (+18%)"
+      },
+      {
+        "ticker": "RKLB",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.3,
+        "new_score": 0.118,
+        "delta": -0.182,
+        "severity": "medium",
+        "message": "RKLB \u25bc mom: 30% \u2192 12% (-18%)"
+      },
+      {
+        "ticker": "INFY.NS",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.347,
+        "new_score": 0.527,
+        "delta": 0.18,
+        "severity": "medium",
+        "message": "INFY.NS \u25b2 value: 35% \u2192 53% (+18%)"
+      },
+      {
+        "ticker": "SCC.BK",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.932,
+        "new_score": 0.754,
+        "delta": -0.178,
+        "severity": "medium",
+        "message": "SCC.BK \u25bc value: 93% \u2192 75% (-18%)"
+      },
+      {
+        "ticker": "AMGN",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.76,
+        "new_score": 0.938,
+        "delta": 0.178,
+        "severity": "medium",
+        "message": "AMGN \u25b2 macro: 76% \u2192 94% (+18%)"
+      },
+      {
+        "ticker": "JNJ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.645,
+        "new_score": 0.823,
+        "delta": 0.178,
+        "severity": "medium",
+        "message": "JNJ \u25b2 macro: 64% \u2192 82% (+18%)"
+      },
+      {
+        "ticker": "SLV",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.467,
+        "new_score": 0.289,
+        "delta": -0.178,
+        "severity": "medium",
+        "message": "SLV \u25bc longterm: 47% \u2192 29% (-18%)"
+      },
+      {
+        "ticker": "AVGO",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.379,
+        "new_score": 0.202,
+        "delta": -0.177,
+        "severity": "medium",
+        "message": "AVGO \u25bc macro: 38% \u2192 20% (-18%)"
+      },
+      {
+        "ticker": "EW",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.482,
+        "new_score": 0.658,
+        "delta": 0.176,
+        "severity": "medium",
+        "message": "EW \u25b2 contrarian: 48% \u2192 66% (+18%)"
+      },
+      {
+        "ticker": "REET",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.901,
+        "delta": 0.176,
+        "severity": "medium",
+        "message": "REET \u25b2 contrarian: 72% \u2192 90% (+18%)"
+      },
+      {
+        "ticker": "MCK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.724,
+        "new_score": 0.9,
+        "delta": 0.176,
+        "severity": "medium",
+        "message": "MCK \u25b2 mom: 72% \u2192 90% (+18%)"
+      },
+      {
+        "ticker": "NEE",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.169,
+        "new_score": 0.345,
+        "delta": 0.176,
+        "severity": "medium",
+        "message": "NEE \u25b2 macro: 17% \u2192 34% (+18%)"
+      },
+      {
+        "ticker": "ADVANC.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.278,
+        "new_score": 0.453,
+        "delta": 0.175,
+        "severity": "medium",
+        "message": "ADVANC.BK \u25b2 macro: 28% \u2192 45% (+18%)"
+      },
+      {
+        "ticker": "ZC=F",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.604,
+        "new_score": 0.429,
+        "delta": -0.175,
+        "severity": "medium",
+        "message": "ZC=F \u25bc macro: 60% \u2192 43% (-18%)"
+      },
+      {
+        "ticker": "IBM",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.406,
+        "new_score": 0.581,
+        "delta": 0.175,
+        "severity": "medium",
+        "message": "IBM \u25b2 value: 41% \u2192 58% (+17%)"
+      },
+      {
+        "ticker": "J",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.694,
+        "new_score": 0.869,
+        "delta": 0.175,
+        "severity": "medium",
+        "message": "J \u25b2 mom: 69% \u2192 87% (+18%)"
+      },
+      {
+        "ticker": "RIO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.499,
+        "new_score": 0.324,
+        "delta": -0.175,
+        "severity": "medium",
+        "message": "RIO \u25bc mom: 50% \u2192 32% (-18%)"
+      },
+      {
+        "ticker": "XLV",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.71,
+        "new_score": 0.885,
+        "delta": 0.175,
+        "severity": "medium",
+        "message": "XLV \u25b2 macro: 71% \u2192 88% (+18%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.644,
+        "new_score": 0.818,
+        "delta": 0.174,
+        "severity": "medium",
+        "message": "VRTX \u25b2 value: 64% \u2192 82% (+17%)"
+      },
+      {
+        "ticker": "GD",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.359,
+        "new_score": 0.533,
+        "delta": 0.174,
+        "severity": "medium",
+        "message": "GD \u25b2 mom: 36% \u2192 53% (+17%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.553,
+        "new_score": 0.727,
+        "delta": 0.174,
+        "severity": "medium",
+        "message": "VLTO \u25b2 longterm: 55% \u2192 73% (+17%)"
+      },
+      {
+        "ticker": "COST",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.315,
+        "new_score": 0.489,
+        "delta": 0.174,
+        "severity": "medium",
+        "message": "COST \u25b2 mom: 32% \u2192 49% (+17%)"
+      },
+      {
+        "ticker": "ARKG",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.893,
+        "new_score": 0.72,
+        "delta": -0.173,
+        "severity": "medium",
+        "message": "ARKG \u25bc contrarian: 89% \u2192 72% (-17%)"
+      },
+      {
+        "ticker": "VG",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.571,
+        "new_score": 0.744,
+        "delta": 0.173,
+        "severity": "medium",
+        "message": "VG \u25b2 value: 57% \u2192 74% (+17%)"
+      },
+      {
+        "ticker": "ISRG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.332,
+        "new_score": 0.505,
+        "delta": 0.173,
+        "severity": "medium",
+        "message": "ISRG \u25b2 mom: 33% \u2192 50% (+17%)"
+      },
+      {
+        "ticker": "RIO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.527,
+        "new_score": 0.354,
+        "delta": -0.173,
+        "severity": "medium",
+        "message": "RIO \u25bc contrarian: 53% \u2192 35% (-17%)"
+      },
+      {
+        "ticker": "SCCO",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.786,
+        "new_score": 0.614,
+        "delta": -0.172,
+        "severity": "medium",
+        "message": "SCCO \u25bc mom: 79% \u2192 61% (-17%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.662,
+        "new_score": 0.833,
+        "delta": 0.171,
+        "severity": "medium",
+        "message": "LLY \u25b2 value: 66% \u2192 83% (+17%)"
+      },
+      {
+        "ticker": "MRVL",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.959,
+        "new_score": 0.789,
+        "delta": -0.17,
+        "severity": "medium",
+        "message": "MRVL \u25bc macro: 96% \u2192 79% (-17%)"
+      },
+      {
+        "ticker": "PPA",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.166,
+        "new_score": 0.336,
+        "delta": 0.17,
+        "severity": "medium",
+        "message": "PPA \u25b2 mom: 17% \u2192 34% (+17%)"
+      },
+      {
+        "ticker": "ETN",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.653,
+        "new_score": 0.483,
+        "delta": -0.17,
+        "severity": "medium",
+        "message": "ETN \u25bc value: 65% \u2192 48% (-17%)"
+      },
+      {
+        "ticker": "BHP",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.707,
+        "new_score": 0.537,
+        "delta": -0.17,
+        "severity": "medium",
+        "message": "BHP \u25bc macro: 71% \u2192 54% (-17%)"
+      },
+      {
+        "ticker": "CRSP",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.349,
+        "new_score": 0.519,
+        "delta": 0.17,
+        "severity": "medium",
+        "message": "CRSP \u25b2 contrarian: 35% \u2192 52% (+17%)"
+      },
+      {
+        "ticker": "PTT.BK",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.894,
+        "delta": 0.169,
+        "severity": "medium",
+        "message": "PTT.BK \u25b2 contrarian: 72% \u2192 89% (+17%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.586,
+        "new_score": 0.755,
+        "delta": 0.169,
+        "severity": "medium",
+        "message": "AWK \u25b2 longterm: 59% \u2192 76% (+17%)"
+      },
+      {
+        "ticker": "KLAC",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.967,
+        "new_score": 0.798,
+        "delta": -0.169,
+        "severity": "medium",
+        "message": "KLAC \u25bc longterm: 97% \u2192 80% (-17%)"
+      },
+      {
+        "ticker": "NOC",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.163,
+        "new_score": 0.332,
+        "delta": 0.169,
+        "severity": "medium",
+        "message": "NOC \u25b2 contrarian: 16% \u2192 33% (+17%)"
+      },
+      {
+        "ticker": "PYPL",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.621,
+        "new_score": 0.788,
+        "delta": 0.167,
+        "severity": "medium",
+        "message": "PYPL \u25b2 value: 62% \u2192 79% (+17%)"
+      },
+      {
+        "ticker": "IHI",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.675,
+        "new_score": 0.842,
+        "delta": 0.167,
+        "severity": "medium",
+        "message": "IHI \u25b2 contrarian: 68% \u2192 84% (+17%)"
+      },
+      {
+        "ticker": "VG",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.334,
+        "new_score": 0.5,
+        "delta": 0.166,
+        "severity": "medium",
+        "message": "VG \u25b2 contrarian: 33% \u2192 50% (+17%)"
+      },
+      {
+        "ticker": "QUBT",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.287,
+        "new_score": 0.121,
+        "delta": -0.166,
+        "severity": "medium",
+        "message": "QUBT \u25bc macro: 29% \u2192 12% (-17%)"
+      },
+      {
+        "ticker": "META",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.736,
+        "new_score": 0.57,
+        "delta": -0.166,
+        "severity": "medium",
+        "message": "META \u25bc mom: 74% \u2192 57% (-17%)"
+      },
+      {
+        "ticker": "LH.BK",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.199,
+        "new_score": 0.364,
+        "delta": 0.165,
+        "severity": "medium",
+        "message": "LH.BK \u25b2 mom: 20% \u2192 36% (+16%)"
+      },
+      {
+        "ticker": "TSM",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.612,
+        "new_score": 0.447,
+        "delta": -0.165,
+        "severity": "medium",
+        "message": "TSM \u25bc contrarian: 61% \u2192 45% (-16%)"
+      },
+      {
+        "ticker": "CLS",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.317,
+        "new_score": 0.152,
+        "delta": -0.165,
+        "severity": "medium",
+        "message": "CLS \u25bc contrarian: 32% \u2192 15% (-16%)"
+      },
+      {
+        "ticker": "BZ=F",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.698,
+        "new_score": 0.863,
+        "delta": 0.165,
+        "severity": "medium",
+        "message": "BZ=F \u25b2 longterm: 70% \u2192 86% (+17%)"
+      },
+      {
+        "ticker": "O",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.198,
+        "new_score": 0.363,
+        "delta": 0.165,
+        "severity": "medium",
+        "message": "O \u25b2 macro: 20% \u2192 36% (+16%)"
+      },
+      {
+        "ticker": "ITA",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.148,
+        "new_score": 0.312,
+        "delta": 0.164,
+        "severity": "medium",
+        "message": "ITA \u25b2 mom: 15% \u2192 31% (+16%)"
+      },
+      {
+        "ticker": "IHE",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.678,
+        "new_score": 0.842,
+        "delta": 0.164,
+        "severity": "medium",
+        "message": "IHE \u25b2 macro: 68% \u2192 84% (+16%)"
+      },
+      {
+        "ticker": "LH.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.243,
+        "new_score": 0.407,
+        "delta": 0.164,
+        "severity": "medium",
+        "message": "LH.BK \u25b2 macro: 24% \u2192 41% (+16%)"
+      },
+      {
+        "ticker": "GPN",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.299,
+        "new_score": 0.463,
+        "delta": 0.164,
+        "severity": "medium",
+        "message": "GPN \u25b2 longterm: 30% \u2192 46% (+16%)"
+      },
+      {
+        "ticker": "ISRG",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.308,
+        "new_score": 0.472,
+        "delta": 0.164,
+        "severity": "medium",
+        "message": "ISRG \u25b2 macro: 31% \u2192 47% (+16%)"
+      },
+      {
+        "ticker": "BHP",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.706,
+        "new_score": 0.542,
+        "delta": -0.164,
+        "severity": "medium",
+        "message": "BHP \u25bc mom: 71% \u2192 54% (-16%)"
+      },
+      {
+        "ticker": "IBM",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.225,
+        "new_score": 0.388,
+        "delta": 0.163,
+        "severity": "medium",
+        "message": "IBM \u25b2 contrarian: 22% \u2192 39% (+16%)"
+      },
+      {
+        "ticker": "BEAM",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.223,
+        "new_score": 0.386,
+        "delta": 0.163,
+        "severity": "medium",
+        "message": "BEAM \u25b2 mom: 22% \u2192 39% (+16%)"
+      },
+      {
+        "ticker": "XBI",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.888,
+        "delta": 0.163,
+        "severity": "medium",
+        "message": "XBI \u25b2 contrarian: 72% \u2192 89% (+16%)"
+      },
+      {
+        "ticker": "NG=F",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.614,
+        "new_score": 0.452,
+        "delta": -0.162,
+        "severity": "medium",
+        "message": "NG=F \u25bc mom: 61% \u2192 45% (-16%)"
+      },
+      {
+        "ticker": "ILMN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.423,
+        "new_score": 0.261,
+        "delta": -0.162,
+        "severity": "medium",
+        "message": "ILMN \u25bc contrarian: 42% \u2192 26% (-16%)"
+      },
+      {
+        "ticker": "MDT",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.544,
+        "new_score": 0.705,
+        "delta": 0.161,
+        "severity": "medium",
+        "message": "MDT \u25b2 longterm: 54% \u2192 70% (+16%)"
+      },
+      {
+        "ticker": "RGTI",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.211,
+        "new_score": 0.05,
+        "delta": -0.161,
+        "severity": "medium",
+        "message": "RGTI \u25bc mom: 21% \u2192 5% (-16%)"
+      },
+      {
+        "ticker": "JXN",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.885,
+        "delta": 0.16,
+        "severity": "medium",
+        "message": "JXN \u25b2 contrarian: 72% \u2192 88% (+16%)"
+      },
+      {
+        "ticker": "MCK",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.651,
+        "new_score": 0.811,
+        "delta": 0.16,
+        "severity": "medium",
+        "message": "MCK \u25b2 contrarian: 65% \u2192 81% (+16%)"
+      },
+      {
+        "ticker": "OKTA",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.473,
+        "new_score": 0.314,
+        "delta": -0.159,
+        "severity": "medium",
+        "message": "OKTA \u25bc contrarian: 47% \u2192 31% (-16%)"
+      },
+      {
+        "ticker": "BBCA.JK",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.553,
+        "new_score": 0.394,
+        "delta": -0.159,
+        "severity": "medium",
+        "message": "BBCA.JK \u25bc value: 55% \u2192 39% (-16%)"
+      },
+      {
+        "ticker": "FBTC",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.843,
+        "new_score": 0.685,
+        "delta": -0.158,
+        "severity": "medium",
+        "message": "FBTC \u25bc mom: 84% \u2192 68% (-16%)"
+      },
+      {
+        "ticker": "IBIT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.84,
+        "new_score": 0.682,
+        "delta": -0.158,
+        "severity": "medium",
+        "message": "IBIT \u25bc mom: 84% \u2192 68% (-16%)"
+      },
+      {
+        "ticker": "CSCO",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.568,
+        "new_score": 0.41,
+        "delta": -0.158,
+        "severity": "medium",
+        "message": "CSCO \u25bc contrarian: 57% \u2192 41% (-16%)"
+      },
+      {
+        "ticker": "CVS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.547,
+        "new_score": 0.705,
+        "delta": 0.158,
+        "severity": "medium",
+        "message": "CVS \u25b2 macro: 55% \u2192 70% (+16%)"
+      },
+      {
+        "ticker": "FLR",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.817,
+        "new_score": 0.66,
+        "delta": -0.157,
+        "severity": "medium",
+        "message": "FLR \u25bc value: 82% \u2192 66% (-16%)"
+      },
+      {
+        "ticker": "PYPL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.34,
+        "new_score": 0.497,
+        "delta": 0.157,
+        "severity": "medium",
+        "message": "PYPL \u25b2 contrarian: 34% \u2192 50% (+16%)"
+      },
+      {
+        "ticker": "MA",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.734,
+        "new_score": 0.891,
+        "delta": 0.157,
+        "severity": "medium",
+        "message": "MA \u25b2 macro: 73% \u2192 89% (+16%)"
+      },
+      {
+        "ticker": "CCJ",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.334,
+        "new_score": 0.177,
+        "delta": -0.157,
+        "severity": "medium",
+        "message": "CCJ \u25bc longterm: 33% \u2192 18% (-16%)"
+      },
+      {
+        "ticker": "QBTS",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.178,
+        "new_score": 0.022,
+        "delta": -0.156,
+        "severity": "medium",
+        "message": "QBTS \u25bc macro: 18% \u2192 2% (-16%)"
+      },
+      {
+        "ticker": "IBN",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.731,
+        "new_score": 0.887,
+        "delta": 0.156,
+        "severity": "medium",
+        "message": "IBN \u25b2 value: 73% \u2192 89% (+16%)"
+      },
+      {
+        "ticker": "RKLB",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.249,
+        "new_score": 0.093,
+        "delta": -0.156,
+        "severity": "medium",
+        "message": "RKLB \u25bc macro: 25% \u2192 9% (-16%)"
+      },
+      {
+        "ticker": "CRDO",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.352,
+        "new_score": 0.197,
+        "delta": -0.155,
+        "severity": "medium",
+        "message": "CRDO \u25bc value: 35% \u2192 20% (-15%)"
+      },
+      {
+        "ticker": "BOTZ",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.388,
+        "new_score": 0.233,
+        "delta": -0.155,
+        "severity": "medium",
+        "message": "BOTZ \u25bc macro: 39% \u2192 23% (-16%)"
+      },
+      {
+        "ticker": "XSD",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.689,
+        "new_score": 0.534,
+        "delta": -0.155,
+        "severity": "medium",
+        "message": "XSD \u25bc contrarian: 69% \u2192 53% (-15%)"
+      },
+      {
+        "ticker": "FINX",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.512,
+        "new_score": 0.357,
+        "delta": -0.155,
+        "severity": "medium",
+        "message": "FINX \u25bc macro: 51% \u2192 36% (-16%)"
+      },
+      {
+        "ticker": "COST",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.338,
+        "new_score": 0.493,
+        "delta": 0.155,
+        "severity": "medium",
+        "message": "COST \u25b2 value: 34% \u2192 49% (+15%)"
+      },
+      {
+        "ticker": "LLY",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.79,
+        "new_score": 0.944,
+        "delta": 0.154,
+        "severity": "medium",
+        "message": "LLY \u25b2 macro: 79% \u2192 94% (+15%)"
+      },
+      {
+        "ticker": "QBTS",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.163,
+        "new_score": 0.009,
+        "delta": -0.154,
+        "severity": "medium",
+        "message": "QBTS \u25bc mom: 16% \u2192 1% (-15%)"
+      },
+      {
+        "ticker": "EIDO",
+        "type": "move",
+        "sleeve": "quality",
+        "old_score": 0.478,
+        "new_score": 0.324,
+        "delta": -0.154,
+        "severity": "medium",
+        "message": "EIDO \u25bc quality: 48% \u2192 32% (-15%)"
+      },
+      {
+        "ticker": "CPALL.BK",
+        "type": "move",
+        "sleeve": "macro",
+        "old_score": 0.29,
+        "new_score": 0.444,
+        "delta": 0.154,
+        "severity": "medium",
+        "message": "CPALL.BK \u25b2 macro: 29% \u2192 44% (+15%)"
+      },
+      {
+        "ticker": "IPAY",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.725,
+        "new_score": 0.879,
+        "delta": 0.154,
+        "severity": "medium",
+        "message": "IPAY \u25b2 contrarian: 72% \u2192 88% (+15%)"
+      },
+      {
+        "ticker": "FTNT",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.976,
+        "new_score": 0.822,
+        "delta": -0.154,
+        "severity": "medium",
+        "message": "FTNT \u25bc mom: 98% \u2192 82% (-15%)"
+      },
+      {
+        "ticker": "ANET",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.87,
+        "new_score": 0.717,
+        "delta": -0.153,
+        "severity": "medium",
+        "message": "ANET \u25bc longterm: 87% \u2192 72% (-15%)"
+      },
+      {
+        "ticker": "KMI",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.654,
+        "new_score": 0.807,
+        "delta": 0.153,
+        "severity": "medium",
+        "message": "KMI \u25b2 contrarian: 65% \u2192 81% (+15%)"
+      },
+      {
+        "ticker": "COIN",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.415,
+        "new_score": 0.262,
+        "delta": -0.153,
+        "severity": "medium",
+        "message": "COIN \u25bc mom: 42% \u2192 26% (-15%)"
+      },
+      {
+        "ticker": "CRSP",
+        "type": "move",
+        "sleeve": "value",
+        "old_score": 0.758,
+        "new_score": 0.911,
+        "delta": 0.153,
+        "severity": "medium",
+        "message": "CRSP \u25b2 value: 76% \u2192 91% (+15%)"
+      },
+      {
+        "ticker": "VXX",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.018,
+        "new_score": 0.171,
+        "delta": 0.153,
+        "severity": "medium",
+        "message": "VXX \u25b2 mom: 2% \u2192 17% (+15%)"
+      },
+      {
+        "ticker": "CFG",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.368,
+        "new_score": 0.52,
+        "delta": 0.152,
+        "severity": "medium",
+        "message": "CFG \u25b2 mom: 37% \u2192 52% (+15%)"
+      },
+      {
+        "ticker": "ECL",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.488,
+        "new_score": 0.64,
+        "delta": 0.152,
+        "severity": "medium",
+        "message": "ECL \u25b2 contrarian: 49% \u2192 64% (+15%)"
+      },
+      {
+        "ticker": "ICLN",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.453,
+        "new_score": 0.301,
+        "delta": -0.152,
+        "severity": "medium",
+        "message": "ICLN \u25bc longterm: 45% \u2192 30% (-15%)"
+      },
+      {
+        "ticker": "MLPX",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.675,
+        "new_score": 0.826,
+        "delta": 0.151,
+        "severity": "medium",
+        "message": "MLPX \u25b2 longterm: 68% \u2192 83% (+15%)"
+      },
+      {
+        "ticker": "NU",
+        "type": "move",
+        "sleeve": "longterm",
+        "old_score": 0.278,
+        "new_score": 0.127,
+        "delta": -0.151,
+        "severity": "medium",
+        "message": "NU \u25bc longterm: 28% \u2192 13% (-15%)"
+      },
+      {
+        "ticker": "BKR",
+        "type": "move",
+        "sleeve": "mom",
+        "old_score": 0.377,
+        "new_score": 0.227,
+        "delta": -0.15,
+        "severity": "medium",
+        "message": "BKR \u25bc mom: 38% \u2192 23% (-15%)"
+      },
+      {
+        "ticker": "COHR",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.246,
+        "new_score": 0.096,
+        "delta": -0.15,
+        "severity": "medium",
+        "message": "COHR \u25bc contrarian: 25% \u2192 10% (-15%)"
+      }
+    ],
+    "low": []
+  }
+}

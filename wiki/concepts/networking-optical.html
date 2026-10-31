@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Networking &amp; Optical (AI-cluster interconnect) — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Networking &amp; Optical (AI-cluster interconnect)</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="../syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="../syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="../syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="../syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="../syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="../syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="../syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="../syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="../syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="../syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="../syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="../syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="../syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="../syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="../syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="../syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="../syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="../syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="ai-infrastructure.html">AI Infrastructure</a>
+<a href="semiconductors.html">Semiconductors</a>
+<a href="ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="renewables-storage.html">Renewables &amp; Storage</a>
+<a href="natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="data-center-cooling.html">Data-Center Cooling</a>
+<a href="critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="defense-security.html">Defense &amp; Security</a>
+<a href="infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="automation-robotics.html">Automation &amp; Robotics</a>
+<a href="humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="medtech-devices.html">MedTech &amp; Devices</a>
+<a href="biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="fintech-payments.html">Fintech &amp; Payments</a>
+<a href="tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="india-em-growth.html">India &amp; EM Growth</a>
+<a href="japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="us-megacap-quality.html">US Megacap Quality</a>
+<a href="asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="space-economy.html">Space Economy</a>
+<a href="quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">concept</span><span class="stamp">dated 2026-06-01</span><span class="stamp">investing</span><span class="stamp">trend</span><span class="stamp">networking</span><span class="stamp">optical</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="networking-optical-ai-cluster-interconnect">Networking &amp; Optical (AI-cluster interconnect)</h1>
+<p><strong>Definition:</strong> The interconnect fabric that wires AI accelerators into a single training/<br />
+inference cluster — high-radix switches (Ethernet/InfiniBand), optical transceivers (800G→1.6T),<br />
+DSP/retimer silicon, and emerging co-packaged optics (CPO). As GPU counts per cluster explode,<br />
+interconnect bandwidth becomes the binding scaling constraint, making this the highest-growth<br />
+sub-layer <em>within</em> the AI buildout. The <strong>higher-beta expression of <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a></strong>.<br />
+Conviction 4 on the <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>.</p>
+<blockquote>
+<p>Research/insight only — no buy/sell advice. Figures tagged (fact)/(est.)/(inference) with<br />
+period + source. "n/f" = no reliable figure found.</p>
+</blockquote>
+<hr />
+<h2 id="1-definition-scope">1. Definition &amp; scope</h2>
+<p>Switch systems, switch/connectivity silicon, and optical components/modules connecting AI<br />
+accelerators. Scope spans the GPU-attached fabric (NVIDIA NVLink/InfiniBand/Spectrum-X), merchant<br />
+switch ASICs (Broadcom), optical modules (Coherent, Lumentum, InnoLight), DSP/retimers (Marvell,<br />
+Credo), and contract optical manufacturing (Fabrinet, Celestica).</p>
+<h2 id="2-market-size-growth">2. Market size &amp; growth</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Period / base</th>
+<th>Source</th>
+<th>Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA DC networking revenue</td>
+<td><strong>~$14.8B/qtr, +199% YoY, +35% QoQ</strong></td>
+<td>Q1 FY27 (qtr ended Apr 26 2026)</td>
+<td>NVIDIA 8-K</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>NVIDIA DC networking (annual)</td>
+<td><strong>+142% YoY</strong></td>
+<td>FY2026</td>
+<td>NVIDIA</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>800G+ transceiver shipments</td>
+<td><strong>~24M → ~63M units (~2.6x)</strong></td>
+<td>2025 → 2026</td>
+<td>TrendForce</td>
+<td>(est.)</td>
+</tr>
+<tr>
+<td>Arista AI-fabric revenue</td>
+<td><strong>target raised to $3.5B</strong> (from $3.25B)</td>
+<td>FY2026</td>
+<td>ANET Q1 2026</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Arista total revenue</td>
+<td><strong>~$11.5B guide, +27.7%</strong></td>
+<td>FY2026</td>
+<td>ANET Q1 2026</td>
+<td>(fact)</td>
+</tr>
+<tr>
+<td>Cumulative hyperscaler capex</td>
+<td><strong>~$1.15T</strong> (&gt;2x 2022–24's $477B)</td>
+<td>2025–2027</td>
+<td>Goldman</td>
+<td>(est.)</td>
+</tr>
+</tbody>
+</table>
+<p>Networking is growing <em>faster</em> than compute: DC networking +199% YoY vs DC compute +~77% YoY (Q1<br />
+FY27). The 1.6T transition is the named near-term catalyst (Lumentum, fact).</p>
+<h2 id="3-key-structural-drivers">3. Key structural drivers</h2>
+<p><strong>Demand side</strong><br />
+- GPU cluster scale-up: each NVIDIA rack needs InfiniBand/Spectrum-X Ethernet + NVLink (fact).<br />
+- Cisco AI-infrastructure orders from hyperscalers raised to <strong>$9B FY2026</strong> (from $5B); $5.3B<br />
+  booked YTD; DC switching orders +40% YoY (fact, Q3 FY26).<br />
+- Arista AI-fabric demand doubling annually (fact).</p>
+<p><strong>Supply side</strong><br />
+- Optical-component ramp: Coherent Datacenter &amp; Comms rev $1.2B/qtr +33.6% YoY (fact, Q2 FY26);<br />
+  Lumentum +58% YoY, GM rising 28%→34%, targeting &gt;$600M/qtr by Jun 2026 (fact).<br />
+- Fabrinet (contract optical mfg) Q1 FY26 rev $978M vs $804M YoY (fact).<br />
+- Marvell custom DSP/interconnect + <strong>Celestial AI acquisition (~$3.25B upfront, up to +$2.25B<br />
+  contingent)</strong> to accelerate scale-up/optical roadmap (fact, Dec 2025).<br />
+- Credo (active electrical cables/retimers) + DustPhotonics → &gt;$500M optical revenue guided<br />
+  FY2027 (fact). CPO and optical circuit switches the next leg (still early).</p>
+<h2 id="4-value-chain-linkage">4. Value-chain / linkage</h2>
+<p>Upstream lasers/photonic chips + DSP/SerDes IP + foundry → <strong>connectivity silicon</strong> (Broadcom<br />
+Tomahawk/Jericho switch ASICs, Marvell DSPs, Credo retimers) → <strong>optical components/modules</strong><br />
+(Coherent, Lumentum, InnoLight) → <strong>contract manufacturing</strong> (Fabrinet, Celestica) → <strong>switch<br />
+systems</strong> (Arista, Cisco, NVIDIA) → <strong>AI clusters</strong>. Adjacent: <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a> (the compute<br />
+it connects), <a class="wikilink" href="semiconductors.html">semiconductors</a> (switch ASICs, DSP/SerDes), <a class="wikilink" href="critical-minerals.html">critical-minerals</a> (China optical<br />
+supply concentration / geopolitics).</p>
+<h2 id="5-competitive-landscape">5. Competitive landscape</h2>
+<ul>
+<li><strong>Switch silicon: concentrated</strong> — Broadcom (merchant switch ASICs) dominant; NVIDIA captures<br />
+  the GPU-attached fabric (InfiniBand + Spectrum-X) by bundling; Marvell in custom/DSP.</li>
+<li><strong>Switch systems:</strong> Arista + Cisco + NVIDIA the leaders; Arista the AI-Ethernet share winner at<br />
+  hyperscalers, Cisco re-accelerating via hyperscaler orders.</li>
+<li><strong>Optical components: fragmenting &amp; competitive</strong> — Western names (Coherent, Lumentum) compete<br />
+  with Chinese module makers (InnoLight et al., reportedly 7 of top-10 module seats), but<br />
+  chip/silicon vendors capture the durable margin ("Chinese modules own the seats, chip companies<br />
+  make the money" — est.).</li>
+<li><strong>Moats:</strong> switch ASIC IP + software (Broadcom, Arista EOS); laser/photonics process know-how<br />
+  (Coherent, Lumentum); DSP/SerDes IP at advancing speeds (Marvell, Credo).</li>
+<li><strong>Margin map:</strong> software-rich switch systems ~62% GM (Arista); merchant connectivity silicon high<br />
+  (~78% Broadcom); optical modules structurally lower but rising (Lumentum GM ~34% and climbing).</li>
+</ul>
+<h2 id="6-major-global-players-comparative-table">6. Major global players — comparative table</h2>
+<p>Market caps late-May/1-Jun-2026 (est.). Other figures (fact) unless tagged. "n/f" = none found.</p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Geo</th>
+<th>Segment/role</th>
+<th>Mkt cap (as-of)</th>
+<th>Revenue (period)</th>
+<th>Rev YoY</th>
+<th>Gross margin</th>
+<th>Profitability</th>
+<th>Valuation (fwd)</th>
+<th>Moat note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista Networks</td>
+<td>ANET</td>
+<td>US</td>
+<td>AI-Ethernet switches/systems</td>
+<td>$185.2B (4 May 26)</td>
+<td>$2.71B (Q1 26); ~$11.5B FY26</td>
+<td>+35.1%</td>
+<td>62.4% non-GAAP</td>
+<td>net inc $1.02B (Q1)</td>
+<td>P/E ~42–44</td>
+<td>EOS software + AI-fabric share at hyperscalers</td>
+</tr>
+<tr>
+<td>Broadcom</td>
+<td>AVGO</td>
+<td>US</td>
+<td>Switch ASICs + optical DSP</td>
+<td>~$2.1T (May 26)</td>
+<td>$64B (FY25)</td>
+<td>+24%</td>
+<td>77.9% (Q4)</td>
+<td>net debt (inf.)</td>
+<td>P/E ~37–60</td>
+<td>Merchant switch-silicon dominance</td>
+</tr>
+<tr>
+<td>Cisco</td>
+<td>CSCO</td>
+<td>US</td>
+<td>Networking systems + AI infra</td>
+<td>n/f</td>
+<td>$15.8B (Q3 FY26)</td>
+<td>+12%</td>
+<td>66.0% non-GAAP</td>
+<td>net cash (inf.)</td>
+<td>n/f</td>
+<td>Installed base; $9B FY26 AI-order guide</td>
+</tr>
+<tr>
+<td>Marvell</td>
+<td>MRVL</td>
+<td>US</td>
+<td>Optical DSP + custom interconnect</td>
+<td>$112.4B (28 May 26)</td>
+<td>$2.1B (Q3 FY26); $7.2B FY26</td>
+<td>+37%</td>
+<td>high (inf.)</td>
+<td>net debt (inf.)</td>
+<td>premium</td>
+<td>DSP/SerDes IP; Celestial AI scale-up buy</td>
+</tr>
+<tr>
+<td>Coherent</td>
+<td>COHR</td>
+<td>US</td>
+<td>Optical transceivers/components</td>
+<td>$57.7B (28 May 26)</td>
+<td>$1.7B (Q2 FY26); DC&amp;C $1.2B</td>
+<td>+17.5% (DC&amp;C +33.6%)</td>
+<td>rising (inf.)</td>
+<td>non-GAAP NI $248M</td>
+<td>net debt (inf.)</td>
+<td>Vertically integrated photonics/lasers</td>
+</tr>
+<tr>
+<td>Lumentum</td>
+<td>LITE</td>
+<td>US</td>
+<td>Optical transceivers/components</td>
+<td>$64.1B (28 May 26)</td>
+<td>$533.8M (Q1 FY26); &gt;$600M/qtr target</td>
+<td>+58%</td>
+<td>34% GAAP (↑ from 28%)</td>
+<td>GAAP NI $4.2M (thin)</td>
+<td>net debt (inf.)</td>
+<td>800G/1.6T ramp; CPO optionality</td>
+</tr>
+<tr>
+<td>Ciena</td>
+<td>CIEN</td>
+<td>US</td>
+<td>Optical transport / DCI</td>
+<td>$81.1B (May 26)</td>
+<td>n/f (Q1 FY26)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>Coherent optical transport / DCI</td>
+</tr>
+<tr>
+<td>Credo Tech</td>
+<td>CRDO</td>
+<td>US</td>
+<td>AECs / retimers / connectivity</td>
+<td>$43.5B (May 26)</td>
+<td>&gt;$500M optical guide FY27</td>
+<td>high (inf.)</td>
+<td>high (inf.)</td>
+<td>net cash (inf.)</td>
+<td>P/E ~45</td>
+<td>Active electrical cables + retimer niche</td>
+</tr>
+<tr>
+<td>Celestica</td>
+<td>CLS</td>
+<td>Canada</td>
+<td>Contract mfg (switches/hardware)</td>
+<td>$40.4B (May 26)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>thin (inf.)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>Hyperscaler ODM/JDM hardware</td>
+</tr>
+<tr>
+<td>Fabrinet</td>
+<td>FN</td>
+<td>Thailand/US</td>
+<td>Contract optical manufacturing</td>
+<td>n/f</td>
+<td>$978M (Q1 FY26 vs $804M)</td>
+<td>+21.6%</td>
+<td>thin (inf.)</td>
+<td>net cash (inf.)</td>
+<td>n/f</td>
+<td>Dominant outsourced optical assembly</td>
+</tr>
+<tr>
+<td>InnoLight</td>
+<td>300308.SZ</td>
+<td>China</td>
+<td>Optical modules (800G/1.6T)</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>n/f</td>
+<td>Leading Chinese module volume leader</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-competitiveness-read">7. Competitiveness read</h2>
+<p><strong>Winning:</strong> Arista is the standout system winner — AI-fabric revenue doubling annually, FY26 guide<br />
+raised to ~$11.5B, with software-rich 62%+ gross margins pure-hardware peers can't match. Broadcom<br />
+wins twice (merchant switch ASICs <em>and</em> optical DSP), capturing silicon-layer margin regardless of<br />
+which system vendor or module maker ships. Lumentum and Coherent are clear cyclical winners on the<br />
+800G→1.6T transition (Lumentum +58% YoY, GM +600bps; Coherent DC&amp;C +33.6%); Marvell is positioning<br />
+for the <em>next</em> leg via Celestial AI. NVIDIA quietly wins the attached fabric (DC networking +199%<br />
+YoY) by bundling Spectrum-X/InfiniBand with GPUs.</p>
+<p><strong>Pressured:</strong> Pure optical-module makers — especially Chinese volume leaders (InnoLight et al.) —<br />
+"own the seats but the chip companies make the money": they ship the units at thin, competitive<br />
+margins while DSP/laser-IP vendors keep the economics. Contract manufacturers (Fabrinet,<br />
+Celestica) ride the volume with structurally thin margins. Cisco is re-accelerating but its<br />
+non-GAAP GM slipped 260bps YoY on mix and memory costs.</p>
+<h2 id="8-risks-what-kills-the-thesis">8. Risks / what kills the thesis</h2>
+<ul>
+<li><strong>Tightest coupling to AI capex:</strong> higher beta to hyperscaler spend than compute (networking<br />
+  growing faster) — a capex digestion or circular-financing unwind (see <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a> §8)<br />
+  hits interconnect hardest.</li>
+<li><strong>Architecture risk:</strong> copper-to-optical and CPO transitions could reshuffle winners; a slower<br />
+  CPO ramp, or NVIDIA bundling more fabric in-house, compresses the merchant opportunity.</li>
+<li><strong>Margin fragility in optical modules:</strong> thin GMs (Lumentum GAAP NI only $4.2M on $534M rev)<br />
+  leave little cushion; memory/component cost inflation flagged by Arista and Cisco.</li>
+<li><strong>China supply concentration / geopolitics:</strong> module supply chain heavily Chinese; tariffs/<br />
+  export controls cut both ways.</li>
+<li><strong>Valuation:</strong> ANET, COHR, LITE, CRDO trade at 42–60x forward — priced for sustained hypergrowth;<br />
+  any deceleration de-rates sharply (ANET "punished for perfection" despite +35%).</li>
+</ul>
+<h2 id="9-investable-instruments-candidates-not-recommendations">9. Investable instruments (candidates — not recommendations)</h2>
+<ul>
+<li>No clean pure-play optical/networking ETF identified with reliable figures; closest exposure via<br />
+<strong>SMH</strong> (holds AVGO ~7%, MRVL) and <strong>XSD</strong> (equal-weight incl. MRVL). DTCR is REIT/facility, not<br />
+  interconnect.</li>
+<li>Representative securities: ANET (system leader), AVGO (switch+DSP silicon), MRVL (DSP/custom),<br />
+  COHR &amp; LITE (optical components), CRDO (connectivity), FN &amp; CLS (manufacturing), CIEN<br />
+  (transport), InnoLight (300308.SZ — direct China module exposure).</li>
+<li>Single-name expression dominates this theme; an ETF wrapper dilutes the interconnect thesis.</li>
+</ul>
+<h2 id="10-our-view-conviction-stage-horizon">10. Our view — conviction / stage / horizon</h2>
+<ul>
+<li><strong>Conviction 4/5</strong> (calibrated — arguably better risk/reward <em>within</em> AI than raw compute because<br />
+  it's earlier on its S-curve, but it inherits all of <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a>'s capex-dependency risk<br />
+  plus richer valuations; not a 5).</li>
+<li><strong>Stage: early→accelerating</strong> (800G ramping, 1.6T/CPO ahead — more runway than compute).</li>
+<li><strong>Horizon: 3–6 years.</strong></li>
+<li><strong>Invalidation:</strong> NVIDIA DC-networking or Arista AI-fabric growth decelerating to sub-20% YoY for<br />
+  2+ quarters, OR a hyperscaler 2027 capex cut, OR a CPO/architecture shift that disintermediates<br />
+  merchant optical/switch vendors.</li>
+</ul>
+<!-- auto:instrument-table -->
+
+<h2 id="instruments-live-data-auto-refreshed">Instruments — live data (auto-refreshed)</h2>
+<blockquote>
+<p>Pulled by <code>scripts/refresh_instruments.py</code>. <code>n/f</code> = no reliable figure. Conviction tag links to <a class="wikilink" href="../syntheses/decision-register.html">decision-register</a>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Role</th>
+<th style="text-align: right;">Price</th>
+<th style="text-align: right;">Mkt cap / AUM</th>
+<th style="text-align: right;">Fwd P/E · YTD</th>
+<th style="text-align: right;">Rev YoY · Yld</th>
+<th style="text-align: right;">Profit · Beta</th>
+<th style="text-align: right;">Off 52wHi</th>
+<th>Conv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SMH</strong></td>
+<td>Indirect (semis)</td>
+<td style="text-align: right;">$522.15</td>
+<td style="text-align: right;">$74.9B</td>
+<td style="text-align: right;">+68.9%</td>
+<td style="text-align: right;">0.2%</td>
+<td style="text-align: right;">n/f · 2.00</td>
+<td style="text-align: right;">-22.3%</td>
+<td>🟡 SCALE ON DIP</td>
+</tr>
+<tr>
+<td><strong>XSD</strong></td>
+<td>Indirect (semis equip.)</td>
+<td style="text-align: right;">$447.17</td>
+<td style="text-align: right;">$3.1B</td>
+<td style="text-align: right;">+64.8%</td>
+<td style="text-align: right;">0.1%</td>
+<td style="text-align: right;">n/f · 2.76</td>
+<td style="text-align: right;">-32.1%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ANET</strong></td>
+<td>Ethernet switching leader</td>
+<td style="text-align: right;">$170.20</td>
+<td style="text-align: right;">$214.7B</td>
+<td style="text-align: right;">32.6x</td>
+<td style="text-align: right;">37.7%</td>
+<td style="text-align: right;">38.4% · 1.60</td>
+<td style="text-align: right;">-21.7%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>AVGO</strong></td>
+<td>Tomahawk/Switch</td>
+<td style="text-align: right;">$325.30</td>
+<td style="text-align: right;">$1.55T</td>
+<td style="text-align: right;">16.7x</td>
+<td style="text-align: right;">85.5%</td>
+<td style="text-align: right;">42.9% · 1.48</td>
+<td style="text-align: right;">-34.3%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CSCO</strong></td>
+<td>Networking incumbent</td>
+<td style="text-align: right;">$105.04</td>
+<td style="text-align: right;">$414.1B</td>
+<td style="text-align: right;">18.7x</td>
+<td style="text-align: right;">17.6%</td>
+<td style="text-align: right;">21.0% · 0.98</td>
+<td style="text-align: right;">-19.4%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>MRVL</strong></td>
+<td>Switching silicon</td>
+<td style="text-align: right;">$197.79</td>
+<td style="text-align: right;">$177.7B</td>
+<td style="text-align: right;">27.0x</td>
+<td style="text-align: right;">36.5%</td>
+<td style="text-align: right;">27.9% · 2.26</td>
+<td style="text-align: right;">-40.0%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>COHR</strong></td>
+<td>Optics/lasers</td>
+<td style="text-align: right;">$206.88</td>
+<td style="text-align: right;">$40.7B</td>
+<td style="text-align: right;">14.9x</td>
+<td style="text-align: right;">33.7%</td>
+<td style="text-align: right;">11.3% · 2.11</td>
+<td style="text-align: right;">-53.0%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CIEN</strong></td>
+<td>Optical networking</td>
+<td style="text-align: right;">$322.30</td>
+<td style="text-align: right;">$45.7B</td>
+<td style="text-align: right;">27.2x</td>
+<td style="text-align: right;">37.0%</td>
+<td style="text-align: right;">10.9% · 1.29</td>
+<td style="text-align: right;">-49.4%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CRDO</strong></td>
+<td>Optical DSP</td>
+<td style="text-align: right;">$148.42</td>
+<td style="text-align: right;">$27.9B</td>
+<td style="text-align: right;">15.3x</td>
+<td style="text-align: right;">114.7%</td>
+<td style="text-align: right;">33.8% · 3.25</td>
+<td style="text-align: right;">-51.9%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CLS</strong></td>
+<td>Optical modules/custom Mfg</td>
+<td style="text-align: right;">$261.59</td>
+<td style="text-align: right;">$33.0B</td>
+<td style="text-align: right;">11.8x</td>
+<td style="text-align: right;">82.5%</td>
+<td style="text-align: right;">6.8% · 1.32</td>
+<td style="text-align: right;">-44.8%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>FN</strong></td>
+<td>Optical components</td>
+<td style="text-align: right;">$322.32</td>
+<td style="text-align: right;">$11.6B</td>
+<td style="text-align: right;">14.7x</td>
+<td style="text-align: right;">44.6%</td>
+<td style="text-align: right;">10.2% · 1.22</td>
+<td style="text-align: right;">-57.0%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>GLW</strong></td>
+<td>Corning — optical fiber/glass for DCs</td>
+<td style="text-align: right;">$122.93</td>
+<td style="text-align: right;">$105.9B</td>
+<td style="text-align: right;">27.2x</td>
+<td style="text-align: right;">18.4%</td>
+<td style="text-align: right;">12.1% · 1.12</td>
+<td style="text-align: right;">-54.8%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- auto:instrument-table -->
+
+<h2 id="connections">Connections</h2>
+<ul>
+<li>The compute it connects: <a class="wikilink" href="ai-infrastructure.html">ai-infrastructure</a>. Silicon: <a class="wikilink" href="semiconductors.html">semiconductors</a>. China supply chain:<br />
+  <a class="wikilink" href="critical-minerals.html">critical-minerals</a>. Master table: <a class="wikilink" href="../syntheses/trend-radar.html">trend-radar</a>. Linkage: <a class="wikilink" href="../syntheses/theme-linkage-map.html">theme-linkage-map</a>.</li>
+</ul>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>Does CPO arrive fast enough to reshuffle the optical-module winners before the 800G cohort peaks?</li>
+<li>Does NVIDIA in-source more fabric, compressing the merchant switch/optical opportunity?</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>NVIDIA Q1 FY27 8-K; Arista Q1 2026 (TradingView/Seeking Alpha); Cisco Q3 FY26 (Value The<br />
+Markets/GuruFocus); Coherent Q2 FY26 (Futurum); Lumentum Q1 FY26 8-K (SEC); Marvell Q3 FY26 +<br />
+Celestial AI (CNBC); Fabrinet Q1 FY26 8-K (SEC); Credo Apr 2026 8-K (SEC); market caps<br />
+(stockanalysis/companiesmarketcap/Macrotrends); Chinese-module margin dynamic (PhotonCap/BEP<br />
+Research); Goldman capex (secondary), 2026.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

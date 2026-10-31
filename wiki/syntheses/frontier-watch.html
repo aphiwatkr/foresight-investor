@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontier Watch — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Frontier Watch</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-09-07</span><span class="stamp">investing</span><span class="stamp">frontier</span><span class="stamp">emerging-themes</span><span class="stamp">foresight</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="frontier-watch">Frontier Watch</h1>
+<p><strong>Bottom line:</strong> The foresight/trend-capture skill — a disciplined way to detect <em>emerging</em> themes<br />
+before consensus, the way AI / bitcoin / clean energy once were. Each candidate is scored on four<br />
+axes; only those crossing the threshold earn a <code>wiki/concepts/</code> page. This is where the <em>next</em><br />
+conviction-4 theme comes from. For the operator's own book; not advice.</p>
+<blockquote>
+<p><strong>The discipline.</strong> The goal is not "what's hyped" but "what is becoming investable." A theme<br />
+earns promotion when adoption-curve stage, hype-vs-substance balance, investable purity, and<br />
+time-to-liquidity all clear. Hype alone (quantum 2023, metaverse 2021) fails this filter.</p>
+</blockquote>
+<hr />
+<h2 id="the-four-axis-scoring-framework">The four-axis scoring framework</h2>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Question</th>
+<th>1 (avoid)</th>
+<th>3 (watch)</th>
+<th>5 (promote)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Adoption curve</strong></td>
+<td>Where on the S-curve?</td>
+<td>Pre-working prototype</td>
+<td>Pilots / early revenue</td>
+<td>Inflecting to mass adoption</td>
+</tr>
+<tr>
+<td><strong>Hype vs substance</strong></td>
+<td>Is the tech real <em>now</em>?</td>
+<td>Pure narrative</td>
+<td>Real but unproven at scale</td>
+<td>Proven unit economics / cash flows</td>
+</tr>
+<tr>
+<td><strong>Investable purity</strong></td>
+<td>Is there a clean way in?</td>
+<td>Private only (SpaceX)</td>
+<td>Pure-plays but tiny/illiquid</td>
+<td>Liquid pure-plays or clean ETFs</td>
+</tr>
+<tr>
+<td><strong>Time-to-liquid</strong></td>
+<td>When liquid, fairly-priced exposure?</td>
+<td>&gt;5y</td>
+<td>2–5y</td>
+<td>&lt;2y</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Promotion threshold:</strong> avg ≥3.5 AND no axis =1. Below → watchlist. The existing radar themes all<br />
+scored ≥3.5 at their 2026-06-01 inclusion.</p>
+<h2 id="current-frontier-candidates-2026-07-14-triage-humanoid-re-scored-2026-09-07">Current frontier candidates (2026-07-14 triage; humanoid re-scored 2026-09-07)</h2>
+<table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th style="text-align: center;">Adoption</th>
+<th style="text-align: center;">Substance</th>
+<th style="text-align: center;">Purity</th>
+<th style="text-align: center;">Time-liq</th>
+<th style="text-align: center;">Avg</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Humanoid robotics</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>3.5</strong></td>
+<td><strong>PROMOTED 2026-09-07 → <a class="wikilink" href="../concepts/humanoid-robotics.html">humanoid-robotics</a></strong> (conv 2.5). Re-scored on live evidence: 13–18k units shipped 2025, 50–90k forecast 2026 (adoption 2→3); KOID $332.5M / HUMN $94M give liquid ETF access (purity 2→4, time-liq 3→4); Unitree STAR IPO 2026-08-19. Was 2.5 on 2026-07-14.</td>
+</tr>
+<tr>
+<td><strong>Fusion energy</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td>Avoid (now) — pre-working; SPAC pure-plays (HYDR −33% per backtest) failed Gate 9</td>
+</tr>
+<tr>
+<td><strong>Brain-computer interface</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.0</td>
+<td>Watch — Neuralink/Symbionic real progress; investable almost nil (private)</td>
+</tr>
+<tr>
+<td><strong>Synthetic biology</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2.75</td>
+<td>Watch — converging with GLP-1/biotech; CCJ-style picks hard; track via <a class="wikilink" href="../concepts/biotech-genomics.html">biotech-genomics</a></td>
+</tr>
+<tr>
+<td><strong>Advanced nuclear / SMR</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3.25</td>
+<td><strong>Near-promotion</strong> — already on radar as <a class="wikilink" href="../concepts/nuclear-uranium.html">nuclear-uranium</a>; SMR-names (SMR/OKLO/LEU) volatile; P4/P11 sensors</td>
+</tr>
+<tr>
+<td><strong>Space economy</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.0</td>
+<td>Watch — $1T TAM but SpaceX private; <a class="wikilink" href="../concepts/space-economy.html">space-economy</a> conv-2.5</td>
+</tr>
+<tr>
+<td><strong>Quantum computing</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.25</td>
+<td>Avoid (valuation) — real but IONQ/RGTI/QBTS fail Gate 9 (Ref 20); <a class="wikilink" href="../concepts/quantum-computing.html">quantum-computing</a> conv-2</td>
+</tr>
+<tr>
+<td><strong>AI agents / agentic software</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3.25</td>
+<td><strong>Already promoted</strong> — <a class="wikilink" href="../concepts/ai-software-agents.html">ai-software-agents</a> conv-4; the live frontier</td>
+</tr>
+<tr>
+<td><strong>Vertiworld / eVTOL</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.0</td>
+<td>Watch — Joby/Archer pre-revenue; regulatory gate</td>
+</tr>
+<tr>
+<td><strong>Next-gen batteries (solid-state)</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2.5</td>
+<td>Watch — Toyota/QS prototypes; rides <a class="wikilink" href="../concepts/renewables-storage.html">renewables-storage</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-just-crossed-the-threshold-promotions-this-cycle">What just crossed the threshold (promotions this cycle)</h2>
+<ul>
+<li><strong>2026-09-07 — Humanoid robotics → <a class="wikilink" href="../concepts/humanoid-robotics.html">humanoid-robotics</a></strong> (score 3.5, exactly the bar; conviction 2.5,<br />
+  stage emerging, M3). Primary instrument <a class="wikilink" href="../entities/etf-koid.html">etf-koid</a> (KOID); alternative HUMN. Sensors filed as P30<br />
+  (2026 global shipments ≥ 40k) and P31 (KOID beats BOTZ over 12m) in <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a>. The<br />
+  borderline score is the honest read — re-score at the next quarterly REVIEW; a miss on P30 demotes it.</li>
+<li><strong>Previously: none new.</strong> The AI-agents promotion happened at the 2026-06-01 rebuild. The closest near-term<br />
+  candidate is <strong>advanced nuclear / SMR</strong> (3.25, climbing) — watch P4 (uranium ≥$80/lb) and P11<br />
+  (≥1GW DC PPA) sensors; a confirmed P11 likely lifts it to promotion.</li>
+</ul>
+<h2 id="what-fell-back-demotions-avoided">What fell back (demotions / avoided)</h2>
+<ul>
+<li><strong>Fusion (HYDR), quantum (IONQ/RGTI/QBTS)</strong> — confirmed as hype-stage by the <a class="wikilink" href="mdaem-backtest-2026-06-28.html">mdaem-backtest-2026-06-28</a><br />
+  (−33%, −22%, −30% draws); the framework correctly rejected them via Gate 9.</li>
+</ul>
+<h2 id="the-trend-capture-methodology-how-to-add-candidates">The trend-capture methodology (how to add candidates)</h2>
+<ol>
+<li><strong>Source broadly:</strong> quarterly, sweep a horizon-scanning list (CB Insights / a16z / MIT TR /<br />
+   Bloomberg megatrends / your own reading) for themes not yet on the radar.</li>
+<li><strong>Score on the 4 axes</strong> — be honest about hype vs substance; the engine's own backtest shows<br />
+   hype-stage names get punished.</li>
+<li><strong>Check investability</strong> — can you actually buy it cleanly? SpaceX = no; that caps the score.</li>
+<li><strong>Track the sensors</strong> — each candidate carries 1–2 falsifiable conditions (like the radar's<br />
+   invalidations) that, when met, lift the score.</li>
+<li><strong>Promote at avg ≥3.5</strong> → create <code>wiki/concepts/&lt;slug&gt;.md</code> (analyst-grade template), add to<br />
+   <a class="wikilink" href="trend-radar.html">trend-radar</a> under the right meta-force, file any new instruments in <a class="wikilink" href="watchlist.html">watchlist</a>.</li>
+</ol>
+<h2 id="confidence-gaps">Confidence &amp; gaps</h2>
+<ul>
+<li><strong>Framework confidence: high</strong> — it would have correctly flagged AI (promote 2022-23), bitcoin<br />
+  (promote ~2019, watch earlier), clean energy (promote ~2018-20) at the right time, and kept fusion/<br />
+  metaverse/quantum-hype on the sidelines.</li>
+<li><strong>Candidate scores: moderate</strong> — subjective 1–5; should be revisited each quarterly REVIEW with<br />
+  fresh evidence. A future enhancement: attach 1–2 falsifiable sensors per candidate (like P-calls).</li>
+<li><strong>Coverage: incomplete</strong> — this is a starter list; the quarterly sweep (above) is the cadence that<br />
+  keeps it fresh.</li>
+</ul>
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Feeds: <a class="wikilink" href="trend-radar.html">trend-radar</a> (promotions) · <a class="wikilink" href="watchlist.html">watchlist</a> (new instruments) · <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a> (candidate sensors)</li>
+<li>Cross-ref: <a class="wikilink" href="../concepts/automation-robotics.html">automation-robotics</a> · <a class="wikilink" href="../concepts/nuclear-uranium.html">nuclear-uranium</a> · <a class="wikilink" href="../concepts/space-economy.html">space-economy</a> · <a class="wikilink" href="../concepts/quantum-computing.html">quantum-computing</a> ·<br />
+  <a class="wikilink" href="../concepts/ai-software-agents.html">ai-software-agents</a> · <a class="wikilink" href="../concepts/biotech-genomics.html">biotech-genomics</a> · <a class="wikilink" href="../concepts/renewables-storage.html">renewables-storage</a> (existing themes that began here)</li>
+<li>Discipline: <a class="wikilink" href="../concepts/mdaem-framework.html">mdaem-framework</a> Ref 20 (extreme-valuation gate — the hype filter)</li>
+</ul>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research console — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"></div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="index.html" class="active" title="Home — live state, module map, search">Console</a>
+<a href="analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="wiki/syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="wiki/syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="wiki/syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="wiki/syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="wiki/syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="wiki/syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="wiki/syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="wiki/syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="wiki/syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="wiki/syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="wiki/concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="wiki/concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="wiki/syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="wiki/syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="wiki/syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="wiki/syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="wiki/concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="wiki/syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="wiki/syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="wiki/syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="wiki/syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="home.html" title="The original orientation page">Start Here</a>
+<a href="catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="wiki/concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="wiki/concepts/semiconductors.html">Semiconductors</a>
+<a href="wiki/concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="wiki/concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="wiki/concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="wiki/concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="wiki/concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="wiki/concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="wiki/concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="wiki/concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="wiki/concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="wiki/concepts/defense-security.html">Defense &amp; Security</a>
+<a href="wiki/concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="wiki/concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="wiki/concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="wiki/concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="wiki/concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="wiki/concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="wiki/concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="wiki/concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="wiki/concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="wiki/concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="wiki/concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="wiki/concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="wiki/concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="wiki/concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="wiki/concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="wiki/concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="wiki/concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="wiki/concepts/space-economy.html">Space Economy</a>
+<a href="wiki/concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap wide">
+
+
+<h1>Research console</h1>
+<p style="font-size:16.5px;color:var(--ink-2);max-width:70ch">One operator's investment research vault —
+31 themes, ~347 instruments, a quant engine, and every decision filed as a dated,
+falsifiable call. Start at the module map below, or press
+<kbd style="font:600 11px var(--sans);border:1px solid var(--rule-2);border-radius:3px;padding:1px 5px">⌘K</kbd>
+to search all ~495 pages.</p>
+
+<div class="stategrid">
+  <div class="statecell"><div class="k">The gate (risk stance)</div><div class="v" id="gate">…</div><div id="gate-list" style="font-size:12px"></div><div class="s" id="gate-s">loading feed</div></div>
+  <div class="statecell"><div class="k">Data health</div><div class="v" id="hc">…</div><div class="s" id="hc-s">loading feed</div><div id="hc-list" style="font-size:11.5px;color:var(--bad)"></div></div>
+  <div class="statecell"><div class="k">FFM regime</div><div class="v" id="reg">…</div><div class="s" id="reg-s">loading feed</div></div>
+  <div class="statecell"><div class="k">Top recommendations</div><div class="v" id="top" style="font-size:17px">…</div><div class="s" id="top-s">loading feed</div></div>
+  <div class="statecell"><div class="k">Monitor alerts</div><div class="v" id="al">…</div><div class="s" id="al-s">loading feed</div></div>
+</div>
+<p style="font-size:13px;margin:8px 0 0"><b>This week's FFM moves</b> (composite ±5pts vs the previous run): <span style="color:var(--ok)">91 upgrades</span> — <b>DDOG</b> +42, <b>BIL</b> +40, <b>USDMXN=X</b> +40 · <span style="color:var(--bad)">55 downgrades</span> — <b>NBIS</b> -45, <b>EURUSD=X</b> -40, <b>COHR</b> -35</p>
+<p style="font-size:12px;color:var(--ink-3);max-width:76ch">Live values load from the data feeds and cache for
+10 minutes; when a feed fails the cell says so — figures are never guessed. The gate is the binding risk
+stance (Q4 rules); the FFM regime is the factor model's own read — they can disagree, and both are shown.</p>
+
+<section class="modgroup"><h2>Your names — decision views</h2>
+<p style="max-width:76ch;color:var(--ink-2);font-size:13.5px">One page per name in the book or the 100x
+lists: fresh price vs the thesis, recommendation, FFM + SA grades, this ticker's alerts, memo link.
+Monitor alerts on <b>these names</b>: <b style="color:var(--warn)">72</b> of 608 — the rest is universe noise. Loudest: <a href="decision/LLY.html"><b>LLY</b></a> · <a href="decision/PTTEP.BK.html"><b>PTTEP.BK</b></a> · <a href="decision/DDOG.html"><b>DDOG</b></a> · <a href="decision/QUAL.html"><b>QUAL</b></a> · <a href="decision/MAGS.html"><b>MAGS</b></a> (each links to its decision view).</p>
+<h3 style="margin:16px 0 4px">Book <span style="color:var(--ink-3);font-size:12px">(36)</span></h3><div class="modgrid"><a class="mod" href="decision/MU.html"><b>MU <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, quality); cheap; T1</span></a><a class="mod" href="decision/SNDK.html"><b>SNDK <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-longterm; cheap; off 32% from high; T1</span></a><a class="mod" href="decision/FRO.html"><b>FRO <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, value); cheap; MED-HIGH</span></a><a class="mod" href="decision/PSX.html"><b>PSX <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, value); cheap; MED-HIGH</span></a><a class="mod" href="decision/PTT.BK.html"><b>PTT.BK <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, value); cheap; MED-HIGH</span></a><a class="mod" href="decision/AMD.html"><b>AMD <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); MED-HIGH</span></a><a class="mod" href="decision/ECO.html"><b>ECO <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, value); MED-HIGH</span></a><a class="mod" href="decision/HPE.html"><b>HPE <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); MED-HIGH</span></a><a class="mod" href="decision/SBLK.html"><b>SBLK <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (value, longterm); cheap; MED-HIGH</span></a><a class="mod" href="decision/JXN.html"><b>JXN <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (value, contrarian); cheap; MED-HIGH</span></a><a class="mod" href="decision/BHP.html"><b>BHP <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (quality, longterm); MED-HIGH</span></a><a class="mod" href="decision/PTTEP.BK.html"><b>PTTEP.BK <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (value, quality); cheap</span></a><a class="mod" href="decision/DELL.html"><b>DELL <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/ILMN.html"><b>ILMN <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/LLY.html"><b>LLY <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, quality)</span></a><a class="mod" href="decision/NVDA.html"><b>NVDA <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (quality, longterm); cheap</span></a><a class="mod" href="decision/BUG.html"><b>BUG <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/HACK.html"><b>HACK <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/WCLD.html"><b>WCLD <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/ELV.html"><b>ELV <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-value; cheap</span></a><a class="mod" href="decision/IRWD.html"><b>IRWD <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-longterm; cheap; off 29% from high</span></a><a class="mod" href="decision/PLD.html"><b>PLD <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (quality, longterm)</span></a><a class="mod" href="decision/SPG.html"><b>SPG <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (quality, longterm)</span></a><a class="mod" href="decision/CIBR.html"><b>CIBR <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro)</span></a><a class="mod" href="decision/UUP.html"><b>UUP <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (quality, contrarian)</span></a><a class="mod" href="decision/ASML.html"><b>ASML <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-longterm</span></a><a class="mod" href="decision/QUAL.html"><b>QUAL <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-quality</span></a><a class="mod" href="decision/SPY.html"><b>SPY <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-quality</span></a><a class="mod" href="decision/VOO.html"><b>VOO <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>top-quality</span></a><a class="mod" href="decision/OKTA.html"><b>OKTA <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); extreme valuation</span></a><a class="mod" href="decision/DXJ.html"><b>DXJ <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>quant screen</span></a><a class="mod" href="decision/MAGS.html"><b>MAGS <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>quant screen</span></a><a class="mod" href="decision/DDOG.html"><b>DDOG <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); extreme valuation</span></a><a class="mod" href="decision/FTNT.html"><b>FTNT <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">HOLD</span><span class="arr">→</span></b><span>multi-sleeve (macro, longterm); extreme valuation</span></a><a class="mod" href="decision/CRWD.html"><b>CRWD <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">TRIM</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); extreme valuation</span></a><a class="mod" href="decision/SNOW.html"><b>SNOW <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">TRIM</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); extreme valuation</span></a></div><h3 style="margin:16px 0 4px">100x tranche <span style="color:var(--ink-3);font-size:12px">(7)</span></h3><div class="modgrid"><a class="mod" href="decision/HRMY.html"><b>HRMY <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/RELY.html"><b>RELY <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/DAVE.html"><b>DAVE <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/DCTH.html"><b>DCTH <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/PNTG.html"><b>PNTG <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/ATEX.html"><b>ATEX <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/ASIC.html"><b>ASIC <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a></div><h3 style="margin:16px 0 4px">Watch <span style="color:var(--ink-3);font-size:12px">(9)</span></h3><div class="modgrid"><a class="mod" href="decision/SEZL.html"><b>SEZL <span style="color:var(--ok);font-weight:600;font-size:12.5px">ADD</span><span class="arr">→</span></b><span>multi-sleeve (mom, macro); off 32% from high; MED-HIGH</span></a><a class="mod" href="decision/IOVA.html"><b>IOVA <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/GRAL.html"><b>GRAL <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/HTFL.html"><b>HTFL <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/NLST.html"><b>NLST <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/OABI.html"><b>OABI <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/GCT.html"><b>GCT <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/ABCL.html"><b>ABCL <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a><a class="mod" href="decision/DGII.html"><b>DGII <span style="color:var(--ink-2);font-weight:600;font-size:12.5px">—</span><span class="arr">→</span></b><span></span></a></div></section>
+
+<section class="modgroup"><h2>Today</h2><div class="modgrid"><a class="mod" href="index.html"><b>Console<span class="arr">→</span></b><span>Home — live state, module map, search</span></a><a class="mod" href="analyst-workbench.html"><b>Analyst Workbench<span class="arr">→</span></b><span>11 tabs: ratings, allocator, review</span></a><a class="mod" href="outlook-dashboard.html"><b>Outlook Dashboard<span class="arr">→</span></b><span>Market outlook, themes, indicators</span></a><a class="mod" href="quant-desk.html"><b>Quant Desk<span class="arr">→</span></b><span>QAE factor engine + today&#x27;s book</span></a><a class="mod" href="continuous-research.html"><b>Continuous Research<span class="arr">→</span></b><span>Recommendations + alerts feed</span></a><a class="mod" href="ic-report.html"><b>IC Report<span class="arr">→</span></b><span>Fund-grade top-10 write-ups</span></a><a class="mod" href="architecture-diagram.html"><b>System Diagram<span class="arr">→</span></b><span>One-page block diagram</span></a></div></section><section class="modgroup"><h2>Research desk</h2><div class="modgrid"><a class="mod" href="wiki/syntheses/ic-book-2026-10-05.html"><b>IC Book — Top 10<span class="arr">→</span></b><span>Ranked sleeve with EV math</span></a><a class="mod" href="wiki/syntheses/q4-action-plan-2026-10-11.html"><b>Q4 Action Plan<span class="arr">→</span></b><span>The current operating plan</span></a><a class="mod" href="wiki/syntheses/decision-register.html"><b>Decision Register<span class="arr">→</span></b><span>Sized actions per ticker</span></a><a class="mod" href="wiki/syntheses/prediction-ledger.html"><b>Prediction Ledger<span class="arr">→</span></b><span>Dated, falsifiable calls</span></a><a class="mod" href="wiki/syntheses/track-record.html"><b>Track Record<span class="arr">→</span></b><span>Scored outcomes + calibration</span></a><a class="mod" href="wiki/syntheses/trend-radar.html"><b>Trend Radar<span class="arr">→</span></b><span>Themes × conviction × stage</span></a><a class="mod" href="wiki/syntheses/watchlist.html"><b>Watchlist<span class="arr">→</span></b><span>Entry triggers + invalidations</span></a><a class="mod" href="wiki/syntheses/signal-monitor.html"><b>Signal Monitor<span class="arr">→</span></b><span>Sensor thresholds, weekly</span></a><a class="mod" href="wiki/syntheses/regime-monitor.html"><b>Regime Monitor<span class="arr">→</span></b><span>Cycle-act verdict</span></a></div></section><section class="modgroup"><h2>Knowledge base</h2><div class="modgrid"><a class="mod" href="wiki/syntheses/instrument-universe.html"><b>Instrument Universe<span class="arr">→</span></b><span>Master table, ~347 instruments</span></a><a class="mod" href="wiki/concepts/foresight-factor-model.html"><b>Foresight Factor Model<span class="arr">→</span></b><span>6-factor rating engine</span></a><a class="mod" href="wiki/concepts/mdaem-framework-v4.html"><b>MDAEM v4<span class="arr">→</span></b><span>10 gates → 10 dims → sizing</span></a><a class="mod" href="wiki/syntheses/strategy-sleeves.html"><b>Strategy Sleeves<span class="arr">→</span></b><span>4 sleeves + entry/exit rules</span></a><a class="mod" href="wiki/syntheses/portfolio-blueprint.html"><b>Portfolio Blueprint<span class="arr">→</span></b><span>Caps + construction</span></a><a class="mod" href="wiki/syntheses/theme-linkage-map.html"><b>Theme Linkage Map<span class="arr">→</span></b><span>Cross-theme dependencies</span></a><a class="mod" href="wiki/syntheses/macro-regime.html"><b>Macro Regime<span class="arr">→</span></b><span>Rates / cycle overlay</span></a></div></section><section class="modgroup"><h2>Engines</h2><div class="modgrid"><a class="mod" href="wiki/concepts/quant-alpha-methodology.html"><b>QAE v1 Methodology<span class="arr">→</span></b><span>Cross-sectional alpha spec</span></a><a class="mod" href="wiki/syntheses/backtest-results-2026-07-18.html"><b>Backtest Results<span class="arr">→</span></b><span>5y walk-forward, 4 sleeves</span></a><a class="mod" href="wiki/syntheses/hundred-x-hunt-framework.html"><b>100x Hunt — Framework<span class="arr">→</span></b><span>Rubric: Gate 0 + 5 pillars</span></a><a class="mod" href="wiki/syntheses/hundredx-anatomy-2026-10-29.html"><b>100x Anatomy<span class="arr">→</span></b><span>22 winners × SEC data + replay</span></a><a class="mod" href="wiki/syntheses/security-sourcing-pipeline.html"><b>Sourcing Pipeline<span class="arr">→</span></b><span>Screen → memo → decision</span></a></div></section><section class="modgroup"><h2>System</h2><div class="modgrid"><a class="mod" href="ARCHITECTURE.html"><b>Architecture<span class="arr">→</span></b><span>System map + change protocol</span></a><a class="mod" href="AGENTS.html"><b>Operations Manual<span class="arr">→</span></b><span>Schema, ops, guardrails</span></a><a class="mod" href="CADENCE.html"><b>Cadence<span class="arr">→</span></b><span>The staleness contract</span></a><a class="mod" href="SYSTEM-RESEARCH-LOG.html"><b>System Research Log<span class="arr">→</span></b><span>Dated system findings</span></a><a class="mod" href="home.html"><b>Start Here<span class="arr">→</span></b><span>The original orientation page</span></a><a class="mod" href="catalog.html"><b>Vault Catalog<span class="arr">→</span></b><span>index.md — all pages, one line each</span></a><a class="mod" href="hotcache.html"><b>Hotcache<span class="arr">→</span></b><span>Operator state summary</span></a></div></section>
+<section class="modgroup"><h2>M1 · Compute &amp; AI stack</h2><div class="modgrid"><a class="mod" href="wiki/concepts/ai-infrastructure.html"><b>AI Infrastructure<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/semiconductors.html"><b>Semiconductors<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/ai-software-agents.html"><b>AI Software &amp; Agents<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/networking-optical.html"><b>Networking &amp; Optical (AI-cluster interconnect)<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/cybersecurity.html"><b>Cybersecurity<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M2 · Energy, power &amp; materials</h2><div class="modgrid"><a class="mod" href="wiki/concepts/power-grid-electrification.html"><b>Power Grid &amp; Electrification<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/nuclear-uranium.html"><b>Nuclear &amp; Uranium<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/renewables-storage.html"><b>Renewables &amp; Storage<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/natural-gas-lng.html"><b>Natural Gas &amp; LNG<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/data-center-cooling.html"><b>Data-Center Cooling<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/critical-minerals.html"><b>Critical Minerals<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M3 · Reindustrialization &amp; defense</h2><div class="modgrid"><a class="mod" href="wiki/concepts/defense-security.html"><b>Defense &amp; Security<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/infrastructure-capex.html"><b>Infrastructure &amp; Capex Super-Cycle<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/automation-robotics.html"><b>Automation &amp; Robotics<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/humanoid-robotics.html"><b>Humanoid Robotics &amp; Physical AI<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/reshoring-supply-chain.html"><b>Reshoring &amp; Supply-Chain Reconfiguration<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M4 · Health &amp; demographics</h2><div class="modgrid"><a class="mod" href="wiki/concepts/glp1-obesity-metabolic.html"><b>GLP-1 / Obesity / Metabolic<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/medtech-devices.html"><b>MedTech &amp; Devices<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/biotech-genomics.html"><b>Biotech &amp; Genomics<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/healthcare-aging-services.html"><b>Healthcare &amp; Aging / Services<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M5 · Financial transformation</h2><div class="modgrid"><a class="mod" href="wiki/concepts/fintech-payments.html"><b>Fintech &amp; Payments<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/tokenization-digital-assets.html"><b>Tokenization &amp; Digital Assets<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M6 · Geographies</h2><div class="modgrid"><a class="mod" href="wiki/concepts/india-em-growth.html"><b>India &amp; EM Growth<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/japan-corporate-reform.html"><b>Japan Corporate Reform<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/us-megacap-quality.html"><b>US Megacap Quality<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/asean-thailand.html"><b>ASEAN &amp; Thailand<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/china-contrarian.html"><b>China Contrarian<span class="arr">→</span></b></a></div></section>
+<section class="modgroup"><h2>M7 · Cross-cutting &amp; real assets</h2><div class="modgrid"><a class="mod" href="wiki/concepts/water-resource-scarcity.html"><b>Water &amp; Resource Scarcity<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/commodities-gold-real-assets.html"><b>Commodities, Gold &amp; Real Assets<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/space-economy.html"><b>Space Economy<span class="arr">→</span></b></a><a class="mod" href="wiki/concepts/quantum-computing.html"><b>Quantum Computing<span class="arr">→</span></b></a></div></section>
+
+<h2 style="margin-top:44px">How this stays fresh — the update chain</h2>
+<p style="max-width:76ch">Every surface above is generated from the engine. To update the whole site, run the
+chain row by row, then rebuild and deploy — nothing on this site is hand-edited.</p>
+<table class="chain">
+<thead><tr><th>Cadence · operation</th><th>What runs</th><th>What it does</th><th>Feeds</th></tr></thead>
+<tbody><tr><td>Weekly · MONITOR (Sun 06:00, launchd)</td><td><code>weekly_refresh.sh</code></td><td>macro → prices --inc → signals → FFM ratings+notes → instruments → wiki tables → dashboards → workbench → recommendations → alerts → consensus → archive → healthcheck → site rebuild + deploy</td><td>Console strip, dashboards, <a class="wikilink" href="wiki/syntheses/signal-monitor.html">signal-monitor</a></td></tr><tr><td>Weekly · MONITOR agent pass (~15 min)</td><td><code>read `_snapshot.json` + healthcheck</code></td><td>threshold review vs [[signal-monitor]], score matured P-calls, watchlist invalidations, log + hotcache</td><td><a class="wikilink" href="wiki/syntheses/signal-monitor.html">signal-monitor</a>, <a class="wikilink" href="wiki/syntheses/prediction-ledger.html">prediction-ledger</a>, <a class="wikilink" href="wiki/syntheses/watchlist.html">watchlist</a></td></tr><tr><td>Monthly · SCAN / ALPHA (1st weekend)</td><td><code>monthly_update.sh · qae.py</code></td><td>radar conviction re-score + QAE factor IC study + fundamentals + SA grades (operator browser)</td><td>quant-desk, <a class="wikilink" href="wiki/syntheses/trend-radar.html">trend-radar</a>, watchlist</td></tr><tr><td>Quarterly · REVIEW (Jan/Apr/Jul/Oct)</td><td><code>quarterly_update.sh</code></td><td>10y prices + backtest + tournament + full [[track-record]] close</td><td><a class="wikilink" href="wiki/syntheses/strategy-sleeves.html">strategy-sleeves</a>, backtest pages</td></tr><tr><td>On demand · SOURCE / DECIDE</td><td><code>hundredx_screen.py → mdaem_v4.py</code></td><td>100x tranche screen → memo pipeline → sized rows (operator go)</td><td><a class="wikilink" href="wiki/syntheses/security-sourcing-pipeline.html">security-sourcing-pipeline</a>, decision-register</td></tr></tbody>
+</table>
+<p style="font-size:13.5px;max-width:76ch;color:var(--ink-2)">Rebuild the site with
+<code>scripts/.venv/bin/python scripts/build_web.py</code>, then deploy with
+<code>scripts/deploy_web.sh</code> (env-parameterized target — see the script header). The full change
+protocol lives in <a href="ARCHITECTURE.html">Architecture</a>.</p>
+
+<div class="foot">Decisions and research on this site are for the operator's own account — never personalized
+advice. Every figure carries its source and as-of date; unavailable figures say so rather than being estimated.
+Engine sources: <a href="https://github.com/aphiwatgo5/foresight-investor">aphiwatgo5/foresight-investor</a> (private).</div>
+
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script><script>
+(function(){
+  function el(id){return document.getElementById(id);}
+  function set(id,html,cls){var n=el(id);if(!n)return;n.innerHTML=html;if(cls)n.className='v '+cls;}
+  function stamp(id,txt){var n=el(id);if(n&&txt)n.textContent=txt;}
+  /* feed cache: same-origin JSONs are small but re-fetched every visit — cache 10 min
+     (staleness window stated: the data behind them is weekly anyway) */
+  function j(path){
+    var k='fi-feed-'+path;
+    try{var c=JSON.parse(localStorage.getItem(k)||'null');
+      if(c&&Date.now()-c.t<600000)return Promise.resolve(c.d);}catch(e){}
+    return fetch('scripts/_hist/'+path).then(function(r){
+      if(!r.ok)throw 0;return r.text();
+    }).then(function(t){var d=JSON.parse(t.replace(/\bNaN\b/g,'null'));
+      try{localStorage.setItem(k,JSON.stringify({t:Date.now(),d:d}));}catch(e){}
+      return d;});
+  }
+  function relTime(days){if(days==null)return'';if(days<0.75)return'today';if(days<1.25)return'yesterday';
+    return Math.round(days)+' days ago';}
+  var health=j('healthcheck.json').then(function(h){    var c=h.counts||{};var fresh=c.fresh||0,due=c.due_soon||c.due||0,over=c.overdue||0;
+    var cls=over>0?'bad':(due>0?'warn':'ok');var dot=over>0?'bad':(due>0?'warn':'ok');
+    set('hc','<span class="dot '+dot+'"></span>'+fresh+' fresh'+(due?' · '+due+' due':'')+(over?' · '+over+' overdue':''),cls);
+    if(h.checked_utc){var d=(new Date(h.checked_utc)-new Date())/36e5;
+      stamp('hc-s','checked '+relTime(d));}
+    var rows=(h.rows||[]).filter(function(r){return r.status==='overdue';}).slice(0,4);
+    if(rows.length){set('hc-list','<b style="font-size:12px;color:var(--ink-2)">Overdue:</b> '+
+      rows.map(function(r){return esc(r.label||r.id);}).join(' · '));}
+  }).catch(function(){set('hc','UNAVAILABLE','off');set('hc-s','feed failed — values never guessed');});
+  j('ffm_ratings.json').then(function(f){
+    var r=f.regime&&f.regime.label?f.regime.label:(typeof f.regime==='string'?f.regime:'—');
+    set('reg',esc(String(r||'—')));
+    stamp('reg-s','FFM as-of '+esc(f.as_of||''));
+  }).catch(function(){set('reg','UNAVAILABLE','off');});
+  j('recommendations.json').then(function(r){
+    var recs=(r.recommendations||[]).slice(0,4).map(function(x){
+      return '<b>'+esc(x.ticker)+'</b> '+esc(x.action||'')+' <span style="color:var(--ink-3)">('+esc(String(x.confidence||''))+')</span>';});
+    set('top',recs.join(' · ')||'—');
+    stamp('top-s',(r.meta&&r.meta.as_of)?'recommendations as-of '+esc(r.meta.as_of):'');
+  }).catch(function(){set('top','UNAVAILABLE','off');});
+  j('monitor_alerts.json').then(function(m){
+    var raw=m.alerts||{};
+    /* alerts arrives as {high:[],medium:[],low:[]} or a flat array — accept both */
+    var a=Array.isArray(raw)?raw:[].concat(raw.high||[],raw.medium||[],raw.low||[]);
+    var red=a.filter(function(x){return ((x&&x.severity)||'').toLowerCase().indexOf('high')>=0;}).length;
+    set('al',a.length?a.length+' open'+(red?' · '+red+' high':''):'none open',a.length?(red?'warn':'ok'):'ok');
+    stamp('al-s',(m.meta&&m.meta.as_of)?'alerts as-of '+esc(m.meta.as_of):'');
+  }).catch(function(){set('al','UNAVAILABLE','off');set('al-s','feed failed — values never guessed');});
+  /* THE gate — the binding risk stance (weekly_gate.json, single source of truth) */
+  j('gate.json').then(function(g){
+    var col = g.stance==='FULL'?'var(--ok)':'var(--warn)';
+    set('gate','<span style="color:'+col+'">'+g.score+'/'+g.of+'</span> '+
+        '<span style="font-size:15px;color:'+col+'">'+esc(g.stance)+'</span>');
+    var comps=g.components||{};
+    var row=[['TIP_above_50dma','TIP'],['HYG_above_50dma','HYG'],['SPY_above_200dma','SPY'],['GSR_falling','GSR']];
+    set('gate-list','<div style="margin-top:2px">'+row.map(function(x){
+      var v=comps[x[0]];
+      return '<span class="dot '+(v===true?'ok':v===false?'bad':'off')+'"></span>'+x[1];}).join(' ')+'</div>');
+    stamp('gate-s', g.rule ? 'rule: '+g.rule : '');
+  }).catch(function(){set('gate','UNAVAILABLE','off');set('gate-s','feed failed — values never guessed');});
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+})();
+</script>
+</body>
+</html>

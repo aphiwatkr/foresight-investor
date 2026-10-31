@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100x Anatomy — What the Last Decade&#x27;s Winners Looked Like at the Base (and What the Machine Can and Cannot See) — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › 100x Anatomy — What the Last Decade&#x27;s Winners Looked Like at the Base (and What the Machine Can and Cannot See)</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" class="active" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-10-29</span><span class="stamp">investing</span><span class="stamp">100-bagger</span><span class="stamp">framework</span><span class="stamp">backtest</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="100x-anatomy-what-the-last-decades-winners-looked-like-at-the-base">100x Anatomy — What the Last Decade's Winners Looked Like at the Base</h1>
+<p><strong>Bottom line:</strong> We mined our own 10-year price cache and SEC XBRL filings for every equity that<br />
+did ≥20x over 2016-10 → 2026-10 (22 winners; NVDA 139x is the only equity that cleared 100x<br />
+full-span — MU did <strong>60x, not 100x</strong>), plus 15 controls. Four findings survive contact with the<br />
+data: <strong>(1)</strong> every measurable winner was machine-detectably <em>at its base</em> at the trough — the<br />
+base is real and findable; <strong>(2)</strong> <em>at</em> the base you cannot see the wave — trough-year financials<br />
+of winners are indistinguishable from controls (median rev growth 6.2% vs 6.4%, 8/19 loss-making,<br />
+gross margins <em>lower</em> than controls); <strong>(3)</strong> the inflection shows up within ~12 months of the<br />
+base (launch-year growth: median +17%, 16/17 positive) — so "base + first confirmed improvement"<br />
+is the actionable window and waiting for it is cheap; <strong>(4)</strong> half the cohort would have failed<br />
+our own liquidity gate at the trough (LEU $0.1M ADV, CLS $3.9M) and several rode <em>leverage and<br />
+dilution</em>, not net cash — two Gate-0 rules need surgery. The point-in-time replay is brutally<br />
+honest: <strong>the price-side layers alone have zero edge (2018–2022 starts); the only year-start with<br />
+full factors (2023) screened 8/15 ≥3x vs a 17.7% base rate — n=1, not proof.</strong> The screen is a<br />
+candidate <em>generator</em>; the memo pipeline remains the selector. This is the anatomy behind the<br />
+now-built <code>scripts/hundredx_screen.py</code> (<a class="wikilink" href="hundred-x-hunt-framework.html">hundred-x-hunt-framework</a>'s standing offer, delivered).</p>
+<h2 id="1-data-provenance">1. Data &amp; provenance</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What</th>
+<th>As-of</th>
+<th>Retrieved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scripts/_hist/prices_10y.parquet</code></td>
+<td>349 tickers, adj_close, 2016-10-10 → 2026-10-11</td>
+<td>2026-10-11 cache</td>
+<td>(cache)</td>
+</tr>
+<tr>
+<td>SEC EDGAR XBRL <code>companyfacts</code> API (annual 10-K/20-F facts, frame-mapped to calendar years)</td>
+<td>annual panel 2006→2026 per winner/control</td>
+<td>live</td>
+<td>2026-10-28/29</td>
+</tr>
+<tr>
+<td>SEC <code>frames</code> API</td>
+<td>MRVL pre-2018 supplement attempt (empty — see gaps)</td>
+<td>live</td>
+<td>2026-10-29</td>
+</tr>
+<tr>
+<td><code>_instruments.json</code> / <code>sa_microcap_screen.json</code></td>
+<td>caps, themes, sectors; SA quant overlay</td>
+<td>2026-10-11 / 2026-10-04</td>
+<td>(cache)</td>
+</tr>
+</tbody>
+</table>
+<p>Method: multiple = last/first adj_close; base = the 10y-span trough; winners = equities ≥20x<br />
+(crypto excluded — power-law assets, not stock candidates); controls = seeded sample of equities<br />
+1.5–5x. Scripts: <code>scripts/fetch_anatomy_financials.py</code> →<br />
+<code>scripts/_hist/hundredx_anatomy_financials.json</code>; <code>scripts/hundredx_screen.py</code> (+<code>--replay</code>).</p>
+<h2 id="2-the-cohort-22-winners-20x-full-span">2. The cohort — 22 winners ≥20x full-span</h2>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>×full-span</th>
+<th>×from low</th>
+<th>Low date</th>
+<th>Base financials at trough (fact, SEC XBRL)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVDA</td>
+<td>139.3x</td>
+<td>143x</td>
+<td>2016-10</td>
+<td>rev $6.9B · g +38% · GM 59% · NM 24%</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>88.9x</td>
+<td>96x</td>
+<td>2016-11</td>
+<td>rev $4.3B · g +8% · GM 23% · NM −12% · R&amp;D 23%</td>
+</tr>
+<tr>
+<td>FIX</td>
+<td>62.6x</td>
+<td>67x</td>
+<td>2016-10</td>
+<td>rev $1.6B · GM 21% · NM 4%</td>
+</tr>
+<tr>
+<td>MU</td>
+<td>60.3x</td>
+<td>63x</td>
+<td>2016-11</td>
+<td>rev $12.4B · g −23% · GM 20% · NM −2% · <strong>net cash $4.1B</strong></td>
+</tr>
+<tr>
+<td>DELL</td>
+<td>48.4x</td>
+<td>49x</td>
+<td>2016-10</td>
+<td>rev $62B · GM 22% · NM −2% · net cash $6.3B</td>
+</tr>
+<tr>
+<td>ANET</td>
+<td>40.1x</td>
+<td>43x</td>
+<td>2016-10</td>
+<td>rev $1.1B · g +35% · GM 64% · NM 16% · R&amp;D 24%</td>
+</tr>
+<tr>
+<td>LEU</td>
+<td>37.4x</td>
+<td>99x</td>
+<td>2018-12</td>
+<td>rev $193M · GM <strong>−9%</strong> · NM <strong>−54%</strong> · ~breakeven cash</td>
+</tr>
+<tr>
+<td>QUBT</td>
+<td>37.2x</td>
+<td><strong>496x</strong></td>
+<td>2018-07</td>
+<td>effectively pre-revenue · net cash $2M</td>
+</tr>
+<tr>
+<td>LRCX</td>
+<td>35.7x</td>
+<td>38x</td>
+<td>2016-11</td>
+<td>rev $8.0B · g +36% · GM 45% · NM 21%</td>
+</tr>
+<tr>
+<td>CLS</td>
+<td>33.8x</td>
+<td>128x</td>
+<td>2020-03</td>
+<td>rev $5.7B · <strong>GM 7.6%</strong> · net cash $464M</td>
+</tr>
+<tr>
+<td>KLAC</td>
+<td>31.2x</td>
+<td>32x</td>
+<td>2016-10</td>
+<td>rev $3.0B · GM 61% · NM 24% · net debt $1.9B</td>
+</tr>
+<tr>
+<td>ENPH</td>
+<td>31.0x</td>
+<td>47x</td>
+<td>2017-05</td>
+<td>rev $286M · g −11% · NM −16%</td>
+</tr>
+<tr>
+<td>TSLA</td>
+<td>28.6x</td>
+<td>32x</td>
+<td>2019-06</td>
+<td>rev $24.6B · GM 17% · NM −3% · <strong>net debt $4.1B</strong></td>
+</tr>
+<tr>
+<td>FTNT</td>
+<td>27.8x</td>
+<td>34x</td>
+<td>2016-12</td>
+<td>rev $1.3B · g +26% · GM 74%</td>
+</tr>
+<tr>
+<td>AVGO</td>
+<td>27.0x</td>
+<td>29x</td>
+<td>2016-12</td>
+<td>rev $13.2B · GM 45% · NM −13% · net cash $3.1B</td>
+</tr>
+<tr>
+<td>PWR</td>
+<td>25.0x</td>
+<td>30x</td>
+<td>2020-03</td>
+<td>rev $11.2B · GM 15% · NM 4%</td>
+</tr>
+<tr>
+<td>VRT</td>
+<td>24.4x</td>
+<td>44x</td>
+<td>2020-03</td>
+<td>rev $4.4B · GM 34% · NM −7% · net debt $1.6B</td>
+</tr>
+<tr>
+<td>MRVL</td>
+<td>22.4x</td>
+<td>24x</td>
+<td>2016-11</td>
+<td>n/f — pre-2018 facts not exposed by XBRL (entity reorg)</td>
+</tr>
+<tr>
+<td>VKTX</td>
+<td>22.1x</td>
+<td>31x</td>
+<td>2017-08</td>
+<td>pre-revenue biotech · net cash $9M</td>
+</tr>
+<tr>
+<td>CIEN</td>
+<td>20.2x</td>
+<td>23x</td>
+<td>2016-11</td>
+<td>rev $2.6B · GM 45% · NM 3%</td>
+</tr>
+<tr>
+<td>000660.KS</td>
+<td>46.2x</td>
+<td>48x</td>
+<td>2016-11</td>
+<td>n/f — non-SEC filer</td>
+</tr>
+<tr>
+<td>DELTA.BK</td>
+<td>40.3x</td>
+<td>92x</td>
+<td>2020-03</td>
+<td>n/f — non-SEC filer</td>
+</tr>
+</tbody>
+</table>
+<p>Near-misses 20–30x excluded from the table above sit in the cache JSON (NET 20.1x just missed the<br />
+20.0x cut). Controls (seeded, 1.5–5x): INTC 3.4x, RTX 3.7x, GSAT 4.7x, REGN 1.9x, EW 2.1x, ACM<br />
+2.2x, ADC 2.1x, WELL 4.6x, CFG 3.6x, BHP 5.0x (+5 foreign partially filled).</p>
+<h2 id="3-what-the-anatomy-shows-seven-findings">3. What the anatomy shows — seven findings</h2>
+<p><strong>F1 · The base is real and machine-detectable.</strong> At every one of the 10 troughs with ≥200d of<br />
+prior price history, the screen's price layers (within 40% of 2y low + ≥30% under the high) flag<br />
+<strong>10/10</strong>. For the 9 mid-window bases the from-low multiple beat buy-anywhere by a median ~2×<br />
+(QUBT 13×, CLS 3.8×, ENPH 4.2×, LEU 2.7×); window-start bases were already post-crash, so full-span<br />
+≈ from-low for them (cohort medians 35x vs 45x). Buying at the base isn't everything — but it is<br />
+the only part of the 100x you control.</p>
+<p><strong>F2 · At the base you cannot see the wave.</strong> Trough-year winners vs controls: median rev growth<br />
+<strong>+6.2% vs +6.4%</strong> — identical. <strong>8/19 winners were loss-making</strong> at the base (controls 5/10 — no<br />
+difference). Median gross margin: winners <strong>23% vs controls 44%</strong> — winners were <em>less</em> margin-rich<br />
+(the hardware/manufacturing path dominates this cohort). Any screen that demands visible growth,<br />
+profitability, or high margins <em>at</em> the base excludes the cohort.</p>
+<p><strong>F3 · The inflection is visible within ~12 months — and that's the window.</strong> Launch-year<br />
+(base+1) revenue growth: median <strong>+17.2%</strong>, 16/17 positive with data (MU +64%, NVDA +41%, ANET<br />
++46%, LRCX +38%, AVGO +33%; the one flat name is CLS at −2%). Combined with F2: the actionable<br />
+template is <em>at-base + first confirmed improvement</em>, not "buy the chart low." The cost of waiting<br />
+for the first improving print is small against a 20–100x — and it's exactly what our memo<br />
+pipeline's print-confirmation tranches already do.</p>
+<p><strong>F4 · "Funded" ≠ net cash — funded = can finance the inflection.</strong> 12/19 winners had net cash at<br />
+base vs 4/10 controls (suggestive, not decisive). But TSLA rode <strong>−$4.1B net debt</strong>, KLAC −$1.9B,<br />
+VRT −$1.6B. And the Soros-reflexive-fuel mark shows up as <strong>dilution into the base</strong>: TSLA<br />
++434% shares over the two years to its base, VKTX +270%, VRT +160%, ENPH +81%, CIEN +43% — while<br />
+MU, KLAC, PWR <em>bought back</em> 6–14%. Both directions work; what matters is surviving to the<br />
+inflection. Gate-0's "net cash" rule should read "runway to the inflection" (net cash, self-funding,<br />
+or demonstrated market access — with dilution-as-fuel explicitly named as acceptable).</p>
+<p><strong>F5 · "GM ≥40%" is a software-path filter that would have excluded half the winners.</strong> CLS 7.6%,<br />
+PWR 15%, TSLA 17%, MU 20%, AMD 23%, ENPH 20%, DELL 22%. The moat mark (P2) must split by business<br />
+model: software/services path keeps the GM≥40% test; the hardware/capacity path substitutes<br />
+technology/process moat + cycle position (MU at −23% growth and −2% margin was <em>the</em> memory-cycle<br />
+base). Margin <em>expansion</em> after the base is where the hardware path pays (CLS 7.6%→GM now<br />
+multiplied; MU 20%→supercycle re-rating).</p>
+<p><strong>F6 · Caps at the base are tiny — where measurable.</strong> Sanity-gated estimates: LEU ~$14M, VKTX<br />
+~$37M, ENPH ~$59M, FIX ~$950M, VRT ~$1.7B, CIEN ~$2.9B, PWR ~$3.4B, AMD ~$5.3B, MU ~$16.8B<em> (</em>MU<br />
+estimate carries share-scope risk). Most names stay n/f — XBRL share counts mix scopes and<br />
+historical splits are unrecoverable from this endpoint; we publish only what survives internal<br />
+coherence checks (est. tagged, caveats in the JSON). Directionally consistent with the framework's<br />
+"&lt;$3B typical start" and Mayer's &lt;$500M median (b).</p>
+<p><strong>F7 · The liquidity gate would have kept us out of the winners.</strong> ADV at trough: LEU <strong>$0.1M</strong>,<br />
+VKTX $0.2M, QUBT ~$0M, CLS $3.9M, VRT $22M — six of ten measurable winners under the $25M Gate-0<br />
+line. The gate's true job is <em>sleeve capacity</em> (how much we can own), not <em>selection</em> (what to<br />
+study). It moves from a hard gate to a sizing tier: sub-$25M ADV names get the smallest tranche<br />
+allowance and a slippage note, not a rejection.</p>
+<h2 id="4-winners-vs-controls-the-discrimination-test">4. Winners vs controls — the discrimination test</h2>
+<table>
+<thead>
+<tr>
+<th>Metric at base</th>
+<th>Winners (n)</th>
+<th>Controls (n)</th>
+<th>Discriminates?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revenue growth (yoy)</td>
+<td>median +6.2% (16)</td>
+<td>+6.4% (9)</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Loss-making share</td>
+<td>8/19</td>
+<td>5/10</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Gross margin</td>
+<td>median 23% (17)</td>
+<td>44% (5)</td>
+<td><strong>Inverted</strong> (hardware path)</td>
+</tr>
+<tr>
+<td>Net cash &gt; 0</td>
+<td>12/19</td>
+<td>4/10</td>
+<td>Weakly yes</td>
+</tr>
+<tr>
+<td>Launch-year growth</td>
+<td>median +17.2%, 16/17 &gt; 0</td>
+<td>(n/a — controls don't inflect by construction)</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Dilution into base</td>
+<td>mixed, median ~+4%/2y</td>
+<td>—</td>
+<td>Fuel, both directions</td>
+</tr>
+</tbody>
+</table>
+<p>The honest read: <strong>almost nothing at the base discriminates — what discriminates is what happens<br />
+next.</strong> Which is exactly why the framework's qualitative marks (category error, monopoly-in-<br />
+disguise, operator quality) exist and why the memo pipeline, not the screen, is the selector.</p>
+<h2 id="5-the-replay-does-the-machine-pick-winners-honest-answer">5. The replay — does the machine pick winners? (honest answer)</h2>
+<p>Point-in-time replay (<code>hundredx_screen.py --replay</code>), scored each Jan-1 with only prior data<br />
+available; themes/caps excluded as look-ahead; fundamentals active only from the 2023 start:</p>
+<table>
+<thead>
+<tr>
+<th>Start</th>
+<th>H</th>
+<th>Top-15 ≥3x</th>
+<th>≥10x</th>
+<th>Gate-passer base rate ≥3x / ≥10x</th>
+<th>Median top-15 / base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>3y</td>
+<td>2/15</td>
+<td>0</td>
+<td>8.7% / 0.7%</td>
+<td>1.36x / 1.55x</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>5y</td>
+<td>2/15</td>
+<td>1</td>
+<td>9.3% / 0.7%</td>
+<td>1.54x / 1.72x</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>3y</td>
+<td>3/15</td>
+<td>0</td>
+<td>19.2% / 0.6%</td>
+<td>2.15x / 2.09x</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>5y</td>
+<td>3/15</td>
+<td>0</td>
+<td>25.0% / 1.9%</td>
+<td>1.72x / 2.07x</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>3y</td>
+<td>2/15</td>
+<td>0</td>
+<td>5.1% / 1.3%</td>
+<td>1.19x / 1.34x</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>5y</td>
+<td>3/15</td>
+<td>0</td>
+<td>20.4% / 1.9%</td>
+<td>1.68x / 1.77x</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>3y</td>
+<td>1/15</td>
+<td>0</td>
+<td>4.2% / 0.0%</td>
+<td>1.25x / 1.28x</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>5y</td>
+<td>2/15</td>
+<td>0</td>
+<td>19.2% / 0.6%</td>
+<td>1.95x / 1.67x</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>3y</td>
+<td>0/15</td>
+<td>0</td>
+<td>4.5% / 0.0%</td>
+<td>1.02x / 1.18x</td>
+</tr>
+<tr>
+<td><strong>2023</strong></td>
+<td>3y</td>
+<td><strong>8/15</strong></td>
+<td><strong>2/15</strong></td>
+<td><strong>17.7% / 2.2%</strong></td>
+<td><strong>3.49x / 1.67x</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Read this table as the price of honesty:</p>
+<ul>
+<li><strong>2018–2022 starts: no edge.</strong> Top-15 hit rates sit at-or-below the gate-passer base rate;<br />
+  medians match the universe. Beaten-down small caps as a <em>class</em> mostly stay beaten down; the<br />
+  chart does not know which company will execute. (2022's start into the bear is the floor case.)</li>
+<li><strong>2023 start: real hit-rate lift</strong> (53% ≥3x vs 17.7%; PLTR 27.7x, MSTR 10.7x, AFRM 7.7x, COIN<br />
+  6.4x, META 5.5x among the top-15) — but it is <strong>n=1 year</strong>, the only year-start where the<br />
+  growth/moat layers were computable, and it rode an epic bull. We claim <em>directional support for<br />
+  the full-factor screen</em>, not a validated edge.</li>
+<li>The replay also had <strong>no cap gate</strong> (caps are current-snapshot), so its top-15 includes<br />
+  mega-caps (META, BABA) that the forward book would gate out — another reason not to over-read it.</li>
+</ul>
+<p>Winner self-test (F1) plus the replay give the mechanic its honest job description: <strong>find bases<br />
+(reliable), refuse to promise which base ignites (impossible from price alone), and feed<br />
+base-qualified candidates to the memo layer where the qualitative marks do the real work.</strong></p>
+<h2 id="6-framework-corrections-adopted-the-7-marks-re-graded">6. Framework corrections adopted (the 7 marks, re-graded)</h2>
+<table>
+<thead>
+<tr>
+<th>Mark (framework §3)</th>
+<th>Verdict</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Category error</td>
+<td><strong>Validated</strong> (not machine-checkable)</td>
+<td>Stays qualitative; it is the memo layer's #1 question</td>
+</tr>
+<tr>
+<td>2 Small &amp; unwatched</td>
+<td>Validated</td>
+<td>Cap floor confirmed where measurable (F6); obscurity stays manual</td>
+</tr>
+<tr>
+<td>3 Inflects before price</td>
+<td><strong>Corrected</strong></td>
+<td>Growth at the base is NOT visible (F2); require <em>launch-year</em> inflection (F3). R&amp;D ≥15% of sales holds where data exists (cohort ~13–24%)</td>
+</tr>
+<tr>
+<td>4 Monopoly in disguise</td>
+<td><strong>Split by path</strong></td>
+<td>Software path: GM ≥40%. Hardware path: moat = technology/cycle position; GM 15–25% at base is normal (F5)</td>
+</tr>
+<tr>
+<td>5 Operator + reflexive fuel</td>
+<td><strong>Broadened</strong></td>
+<td>Near-death washout is common but not necessary; equity fuel = dilution into the base is <em>normal and healthy</em> (F4)</td>
+</tr>
+<tr>
+<td>6 Funded to the inflection</td>
+<td><strong>Broadened</strong></td>
+<td>Net cash OR self-funding OR demonstrated market access (F4); TSLA-style leverage passes only with owner-operator</td>
+</tr>
+<tr>
+<td>7 Price hasn't told the story</td>
+<td><strong>Validated + sharpened</strong></td>
+<td>Base detection is the machine's best layer (F1); ADV moves out of Gate 0 into sizing (F7)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-the-portfolio-math-nobody-escapes-why-the-tranche-stays-small">7. The portfolio math nobody escapes (why the tranche stays small)</h2>
+<p>Base rate: 1 in ~349 tracked equities did ≥100x over the decade (NVDA; BTC/SOL aside as<br />
+non-equities). Unconditional per-decade equity rate ≈ <strong>0.3%</strong>. If screening + memos concentrate<br />
+10× better than random (the 2023 replay's most generous read: 13% ≥10x vs 2.2% base), a<br />
+20-name tranche at 0.3–0.5% each:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Book impact (0.4% × 20 names)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 hits, 60–80% round-trip to ~0</td>
+<td>sleeve ≈ −4 to −6% of book over the decade — the known cost</td>
+</tr>
+<tr>
+<td>1 × 100x</td>
+<td>≈ +40% book — one name carries everything</td>
+</tr>
+<tr>
+<td>1 × 100x + 2 × 10x</td>
+<td>≈ +48% book</td>
+</tr>
+<tr>
+<td>P(≥1 hit) at 1–3% per-name</td>
+<td><strong>18–45%</strong> — i.e. the most likely single outcome is <em>no</em> hit</td>
+</tr>
+</tbody>
+</table>
+<p>The bet is an asymmetric <em>option basket</em> with negative-ish median and huge right tail — which is<br />
+why <a class="wikilink" href="portfolio-blueprint.html">portfolio-blueprint</a> caps it at 5–8% of book, why names size at 0.25–0.5%, and why the<br />
+coffee-can rule (never trim the winner early) is the part that actually generates the 100x<br />
+(Mayer: &gt;50% of holders earn &lt;10x on the same stock by trading it (b)).</p>
+<h2 id="8-the-mechanic-what-was-built">8. The mechanic — what was built</h2>
+<ul>
+<li><code>scripts/fetch_anatomy_financials.py</code> — cohort mining + SEC XBRL annual panel (winners +<br />
+  controls) → <code>_hist/hundredx_anatomy_financials.json</code>. Re-run quarterly for freshness.</li>
+<li><code>scripts/hundredx_screen.py</code> — Gate 0 (automated halves) + 5 pillar proxies + base detection →<br />
+  ranked candidate book (<code>_hist/hundredx_screen.json</code> + <code>.md</code>) with an explicit manual checklist<br />
+  (founder %, niche share, analyst count, category-error read). Late-rides (&gt;200% above 2y low)<br />
+  listed separately per the framework's second-100x rule; pre-revenue names flagged for<br />
+  option-sizing.</li>
+<li><code>--replay</code> — the point-in-time validation above → <code>_hist/hundredx_replay.json</code>.</li>
+<li>Integration: the screen becomes the <strong>screen of record for the 100x tranche</strong> in<br />
+  <a class="wikilink" href="security-sourcing-pipeline.html">security-sourcing-pipeline</a> (quarterly re-score + on-demand; output feeds the memo queue;<br />
+  decisions stay gated on operator go; tranche names keep being watched by MONITOR).</li>
+</ul>
+<h2 id="9-current-book-output-2026-10-29-run-candidates-not-decisions">9. Current book output (2026-10-29 run, candidates NOT decisions)</h2>
+<p>Top of the ranked book: <strong>HIMS 8/10</strong> · <strong>ENPH 7/10</strong> · SMR 6/10 · ADC 5/10 · LEU 5/10 · PNR 5/10<br />
+· S 5/10 · UEC 5/10 · MOD 4/10 · NTLA 4/10 · VKTX 4/10. Late-rides excluded by rule: ECO, OKLO,<br />
+PL, QBTS, QUBT, RGTI, SEDG, SEZL. Cross-check vs <a class="wikilink" href="hundred-x-hunt-framework.html">hundred-x-hunt-framework</a> §6: LEU/VKTX/UEC<br />
+also scored there by hand — convergent. ENPH is the anatomy's live lesson: it fits the <em>base +<br />
+hardware-path</em> template exactly as MU/AMD did (F2/F5), which is a reason to <em>study</em> it, not a<br />
+reason to buy it — its P4 (launch inflection) is still missing, and that's the mark that matters.</p>
+<h2 id="10-confidence-gaps">10. Confidence &amp; gaps</h2>
+<ul>
+<li>The price cache is <strong>survivorship-biased</strong> (names that exist today); the true historical rate of<br />
+  100x includes the ones that died along the way — the replay base rates are therefore <em>too kind</em>.</li>
+<li>Full-factor replay is <strong>n=1 year</strong> (fundamentals panel starts 2021-12). The 2026 start scores<br />
+  exist in the forward book; its 3y verdict lands 2029 — that is the real test, and it should be<br />
+  scored then (resolve-by date if we file a P-call on operator go).</li>
+<li>XBRL gaps honestly left open: MRVL pre-2018 (entity reorg), 000660.KS/DELTA.BK (non-SEC),<br />
+  QUBT pre-revenue opacity, AVGO FY2015. Cap-at-base estimates carry share-scope risk and are<br />
+  order-of-magnitude only.</li>
+<li>The qualitative marks (category error, monopoly, operator) remain human judgments — the machine<br />
+  finds the door; the memo decides whether to walk through it.</li>
+<li>MU is a <strong>60x</strong>, not a 100x: "learn from MU and NVIDIA" = one 100x + one 60x, both of which sat<br />
+  at machine-detectable bases with cycle-trough financials the screen <em>could</em> have flagged — and<br />
+  would have needed the memo layer to distinguish from every other beaten-down cyclical.</li>
+</ul>
+<h2 id="11-data-freshness-log">11. Data freshness log</h2>
+<ul>
+<li><code>prices_10y.parquet</code> — cache as-of 2026-10-11 (stated, not re-fetched).</li>
+<li>SEC EDGAR <code>company_tickers.json</code> + <code>companyfacts/CIK*.json</code> ×38 + <code>frames</code> ×9 — retrieved live<br />
+  2026-10-28/29 with UA <code>ForesightVault personal-research contact@example.com</code>; raw caches in<br />
+<code>scripts/_hist/anatomy_sec/</code> (gitignored).</li>
+<li><code>lxml</code> installed into <code>scripts/.venv</code> (parsing only; no other env changes).</li>
+</ul>
+<p><strong>All cohort/replay figures above are computed from those two stated datasets; no values drawn<br />
+from model training.</strong></p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Monitor Alert — 2026-10-30 — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Signal Monitor Alert — 2026-10-30</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-10-30</span><span class="stamp">investing</span><span class="stamp">monitor</span><span class="stamp">alerts</span><span class="stamp">signals</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="signal-monitor-alert-2026-10-30">Signal Monitor Alert — 2026-10-30</h1>
+<blockquote>
+<p><strong>Continuous monitoring output.</strong> Auto-generated by comparing the latest signal snapshot against the previous run. Review high-severity alerts first.</p>
+</blockquote>
+<p><strong>As-of:</strong> 2026-10-30 · <strong>Previous:</strong> 2026-10-09 · <strong>Threshold:</strong> 15% percentile move</p>
+<h2 id="summary">Summary</h2>
+<p><strong>608 alerts</strong> — 🔴 239 high · 🟡 369 medium · 🟢 0 low</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top-decile entries</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr>
+<td>Top-decile exits</td>
+<td style="text-align: right;">67</td>
+</tr>
+<tr>
+<td>Significant moves</td>
+<td style="text-align: right;">481</td>
+</tr>
+<tr>
+<td>Tier changes</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="high-severity-239">🔴 HIGH Severity (239)</h2>
+<ul>
+<li><strong>IHE</strong> — IHE entered top decile in contrarian sleeve (72% → 98%)</li>
+<li><strong>LLY</strong> — LLY entered top decile in mom sleeve (74% → 96%)</li>
+<li><strong>MLPX</strong> — MLPX entered top decile in contrarian sleeve (72% → 98%)</li>
+<li><strong>PTTEP.BK</strong> — PTTEP.BK entered top decile in longterm sleeve (88% → 97%)</li>
+<li><strong>ROP</strong> — ROP entered top decile in value sleeve (48% → 97%)</li>
+<li><strong>PDBC</strong> — PDBC entered top decile in contrarian sleeve (72% → 96%)</li>
+<li><strong>USO</strong> — USO entered top decile in contrarian sleeve (72% → 98%)</li>
+<li><strong>FCG</strong> — FCG entered top decile in contrarian sleeve (72% → 98%)</li>
+<li><strong>DBC</strong> — DBC entered top decile in contrarian sleeve (72% → 96%)</li>
+<li><strong>AMGN</strong> — AMGN entered top decile in mom sleeve (81% → 95%)</li>
+<li><strong>JNJ</strong> — JNJ entered top decile in longterm sleeve (90% → 95%)</li>
+<li><strong>REGN</strong> — REGN entered top decile in value sleeve (86% → 98%)</li>
+<li><strong>HEWJ</strong> — HEWJ dropped out of top decile in contrarian sleeve (96% → 72%)</li>
+<li><strong>NET</strong> — NET dropped out of top decile in mom sleeve (96% → 72%)</li>
+<li><strong>NET</strong> — NET dropped out of top decile in macro sleeve (96% → 84%)</li>
+<li><strong>DDOG</strong> — DDOG dropped out of top decile in mom sleeve (98% → 89%)</li>
+<li><strong>MRVL</strong> — MRVL dropped out of top decile in mom sleeve (95% → 70%)</li>
+<li><strong>MRVL</strong> — MRVL dropped out of top decile in macro sleeve (96% → 79%)</li>
+<li><strong>600519.SS</strong> — 600519.SS dropped out of top decile in quality sleeve (99% → 0%)</li>
+<li><strong>USDCAD=X</strong> — USDCAD=X dropped out of top decile in contrarian sleeve (96% → 72%)</li>
+<li><strong>LRCX</strong> — LRCX dropped out of top decile in longterm sleeve (97% → 83%)</li>
+<li><strong>QUAL</strong> — QUAL dropped out of top decile in contrarian sleeve (98% → 72%)</li>
+<li><strong>MAGS</strong> — MAGS dropped out of top decile in contrarian sleeve (97% → 72%)</li>
+<li><strong>CIBR</strong> — CIBR dropped out of top decile in contrarian sleeve (98% → 72%)</li>
+<li><strong>DXJ</strong> — DXJ dropped out of top decile in contrarian sleeve (96% → 72%)</li>
+<li><strong>VOO</strong> — VOO dropped out of top decile in contrarian sleeve (97% → 72%)</li>
+<li><strong>USDINR=X</strong> — USDINR=X dropped out of top decile in contrarian sleeve (98% → 72%)</li>
+<li><strong>SPY</strong> — SPY dropped out of top decile in contrarian sleeve (98% → 72%)</li>
+<li><strong>FTNT</strong> — FTNT dropped out of top decile in mom sleeve (98% → 82%)</li>
+<li><strong>KLAC</strong> — KLAC dropped out of top decile in longterm sleeve (97% → 80%)</li>
+<li><strong>QQQ</strong> — QQQ dropped out of top decile in contrarian sleeve (95% → 72%)</li>
+<li><strong>EWJ</strong> — EWJ dropped out of top decile in contrarian sleeve (95% → 72%)</li>
+<li><strong>ELV</strong> — ELV dropped out of top decile in value sleeve (96% → 89%)</li>
+<li><strong>0939.HK</strong> — 0939.HK dropped out of top decile in value sleeve (100% → 0%)</li>
+<li><strong>HPE</strong> — HPE dropped out of top decile in value sleeve (97% → 53%)</li>
+<li><strong>SCCO</strong> — SCCO dropped out of top decile in longterm sleeve (95% → 89%)</li>
+<li><strong>SBLK</strong> — SBLK dropped out of top decile in value sleeve (96% → 87%)</li>
+<li><strong>AMD</strong> — AMD dropped out of top decile in mom sleeve (97% → 87%)</li>
+<li><strong>INTC</strong> — INTC ▼ macro: 91% → 10% (-81%)</li>
+<li><strong>INTC</strong> — INTC ▼ mom: 89% → 12% (-77%)</li>
+<li><strong>CRDO</strong> — CRDO ▼ macro: 92% → 18% (-74%)</li>
+<li><strong>CRDO</strong> — CRDO ▼ mom: 92% → 18% (-74%)</li>
+<li><strong>IONQ</strong> — IONQ ▼ macro: 74% → 6% (-68%)</li>
+<li><strong>LMT</strong> — LMT ▲ macro: 19% → 86% (+67%)</li>
+<li><strong>ROP</strong> — ROP ▲ contrarian: 25% → 88% (+62%)</li>
+<li><strong>NVT</strong> — NVT ▼ macro: 84% → 22% (-62%)</li>
+<li><strong>IONQ</strong> — IONQ ▼ mom: 67% → 5% (-62%)</li>
+<li><strong>LMT</strong> — LMT ▲ mom: 18% → 78% (+61%)</li>
+<li><strong>FLEX</strong> — FLEX ▼ macro: 89% → 28% (-60%)</li>
+<li><strong>DELL</strong> — DELL ▼ contrarian: 87% → 28% (-59%)</li>
+<li><strong>FLEX</strong> — FLEX ▼ mom: 88% → 30% (-58%)</li>
+<li><strong>FLEX</strong> — FLEX ▼ longterm: 82% → 26% (-57%)</li>
+<li><strong>WIT</strong> — WIT ▲ macro: 10% → 67% (+57%)</li>
+<li><strong>ARM</strong> — ARM ▼ macro: 92% → 35% (-57%)</li>
+<li><strong>NVT</strong> — NVT ▼ mom: 82% → 26% (-56%)</li>
+<li><strong>CLS</strong> — CLS ▼ mom: 61% → 6% (-55%)</li>
+<li><strong>VG</strong> — VG ▲ longterm: 29% → 84% (+55%)</li>
+<li><strong>HPE</strong> — HPE ▼ contrarian: 88% → 34% (-55%)</li>
+<li><strong>FIX</strong> — FIX ▼ mom: 60% → 6% (-54%)</li>
+<li><strong>SNDK</strong> — SNDK ▼ macro: 94% → 40% (-54%)</li>
+<li><strong>NBIS</strong> — NBIS ▼ mom: 87% → 34% (-53%)</li>
+<li><strong>LRCX</strong> — LRCX ▼ macro: 79% → 27% (-52%)</li>
+<li><strong>ARM</strong> — ARM ▼ mom: 90% → 38% (-52%)</li>
+<li><strong>GOOGL</strong> — GOOGL ▼ mom: 63% → 11% (-52%)</li>
+<li><strong>FIX</strong> — FIX ▼ longterm: 90% → 38% (-51%)</li>
+<li><strong>MSTR</strong> — MSTR ▼ macro: 75% → 24% (-51%)</li>
+<li><strong>XSD</strong> — XSD ▼ macro: 86% → 35% (-51%)</li>
+<li><strong>FIX</strong> — FIX ▼ macro: 62% → 12% (-51%)</li>
+<li><strong>SNDK</strong> — SNDK ▼ mom: 91% → 41% (-51%)</li>
+<li><strong>NBIS</strong> — NBIS ▼ macro: 89% → 39% (-50%)</li>
+<li><strong>COHR</strong> — COHR ▼ mom: 54% → 4% (-49%)</li>
+<li><strong>ROP</strong> — ROP ▲ value: 48% → 97% (+49%)</li>
+<li><strong>CHKP</strong> — CHKP ▲ mom: 33% → 82% (+49%)</li>
+<li><strong>COHR</strong> — COHR ▼ macro: 54% → 6% (-48%)</li>
+<li><strong>CLS</strong> — CLS ▼ macro: 58% → 11% (-47%)</li>
+<li><strong>REGN</strong> — REGN ▲ macro: 45% → 92% (+47%)</li>
+<li><strong>GOOGL</strong> — GOOGL ▼ macro: 61% → 15% (-46%)</li>
+<li><strong>NU</strong> — NU ▼ macro: 64% → 17% (-46%)</li>
+<li><strong>CRDO</strong> — CRDO ▼ longterm: 78% → 32% (-46%)</li>
+<li><strong>AWK</strong> — AWK ▲ mom: 37% → 84% (+46%)</li>
+<li><strong>DELL</strong> — DELL ▼ value: 91% → 45% (-46%)</li>
+<li><strong>PWR</strong> — PWR ▼ macro: 79% → 34% (-46%)</li>
+<li><strong>XSD</strong> — XSD ▼ mom: 85% → 40% (-45%)</li>
+<li><strong>RTX</strong> — RTX ▲ macro: 30% → 75% (+45%)</li>
+<li><strong>AMAT</strong> — AMAT ▼ macro: 82% → 37% (-45%)</li>
+<li><strong>IBM</strong> — IBM ▲ mom: 22% → 67% (+45%)</li>
+<li><strong>TCS.NS</strong> — TCS.NS ▲ macro: 16% → 61% (+45%)</li>
+<li><strong>CAT</strong> — CAT ▼ longterm: 81% → 37% (-45%)</li>
+<li><strong>CHKP</strong> — CHKP ▲ macro: 39% → 84% (+44%)</li>
+<li><strong>HPE</strong> — HPE ▼ value: 97% → 53% (-44%)</li>
+<li><strong>ANET</strong> — ANET ▼ mom: 89% → 46% (-43%)</li>
+<li><strong>INFY</strong> — INFY ▲ macro: 11% → 54% (+43%)</li>
+<li><strong>NTLA</strong> — NTLA ▲ value: 30% → 72% (+43%)</li>
+<li><strong>AWK</strong> — AWK ▲ macro: 35% → 77% (+43%)</li>
+<li><strong>BITQ</strong> — BITQ ▼ macro: 62% → 20% (-42%)</li>
+<li><strong>NOC</strong> — NOC ▲ mom: 6% → 48% (+42%)</li>
+<li><strong>VG</strong> — VG ▲ mom: 44% → 86% (+42%)</li>
+<li><strong>INFY.NS</strong> — INFY.NS ▲ macro: 10% → 52% (+42%)</li>
+<li><strong>WIT</strong> — WIT ▲ mom: 14% → 56% (+42%)</li>
+<li><strong>QCOM</strong> — QCOM ▼ macro: 82% → 40% (-42%)</li>
+<li><strong>NBIS</strong> — NBIS ▼ value: 90% → 49% (-41%)</li>
+<li><strong>DELTA.BK</strong> — DELTA.BK ▼ longterm: 75% → 34% (-41%)</li>
+<li><strong>ROP</strong> — ROP ▲ macro: 52% → 92% (+40%)</li>
+<li><strong>RTX</strong> — RTX ▲ mom: 35% → 76% (+40%)</li>
+<li><strong>ROP</strong> — ROP ▲ mom: 52% → 92% (+40%)</li>
+<li><strong>HCA</strong> — HCA ▲ macro: 34% → 74% (+40%)</li>
+<li><strong>IBM</strong> — IBM ▲ macro: 32% → 71% (+40%)</li>
+<li><strong>LRCX</strong> — LRCX ▼ mom: 70% → 31% (-39%)</li>
+<li><strong>ON</strong> — ON ▼ macro: 54% → 15% (-39%)</li>
+<li><strong>NU</strong> — NU ▼ value: 78% → 39% (-39%)</li>
+<li><strong>J</strong> — J ▲ contrarian: 47% → 85% (+38%)</li>
+<li><strong>SOXX</strong> — SOXX ▼ mom: 86% → 48% (-38%)</li>
+<li><strong>CIEN</strong> — CIEN ▼ macro: 48% → 10% (-38%)</li>
+<li><strong>HIMS</strong> — HIMS ▼ mom: 88% → 50% (-38%)</li>
+<li><strong>PWR</strong> — PWR ▼ mom: 80% → 42% (-38%)</li>
+<li><strong>USDMXN=X</strong> — USDMXN=X ▲ mom: 40% → 77% (+38%)</li>
+<li><strong>NOC</strong> — NOC ▲ macro: 7% → 45% (+38%)</li>
+<li><strong>REGN</strong> — REGN ▲ mom: 56% → 93% (+38%)</li>
+<li><strong>SOXQ</strong> — SOXQ ▼ mom: 86% → 48% (-38%)</li>
+<li><strong>GD</strong> — GD ▲ macro: 35% → 72% (+38%)</li>
+<li><strong>LMT</strong> — LMT ▲ contrarian: 33% → 70% (+37%)</li>
+<li><strong>ABT</strong> — ABT ▲ macro: 40% → 78% (+37%)</li>
+<li><strong>PTTEP.BK</strong> — PTTEP.BK ▲ macro: 43% → 80% (+37%)</li>
+<li><strong>INTC</strong> — INTC ▼ longterm: 84% → 47% (-37%)</li>
+<li><strong>INFY.NS</strong> — INFY.NS ▲ mom: 13% → 50% (+37%)</li>
+<li><strong>BITQ</strong> — BITQ ▼ mom: 64% → 27% (-37%)</li>
+<li><strong>SOXQ</strong> — SOXQ ▼ macro: 87% → 50% (-37%)</li>
+<li><strong>SOXX</strong> — SOXX ▼ macro: 88% → 51% (-37%)</li>
+<li><strong>ANET</strong> — ANET ▼ macro: 90% → 53% (-36%)</li>
+<li><strong>HIMS</strong> — HIMS ▼ macro: 88% → 52% (-36%)</li>
+<li><strong>KLAC</strong> — KLAC ▼ macro: 66% → 30% (-36%)</li>
+<li><strong>AMAT</strong> — AMAT ▼ mom: 72% → 36% (-36%)</li>
+<li><strong>TT</strong> — TT ▼ mom: 56% → 21% (-36%)</li>
+<li><strong>LMT</strong> — LMT ▲ value: 55% → 91% (+36%)</li>
+<li><strong>PTTEP.BK</strong> — PTTEP.BK ▲ mom: 47% → 83% (+36%)</li>
+<li><strong>QTUM</strong> — QTUM ▼ macro: 82% → 46% (-36%)</li>
+<li><strong>NOW</strong> — NOW ▼ mom: 92% → 57% (-35%)</li>
+<li><strong>COIN</strong> — COIN ▼ macro: 48% → 14% (-35%)</li>
+<li><strong>NVT</strong> — NVT ▼ longterm: 85% → 51% (-35%)</li>
+<li><strong>TM</strong> — TM ▲ macro: 21% → 56% (+34%)</li>
+<li><strong>IHI</strong> — IHI ▲ macro: 34% → 68% (+34%)</li>
+<li><strong>REGN</strong> — REGN ▲ contrarian: 55% → 89% (+34%)</li>
+<li><strong>NVDA</strong> — NVDA ▼ contrarian: 85% → 51% (-34%)</li>
+<li><strong>QTUM</strong> — QTUM ▼ mom: 81% → 47% (-34%)</li>
+<li><strong>NU</strong> — NU ▼ mom: 49% → 15% (-34%)</li>
+<li><strong>PNR</strong> — PNR ▲ mom: 2% → 35% (+34%)</li>
+<li><strong>GEV</strong> — GEV ▼ mom: 51% → 17% (-34%)</li>
+<li><strong>KLAC</strong> — KLAC ▼ mom: 57% → 23% (-34%)</li>
+<li><strong>GEV</strong> — GEV ▼ macro: 57% → 24% (-34%)</li>
+<li><strong>SMH</strong> — SMH ▼ mom: 85% → 52% (-33%)</li>
+<li><strong>COHR</strong> — COHR ▼ longterm: 86% → 53% (-33%)</li>
+<li><strong>BLOK</strong> — BLOK ▼ macro: 56% → 24% (-33%)</li>
+<li><strong>LNG</strong> — LNG ▲ mom: 60% → 92% (+33%)</li>
+<li><strong>HCA</strong> — HCA ▲ mom: 35% → 68% (+33%)</li>
+<li><strong>MDT</strong> — MDT ▲ mom: 56% → 88% (+32%)</li>
+<li><strong>MDT</strong> — MDT ▲ macro: 50% → 82% (+32%)</li>
+<li><strong>VMC</strong> — VMC ▲ mom: 11% → 43% (+32%)</li>
+<li><strong>FTNT</strong> — FTNT ▼ contrarian: 48% → 16% (-32%)</li>
+<li><strong>CAT</strong> — CAT ▼ macro: 45% → 13% (-32%)</li>
+<li><strong>INFY</strong> — INFY ▲ mom: 15% → 47% (+32%)</li>
+<li><strong>NBIS</strong> — NBIS ▼ longterm: 88% → 56% (-32%)</li>
+<li><strong>VLTO</strong> — VLTO ▲ macro: 60% → 91% (+32%)</li>
+<li><strong>SPG</strong> — SPG ▲ mom: 40% → 71% (+31%)</li>
+<li><strong>ROP</strong> — ROP ▲ longterm: 38% → 70% (+31%)</li>
+<li><strong>ANET</strong> — ANET ▼ contrarian: 57% → 26% (-31%)</li>
+<li><strong>ETN</strong> — ETN ▼ macro: 63% → 32% (-31%)</li>
+<li><strong>MSTR</strong> — MSTR ▼ mom: 87% → 56% (-31%)</li>
+<li><strong>CAT</strong> — CAT ▼ mom: 39% → 8% (-31%)</li>
+<li><strong>PHO</strong> — PHO ▲ macro: 40% → 71% (+30%)</li>
+<li><strong>SMH</strong> — SMH ▼ macro: 86% → 56% (-30%)</li>
+<li><strong>MLM</strong> — MLM ▲ mom: 7% → 37% (+30%)</li>
+<li><strong>SOXX</strong> — SOXX ▼ contrarian: 86% → 56% (-30%)</li>
+<li><strong>IBN</strong> — IBN ▲ macro: 42% → 72% (+30%)</li>
+<li><strong>CL=F</strong> — CL=F ▲ mom: 52% → 82% (+30%)</li>
+<li><strong>SNOW</strong> — SNOW ▼ longterm: 58% → 28% (-30%)</li>
+<li><strong>AWK</strong> — AWK ▲ contrarian: 56% → 86% (+29%)</li>
+<li><strong>SOXQ</strong> — SOXQ ▼ contrarian: 87% → 58% (-30%)</li>
+<li><strong>PHO</strong> — PHO ▲ mom: 47% → 76% (+29%)</li>
+<li><strong>GRID</strong> — GRID ▼ mom: 52% → 22% (-29%)</li>
+<li><strong>GLW</strong> — GLW ▼ longterm: 80% → 51% (-29%)</li>
+<li><strong>NOW</strong> — NOW ▼ macro: 90% → 62% (-29%)</li>
+<li><strong>VMC</strong> — VMC ▲ macro: 14% → 43% (+29%)</li>
+<li><strong>ZW=F</strong> — ZW=F ▼ macro: 71% → 42% (-29%)</li>
+<li><strong>WIT</strong> — WIT ▲ value: 26% → 55% (+29%)</li>
+<li><strong>NVT</strong> — NVT ▼ value: 63% → 34% (-29%)</li>
+<li><strong>NU</strong> — NU ▼ contrarian: 49% → 20% (-29%)</li>
+<li><strong>IRWD</strong> — IRWD ▼ mom: 45% → 16% (-29%)</li>
+<li><strong>SPG</strong> — SPG ▲ macro: 44% → 72% (+28%)</li>
+<li><strong>VLTO</strong> — VLTO ▲ mom: 63% → 92% (+28%)</li>
+<li><strong>LNG</strong> — LNG ▲ longterm: 57% → 85% (+28%)</li>
+<li><strong>SYK</strong> — SYK ▲ macro: 13% → 41% (+28%)</li>
+<li><strong>NET</strong> — NET ▼ longterm: 86% → 58% (-28%)</li>
+<li><strong>ARKF</strong> — ARKF ▼ macro: 80% → 52% (-28%)</li>
+<li><strong>URI</strong> — URI ▲ longterm: 44% → 72% (+28%)</li>
+<li><strong>LLY</strong> — LLY ▲ contrarian: 54% → 81% (+28%)</li>
+<li><strong>CVS</strong> — CVS ▲ mom: 39% → 66% (+28%)</li>
+<li><strong>CGNX</strong> — CGNX ▼ macro: 74% → 46% (-28%)</li>
+<li><strong>TT</strong> — TT ▼ macro: 55% → 28% (-28%)</li>
+<li><strong>ABT</strong> — ABT ▲ mom: 53% → 80% (+28%)</li>
+<li><strong>AMZN</strong> — AMZN ▼ mom: 67% → 39% (-28%)</li>
+<li><strong>ETN</strong> — ETN ▼ mom: 64% → 36% (-27%)</li>
+<li><strong>ARKF</strong> — ARKF ▼ mom: 84% → 56% (-27%)</li>
+<li><strong>AMZN</strong> — AMZN ▼ macro: 64% → 37% (-27%)</li>
+<li><strong>EW</strong> — EW ▲ mom: 50% → 78% (+27%)</li>
+<li><strong>CLS</strong> — CLS ▼ longterm: 36% → 9% (-27%)</li>
+<li><strong>LNG</strong> — LNG ▲ macro: 63% → 90% (+27%)</li>
+<li><strong>FIW</strong> — FIW ▲ macro: 38% → 66% (+27%)</li>
+<li><strong>AIQ</strong> — AIQ ▼ mom: 86% → 59% (-27%)</li>
+<li><strong>IBN</strong> — IBN ▲ mom: 46% → 73% (+27%)</li>
+<li><strong>GDXJ</strong> — GDXJ ▼ mom: 48% → 21% (-27%)</li>
+<li><strong>TCS.NS</strong> — TCS.NS ▲ mom: 26% → 53% (+27%)</li>
+<li><strong>NVT</strong> — NVT ▼ contrarian: 50% → 24% (-27%)</li>
+<li><strong>ARKX</strong> — ARKX ▼ mom: 53% → 26% (-27%)</li>
+<li><strong>QCOM</strong> — QCOM ▼ mom: 80% → 54% (-26%)</li>
+<li><strong>SYK</strong> — SYK ▲ mom: 12% → 38% (+26%)</li>
+<li><strong>TSLA</strong> — TSLA ▲ mom: 36% → 63% (+26%)</li>
+<li><strong>MLPX</strong> — MLPX ▲ mom: 46% → 72% (+26%)</li>
+<li><strong>CIEN</strong> — CIEN ▼ mom: 34% → 8% (-26%)</li>
+<li><strong>QUAL</strong> — QUAL ▼ contrarian: 98% → 72% (-26%)</li>
+<li><strong>BDMS.BK</strong> — BDMS.BK ▲ mom: 45% → 71% (+26%)</li>
+<li><strong>CIBR</strong> — CIBR ▼ contrarian: 98% → 72% (-26%)</li>
+<li><strong>URI</strong> — URI ▲ contrarian: 56% → 83% (+26%)</li>
+<li><strong>VST</strong> — VST ▼ macro: 55% → 29% (-26%)</li>
+<li><strong>NTLA</strong> — NTLA ▲ contrarian: 9% → 35% (+26%)</li>
+<li><strong>USO</strong> — USO ▲ contrarian: 72% → 98% (+26%)</li>
+<li><strong>GILD</strong> — GILD ▲ macro: 66% → 92% (+26%)</li>
+<li><strong>FCG</strong> — FCG ▲ contrarian: 72% → 98% (+26%)</li>
+<li><strong>USDINR=X</strong> — USDINR=X ▼ contrarian: 98% → 72% (-26%)</li>
+<li><strong>MRVL</strong> — MRVL ▼ mom: 95% → 70% (-26%)</li>
+<li><strong>SMH</strong> — SMH ▼ contrarian: 89% → 63% (-26%)</li>
+<li><strong>ECL</strong> — ECL ▲ mom: 58% → 84% (+26%)</li>
+<li><strong>ECL</strong> — ECL ▲ macro: 53% → 78% (+26%)</li>
+<li><strong>MLPX</strong> — MLPX ▲ contrarian: 72% → 98% (+26%)</li>
+<li><strong>SPY</strong> — SPY ▼ contrarian: 98% → 72% (-26%)</li>
+<li><strong>CL=F</strong> — CL=F ▲ macro: 50% → 76% (+26%)</li>
+<li><strong>FCX</strong> — FCX ▼ value: 84% → 59% (-25%)</li>
+<li><strong>LMT</strong> — LMT ▲ longterm: 27% → 52% (+25%)</li>
+<li><strong>IHE</strong> — IHE ▲ contrarian: 72% → 98% (+25%)</li>
+<li><strong>VOO</strong> — VOO ▼ contrarian: 97% → 72% (-25%)</li>
+</ul>
+<h2 id="medium-severity-369">🟡 MEDIUM Severity (369)</h2>
+<ul>
+<li><strong>MDT</strong> — MDT entered top decile in value sleeve (81% → 93%)</li>
+<li><strong>LMT</strong> — LMT entered top decile in value sleeve (55% → 91%)</li>
+<li><strong>LLY</strong> — LLY entered top decile in macro sleeve (79% → 94%)</li>
+<li><strong>IGF</strong> — IGF entered top decile in contrarian sleeve (72% → 94%)</li>
+<li><strong>WMB</strong> — WMB entered top decile in longterm sleeve (82% → 91%)</li>
+<li><strong>VRTX</strong> — VRTX entered top decile in mom sleeve (68% → 92%)</li>
+<li><strong>XHE</strong> — XHE entered top decile in contrarian sleeve (72% → 92%)</li>
+<li><strong>VNQ</strong> — VNQ entered top decile in contrarian sleeve (72% → 92%)</li>
+<li><strong>AWK</strong> — AWK entered top decile in value sleeve (76% → 90%)</li>
+<li><strong>J</strong> — J entered top decile in value sleeve (69% → 94%)</li>
+<li><strong>VLTO</strong> — VLTO entered top decile in mom sleeve (63% → 92%)</li>
+<li><strong>VLTO</strong> — VLTO entered top decile in macro sleeve (60% → 91%)</li>
+<li><strong>SWKS</strong> — SWKS entered top decile in mom sleeve (88% → 94%)</li>
+<li><strong>SWKS</strong> — SWKS entered top decile in value sleeve (72% → 92%)</li>
+<li><strong>SWKS</strong> — SWKS entered top decile in macro sleeve (86% → 91%)</li>
+<li><strong>GBPUSD=X</strong> — GBPUSD=X entered top decile in contrarian sleeve (72% → 94%)</li>
+<li><strong>DXCM</strong> — DXCM entered top decile in macro sleeve (83% → 90%)</li>
+<li><strong>PTTEP.BK</strong> — PTTEP.BK entered top decile in contrarian sleeve (72% → 91%)</li>
+<li><strong>AAPL</strong> — AAPL entered top decile in quality sleeve (88% → 91%)</li>
+<li><strong>ROP</strong> — ROP entered top decile in mom sleeve (52% → 92%)</li>
+<li><strong>ROP</strong> — ROP entered top decile in macro sleeve (52% → 92%)</li>
+<li><strong>USO</strong> — USO entered top decile in mom sleeve (82% → 93%)</li>
+<li><strong>USO</strong> — USO entered top decile in macro sleeve (82% → 92%)</li>
+<li><strong>GILD</strong> — GILD entered top decile in mom sleeve (73% → 94%)</li>
+<li><strong>GILD</strong> — GILD entered top decile in macro sleeve (66% → 92%)</li>
+<li><strong>GILD</strong> — GILD entered top decile in longterm sleeve (82% → 91%)</li>
+<li><strong>SEZL</strong> — SEZL entered top decile in longterm sleeve (84% → 94%)</li>
+<li><strong>AMLP</strong> — AMLP entered top decile in contrarian sleeve (72% → 94%)</li>
+<li><strong>LNG</strong> — LNG entered top decile in mom sleeve (60% → 92%)</li>
+<li><strong>LNG</strong> — LNG entered top decile in macro sleeve (63% → 90%)</li>
+<li><strong>REET</strong> — REET entered top decile in contrarian sleeve (72% → 90%)</li>
+<li><strong>BZ=F</strong> — BZ=F entered top decile in contrarian sleeve (72% → 93%)</li>
+<li><strong>PSX</strong> — PSX entered top decile in longterm sleeve (89% → 92%)</li>
+<li><strong>AMGN</strong> — AMGN entered top decile in value sleeve (88% → 95%)</li>
+<li><strong>AMGN</strong> — AMGN entered top decile in macro sleeve (76% → 94%)</li>
+<li><strong>AUDUSD=X</strong> — AUDUSD=X entered top decile in contrarian sleeve (72% → 95%)</li>
+<li><strong>FXY</strong> — FXY entered top decile in contrarian sleeve (72% → 94%)</li>
+<li><strong>AOT.BK</strong> — AOT.BK entered top decile in longterm sleeve (88% → 92%)</li>
+<li><strong>MCK</strong> — MCK entered top decile in mom sleeve (72% → 90%)</li>
+<li><strong>MA</strong> — MA entered top decile in mom sleeve (77% → 90%)</li>
+<li><strong>XLV</strong> — XLV entered top decile in mom sleeve (72% → 91%)</li>
+<li><strong>PLTR</strong> — PLTR entered top decile in quality sleeve (88% → 95%)</li>
+<li><strong>CRSP</strong> — CRSP entered top decile in value sleeve (76% → 91%)</li>
+<li><strong>BLK</strong> — BLK entered top decile in value sleeve (84% → 92%)</li>
+<li><strong>IBB</strong> — IBB entered top decile in mom sleeve (77% → 91%)</li>
+<li><strong>REGN</strong> — REGN entered top decile in mom sleeve (56% → 93%)</li>
+<li><strong>REGN</strong> — REGN entered top decile in macro sleeve (45% → 92%)</li>
+<li><strong>IYR</strong> — IYR entered top decile in contrarian sleeve (72% → 92%)</li>
+<li><strong>CRDO</strong> — CRDO dropped out of top decile in mom sleeve (92% → 18%)</li>
+<li><strong>CRDO</strong> — CRDO dropped out of top decile in macro sleeve (92% → 18%)</li>
+<li><strong>NOW</strong> — NOW dropped out of top decile in mom sleeve (92% → 57%)</li>
+<li><strong>NOW</strong> — NOW dropped out of top decile in macro sleeve (90% → 62%)</li>
+<li><strong>SCC.BK</strong> — SCC.BK dropped out of top decile in value sleeve (93% → 75%)</li>
+<li><strong>BEN</strong> — BEN dropped out of top decile in value sleeve (93% → 88%)</li>
+<li><strong>AIQ</strong> — AIQ dropped out of top decile in contrarian sleeve (92% → 72%)</li>
+<li><strong>DDOG</strong> — DDOG dropped out of top decile in longterm sleeve (91% → 84%)</li>
+<li><strong>INTC</strong> — INTC dropped out of top decile in macro sleeve (91% → 10%)</li>
+<li><strong>NBIS</strong> — NBIS dropped out of top decile in value sleeve (90% → 49%)</li>
+<li><strong>USDJPY=X</strong> — USDJPY=X dropped out of top decile in contrarian sleeve (94% → 72%)</li>
+<li><strong>SMCI</strong> — SMCI dropped out of top decile in mom sleeve (94% → 74%)</li>
+<li><strong>SMCI</strong> — SMCI dropped out of top decile in macro sleeve (91% → 73%)</li>
+<li><strong>SEZL</strong> — SEZL dropped out of top decile in mom sleeve (93% → 90%)</li>
+<li><strong>CNC</strong> — CNC dropped out of top decile in macro sleeve (91% → 88%)</li>
+<li><strong>ARM</strong> — ARM dropped out of top decile in macro sleeve (92% → 35%)</li>
+<li><strong>ARM</strong> — ARM dropped out of top decile in longterm sleeve (91% → 79%)</li>
+<li><strong>MU</strong> — MU dropped out of top decile in value sleeve (92% → 70%)</li>
+<li><strong>BTC-USD</strong> — BTC-USD dropped out of top decile in contrarian sleeve (93% → 72%)</li>
+<li><strong>FTNT</strong> — FTNT dropped out of top decile in quality sleeve (91% → 81%)</li>
+<li><strong>MSFT</strong> — MSFT dropped out of top decile in mom sleeve (91% → 84%)</li>
+<li><strong>PSX</strong> — PSX dropped out of top decile in contrarian sleeve (90% → 70%)</li>
+<li><strong>EURUSD=X</strong> — EURUSD=X dropped out of top decile in quality sleeve (90% → 90%)</li>
+<li><strong>DELL</strong> — DELL dropped out of top decile in value sleeve (91% → 45%)</li>
+<li><strong>AFRM</strong> — AFRM dropped out of top decile in mom sleeve (90% → 66%)</li>
+<li><strong>AFRM</strong> — AFRM dropped out of top decile in value sleeve (90% → 68%)</li>
+<li><strong>AFRM</strong> — AFRM dropped out of top decile in macro sleeve (90% → 71%)</li>
+<li><strong>NVDA</strong> — NVDA dropped out of top decile in value sleeve (94% → 74%)</li>
+<li><strong>NVDA</strong> — NVDA dropped out of top decile in longterm sleeve (92% → 88%)</li>
+<li><strong>000333.SZ</strong> — 000333.SZ dropped out of top decile in value sleeve (92% → 0%)</li>
+<li><strong>IGV</strong> — IGV dropped out of top decile in mom sleeve (90% → 79%)</li>
+<li><strong>IGV</strong> — IGV dropped out of top decile in contrarian sleeve (93% → 72%)</li>
+<li><strong>0939.HK</strong> — 0939.HK dropped out of top decile in contrarian sleeve (92% → 0%)</li>
+<li><strong>GOOGL</strong> — GOOGL dropped out of top decile in longterm sleeve (94% → 81%)</li>
+<li><strong>SOL-USD</strong> — SOL-USD dropped out of top decile in mom sleeve (94% → 74%)</li>
+<li><strong>SOL-USD</strong> — SOL-USD dropped out of top decile in macro sleeve (93% → 84%)</li>
+<li><strong>SNDK</strong> — SNDK dropped out of top decile in mom sleeve (91% → 41%)</li>
+<li><strong>SNDK</strong> — SNDK dropped out of top decile in macro sleeve (94% → 40%)</li>
+<li><strong>FRO</strong> — FRO dropped out of top decile in contrarian sleeve (91% → 83%)</li>
+<li><strong>SOXX</strong> — SOXX dropped out of top decile in longterm sleeve (92% → 81%)</li>
+<li><strong>ETH-USD</strong> — ETH-USD dropped out of top decile in mom sleeve (91% → 81%)</li>
+<li><strong>COST</strong> — COST ▲ macro: 34% → 59% (+25%)</li>
+<li><strong>DELTA.BK</strong> — DELTA.BK ▼ macro: 36% → 11% (-25%)</li>
+<li><strong>CEG</strong> — CEG ▼ macro: 54% → 30% (-25%)</li>
+<li><strong>GD</strong> — GD ▲ contrarian: 43% → 67% (+25%)</li>
+<li><strong>MAGS</strong> — MAGS ▼ contrarian: 97% → 72% (-25%)</li>
+<li><strong>NVDA</strong> — NVDA ▼ mom: 80% → 55% (-25%)</li>
+<li><strong>JNJ</strong> — JNJ ▲ mom: 61% → 85% (+25%)</li>
+<li><strong>VRT</strong> — VRT ▼ longterm: 63% → 38% (-24%)</li>
+<li><strong>SHLD</strong> — SHLD ▲ mom: 16% → 40% (+25%)</li>
+<li><strong>AFRM</strong> — AFRM ▼ mom: 90% → 66% (-24%)</li>
+<li><strong>USDCAD=X</strong> — USDCAD=X ▼ contrarian: 96% → 72% (-24%)</li>
+<li><strong>QTUM</strong> — QTUM ▼ contrarian: 90% → 65% (-24%)</li>
+<li><strong>AVGO</strong> — AVGO ▼ mom: 41% → 17% (-24%)</li>
+<li><strong>ROBO</strong> — ROBO ▼ macro: 60% → 35% (-24%)</li>
+<li><strong>ARKQ</strong> — ARKQ ▼ contrarian: 87% → 62% (-24%)</li>
+<li><strong>VG</strong> — VG ▲ macro: 57% → 81% (+24%)</li>
+<li><strong>PNR</strong> — PNR ▲ value: 20% → 45% (+24%)</li>
+<li><strong>J</strong> — J ▲ value: 69% → 94% (+24%)</li>
+<li><strong>NET</strong> — NET ▼ mom: 96% → 72% (-24%)</li>
+<li><strong>BDMS.BK</strong> — BDMS.BK ▲ macro: 40% → 64% (+24%)</li>
+<li><strong>VLTO</strong> — VLTO ▲ contrarian: 61% → 85% (+24%)</li>
+<li><strong>DXJ</strong> — DXJ ▼ contrarian: 96% → 72% (-24%)</li>
+<li><strong>DBC</strong> — DBC ▲ contrarian: 72% → 96% (+24%)</li>
+<li><strong>VRTX</strong> — VRTX ▲ mom: 68% → 92% (+24%)</li>
+<li><strong>SHLD</strong> — SHLD ▲ macro: 15% → 38% (+24%)</li>
+<li><strong>HEWJ</strong> — HEWJ ▼ contrarian: 96% → 72% (-24%)</li>
+<li><strong>PDBC</strong> — PDBC ▲ contrarian: 72% → 96% (+24%)</li>
+<li><strong>NBIS</strong> — NBIS ▼ contrarian: 43% → 20% (-23%)</li>
+<li><strong>RIO</strong> — RIO ▼ value: 85% → 62% (-23%)</li>
+<li><strong>FCG</strong> — FCG ▲ mom: 55% → 78% (+23%)</li>
+<li><strong>QQQ</strong> — QQQ ▼ contrarian: 95% → 72% (-23%)</li>
+<li><strong>BOTZ</strong> — BOTZ ▼ contrarian: 86% → 63% (-23%)</li>
+<li><strong>EWJ</strong> — EWJ ▼ contrarian: 95% → 72% (-23%)</li>
+<li><strong>META</strong> — META ▼ value: 77% → 54% (-23%)</li>
+<li><strong>AIQ</strong> — AIQ ▼ macro: 85% → 62% (-23%)</li>
+<li><strong>GOOGL</strong> — GOOGL ▼ value: 61% → 38% (-23%)</li>
+<li><strong>SWKS</strong> — SWKS ▲ contrarian: 46% → 69% (+23%)</li>
+<li><strong>COR</strong> — COR ▲ macro: 48% → 70% (+23%)</li>
+<li><strong>TSM</strong> — TSM ▼ mom: 78% → 55% (-23%)</li>
+<li><strong>FCX</strong> — FCX ▼ contrarian: 62% → 40% (-23%)</li>
+<li><strong>MRVL</strong> — MRVL ▼ contrarian: 37% → 14% (-22%)</li>
+<li><strong>CL=F</strong> — CL=F ▲ longterm: 62% → 84% (+22%)</li>
+<li><strong>NEE</strong> — NEE ▲ mom: 12% → 35% (+22%)</li>
+<li><strong>COPX</strong> — COPX ▼ macro: 52% → 29% (-22%)</li>
+<li><strong>MU</strong> — MU ▼ value: 92% → 70% (-22%)</li>
+<li><strong>AUDUSD=X</strong> — AUDUSD=X ▲ contrarian: 72% → 95% (+22%)</li>
+<li><strong>IRWD</strong> — IRWD ▼ macro: 43% → 21% (-22%)</li>
+<li><strong>AMGN</strong> — AMGN ▲ contrarian: 64% → 87% (+22%)</li>
+<li><strong>MLM</strong> — MLM ▲ macro: 9% → 31% (+22%)</li>
+<li><strong>TCS.NS</strong> — TCS.NS ▲ value: 43% → 65% (+22%)</li>
+<li><strong>BLK</strong> — BLK ▲ contrarian: 62% → 84% (+22%)</li>
+<li><strong>GULF.BK</strong> — GULF.BK ▲ macro: 44% → 66% (+22%)</li>
+<li><strong>KOID</strong> — KOID ▼ mom: 47% → 25% (-22%)</li>
+<li><strong>BLOK</strong> — BLOK ▼ mom: 54% → 32% (-22%)</li>
+<li><strong>GBPUSD=X</strong> — GBPUSD=X ▲ contrarian: 72% → 94% (+22%)</li>
+<li><strong>AFRM</strong> — AFRM ▼ value: 90% → 68% (-22%)</li>
+<li><strong>QQQ</strong> — QQQ ▼ mom: 77% → 56% (-22%)</li>
+<li><strong>NG=F</strong> — NG=F ▼ macro: 70% → 48% (-22%)</li>
+<li><strong>GILD</strong> — GILD ▲ mom: 73% → 94% (+22%)</li>
+<li><strong>SNDK</strong> — SNDK ▼ value: 56% → 34% (-22%)</li>
+<li><strong>RIO</strong> — RIO ▼ longterm: 79% → 57% (-22%)</li>
+<li><strong>WELL</strong> — WELL ▲ mom: 52% → 74% (+22%)</li>
+<li><strong>FXY</strong> — FXY ▲ contrarian: 72% → 94% (+22%)</li>
+<li><strong>USDJPY=X</strong> — USDJPY=X ▼ contrarian: 94% → 72% (-22%)</li>
+<li><strong>KMI</strong> — KMI ▲ mom: 55% → 76% (+21%)</li>
+<li><strong>WMB</strong> — WMB ▲ mom: 49% → 71% (+21%)</li>
+<li><strong>IHI</strong> — IHI ▲ mom: 31% → 52% (+21%)</li>
+<li><strong>CGNX</strong> — CGNX ▼ mom: 68% → 46% (-21%)</li>
+<li><strong>IHE</strong> — IHE ▲ mom: 64% → 86% (+21%)</li>
+<li><strong>AMLP</strong> — AMLP ▲ contrarian: 72% → 94% (+21%)</li>
+<li><strong>QUBT</strong> — QUBT ▼ mom: 29% → 8% (-21%)</li>
+<li><strong>GLW</strong> — GLW ▼ macro: 36% → 15% (-21%)</li>
+<li><strong>ANET</strong> — ANET ▼ value: 50% → 29% (-21%)</li>
+<li><strong>TSM</strong> — TSM ▼ macro: 80% → 59% (-21%)</li>
+<li><strong>MSFT</strong> — MSFT ▼ contrarian: 86% → 64% (-21%)</li>
+<li><strong>IGV</strong> — IGV ▼ contrarian: 93% → 72% (-21%)</li>
+<li><strong>ARKX</strong> — ARKX ▼ contrarian: 86% → 65% (-21%)</li>
+<li><strong>GOOGL</strong> — GOOGL ▼ contrarian: 46% → 25% (-21%)</li>
+<li><strong>LLY</strong> — LLY ▲ mom: 74% → 96% (+21%)</li>
+<li><strong>GPN</strong> — GPN ▲ contrarian: 61% → 82% (+21%)</li>
+<li><strong>FTNT</strong> — FTNT ▼ value: 33% → 12% (-21%)</li>
+<li><strong>NOC</strong> — NOC ▲ value: 31% → 52% (+21%)</li>
+<li><strong>IGF</strong> — IGF ▲ contrarian: 72% → 94% (+21%)</li>
+<li><strong>FN</strong> — FN ▼ mom: 23% → 2% (-21%)</li>
+<li><strong>GULF.BK</strong> — GULF.BK ▲ mom: 43% → 64% (+21%)</li>
+<li><strong>GD</strong> — GD ▲ value: 65% → 86% (+21%)</li>
+<li><strong>RIO</strong> — RIO ▼ macro: 42% → 21% (-21%)</li>
+<li><strong>FCG</strong> — FCG ▲ macro: 53% → 74% (+21%)</li>
+<li><strong>COR</strong> — COR ▲ mom: 56% → 77% (+21%)</li>
+<li><strong>FLEX</strong> — FLEX ▼ value: 48% → 28% (-21%)</li>
+<li><strong>JNJ</strong> — JNJ ▲ contrarian: 62% → 83% (+21%)</li>
+<li><strong>CRH</strong> — CRH ▲ mom: 4% → 25% (+21%)</li>
+<li><strong>BZ=F</strong> — BZ=F ▲ contrarian: 72% → 93% (+21%)</li>
+<li><strong>FIX</strong> — FIX ▼ value: 44% → 23% (-21%)</li>
+<li><strong>CL=F</strong> — CL=F ▲ contrarian: 69% → 90% (+21%)</li>
+<li><strong>BTC-USD</strong> — BTC-USD ▼ contrarian: 93% → 72% (-21%)</li>
+<li><strong>PNR</strong> — PNR ▲ macro: 2% → 23% (+21%)</li>
+<li><strong>INFY</strong> — INFY ▲ value: 23% → 44% (+20%)</li>
+<li><strong>O</strong> — O ▲ mom: 11% → 32% (+20%)</li>
+<li><strong>TT</strong> — TT ▼ contrarian: 59% → 38% (-20%)</li>
+<li><strong>MAGS</strong> — MAGS ▼ mom: 78% → 58% (-20%)</li>
+<li><strong>SCCO</strong> — SCCO ▼ contrarian: 58% → 38% (-20%)</li>
+<li><strong>VRTX</strong> — VRTX ▲ macro: 70% → 90% (+20%)</li>
+<li><strong>FIX</strong> — FIX ▼ contrarian: 36% → 16% (-20%)</li>
+<li><strong>NVDA</strong> — NVDA ▼ macro: 78% → 58% (-20%)</li>
+<li><strong>MCK</strong> — MCK ▲ macro: 65% → 85% (+20%)</li>
+<li><strong>COPX</strong> — COPX ▼ mom: 62% → 42% (-20%)</li>
+<li><strong>VMC</strong> — VMC ▲ value: 38% → 59% (+20%)</li>
+<li><strong>CLS</strong> — CLS ▼ value: 49% → 29% (-20%)</li>
+<li><strong>LNG</strong> — LNG ▲ contrarian: 68% → 88% (+20%)</li>
+<li><strong>NVDA</strong> — NVDA ▼ value: 94% → 74% (-20%)</li>
+<li><strong>TM</strong> — TM ▲ mom: 28% → 49% (+20%)</li>
+<li><strong>FLR</strong> — FLR ▼ macro: 52% → 32% (-20%)</li>
+<li><strong>MLPX</strong> — MLPX ▲ macro: 47% → 67% (+20%)</li>
+<li><strong>AMLP</strong> — AMLP ▲ mom: 49% → 69% (+20%)</li>
+<li><strong>AIQ</strong> — AIQ ▼ contrarian: 92% → 72% (-20%)</li>
+<li><strong>XHE</strong> — XHE ▲ contrarian: 72% → 92% (+20%)</li>
+<li><strong>CPN.BK</strong> — CPN.BK ▲ macro: 33% → 53% (+20%)</li>
+<li><strong>PSX</strong> — PSX ▼ contrarian: 90% → 70% (-20%)</li>
+<li><strong>SWKS</strong> — SWKS ▲ value: 72% → 92% (+20%)</li>
+<li><strong>IBN</strong> — IBN ▲ contrarian: 48% → 68% (+20%)</li>
+<li><strong>AMD</strong> — AMD ▼ contrarian: 46% → 26% (-20%)</li>
+<li><strong>VNQ</strong> — VNQ ▲ contrarian: 72% → 92% (+20%)</li>
+<li><strong>SMCI</strong> — SMCI ▼ mom: 94% → 74% (-20%)</li>
+<li><strong>SOL-USD</strong> — SOL-USD ▼ mom: 94% → 74% (-20%)</li>
+<li><strong>META</strong> — META ▼ macro: 72% → 53% (-20%)</li>
+<li><strong>COHR</strong> — COHR ▼ value: 38% → 18% (-20%)</li>
+<li><strong>JD</strong> — JD ▼ mom: 38% → 19% (-20%)</li>
+<li><strong>EW</strong> — EW ▲ macro: 56% → 76% (+20%)</li>
+<li><strong>VRTX</strong> — VRTX ▲ contrarian: 52% → 72% (+20%)</li>
+<li><strong>GRID</strong> — GRID ▼ macro: 49% → 30% (-20%)</li>
+<li><strong>FN</strong> — FN ▼ longterm: 26% → 7% (-20%)</li>
+<li><strong>META</strong> — META ▼ contrarian: 59% → 39% (-19%)</li>
+<li><strong>ROBO</strong> — ROBO ▼ contrarian: 89% → 69% (-20%)</li>
+<li><strong>XSD</strong> — XSD ▼ longterm: 78% → 59% (-19%)</li>
+<li><strong>CSCO</strong> — CSCO ▼ mom: 86% → 67% (-19%)</li>
+<li><strong>CRCL</strong> — CRCL ▼ macro: 35% → 16% (-19%)</li>
+<li><strong>MLM</strong> — MLM ▲ value: 28% → 47% (+19%)</li>
+<li><strong>TCS.NS</strong> — TCS.NS ▲ contrarian: 22% → 41% (+19%)</li>
+<li><strong>IYR</strong> — IYR ▲ contrarian: 72% → 92% (+19%)</li>
+<li><strong>MDT</strong> — MDT ▲ contrarian: 52% → 71% (+19%)</li>
+<li><strong>NEM</strong> — NEM ▼ value: 86% → 67% (-19%)</li>
+<li><strong>GOLD</strong> — GOLD ▼ mom: 44% → 25% (-19%)</li>
+<li><strong>SI=F</strong> — SI=F ▼ longterm: 49% → 30% (-19%)</li>
+<li><strong>CSCO</strong> — CSCO ▼ value: 74% → 55% (-19%)</li>
+<li><strong>ON</strong> — ON ▼ mom: 34% → 14% (-19%)</li>
+<li><strong>INDY</strong> — INDY ▲ macro: 25% → 44% (+19%)</li>
+<li><strong>ENPH</strong> — ENPH ▼ macro: 26% → 7% (-19%)</li>
+<li><strong>XLV</strong> — XLV ▲ mom: 72% → 91% (+19%)</li>
+<li><strong>FCG</strong> — FCG ▲ longterm: 65% → 84% (+19%)</li>
+<li><strong>AFRM</strong> — AFRM ▼ macro: 90% → 71% (-19%)</li>
+<li><strong>AFRM</strong> — AFRM ▼ contrarian: 66% → 47% (-19%)</li>
+<li><strong>QQQ</strong> — QQQ ▼ macro: 78% → 59% (-19%)</li>
+<li><strong>SONY</strong> — SONY ▲ macro: 67% → 86% (+19%)</li>
+<li><strong>J</strong> — J ▲ macro: 64% → 83% (+19%)</li>
+<li><strong>VMC</strong> — VMC ▲ contrarian: 25% → 44% (+19%)</li>
+<li><strong>ETN</strong> — ETN ▼ contrarian: 56% → 37% (-19%)</li>
+<li><strong>GLW</strong> — GLW ▼ mom: 33% → 14% (-19%)</li>
+<li><strong>ARKQ</strong> — ARKQ ▼ macro: 46% → 27% (-19%)</li>
+<li><strong>WIT</strong> — WIT ▲ contrarian: 12% → 30% (+19%)</li>
+<li><strong>SCCO</strong> — SCCO ▼ value: 67% → 48% (-19%)</li>
+<li><strong>TSM</strong> — TSM ▼ value: 80% → 61% (-19%)</li>
+<li><strong>INDY</strong> — INDY ▲ mom: 21% → 40% (+19%)</li>
+<li><strong>AOT.BK</strong> — AOT.BK ▲ mom: 44% → 62% (+19%)</li>
+<li><strong>ADC</strong> — ADC ▲ mom: 10% → 29% (+19%)</li>
+<li><strong>IGF</strong> — IGF ▲ macro: 30% → 49% (+19%)</li>
+<li><strong>KMI</strong> — KMI ▲ macro: 50% → 69% (+19%)</li>
+<li><strong>DELTA.BK</strong> — DELTA.BK ▼ mom: 26% → 7% (-19%)</li>
+<li><strong>ZW=F</strong> — ZW=F ▼ mom: 65% → 47% (-19%)</li>
+<li><strong>GRID</strong> — GRID ▼ contrarian: 90% → 71% (-19%)</li>
+<li><strong>ITA</strong> — ITA ▲ macro: 21% → 39% (+18%)</li>
+<li><strong>IGF</strong> — IGF ▲ mom: 25% → 43% (+18%)</li>
+<li><strong>MRVL</strong> — MRVL ▼ value: 36% → 17% (-18%)</li>
+<li><strong>PPA</strong> — PPA ▲ macro: 21% → 39% (+18%)</li>
+<li><strong>CPN.BK</strong> — CPN.BK ▲ mom: 39% → 57% (+18%)</li>
+<li><strong>SMCI</strong> — SMCI ▼ macro: 91% → 73% (-18%)</li>
+<li><strong>ROBO</strong> — ROBO ▼ mom: 62% → 44% (-18%)</li>
+<li><strong>ECL</strong> — ECL ▲ longterm: 51% → 69% (+18%)</li>
+<li><strong>MU</strong> — MU ▼ contrarian: 55% → 37% (-18%)</li>
+<li><strong>TT</strong> — TT ▼ value: 68% → 50% (-18%)</li>
+<li><strong>EQT</strong> — EQT ▲ macro: 28% → 46% (+18%)</li>
+<li><strong>PTTEP.BK</strong> — PTTEP.BK ▲ contrarian: 72% → 91% (+18%)</li>
+<li><strong>AUDUSD=X</strong> — AUDUSD=X ▲ mom: 41% → 59% (+18%)</li>
+<li><strong>RKLB</strong> — RKLB ▼ mom: 30% → 12% (-18%)</li>
+<li><strong>INFY.NS</strong> — INFY.NS ▲ value: 35% → 53% (+18%)</li>
+<li><strong>SCC.BK</strong> — SCC.BK ▼ value: 93% → 75% (-18%)</li>
+<li><strong>AMGN</strong> — AMGN ▲ macro: 76% → 94% (+18%)</li>
+<li><strong>JNJ</strong> — JNJ ▲ macro: 64% → 82% (+18%)</li>
+<li><strong>SLV</strong> — SLV ▼ longterm: 47% → 29% (-18%)</li>
+<li><strong>AVGO</strong> — AVGO ▼ macro: 38% → 20% (-18%)</li>
+<li><strong>EW</strong> — EW ▲ contrarian: 48% → 66% (+18%)</li>
+<li><strong>REET</strong> — REET ▲ contrarian: 72% → 90% (+18%)</li>
+<li><strong>MCK</strong> — MCK ▲ mom: 72% → 90% (+18%)</li>
+<li><strong>NEE</strong> — NEE ▲ macro: 17% → 34% (+18%)</li>
+<li><strong>ADVANC.BK</strong> — ADVANC.BK ▲ macro: 28% → 45% (+18%)</li>
+<li><strong>ZC=F</strong> — ZC=F ▼ macro: 60% → 43% (-18%)</li>
+<li><strong>IBM</strong> — IBM ▲ value: 41% → 58% (+17%)</li>
+<li><strong>J</strong> — J ▲ mom: 69% → 87% (+18%)</li>
+<li><strong>RIO</strong> — RIO ▼ mom: 50% → 32% (-18%)</li>
+<li><strong>XLV</strong> — XLV ▲ macro: 71% → 88% (+18%)</li>
+<li><strong>VRTX</strong> — VRTX ▲ value: 64% → 82% (+17%)</li>
+<li><strong>GD</strong> — GD ▲ mom: 36% → 53% (+17%)</li>
+<li><strong>VLTO</strong> — VLTO ▲ longterm: 55% → 73% (+17%)</li>
+<li><strong>COST</strong> — COST ▲ mom: 32% → 49% (+17%)</li>
+<li><strong>ARKG</strong> — ARKG ▼ contrarian: 89% → 72% (-17%)</li>
+<li><strong>VG</strong> — VG ▲ value: 57% → 74% (+17%)</li>
+<li><strong>ISRG</strong> — ISRG ▲ mom: 33% → 50% (+17%)</li>
+<li><strong>RIO</strong> — RIO ▼ contrarian: 53% → 35% (-17%)</li>
+<li><strong>SCCO</strong> — SCCO ▼ mom: 79% → 61% (-17%)</li>
+<li><strong>LLY</strong> — LLY ▲ value: 66% → 83% (+17%)</li>
+<li><strong>MRVL</strong> — MRVL ▼ macro: 96% → 79% (-17%)</li>
+<li><strong>PPA</strong> — PPA ▲ mom: 17% → 34% (+17%)</li>
+<li><strong>ETN</strong> — ETN ▼ value: 65% → 48% (-17%)</li>
+<li><strong>BHP</strong> — BHP ▼ macro: 71% → 54% (-17%)</li>
+<li><strong>CRSP</strong> — CRSP ▲ contrarian: 35% → 52% (+17%)</li>
+<li><strong>PTT.BK</strong> — PTT.BK ▲ contrarian: 72% → 89% (+17%)</li>
+<li><strong>AWK</strong> — AWK ▲ longterm: 59% → 76% (+17%)</li>
+<li><strong>KLAC</strong> — KLAC ▼ longterm: 97% → 80% (-17%)</li>
+<li><strong>NOC</strong> — NOC ▲ contrarian: 16% → 33% (+17%)</li>
+<li><strong>PYPL</strong> — PYPL ▲ value: 62% → 79% (+17%)</li>
+<li><strong>IHI</strong> — IHI ▲ contrarian: 68% → 84% (+17%)</li>
+<li><strong>VG</strong> — VG ▲ contrarian: 33% → 50% (+17%)</li>
+<li><strong>QUBT</strong> — QUBT ▼ macro: 29% → 12% (-17%)</li>
+<li><strong>META</strong> — META ▼ mom: 74% → 57% (-17%)</li>
+<li><strong>LH.BK</strong> — LH.BK ▲ mom: 20% → 36% (+16%)</li>
+<li><strong>TSM</strong> — TSM ▼ contrarian: 61% → 45% (-16%)</li>
+<li><strong>CLS</strong> — CLS ▼ contrarian: 32% → 15% (-16%)</li>
+<li><strong>BZ=F</strong> — BZ=F ▲ longterm: 70% → 86% (+17%)</li>
+<li><strong>O</strong> — O ▲ macro: 20% → 36% (+16%)</li>
+<li><strong>ITA</strong> — ITA ▲ mom: 15% → 31% (+16%)</li>
+<li><strong>IHE</strong> — IHE ▲ macro: 68% → 84% (+16%)</li>
+<li><strong>LH.BK</strong> — LH.BK ▲ macro: 24% → 41% (+16%)</li>
+<li><strong>GPN</strong> — GPN ▲ longterm: 30% → 46% (+16%)</li>
+<li><strong>ISRG</strong> — ISRG ▲ macro: 31% → 47% (+16%)</li>
+<li><strong>BHP</strong> — BHP ▼ mom: 71% → 54% (-16%)</li>
+<li><strong>IBM</strong> — IBM ▲ contrarian: 22% → 39% (+16%)</li>
+<li><strong>BEAM</strong> — BEAM ▲ mom: 22% → 39% (+16%)</li>
+<li><strong>XBI</strong> — XBI ▲ contrarian: 72% → 89% (+16%)</li>
+<li><strong>NG=F</strong> — NG=F ▼ mom: 61% → 45% (-16%)</li>
+<li><strong>ILMN</strong> — ILMN ▼ contrarian: 42% → 26% (-16%)</li>
+<li><strong>MDT</strong> — MDT ▲ longterm: 54% → 70% (+16%)</li>
+<li><strong>RGTI</strong> — RGTI ▼ mom: 21% → 5% (-16%)</li>
+<li><strong>JXN</strong> — JXN ▲ contrarian: 72% → 88% (+16%)</li>
+<li><strong>MCK</strong> — MCK ▲ contrarian: 65% → 81% (+16%)</li>
+<li><strong>OKTA</strong> — OKTA ▼ contrarian: 47% → 31% (-16%)</li>
+<li><strong>BBCA.JK</strong> — BBCA.JK ▼ value: 55% → 39% (-16%)</li>
+<li><strong>FBTC</strong> — FBTC ▼ mom: 84% → 68% (-16%)</li>
+<li><strong>IBIT</strong> — IBIT ▼ mom: 84% → 68% (-16%)</li>
+<li><strong>CSCO</strong> — CSCO ▼ contrarian: 57% → 41% (-16%)</li>
+<li><strong>CVS</strong> — CVS ▲ macro: 55% → 70% (+16%)</li>
+<li><strong>FLR</strong> — FLR ▼ value: 82% → 66% (-16%)</li>
+<li><strong>PYPL</strong> — PYPL ▲ contrarian: 34% → 50% (+16%)</li>
+<li><strong>MA</strong> — MA ▲ macro: 73% → 89% (+16%)</li>
+<li><strong>CCJ</strong> — CCJ ▼ longterm: 33% → 18% (-16%)</li>
+<li><strong>QBTS</strong> — QBTS ▼ macro: 18% → 2% (-16%)</li>
+<li><strong>IBN</strong> — IBN ▲ value: 73% → 89% (+16%)</li>
+<li><strong>RKLB</strong> — RKLB ▼ macro: 25% → 9% (-16%)</li>
+<li><strong>CRDO</strong> — CRDO ▼ value: 35% → 20% (-15%)</li>
+<li><strong>BOTZ</strong> — BOTZ ▼ macro: 39% → 23% (-16%)</li>
+<li><strong>XSD</strong> — XSD ▼ contrarian: 69% → 53% (-15%)</li>
+<li><strong>FINX</strong> — FINX ▼ macro: 51% → 36% (-16%)</li>
+<li><strong>COST</strong> — COST ▲ value: 34% → 49% (+15%)</li>
+<li><strong>LLY</strong> — LLY ▲ macro: 79% → 94% (+15%)</li>
+<li><strong>QBTS</strong> — QBTS ▼ mom: 16% → 1% (-15%)</li>
+<li><strong>EIDO</strong> — EIDO ▼ quality: 48% → 32% (-15%)</li>
+<li><strong>CPALL.BK</strong> — CPALL.BK ▲ macro: 29% → 44% (+15%)</li>
+<li><strong>IPAY</strong> — IPAY ▲ contrarian: 72% → 88% (+15%)</li>
+<li><strong>FTNT</strong> — FTNT ▼ mom: 98% → 82% (-15%)</li>
+<li><strong>ANET</strong> — ANET ▼ longterm: 87% → 72% (-15%)</li>
+<li><strong>KMI</strong> — KMI ▲ contrarian: 65% → 81% (+15%)</li>
+<li><strong>COIN</strong> — COIN ▼ mom: 42% → 26% (-15%)</li>
+<li><strong>CRSP</strong> — CRSP ▲ value: 76% → 91% (+15%)</li>
+<li><strong>VXX</strong> — VXX ▲ mom: 2% → 17% (+15%)</li>
+<li><strong>CFG</strong> — CFG ▲ mom: 37% → 52% (+15%)</li>
+<li><strong>ECL</strong> — ECL ▲ contrarian: 49% → 64% (+15%)</li>
+<li><strong>ICLN</strong> — ICLN ▼ longterm: 45% → 30% (-15%)</li>
+<li><strong>MLPX</strong> — MLPX ▲ longterm: 68% → 83% (+15%)</li>
+<li><strong>NU</strong> — NU ▼ longterm: 28% → 13% (-15%)</li>
+<li><strong>BKR</strong> — BKR ▼ mom: 38% → 23% (-15%)</li>
+<li><strong>COHR</strong> — COHR ▼ contrarian: 25% → 10% (-15%)</li>
+</ul>
+<hr />
+<h2 id="how-to-respond">How to respond</h2>
+<ol>
+<li><strong>🔴 High:</strong> Review immediately. Check if the alert triggers a DECIDE operation (<a class="wikilink" href="decision-register.html">decision-register</a> + <a class="wikilink" href="prediction-ledger.html">prediction-ledger</a>).</li>
+<li><strong>🟡 Medium:</strong> Note for the next MONITOR pass (weekly). May warrant a theme-page refresh.</li>
+<li><strong>🟢 Low:</strong> Informational. Batch into the monthly SCAN.</li>
+</ol>
+<h2 id="connections">Connections</h2>
+<ul>
+<li>Pipeline: <a class="wikilink" href="security-sourcing-pipeline.html">security-sourcing-pipeline</a> · <a class="wikilink" href="signal-monitor.html">signal-monitor</a></li>
+<li>Actions: <a class="wikilink" href="decision-register.html">decision-register</a> · <a class="wikilink" href="regime-monitor.html">regime-monitor</a></li>
+</ul>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

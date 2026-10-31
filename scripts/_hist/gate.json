@@ -1,0 +1,61 @@
+{
+ "meta": {
+  "retrieved_utc": "2026-10-30T17:32:07Z",
+  "source": "yfinance daily closes (TIP, HYG, SPY, GLD, SLV), fresh each run",
+  "definition": "TIP>50dma \u00b7 HYG>50dma \u00b7 SPY>200dma \u00b7 GSR (GLD/SLV) falling",
+  "method_notes": [
+   "TIP/HYG gates compare the last close with the 50-day mean (\u2248 the weekly 10-bar mean in alpha_mechanics).",
+   "SPY gate uses the 200-day mean.",
+   "GSR = GLD/SLV; 'falling' = today below the value 55 trading days ago.",
+   "If any component is unavailable it is excluded from the denominator and the stance says so."
+  ]
+ },
+ "score": 2,
+ "of": 4,
+ "n_known": 4,
+ "stance": "FULL",
+ "rule": "\u22652/4 \u2192 FULL risk-on \u00b7 \u22641/4 \u2192 HALF WEIGHT (Q4 rules, q4-action-plan-2026-10-11 \u00a74)",
+ "components": {
+  "TIP_above_50dma": true,
+  "HYG_above_50dma": false,
+  "SPY_above_200dma": true,
+  "GSR_falling": false
+ },
+ "values": {
+  "TIP": {
+   "value": 106.69,
+   "ma": 105.69,
+   "window": 50,
+   "ok": true
+  },
+  "HYG": {
+   "value": 77.38,
+   "ma": 77.81,
+   "window": 50,
+   "ok": true
+  },
+  "SPY": {
+   "value": 755.21,
+   "ma": 725.98,
+   "window": 200,
+   "ok": true
+  },
+  "GLD": {
+   "value": 356.32,
+   "ma": 390.58,
+   "window": 50,
+   "ok": true
+  },
+  "SLV": {
+   "value": 44.39,
+   "ma": 55.82,
+   "window": 50,
+   "ok": true
+  },
+  "GSR": {
+   "value": 8.03,
+   "ma": 6.87,
+   "ok": true
+  }
+ }
+}

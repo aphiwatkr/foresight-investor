@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYSTEM-RESEARCH-LOG — dated research record of the system itself — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="index.html">Console</a> › SYSTEM-RESEARCH-LOG — dated research record of the system itself</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="index.html" title="Home — live state, module map, search">Console</a>
+<a href="analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="wiki/syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="wiki/syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="wiki/syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="wiki/syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="wiki/syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="wiki/syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="wiki/syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="wiki/syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="wiki/syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="wiki/syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="wiki/concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="wiki/concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="wiki/syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="wiki/syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="wiki/syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="wiki/syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="wiki/concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="wiki/syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="wiki/syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="wiki/syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="wiki/syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="SYSTEM-RESEARCH-LOG.html" class="active" title="Dated system findings">System Research Log</a>
+<a href="home.html" title="The original orientation page">Start Here</a>
+<a href="catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="wiki/concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="wiki/concepts/semiconductors.html">Semiconductors</a>
+<a href="wiki/concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="wiki/concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="wiki/concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="wiki/concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="wiki/concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="wiki/concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="wiki/concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="wiki/concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="wiki/concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="wiki/concepts/defense-security.html">Defense &amp; Security</a>
+<a href="wiki/concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="wiki/concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="wiki/concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="wiki/concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="wiki/concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="wiki/concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="wiki/concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="wiki/concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="wiki/concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="wiki/concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="wiki/concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="wiki/concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="wiki/concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="wiki/concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="wiki/concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="wiki/concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="wiki/concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="wiki/concepts/space-economy.html">Space Economy</a>
+<a href="wiki/concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">system</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="system-research-log">SYSTEM-RESEARCH-LOG</h1>
+<blockquote>
+<p><strong>How to use:</strong> after any research/audit/refactor of the system (not routine data refresh),<br />
+append <code>## [YYYY-MM-DD] &lt;topic&gt; | &lt;researcher&gt;</code> with: <strong>Studied → Found → Did → Open/feedback</strong>.<br />
+Entries feed the quarterly REVIEW of mechanics. Routine ops go to <code>log.md</code>; this file is for<br />
+<em>system-level</em> research, quality findings, and architectural decisions.</p>
+</blockquote>
+<hr />
+<h2 id="2026-09-26-full-vault-lint-architecture-mapping-zcode-glm-53-session-sess_f2423c46">[2026-09-26] Full-vault lint &amp; architecture mapping | ZCode (GLM-5.3) session sess_f2423c46</h2>
+<p><strong>Studied:</strong> entire vault — 45 root entries, 435 wiki pages, 45 scripts, _hist stores (87MB),<br />
+surfaces, launchd wiring — to establish the architecture record (<code>ARCHITECTURE.md</code>, written this<br />
+session) and repair schema drift left by multiple builder sessions.</p>
+<p><strong>Found (defects, all now fixed):</strong><br />
+1. <strong>Systemic <code>&lt;span class="wikilink" style="color:var(--ink-2)"&gt;[</code> frontmatter bug</strong> — 368 spots / 367 files, from a template typo in<br />
+<code>ffm_research_note.py</code> (root cause: <code>sources: [[[name&lt;/span&gt;</code>). Symptom of the real disease:<br />
+<em>generated output was never link-audited</em>.<br />
+2. <strong>Research layer stale + orphaned</strong> — 326 per-ticker notes pinned to 2026-07-19 ratings<br />
+   (including a hardcoded fallback date in the generator masking the staleness) with zero<br />
+   inbound links. The layer existed but was unreachable and wrong.<br />
+3. <strong>Schema drift AGENTS↔CLAUDE</strong> — the whole v5 QAE layer (ALPHA/TOURNAMENT ops) lived only<br />
+   in CLAUDE.md; agents reading AGENTS.md didn't know the quant desk existed. Two sources of<br />
+   truth diverged silently.<br />
+4. <strong>Root sprawl</strong> — 11 screenshots outside <code>raw/assets/</code>, temp scripts, empty Untitled files,<br />
+   a duplicate <code>_hist/econ/</code> at root (a <code>parents[]</code> path bug's residue from Aug 10).<br />
+5. <strong>Deploy gap</strong> — <code>build_web.py</code> didn't copy <code>research-tab.js</code> + its JSON feeds → public-site<br />
+   Research tab 404 for weeks (caught by QC only when someone looked).<br />
+6. <strong>launchd weekly job has never fired</strong> (exit 78 since install 07-17; CloudStorage path<br />
+   blocks spawn) — the cadence contract existed on paper only.</p>
+<p><strong>Did:</strong> fixed all of the above (commits 36eaa88…32142c2); regenerated all 336 notes on 09-25<br />
+data; linked master table → notes; synced schemas; wrote <code>ARCHITECTURE.md</code> + this log; wired<br />
+mandatory reading into AGENTS §0.</p>
+<p><strong>Open / feedback to future mechanics:</strong><br />
+- <strong>Add a link-graph check to the weekly chain</strong> (the lint script used 2026-09-26 should become<br />
+<code>scripts/lint_wiki.py</code> in weekly_refresh.sh — catches class-1 bugs at generation time).<br />
+- <strong>Relocate launchd</strong> (LaunchAgents plist must point outside CloudStorage, or wrap in a<br />
+  script that rsyncs first); until then MONITOR is manual.<br />
+- <strong>Generator freshness guard:</strong> <code>ffm_research_note.py</code> should refuse to write notes when<br />
+<code>ffm_ratings.as_of</code> is older than the newest <code>signals.parquet</code> date (staleness cannot recur silently).<br />
+- <strong>Deploy QC should curl the public site</strong> for every runtime-fetched asset (research-tab class<br />
+  of bug), not just check the local build.<br />
+- <strong>Two-file schema</strong> (AGENTS+CLAUDE) will drift again; consider making CLAUDE.md a 3-line<br />
+  pointer to AGENTS.md at next Claude-Code compatibility check.</p>
+<h2 id="2026-09-26-dashboard-stale-chain-root-cause-fetch_history-blind-spot-zcode-session-evening">[2026-09-26] Dashboard stale-chain root cause + fetch_history blind spot | ZCode session (evening)</h2>
+<p><strong>Studied:</strong> why the public dashboard still showed 2026-07-14 despite full data refreshes.</p>
+<p><strong>Found:</strong> three independent gaps — (1) the dashboard's main DATA block (meta.asOf, bottomLine<br />
+narrative, headline KPIs) was hand-authored in July and belonged to <strong>no builder</strong>; (2)<br />
+<code>build_dashboard_ffm.py</code> wrote <code>_dashboard_ffm.js</code> but <strong>no injector consumed it</strong>; (3)<br />
+<code>build_dashboard_v4.py</code> was skipped in refresh chains and <code>backtest.py</code> (feeding the returns<br />
+chart via <code>backtest_returns.csv</code>) hadn't run since Aug 9. Also: <code>fetch_history.py --inc</code><br />
+short-circuits the whole price pull when the cache is hours-fresh — <strong>newly added universe<br />
+tickers are silently never fetched</strong> (Thai names confirmed).</p>
+<p><strong>Did:</strong> new <code>inject_dashboard_meta.py</code> (meta+headline+FFM injection, line-tolerant markers);<br />
+re-ran backtest/v4; manual 7-series append to prices.parquet; all validated live (asOf 09-26,<br />
+returns axis 09-25). ARCHITECTURE §9 change-protocol now implicitly covers these via the injector.</p>
+<p><strong>Open / feedback to future mechanics:</strong><br />
+- <strong>fetch_history --inc should diff the universe against cached tickers</strong> and fetch missing<br />
+  ones even when fresh (one-line fix candidate in its main()).<br />
+- <strong>Every builder needs a named injector</strong> (or self-injects); a builder-without-injector is a<br />
+  silent staleness bug. Candidate: lint rule — scan scripts/build_*.py for missing inject pairs.<br />
+- The dashboard's hand-written <code>bottomLine</code> narrative now carries a vintage banner; a future<br />
+  rewrite should make the whole DATA block generated, not patched.</p>
+<h2 id="2026-09-26-private-portfolio-layer-design-decisions">[2026-09-26] 🔒 Private portfolio layer — design decisions</h2>
+<ul>
+<li><strong>Privacy mechanics:</strong> <code>private-</code> filename prefix (not a folder) chosen because <code>build_web.py</code> already<br />
+  matched exact names in EXCLUDE_FILES — extending to a prefix rule was 2 lines; a folder would have required<br />
+  a new walk. Deploy leak-scan extended to <code>private-portfolio|holdings|_portfolio_data</code> so the public<br />
+<code>portfolio-blueprint.html</code> page is NOT false-flagged (first attempt blocked it — caught in verification).</li>
+<li><strong>Two denominators:</strong> investable (financial) book drives caps/HHI/stress/FX; the condo (user-stated ฿8.8M)<br />
+  enters only the balance sheet — mixing them would have diluted the BTC breach to 6.5% and hidden the real cap hit.</li>
+<li><strong>Look-through honesty:</strong> Thai fund holdings are JS-gated on every public page; recorded UNAVAILABLE with<br />
+  tried-sources rather than recalled (SET50 weights from memory would violate the no-fabrication rule).<br />
+  Vision transcription lesson: two passes on the SET table disagreed on rows; only the pass whose column sums<br />
+  reconciled exactly to the printed totals was accepted; per-row costs kept but flagged ±3% with statement<br />
+  totals as authoritative. CAIE/SM suspected-duplicate resolved as REAL distinct rows (app header "15 assets"</li>
+<li>exact column-sum reconciliation); actual duplicate was a scroll-overlap row, already de-duplicated.</li>
+<li><strong>Analyzer fields:</strong> dual net worth (total vs financial) + pct_total_nw on every stress row — leverage<br />
+  amplification reads differently once home equity is counted (user correctly insisted on the condo).</li>
+</ul>
+<h2 id="2026-10-03-temporal-integrity-audit-point-in-time-archive-layer-zcode-session">[2026-10-03] Temporal-integrity audit + point-in-time archive layer | ZCode session</h2>
+<p><strong>Studied:</strong> whether the system can reconstruct "what the model believed on date X" for<br />
+post-mortems. <strong>Found:</strong> no — 14 mutable engine outputs (ffm_ratings, sleeves, consensus,<br />
+sa_top_rated, recommendations, qae_*, backtest…) are overwritten every refresh; the Aug-12<br />
+SA screener vintage was already lost in place (survives only in git); 336 research notes are<br />
+regenerated wholesale; living hub pages edit convictions in place without changelogs.</p>
+<p><strong>Did:</strong> built <code>scripts/snapshot_archive.py</code> (append-only dated vintages + manifest with git<br />
+SHA + recommendation-journal.jsonl: T1 adds, FFM top-10, QAE longs, ledger calibration per<br />
+run); wired into weekly_refresh 3f; ARCHITECTURE §8.9 + §9 updated; first model-review<br />
+synthesis filed (<a class="wikilink" href="wiki/syntheses/model-review-2026-10-03.html">model-review-2026-10-03</a>) with a full validation sweep and the<br />
+value/quality sleeve-decay finding (0.32/0.37 vs momentum 1.06 — December REVIEW decision).</p>
+<p><strong>Open / feedback:</strong> (1) pre-2026-10 history is git-only — accepted, documented;<br />
+(2) enforce Changelog-bullet convention on trend-radar/decision-register edits — needs a<br />
+lint check candidate; (3) sleeve re-weigh at quarterly REVIEW; (4) journal should eventually<br />
+capture allocator portfolios too (currently in workbench data only).</p>
+<h2 id="2026-10-03-score-change-layer-sa-scrape-mechanics-re-verified">[2026-10-03] score-change Δ layer + SA scrape mechanics (re-verified)</h2>
+<ul>
+<li><strong>SA symbol pages changed again:</strong> Factor Grades no longer on the symbol root — live at<br />
+<code>/symbol/&lt;TK&gt;/ratings/quant-ratings</code> with marker <code>FACTOR GRADES</code> (UPPERCASE in innerText).<br />
+  Ratings card (QUANT/SA/Wall St) is lazy (often absent 9–15s post-load); grades+div+ranks<br />
+  are reliable. IAB quirk: evaluate must be FUNCTION-form (string-form silently returns {}),<br />
+  eval() wrappers trip the read-only guard; webview dies every ~25–35 pages → tabs.new()<br />
+  recovery keeps the cookie. All in fetch_seekingalpha.py docstring.</li>
+<li><strong>Δ layer (score_changes.py):</strong> diff engine against <code>.prev</code> baselines (falls back to the<br />
+  newest archive with a different as_of). Powers workbench ⚡ Score Δ tab + Universe badges +<br />
+  Brief card + detail history. Key design: <strong>regime-flip warning generated automatically</strong><br />
+  when weights change — a rating move under a regime flip is partly model re-weighting, and<br />
+  the UI must say so before the operator acts on it.</li>
+<li><strong>Rating-diff honesty:</strong> ffm_vs_sa.py now skips null SA ratings instead of fabricating<br />
+  "Hold"; build_workbench disagreements filter likewise.</li>
+<li>Deploy note: public workbench carries the Δ tab (validated post-deploy via curl markers).</li>
+</ul>
+<h2 id="2026-10-03-injector-idempotency-lesson-dashboard-stale-as-of">[2026-10-03] injector idempotency lesson (dashboard stale as-of)</h2>
+<ul>
+<li>A regex injector whose REPLACEMENT changes the format its MATCH expects will pass silently<br />
+  forever after the first run (subn → 0, only visible in the n_meta print). Rule: injector<br />
+  regexes must match their own output (write the replacement, then re-match IT). The same run<br />
+  printed <code>meta:0</code> — read the counters, they are the smoke alarm.</li>
+<li>Banner-stamp pattern must be replace-not-prepend; otherwise banners accumulate per run.</li>
+<li>Public site serves the dashboard at <code>/</code> (index.html); <code>/outlook-dashboard.html</code> 404s.</li>
+</ul>
+<h2 id="2026-10-06-pandas-object-bool-trap-in-strategy-backtests">[2026-10-06] pandas object-bool trap in strategy backtests</h2>
+<ul>
+<li><code>sig.shift(1).fillna(False)</code> on a bool series yields OBJECT dtype; Python <code>~True == -2</code> (bool is an<br />
+  int subclass) so <code>(~pos)*cash_ret</code> subtracted 2×cash-return from every invested week — ~5%/decade<br />
+  phantom drag across ALL strategies, invisible in Sharpe but visible as "everything underperforms".<br />
+  Fix pattern: <code>.shift(1).fillna(False).astype(bool)</code> + <code>np.where(pos, asset_r, cash_r)</code>.</li>
+<li>Second trap same session: metrics assumed 52 periods/yr; monthly variant annualized at 52 → fake<br />
+  45% CAGR. Parameterize periods-per-year per frame. Rule: sanity-check every backtest's buy&amp;hold<br />
+  leg against the raw price series BEFORE reading any rule's numbers.</li>
+</ul>
+<h2 id="2026-10-11-weekendholiday-data-traps-gate-look-ahead-four-engine-defects-claude-code-session-q4-kickoff">[2026-10-11] Weekend/holiday data traps + gate look-ahead — four engine defects | Claude Code session (Q4 kickoff)</h2>
+<p><strong>Studied:</strong> the full monthly + quarterly chain run on a Sunday (2026-10-11), then every surprising output<br />
+(value/quality sleeves at 0, a −70% momentum-sleeve drawdown, a Sharpe-2.46 stacked strategy).</p>
+<p><strong>Found:</strong><br />
+1. <code>signals.py</code> <code>compute_sleeve_scores</code> stamped the fundamentals snapshot on <code>panel["date"].max()</code>. On a Sat/Sun run<br />
+   that date holds only 24/7 assets (crypto/FX/futures, 47 tickers), so <strong>no equity got fundamentals</strong> → value<br />
+   sleeve 0 for all 343. The sleeve <em>emitter</em> (same file, lines ~390) already had a broad-coverage guard; the<br />
+   stamping step did not. Both scheduled jobs are exposed (weekly = Sundays; next monthly = Sun 2026-11-01).<br />
+2. The 5y price grid carries <strong>US-holiday rows</strong> (Thanksgiving, Good Friday, Jul-3, Labor Day, MLK, Presidents,<br />
+   Memorial, Juneteenth, Christmas) with NaN prices for US names (other markets traded). <code>rolling(252)</code> /<br />
+<code>rolling(200)</code> with default <code>min_periods</code> then return NaN for a year after every holiday → <code>pct_off_52w_high</code><br />
+   and <code>sma_200</code> NaN for 340/343 names → value <strong>and</strong> quality 0 for every US name. <strong>Already present in the<br />
+   2026-09-25 vintage</strong> (earlier vintages not archived). FFM reads these columns: <strong>225 of 338 composites changed</strong><br />
+   once fixed (e.g. SNDK Hold→SB, AFRM Buy→Sell, COHR Hold→Sell). QAE and the tournament were immune (their loaders<br />
+   drop thin-coverage dates).<br />
+3. <code>backtest.py</code> picked each month's book on the month's max date — <strong>18 of 61 months</strong> were a weekend with only<br />
+   BTC/ETH/SOL → crypto-only "top-20". Pre-existing; the old NaN rows had diluted it (3 crypto + 17 unscored names),<br />
+   fix #2 exposed it (momentum sleeve DD −70%).<br />
+4. <code>backtest_mechanic_stack.py</code> keyed <code>book</code> by the return month and gated with <code>exposure_at(dt − MonthEnd(0))</code> =<br />
+<strong>the same month's final-week score</strong> (and shorted SPY on it). Look-ahead. Corrected: V2 43.7%/1.35 (pub.<br />
+   57.1%/1.83), V3 33.2%/1.02 (pub. 71.9%/2.46). The "bias-robust gate deltas" in the honesty ledger were this leak.<br />
+   The weekly QQQ study in <code>alpha_mechanics.py</code> is clean (<code>sig.shift(1)</code>). Also: its "12-1 momentum" is a 13-month<br />
+   return that includes the latest month (mislabeled, not a leak).<br />
+5. Pipeline gaps: <code>mdaem_v4.py</code> absent from <code>monthly_update.sh</code> (recommend ran on 08-12 tiers); <code>#!/bin/bin/bash</code><br />
+   shebang in both scheduler scripts; <code>monitor.py</code> overwrites its own <code>.prev</code> baselines on every run, so a second run<br />
+   in the same session silently zeroes the week's entries/exits.<br />
+6. Research QC: the FENC memo's product narrative was fabricated (PEDMARK, not "Otividex/Ménière's") despite three<br />
+   QC rounds — the rounds checked financials, not the business identity. HRMY mechanism misstated.</p>
+<p><strong>Did:</strong> fixed 1–4 in place (dated comments in code); added <code>mdaem_v4</code> to the monthly chain; fixed shebangs; new<br />
+<code>scripts/qc_weekly_gate.py</code> (gate applied weekly with 1-week lag to the momentum book, daily-resolved on US trading<br />
+days → <code>_hist/qc_weekly_gate.json</code>); re-ran signals → FFM → notes → tables → MDAEM → recommend → monitor (baseline<br />
+restored from <code>archive/2026-10-03</code>) → QAE → backtest → mechanic stack → workbench/dashboards → score-Δ → archive.<br />
+Correction blocks on every affected page (see <code>log.md</code> 2026-10-11).</p>
+<p><strong>Open / feedback to future mechanics:</strong><br />
+- <strong>One "latest broad date" helper</strong> used by every script (signals, backtest, FFM, recommend, any future module) —<br />
+  the weekend trap has now been fixed piecemeal three times (08-08, the sleeve emitter, today).<br />
+- <code>fetch_history.py</code> should not write non-trading rows per ticker (or every consumer must <code>dropna</code> before rolling).<br />
+- Add a <strong>post-chain sanity gate</strong> to <code>healthcheck.py</code>: fail if any sleeve has &gt;50% zeros among equities, or if a<br />
+  backtest's sleeve CAGR moves &gt;15 pts vs the archived run — both would have caught today's bugs automatically.<br />
+- <code>monitor.py</code>: write baselines only once per as-of date (idempotent re-runs).<br />
+- Memo QC needs an <strong>identity check</strong> (product/indication/ticker vs the company's own IR page) before financials.<br />
+- Every gate/overlay backtest must state its signal timestamp vs the return window it governs; reviewers should<br />
+  re-run with a one-period lag as a standing test.</p>
+<h2 id="2026-10-29-100x-anatomy-mechanic-built-what-the-data-does-and-does-not-support-claude-code-session">[2026-10-29] 100x anatomy + mechanic built — what the data does and does not support | Claude Code session</h2>
+<p>Built <a class="wikilink" href="wiki/syntheses/hundredx-anatomy-2026-10-29.html">hundredx-anatomy-2026-10-29</a> + <code>scripts/hundredx_screen.py</code> (+<code>fetch_anatomy_financials.py</code>),<br />
+closing the framework's standing offer. Method findings that matter to future builders:<br />
+- <strong>SEC XBRL companyfacts is the right keyless deep-history source</strong> (annual 10-K/20-F facts back to<br />
+  2006-08; map FY→calendar via the <code>frame</code> CYxxxx tag so January FY-ends land correctly). stockanalysis.com<br />
+  serves only 5 FY server-side (<code>?p=10Y</code> is client-side only) and its <code>/api/*</code> is Cloudflare-walled to curl.<br />
+- <strong>Filer quirks that break naive extraction:</strong> fp is unreliable (Centrus tags its annual fact fp=Q4 — filter<br />
+  on the 12-month duration, not fp); revenue moves across tags across eras (<code>RevenueFromContractWithCustomer*</code><br />
+  → <code>Revenues</code> → legacy <code>SalesRevenueNet</code>/<code>ContractsRevenue</code>; IFRS 20-F filers need the <code>ifrs-full</code> namespace);<br />
+  share counts mix scopes (<code>shares</code> units) and historical splits are unrecoverable → cap-at-base estimates<br />
+  must be sanity-gated (publish only where base/latest shares within 4x) or left n/f.<br />
+- <strong>Empirical corrections to the 100x rubric</strong> (22 winners ≥20x vs 15 controls): at the trough, winners'<br />
+  financials are indistinguishable from controls (rev growth 6.2% vs 6.4%; loss rate same; GM <em>lower</em>); the<br />
+  launch-year inflection is the discriminator (median +17.2%, 16/17 positive); dilution-into-base is normal<br />
+  reflexive fuel (TSLA +434% shares/2y); GM≥40% is a software-path filter (hardware path 15-25% at base);<br />
+  the $25M ADV gate would have excluded 6/10 measurable winners at trough → moved to sizing tier.<br />
+- <strong>Replay honesty:</strong> price-only layers have zero edge 2018-2022 (top-15 ≈ base rate); the single full-factor<br />
+  year-start (2023) hit 8/15 ≥3x vs 17.7% base — n=1, directional only. The screen generates candidates;<br />
+  the memo pipeline selects. Do not cite the replay as a validated edge.<br />
+- Environment: <code>lxml</code> installed into scripts/.venv; <code>_hist/anatomy_sec/</code> gitignored (raw SEC caches ~100MB).<br />
+- Open: microcap-universe extension (&lt;$3B, &lt;10 analysts) still unbuilt; 2023-start replay verdict matures<br />
+  2026-01→score then; P-call filing on the screen's forward book awaits operator go.</p>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>

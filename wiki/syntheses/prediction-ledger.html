@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prediction Ledger — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="../../">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="../../index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="../../index.html">Console</a> › Prediction Ledger</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="../../index.html" title="Home — live state, module map, search">Console</a>
+<a href="../../analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="../../outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="../../quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="../../continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="../../ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="../../architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="prediction-ledger.html" class="active" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="../concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="../concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="../concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="../../ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="../../AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="../../CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="../../SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="../../home.html" title="The original orientation page">Start Here</a>
+<a href="../../catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="../../hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="../concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="../concepts/semiconductors.html">Semiconductors</a>
+<a href="../concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="../concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="../concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="../concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="../concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="../concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="../concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="../concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="../concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="../concepts/defense-security.html">Defense &amp; Security</a>
+<a href="../concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="../concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="../concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="../concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="../concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="../concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="../concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="../concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="../concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="../concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="../concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="../concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="../concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="../concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="../concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="../concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="../concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="../concepts/space-economy.html">Space Economy</a>
+<a href="../concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap">
+<div class="docmeta"><span class="stamp">synthesis</span><span class="stamp">dated 2026-07-14</span><span class="stamp">investing</span><span class="stamp">predictions</span><span class="stamp">accountability</span><span class="stamp">scoring</span><span class="stamp">site rebuilt 2026-10-31</span></div>
+<h1 id="prediction-ledger">Prediction Ledger</h1>
+<p><strong>Bottom line:</strong> A dated, falsifiable record of the engine's calls — and how they turn out.<br />
+This is the accountability layer: it lets the "Futurist Investor" engine measure its own<br />
+hit-rate and calibration, instead of quietly forgetting wrong calls. <strong>Insight only — not advice.</strong></p>
+<blockquote>
+<p><strong>Rules.</strong> Every prediction is (1) <strong>dated</strong>, (2) <strong>falsifiable</strong> with a concrete condition +<br />
+<strong>resolve-by</strong> date, (3) tagged with <strong>conviction (1–5)</strong> at the time, (4) later <strong>scored</strong>:<br />
+✅ correct · ❌ wrong · ◐ partial · ⏳ open. Never edit the original call — add the verdict in<br />
+its own column. Score matured calls during each scan.</p>
+</blockquote>
+<h2 id="open-predictions">Open predictions</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Made</th>
+<th style="text-align: center;">Conv.</th>
+<th>Prediction (falsifiable)</th>
+<th>Resolve by</th>
+<th style="text-align: center;">Status</th>
+<th>Verdict / notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td>Aggregate 2026 hyperscaler capex (MSFT+GOOGL+AMZN+META+ORCL) comes in <strong>≥ +50% YoY</strong> — i.e. the AI-infra buildout does <strong>not</strong> stall in 2026.</td>
+<td>2027-02-28</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/ai-infrastructure.html">ai-infrastructure</a> durability vs "digestion" fear</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td>At least one <strong>≥20% drawdown</strong> in SMH (or NVDA) from a 2026 high occurs before 2027-01-01.</td>
+<td>2027-01-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the valuation/circularity risk we flagged</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td>CRWD, PANW <strong>and</strong> ZS each report <strong>≥15% YoY</strong> revenue/ARR growth in their next FY2026 results.</td>
+<td>2027-03-31</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/cybersecurity.html">cybersecurity</a> non-discretionary demand</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td>Long-term U3O8 contract price stays <strong>≥ $80/lb</strong> through end-2026.</td>
+<td>2027-01-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/energy-transition.html">energy-transition</a> (nuclear) demand strength</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td>India (INDA) monthly <strong>FPI flows turn net-positive for ≥2 consecutive months</strong> before 2026-12-31.</td>
+<td>2026-12-31</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/india-em-growth.html">india-em-growth</a> flow-inflection thesis</td>
+</tr>
+<tr>
+<td>P6</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">2</td>
+<td>The Thai <strong>SET index ends 2026 higher</strong> than its 2026-06-01 level.</td>
+<td>2027-01-05</td>
+<td style="text-align: center;">⏳</td>
+<td>Low-conviction tactical call on <span class="wikilink" style="color:var(--ink-2)">thailand-set-themes</span></td>
+</tr>
+<tr>
+<td>P7</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td><strong>TSE Prime average PBR stays ≥ 1.3x</strong> (governance re-rating holds) through end-2026.</td>
+<td>2027-02-28</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/japan-corporate-reform.html">japan-corporate-reform</a> governance durability</td>
+</tr>
+<tr>
+<td>P8</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td><strong>Eli Lilly's incretin franchise</strong> (Mounjaro+Zepbound) grows <strong>≥ +30% YoY</strong> in FY2026.</td>
+<td>2027-02-28</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/glp1-obesity-metabolic.html">glp1-obesity-metabolic</a> demand inflection</td>
+</tr>
+<tr>
+<td>P9</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td><strong>Intuitive Surgical (ISRG) revenue grows ≥ +15%</strong> YoY in FY2026.</td>
+<td>2027-02-28</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/medtech-devices.html">medtech-devices</a> recurring-franchise strength</td>
+</tr>
+<tr>
+<td>P10</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td><strong>Nifty 50 ends 2026 above ~23,548</strong> (its late-May-2026 level).</td>
+<td>2027-01-05</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/india-em-growth.html">india-em-growth</a> structural-grower thesis</td>
+</tr>
+<tr>
+<td>P11</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td>At least one <strong>new ≥1 GW nuclear or gas data-center PPA</strong> is publicly announced in 2026.</td>
+<td>2027-01-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/power-grid-electrification.html">power-grid-electrification</a> / <a class="wikilink" href="../concepts/energy-transition.html">energy-transition</a> AI-power link</td>
+</tr>
+<tr>
+<td>P13</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td><strong>Total stablecoin market cap ends 2026 ≥ $350B</strong> (up from ~$320B May-26).</td>
+<td>2027-01-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/tokenization-digital-assets.html">tokenization-digital-assets</a> post-GENIUS adoption</td>
+</tr>
+<tr>
+<td>P14</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td><strong>IonQ, Rigetti and D-Wave each suffer a ≥30% drawdown</strong> from a 2026 high before 2027.</td>
+<td>2027-01-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/quantum-computing.html">quantum-computing</a> "valuations unsustainable" call</td>
+</tr>
+<tr>
+<td>P15</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td><strong>Mag-7 share of the S&amp;P 500 stays ≥ 30%</strong> at end-2026 (no concentration unwind yet).</td>
+<td>2027-01-05</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/us-megacap-quality.html">us-megacap-quality</a> concentration persistence</td>
+</tr>
+<tr>
+<td>P16</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">3</td>
+<td><strong>Gold ends 2026 ≥ $4,000/oz</strong> (debasement bid holds despite the correction).</td>
+<td>2027-01-05</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests <a class="wikilink" href="../concepts/commodities-gold-real-assets.html">commodities-gold-real-assets</a> structural hedge (verify levels)</td>
+</tr>
+<tr>
+<td>P17</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">2</td>
+<td><strong>No credit-stress event:</strong> ICE BofA US HY OAS (FRED BAMLH0A0HYM2) does <strong>not</strong> close any month <strong>≥ 4.00%</strong> before 2027-01-01 (from ~2.6% now).</td>
+<td>2027-01-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the Minsky "tight-spreads = complacency" read in <a class="wikilink" href="bubble-risk-us-equity-2026-06-28.html">bubble-risk-us-equity-2026-06-28</a></td>
+</tr>
+<tr>
+<td>P18</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">2</td>
+<td><strong>Rich ≠ imminent top:</strong> the S&amp;P 500 does <strong>not</strong> suffer a ≥20% drawdown (peak-to-trough, closing) before 2027-01-01 despite CAPE near a record.</td>
+<td>2027-01-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests whether extreme valuation gauges time tops (<a class="wikilink" href="bubble-risk-us-equity-2026-06-28.html">bubble-risk-us-equity-2026-06-28</a>)</td>
+</tr>
+<tr>
+<td>P19</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">3</td>
+<td><strong>Euphoria completes first:</strong> CNN Fear &amp; Greed reaches <strong>Extreme Greed (&gt;75)</strong> at some point before 2027-07-01.</td>
+<td>2027-07-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Multi-agent sim Act 1 (<a class="wikilink" href="post-bubble-multi-agent-sim-2026-06-28.html">post-bubble-multi-agent-sim-2026-06-28</a>) — the missing greed-flip</td>
+</tr>
+<tr>
+<td>P20</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">3</td>
+<td><strong>The trigger:</strong> ≥1 Mag-7 hyperscaler <strong>trims/guides-down forward AI capex</strong> by 2027-12-31.</td>
+<td>2028-02-28</td>
+<td style="text-align: center;">⏳</td>
+<td>Sim Act 2 trigger — breaks the reflexive loop</td>
+</tr>
+<tr>
+<td>P21</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">2</td>
+<td><strong>Credit cracks:</strong> HY OAS (FRED BAMLH0A0HYM2) <strong>pierces 4.0%</strong> at some point during 2027.</td>
+<td>2028-01-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Sim Act 2 — credit leads equity (regime-change level)</td>
+</tr>
+<tr>
+<td>P22</td>
+<td>2026-06-28</td>
+<td style="text-align: center;">3</td>
+<td><strong>Rotation:</strong> Ex-US (EAFE or EM) <strong>beats the S&amp;P 500 cumulatively</strong> over 2026-06-28 → 2029-06-30.</td>
+<td>2029-07-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Sim Act 3 — "end of US exceptionalism" de-rate (<a class="wikilink" href="macro-regime.html">macro-regime</a>)</td>
+</tr>
+<tr>
+<td>P24</td>
+<td>2026-08-29</td>
+<td style="text-align: center;">3</td>
+<td><strong>The fundamental cross-check adds value:</strong> QAE Tier A (FFM-confirmed) beats Tier B (momentum-only: FTNT, INTC, CRWD, USO, DDOG, CNC) over 63 trading days.</td>
+<td>2026-12-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests whether <a class="wikilink" href="../concepts/foresight-factor-model.html">foresight-factor-model</a> + QAE &gt; QAE alone — the key design question of v1</td>
+</tr>
+<tr>
+<td>P25</td>
+<td>2026-08-29</td>
+<td style="text-align: center;">2</td>
+<td><strong>The avoid list underperforms:</strong> the QAE bottom-decile basket (EIDO, SMR, KWEB, HDB, ACM, AVAV, PNR) trails SPY over 63 trading days.</td>
+<td>2026-12-01</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the short/avoid leg without shorting (<a class="wikilink" href="qae-book-2026-08-29.html">qae-book-2026-08-29</a>)</td>
+</tr>
+<tr>
+<td>P27</td>
+<td>2026-09-06</td>
+<td style="text-align: center;">3</td>
+<td><strong>The v2 system beats SPY on Sharpe</strong> over the 12 months from 2026-09-08 (2-engine <code>ens_R2_top10vt15+dualdef</code>, simulated live with the same rules and 10 bps costs).</td>
+<td>2027-09-15</td>
+<td style="text-align: center;">⏳</td>
+<td>First live test of the tournament winner (<a class="wikilink" href="strategy-tournament-2026-09-06.html">strategy-tournament-2026-09-06</a>)</td>
+</tr>
+<tr>
+<td>P28</td>
+<td>2026-09-06</td>
+<td style="text-align: center;">3</td>
+<td><strong>The v2 system's max drawdown is smaller than SPY's</strong> over the same 12 months.</td>
+<td>2027-09-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the vol-target + diversifier construction, not the signal</td>
+</tr>
+<tr>
+<td>P29</td>
+<td>2026-09-06</td>
+<td style="text-align: center;">3</td>
+<td><strong>Theme-ETF rotation underperforms SPY again</strong> (<code>theme_rot_top5_12m</code>, same 12 months) — the tournament's negative result is structural, not sample-specific.</td>
+<td>2027-09-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the most useful negative finding of the tournament</td>
+</tr>
+<tr>
+<td>P30</td>
+<td>2026-09-07</td>
+<td style="text-align: center;">3</td>
+<td><strong>Humanoid commercialization is real:</strong> a published industry count (Omdia/IDC or TrendForce) puts <strong>global humanoid shipments in calendar 2026 at ≥ 40,000 units</strong> (vs 13–18k in 2025; forecasts 50–90k). Below 25k = theme invalidation.</td>
+<td>2027-04-30</td>
+<td style="text-align: center;">⏳</td>
+<td>The promotion sensor for <a class="wikilink" href="../concepts/humanoid-robotics.html">humanoid-robotics</a> — a miss demotes it back to <a class="wikilink" href="frontier-watch.html">frontier-watch</a></td>
+</tr>
+<tr>
+<td>P31</td>
+<td>2026-09-07</td>
+<td style="text-align: center;">2</td>
+<td><strong>Purity earns a premium:</strong> <a class="wikilink" href="../entities/etf-koid.html">KOID</a> total return <strong>beats BOTZ</strong> over the 12 months from 2026-09-04 (KOID $36.42, BOTZ $35.95).</td>
+<td>2027-09-15</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests whether dedicated humanoid exposure beats broad robotics; conv-2 because 12m of a young fund is mostly noise</td>
+</tr>
+<tr>
+<td>P32</td>
+<td>2026-09-26</td>
+<td style="text-align: center;">QAE 09-25 FFM-confirmed tranche (AMD·MU·MRVL·HPE·DELL·PANW·ECO) beats SPY by &gt;2pts over 63td</td>
+<td>fail if tranche &lt; SPY − 2pts</td>
+<td>2026-12-24</td>
+<td style="text-align: center;">open</td>
+<td>—</td>
+</tr>
+<tr>
+<td>P33</td>
+<td>2026-09-26</td>
+<td style="text-align: center;">Thai income sleeve (PTTEP+ADVANC+KBANK eq-wt) ≥ +8% total return (THB) by 2027-03-31</td>
+<td>fail if &lt; −5% or any div cut</td>
+<td>2027-03-31</td>
+<td style="text-align: center;">open</td>
+<td>—</td>
+</tr>
+<tr>
+<td>P34</td>
+<td>2026-09-20</td>
+<td style="text-align: center;">3</td>
+<td><strong>The gate adds value:</strong> the FFM-confirmed tier (DELL, AMD, MU, MRVL — equal-weight) <strong>beats</strong> the gated momentum-only tier (ILMN, FTNT, INTC, CNC, ARKG — equal-weight) over the 63 trading days from 2026-09-18.</td>
+<td>2026-12-21</td>
+<td style="text-align: center;">⏳</td>
+<td>Second-generation test of P24 — now on <em>gate trips</em> rather than raw FFM score (<a class="wikilink" href="qae-book-2026-09-20.html">qae-book-2026-09-20</a>)</td>
+</tr>
+<tr>
+<td>P35</td>
+<td>2026-09-20</td>
+<td style="text-align: center;">2</td>
+<td><strong>Revisions F is informative:</strong> <strong>AVGO underperforms</strong> the confirmed tier (DELL, AMD, MU, MRVL) over the 63 trading days from 2026-09-18. AVGO was the <a class="wikilink" href="book-rec-2026-09-13.html">book-rec-2026-09-13</a> memo's conv-4 top pick before the gate fired.</td>
+<td>2026-12-21</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the single most consequential overlay change this month; conv-2 because one name over 3 months is noisy</td>
+</tr>
+<tr>
+<td>P36</td>
+<td>2026-10-11</td>
+<td style="text-align: center;">3</td>
+<td><strong>The tournament winner keeps winning:</strong> Engine A's 2026-10-09 ten (ECO, DELL, ILMN, FRO, HPE, PSX, MU, FTNT, MRVL, OKTA — equal-weight) <strong>beats SPY</strong> over the 63 trading days from 2026-10-09.</td>
+<td>2027-01-11</td>
+<td style="text-align: center;">⏳</td>
+<td>First out-of-sample test of <code>xs_mom_top10_iv_vt15</code> after the v2 ensemble lost winner status (<a class="wikilink" href="q4-action-plan-2026-10-11.html">q4-action-plan-2026-10-11</a>)</td>
+</tr>
+<tr>
+<td>P37</td>
+<td>2026-10-11</td>
+<td style="text-align: center;">2</td>
+<td><strong>Don't chase above consensus:</strong> the IC-sleeve names trading <strong>above their Street mean target</strong> on 2026-10-09 (IOVA, GRAL, HTFL) <strong>underperform</strong> the rest of the memo'd sleeve (equal-weight, ex-FENC) over the 63 trading days from 2026-10-09.</td>
+<td>2027-01-11</td>
+<td style="text-align: center;">⏳</td>
+<td>Tests the Q4 entry rule for the 100x sleeve; conv-2 — three names, one quarter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resolved-predictions">Resolved predictions</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Made</th>
+<th style="text-align: center;">Conv.</th>
+<th>Prediction</th>
+<th>Resolved</th>
+<th style="text-align: center;">Verdict</th>
+<th>What we learned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P23</td>
+<td>2026-08-29</td>
+<td style="text-align: center;">2</td>
+<td>QAE Tier-A basket (DELL, AMD, MRVL, MU, ILMN, PANW — equal-weight) outperforms SPY over the 21 trading days from 2026-08-28.</td>
+<td>2026-09-28</td>
+<td style="text-align: center;">✅</td>
+<td><strong>+18.43% vs SPY −0.24%</strong> (08-28 → 09-28 close, yfinance adj., scored 2026-10-11): AMD +30.6 · ILMN +26.1 · DELL +19.1 · MRVL +16.3 · MU +13.0 · PANW +5.5. Every name beat SPY. Scored two weeks late — the resolve date passed without a MONITOR pass. Lesson: in a momentum-led tape the confirmed tier earned ~18pts in a month; the tail of this distribution is also what makes the book's drawdowns large.</td>
+</tr>
+<tr>
+<td>P26</td>
+<td>2026-08-29</td>
+<td style="text-align: center;">3</td>
+<td>The signal survives: <code>mom_12_1</code> 21-day rank IC stays positive on the next monthly QAE re-run.</td>
+<td>2026-09-20</td>
+<td style="text-align: center;">✅</td>
+<td>The re-run (prices through 2026-09-18) put <code>mom_12_1</code> 21d rank IC at <strong>+0.0272</strong> (t 1.05), weight 49%; <code>trend_q</code> +0.0246 at 51%. Engine A's invalidation did <strong>not</strong> trigger. Two lessons: (a) the IC barely moved in a month (+0.0303 → +0.0272), which is what a real-but-weak effect looks like; (b) <code>accel</code> posted the <em>highest</em> 21d IC (0.0314, t 1.53) yet took 0% weight because its 5d/63d ICs are flat-to-negative — the admission rule held the line against a tempting single-horizon result. Filed with <a class="wikilink" href="qae-book-2026-09-20.html">qae-book-2026-09-20</a>.</td>
+</tr>
+<tr>
+<td>P12</td>
+<td>2026-06-01</td>
+<td style="text-align: center;">4</td>
+<td>Global military spending for 2025 (SIPRI, pub. ~Apr 2026) exceeds 2024's ~$2.72T.</td>
+<td>2026-07-14</td>
+<td style="text-align: center;">✅</td>
+<td>SIPRI Apr-2026 release: <strong>2025 = $2.887T</strong> (+2.9% real; 11th straight yr of growth; burden 2.5% of GDP, highest since 2009). The <a class="wikilink" href="../concepts/defense-security.html">defense-security</a> NATO 5%-GDP re-rating thesis is intact and structural, not cyclical. (fact, sipri.org, retrieved 2026-07-14)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scorecard-running-tally">Scorecard (running tally)</h2>
+<ul>
+<li><strong>Total calls:</strong> 37 · ✅ 3 · ❌ 0 · ◐ 0 · ⏳ 34 open (2026-10-11: P23 scored ✅; P12 duplicate open row removed; 09-20 pair renumbered P34/P35 after an ID collision; P36–P37 added)</li>
+<li><strong>By conviction (open):</strong> conv-4: P3, P7, P8, P9, P10, P11 (6) · conv-3: P1, P2, P4, P5, P13, P14,<br />
+  P15, P16, P19, P20, P22, P24, P27, P28, P29, P30, P34, P36 (18) · conv-2: P6, P17, P18, P21, P25,<br />
+  P31, P35, P37 (8) · conviction not recorded: P32, P33 (filed 2026-09-26 in a different row format).<br />
+  Resolved ✅: P12 (conv-4), P26 (conv-3), P23 (conv-2).</li>
+<li><strong>Hit-rate:</strong> 3/3 resolved (100%) — still far too thin to read calibration. Next to mature:<br />
+  P24/P25 2026-12-01 · P34/P35 2026-12-21 · P32 2026-12-24 · P5 2026-12-31 · P36/P37 2027-01-11.<br />
+  Tracking at 2026-10-09: P24 Tier A +23.0% vs Tier B +16.5% · P25 avoid −10.6% vs SPY +1.5% ·<br />
+  P34 confirmed +6.5% vs gated +5.4% · P35 AVGO +1.3% vs confirmed +6.5% · P32 tranche +7.0% vs SPY<br />
+  +0.9% · <strong>P33 Thai sleeve −4.6% (failure line −5%) — at risk</strong>.</li>
+<li><strong>Calibration note:</strong> the real test — do conviction-4 calls resolve correct <em>more often</em> than<br />
+  conv-2/3 ones? P12 (conv-4) passed first. Next resolves: P5 (India FPI, 2026-12-31), P6 (SET,<br />
+  2027-01-05), P10 (Nifty, 2027-01-05), P14/P15/P16 (Jan-2027 cluster), P17/P18 (HY/drawdown, 2027-01-01).</li>
+</ul>
+<h2 id="confidence-gaps">Confidence &amp; gaps</h2>
+<ul>
+<li>22 calls now tracked (P1–P22); each checkable against a concrete future public data point. P16<br />
+  (gold) and P4 (uranium spot) depend on levels flagged as search-aggregated — verify against a<br />
+  live feed (<code>scripts/refresh.py</code>) at resolution. Earliest open: P23/P26 (2026-09-28); most resolve<br />
+  ~Jan–Feb 2027; long-dated: P22 (2029-07-15).</li>
+<li><strong>Drift fixed (2026-07-14):</strong> scorecard previously said "16 calls" while the table held 22 —<br />
+  P17–P22 (added 2026-06-28) had not been tallied. Recomputed. <code>date</code>/<code>last_scan</code> bumped 06-01 → 07-14.</li>
+</ul>
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script>
+</body>
+</html>
