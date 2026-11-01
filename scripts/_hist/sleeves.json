@@ -1,0 +1,3066 @@
+{
+  "as_of": "2026-10-30",
+  "tickers": 340,
+  "scores": {
+    "000333.SZ": {
+      "mom": 0.811,
+      "value": 0.973,
+      "quality": 0.504,
+      "macro": 0.794,
+      "contrarian": 0.882,
+      "longterm": 0.668,
+      "regime": "bull"
+    },
+    "000660.KS": {
+      "mom": 0.628,
+      "value": 0.348,
+      "quality": 0.95,
+      "macro": 0.635,
+      "contrarian": 0.141,
+      "longterm": 0.994,
+      "regime": "bull"
+    },
+    "000858.SZ": {
+      "mom": 0.274,
+      "value": 0.339,
+      "quality": 0.882,
+      "macro": 0.191,
+      "contrarian": 0.218,
+      "longterm": 0.368,
+      "regime": "bull"
+    },
+    "005930.KS": {
+      "mom": 0.555,
+      "value": 0.552,
+      "quality": 0.531,
+      "macro": 0.429,
+      "contrarian": 0.25,
+      "longterm": 0.979,
+      "regime": "bull"
+    },
+    "0700.HK": {
+      "mom": 0.165,
+      "value": 0.367,
+      "quality": 0.743,
+      "macro": 0.174,
+      "contrarian": 0.197,
+      "longterm": 0.276,
+      "regime": "bull"
+    },
+    "0939.HK": {
+      "mom": 0.826,
+      "value": 0.995,
+      "quality": 0.693,
+      "macro": 0.832,
+      "contrarian": 0.926,
+      "longterm": 0.8,
+      "regime": "bull"
+    },
+    "1299.HK": {
+      "mom": 0.339,
+      "value": 0.81,
+      "quality": 0.732,
+      "macro": 0.362,
+      "contrarian": 0.538,
+      "longterm": 0.621,
+      "regime": "bull"
+    },
+    "2318.HK": {
+      "mom": 0.206,
+      "value": 0.679,
+      "quality": 0.463,
+      "macro": 0.224,
+      "contrarian": 0.359,
+      "longterm": 0.332,
+      "regime": "bull"
+    },
+    "300750.SZ": {
+      "mom": 0.024,
+      "value": 0.276,
+      "quality": 0.198,
+      "macro": 0.041,
+      "contrarian": 0.132,
+      "longterm": 0.121,
+      "regime": "bull"
+    },
+    "3690.HK": {
+      "mom": 0.212,
+      "value": 0.466,
+      "quality": 0.094,
+      "macro": 0.253,
+      "contrarian": 0.268,
+      "longterm": 0.088,
+      "regime": "bull"
+    },
+    "600519.SS": {
+      "mom": 0.507,
+      "value": 0.76,
+      "quality": 0.988,
+      "macro": 0.588,
+      "contrarian": 0.588,
+      "longterm": 0.874,
+      "regime": "bull"
+    },
+    "601012.SS": {
+      "mom": 0.136,
+      "value": 0.127,
+      "quality": 0.041,
+      "macro": 0.076,
+      "contrarian": 0.076,
+      "longterm": 0.018,
+      "regime": "bull"
+    },
+    "601318.SS": {
+      "mom": 0.386,
+      "value": 0.706,
+      "quality": 0.425,
+      "macro": 0.403,
+      "contrarian": 0.412,
+      "longterm": 0.335,
+      "regime": "bull"
+    },
+    "6324.T": {
+      "mom": 0.676,
+      "value": 0.032,
+      "quality": 0.133,
+      "macro": 0.682,
+      "contrarian": 0.05,
+      "longterm": 0.709,
+      "regime": "bull"
+    },
+    "6594.T": {
+      "mom": 0.08,
+      "value": 0.462,
+      "quality": 0.032,
+      "macro": 0.129,
+      "contrarian": 0.235,
+      "longterm": 0.05,
+      "regime": "bull"
+    },
+    "9880.HK": {
+      "mom": 0.068,
+      "value": 0.045,
+      "quality": 0.053,
+      "macro": 0.05,
+      "contrarian": 0.035,
+      "longterm": 0.029,
+      "regime": "bull"
+    },
+    "9988.HK": {
+      "mom": 0.145,
+      "value": 0.326,
+      "quality": 0.248,
+      "macro": 0.141,
+      "contrarian": 0.174,
+      "longterm": 0.135,
+      "regime": "bull"
+    },
+    "AAPL": {
+      "mom": 0.873,
+      "value": 0.606,
+      "quality": 0.909,
+      "macro": 0.847,
+      "contrarian": 0.603,
+      "longterm": 0.853,
+      "regime": "bull"
+    },
+    "ABT": {
+      "mom": 0.808,
+      "value": 0.652,
+      "quality": 0.602,
+      "macro": 0.776,
+      "contrarian": 0.471,
+      "longterm": 0.406,
+      "regime": "bull"
+    },
+    "ACM": {
+      "mom": 0.215,
+      "value": 0.235,
+      "quality": 0.1,
+      "macro": 0.171,
+      "contrarian": 0.118,
+      "longterm": 0.041,
+      "regime": "bull"
+    },
+    "ADBE": {
+      "mom": 0.631,
+      "value": 0.57,
+      "quality": 0.764,
+      "macro": 0.518,
+      "contrarian": 0.321,
+      "longterm": 0.447,
+      "regime": "bull"
+    },
+    "ADC": {
+      "mom": 0.295,
+      "value": 0.389,
+      "quality": 0.982,
+      "macro": 0.324,
+      "contrarian": 0.368,
+      "longterm": 0.847,
+      "regime": "bull"
+    },
+    "ADVANC.BK": {
+      "mom": 0.372,
+      "value": 0.769,
+      "quality": 0.841,
+      "macro": 0.471,
+      "contrarian": 0.574,
+      "longterm": 0.812,
+      "regime": "bull"
+    },
+    "AEM": {
+      "mom": 0.54,
+      "value": 0.452,
+      "quality": 0.888,
+      "macro": 0.294,
+      "contrarian": 0.247,
+      "longterm": 0.738,
+      "regime": "bull"
+    },
+    "AFRM": {
+      "mom": 0.708,
+      "value": 0.733,
+      "quality": 0.437,
+      "macro": 0.753,
+      "contrarian": 0.518,
+      "longterm": 0.444,
+      "regime": "bull"
+    },
+    "AIQ": {
+      "mom": 0.593,
+      "value": 0,
+      "quality": 0.637,
+      "macro": 0.632,
+      "contrarian": 0.738,
+      "longterm": 0.568,
+      "regime": "bull"
+    },
+    "ALB": {
+      "mom": 0.041,
+      "value": 0.199,
+      "quality": 0.124,
+      "macro": 0.026,
+      "contrarian": 0.088,
+      "longterm": 0.156,
+      "regime": "bull"
+    },
+    "AMAT": {
+      "mom": 0.378,
+      "value": 0.195,
+      "quality": 0.475,
+      "macro": 0.385,
+      "contrarian": 0.121,
+      "longterm": 0.9,
+      "regime": "bull"
+    },
+    "AMD": {
+      "mom": 0.853,
+      "value": 0.353,
+      "quality": 0.501,
+      "macro": 0.932,
+      "contrarian": 0.3,
+      "longterm": 0.962,
+      "regime": "bull"
+    },
+    "AMGN": {
+      "mom": 0.953,
+      "value": 0.928,
+      "quality": 0.929,
+      "macro": 0.938,
+      "contrarian": 0.856,
+      "longterm": 0.968,
+      "regime": "bull"
+    },
+    "AMLP": {
+      "mom": 0.699,
+      "value": 0,
+      "quality": 0.835,
+      "macro": 0.641,
+      "contrarian": 0.932,
+      "longterm": 0.747,
+      "regime": "bull"
+    },
+    "AMZN": {
+      "mom": 0.413,
+      "value": 0.588,
+      "quality": 0.684,
+      "macro": 0.379,
+      "contrarian": 0.456,
+      "longterm": 0.597,
+      "regime": "bull"
+    },
+    "ANET": {
+      "mom": 0.454,
+      "value": 0.335,
+      "quality": 0.864,
+      "macro": 0.521,
+      "contrarian": 0.297,
+      "longterm": 0.715,
+      "regime": "bull"
+    },
+    "AOT.BK": {
+      "mom": 0.625,
+      "value": 0.561,
+      "quality": 0.87,
+      "macro": 0.676,
+      "contrarian": 0.485,
+      "longterm": 0.924,
+      "regime": "bull"
+    },
+    "ARKF": {
+      "mom": 0.575,
+      "value": 0,
+      "quality": 0.478,
+      "macro": 0.535,
+      "contrarian": 0.612,
+      "longterm": 0.235,
+      "regime": "bull"
+    },
+    "ARKG": {
+      "mom": 0.971,
+      "value": 0,
+      "quality": 0.204,
+      "macro": 0.965,
+      "contrarian": 0.738,
+      "longterm": 0.762,
+      "regime": "bull"
+    },
+    "ARKQ": {
+      "mom": 0.251,
+      "value": 0,
+      "quality": 0.605,
+      "macro": 0.279,
+      "contrarian": 0.638,
+      "longterm": 0.347,
+      "regime": "bull"
+    },
+    "ARKX": {
+      "mom": 0.271,
+      "value": 0,
+      "quality": 0.628,
+      "macro": 0.329,
+      "contrarian": 0.665,
+      "longterm": 0.432,
+      "regime": "bull"
+    },
+    "ARM": {
+      "mom": 0.401,
+      "value": 0.014,
+      "quality": 0.655,
+      "macro": 0.374,
+      "contrarian": 0.018,
+      "longterm": 0.803,
+      "regime": "bull"
+    },
+    "ASEA": {
+      "mom": 0.537,
+      "value": 0,
+      "quality": 0.82,
+      "macro": 0.559,
+      "contrarian": 0.738,
+      "longterm": 0.679,
+      "regime": "bull"
+    },
+    "ASHR": {
+      "mom": 0.204,
+      "value": 0,
+      "quality": 0.74,
+      "macro": 0.262,
+      "contrarian": 0.682,
+      "longterm": 0.429,
+      "regime": "bull"
+    },
+    "ASML": {
+      "mom": 0.59,
+      "value": 0.475,
+      "quality": 0.853,
+      "macro": 0.629,
+      "contrarian": 0.35,
+      "longterm": 0.912,
+      "regime": "bull"
+    },
+    "ASTS": {
+      "mom": 0.035,
+      "value": 0.19,
+      "quality": 0.091,
+      "macro": 0.035,
+      "contrarian": 0.047,
+      "longterm": 0.065,
+      "regime": "bull"
+    },
+    "AUDUSD=X": {
+      "mom": 0.602,
+      "value": 0,
+      "quality": 0.829,
+      "macro": 0.488,
+      "contrarian": 0.947,
+      "longterm": 0.609,
+      "regime": "bull"
+    },
+    "AVAV": {
+      "mom": 0.127,
+      "value": 0.063,
+      "quality": 0.074,
+      "macro": 0.079,
+      "contrarian": 0.021,
+      "longterm": 0.032,
+      "regime": "bull"
+    },
+    "AVGO": {
+      "mom": 0.177,
+      "value": 0.434,
+      "quality": 0.953,
+      "macro": 0.212,
+      "contrarian": 0.265,
+      "longterm": 0.682,
+      "regime": "bull"
+    },
+    "AWK": {
+      "mom": 0.829,
+      "value": 0.878,
+      "quality": 0.861,
+      "macro": 0.774,
+      "contrarian": 0.835,
+      "longterm": 0.753,
+      "regime": "bull"
+    },
+    "BABA": {
+      "mom": 0.139,
+      "value": 0.33,
+      "quality": 0.265,
+      "macro": 0.144,
+      "contrarian": 0.171,
+      "longterm": 0.126,
+      "regime": "bull"
+    },
+    "BBCA.JK": {
+      "mom": 0.153,
+      "value": 0.407,
+      "quality": 0.263,
+      "macro": 0.176,
+      "contrarian": 0.209,
+      "longterm": 0.153,
+      "regime": "bull"
+    },
+    "BDMS.BK": {
+      "mom": 0.72,
+      "value": 0.828,
+      "quality": 0.445,
+      "macro": 0.659,
+      "contrarian": 0.618,
+      "longterm": 0.412,
+      "regime": "bull"
+    },
+    "BEAM": {
+      "mom": 0.407,
+      "value": 0.742,
+      "quality": 0.003,
+      "macro": 0.356,
+      "contrarian": 0.4,
+      "longterm": 0.009,
+      "regime": "bull"
+    },
+    "BEN": {
+      "mom": 0.611,
+      "value": 0.891,
+      "quality": 0.469,
+      "macro": 0.715,
+      "contrarian": 0.621,
+      "longterm": 0.768,
+      "regime": "bull"
+    },
+    "BHP": {
+      "mom": 0.549,
+      "value": 0.647,
+      "quality": 0.947,
+      "macro": 0.544,
+      "contrarian": 0.453,
+      "longterm": 0.938,
+      "regime": "bull"
+    },
+    "BIL": {
+      "mom": 0.646,
+      "value": 0,
+      "quality": 0.914,
+      "macro": 0.574,
+      "contrarian": 0.988,
+      "longterm": 0.656,
+      "regime": "bull"
+    },
+    "BITQ": {
+      "mom": 0.277,
+      "value": 0,
+      "quality": 0.283,
+      "macro": 0.203,
+      "contrarian": 0.541,
+      "longterm": 0.15,
+      "regime": "bull"
+    },
+    "BKR": {
+      "mom": 0.239,
+      "value": 0.566,
+      "quality": 0.322,
+      "macro": 0.259,
+      "contrarian": 0.406,
+      "longterm": 0.468,
+      "regime": "bull"
+    },
+    "BLK": {
+      "mom": 0.74,
+      "value": 0.905,
+      "quality": 0.785,
+      "macro": 0.741,
+      "contrarian": 0.824,
+      "longterm": 0.665,
+      "regime": "bull"
+    },
+    "BLOK": {
+      "mom": 0.322,
+      "value": 0,
+      "quality": 0.46,
+      "macro": 0.244,
+      "contrarian": 0.6,
+      "longterm": 0.229,
+      "regime": "bull"
+    },
+    "BOTZ": {
+      "mom": 0.201,
+      "value": 0,
+      "quality": 0.634,
+      "macro": 0.247,
+      "contrarian": 0.647,
+      "longterm": 0.326,
+      "regime": "bull"
+    },
+    "BSX": {
+      "mom": 0.168,
+      "value": 0.158,
+      "quality": 0.566,
+      "macro": 0.135,
+      "contrarian": 0.059,
+      "longterm": 0.215,
+      "regime": "bull"
+    },
+    "BTC-USD": {
+      "mom": 0.785,
+      "value": 0,
+      "quality": 0.416,
+      "macro": 0.826,
+      "contrarian": 0.738,
+      "longterm": 0.45,
+      "regime": "bull"
+    },
+    "BUG": {
+      "mom": 0.982,
+      "value": 0,
+      "quality": 0.404,
+      "macro": 0.979,
+      "contrarian": 0.924,
+      "longterm": 0.706,
+      "regime": "bull"
+    },
+    "BZ=F": {
+      "mom": 0.909,
+      "value": 0,
+      "quality": 0.378,
+      "macro": 0.829,
+      "contrarian": 0.965,
+      "longterm": 0.891,
+      "regime": "bull"
+    },
+    "CAT": {
+      "mom": 0.077,
+      "value": 0.258,
+      "quality": 0.316,
+      "macro": 0.126,
+      "contrarian": 0.162,
+      "longterm": 0.362,
+      "regime": "bull"
+    },
+    "CCJ": {
+      "mom": 0.118,
+      "value": 0.1,
+      "quality": 0.26,
+      "macro": 0.088,
+      "contrarian": 0.097,
+      "longterm": 0.2,
+      "regime": "bull"
+    },
+    "CEG": {
+      "mom": 0.298,
+      "value": 0.38,
+      "quality": 0.186,
+      "macro": 0.309,
+      "contrarian": 0.262,
+      "longterm": 0.129,
+      "regime": "bull"
+    },
+    "CFG": {
+      "mom": 0.531,
+      "value": 0.855,
+      "quality": 0.386,
+      "macro": 0.509,
+      "contrarian": 0.568,
+      "longterm": 0.556,
+      "regime": "bull"
+    },
+    "CGNX": {
+      "mom": 0.475,
+      "value": 0.398,
+      "quality": 0.472,
+      "macro": 0.482,
+      "contrarian": 0.326,
+      "longterm": 0.635,
+      "regime": "bull"
+    },
+    "CGW": {
+      "mom": 0.425,
+      "value": 0,
+      "quality": 0.817,
+      "macro": 0.494,
+      "contrarian": 0.906,
+      "longterm": 0.547,
+      "regime": "bull"
+    },
+    "CHKP": {
+      "mom": 0.855,
+      "value": 0.579,
+      "quality": 0.935,
+      "macro": 0.856,
+      "contrarian": 0.353,
+      "longterm": 0.588,
+      "regime": "bull"
+    },
+    "CIBR": {
+      "mom": 0.914,
+      "value": 0,
+      "quality": 0.575,
+      "macro": 0.941,
+      "contrarian": 0.738,
+      "longterm": 0.697,
+      "regime": "bull"
+    },
+    "CIEN": {
+      "mom": 0.083,
+      "value": 0.14,
+      "quality": 0.147,
+      "macro": 0.097,
+      "contrarian": 0.094,
+      "longterm": 0.779,
+      "regime": "bull"
+    },
+    "CL=F": {
+      "mom": 0.832,
+      "value": 0,
+      "quality": 0.336,
+      "macro": 0.762,
+      "contrarian": 0.897,
+      "longterm": 0.838,
+      "regime": "bull"
+    },
+    "CLS": {
+      "mom": 0.056,
+      "value": 0.317,
+      "quality": 0.08,
+      "macro": 0.118,
+      "contrarian": 0.168,
+      "longterm": 0.103,
+      "regime": "bull"
+    },
+    "CNC": {
+      "mom": 0.882,
+      "value": 0.95,
+      "quality": 0.103,
+      "macro": 0.912,
+      "contrarian": 0.838,
+      "longterm": 0.694,
+      "regime": "bull"
+    },
+    "COHR": {
+      "mom": 0.047,
+      "value": 0.204,
+      "quality": 0.115,
+      "macro": 0.071,
+      "contrarian": 0.109,
+      "longterm": 0.562,
+      "regime": "bull"
+    },
+    "COIN": {
+      "mom": 0.307,
+      "value": 0.036,
+      "quality": 0.195,
+      "macro": 0.153,
+      "contrarian": 0.024,
+      "longterm": 0.118,
+      "regime": "bull"
+    },
+    "COPX": {
+      "mom": 0.434,
+      "value": 0,
+      "quality": 0.525,
+      "macro": 0.291,
+      "contrarian": 0.609,
+      "longterm": 0.538,
+      "regime": "bull"
+    },
+    "COR": {
+      "mom": 0.767,
+      "value": 0.747,
+      "quality": 0.145,
+      "macro": 0.703,
+      "contrarian": 0.565,
+      "longterm": 0.218,
+      "regime": "bull"
+    },
+    "COST": {
+      "mom": 0.499,
+      "value": 0.457,
+      "quality": 0.277,
+      "macro": 0.6,
+      "contrarian": 0.476,
+      "longterm": 0.344,
+      "regime": "bull"
+    },
+    "CPALL.BK": {
+      "mom": 0.383,
+      "value": 0.738,
+      "quality": 0.292,
+      "macro": 0.459,
+      "contrarian": 0.5,
+      "longterm": 0.274,
+      "regime": "bull"
+    },
+    "CPN.BK": {
+      "mom": 0.584,
+      "value": 0.887,
+      "quality": 0.938,
+      "macro": 0.541,
+      "contrarian": 0.65,
+      "longterm": 0.876,
+      "regime": "bull"
+    },
+    "CQQQ": {
+      "mom": 0.115,
+      "value": 0,
+      "quality": 0.51,
+      "macro": 0.138,
+      "contrarian": 0.494,
+      "longterm": 0.212,
+      "regime": "bull"
+    },
+    "CRCL": {
+      "mom": 0.451,
+      "value": 0.077,
+      "quality": 0.047,
+      "macro": 0.162,
+      "contrarian": 0.062,
+      "longterm": 0.047,
+      "regime": "bull"
+    },
+    "CRDO": {
+      "mom": 0.218,
+      "value": 0.213,
+      "quality": 0.389,
+      "macro": 0.209,
+      "contrarian": 0.115,
+      "longterm": 0.341,
+      "regime": "bull"
+    },
+    "CRH": {
+      "mom": 0.268,
+      "value": 0.489,
+      "quality": 0.381,
+      "macro": 0.221,
+      "contrarian": 0.288,
+      "longterm": 0.238,
+      "regime": "bull"
+    },
+    "CRM": {
+      "mom": 0.888,
+      "value": 0.765,
+      "quality": 0.578,
+      "macro": 0.862,
+      "contrarian": 0.544,
+      "longterm": 0.485,
+      "regime": "bull"
+    },
+    "CRSP": {
+      "mom": 0.605,
+      "value": 0.919,
+      "quality": 0.05,
+      "macro": 0.476,
+      "contrarian": 0.529,
+      "longterm": 0.082,
+      "regime": "bull"
+    },
+    "CRWD": {
+      "mom": 0.994,
+      "value": 0.027,
+      "quality": 0.398,
+      "macro": 0.997,
+      "contrarian": 0.156,
+      "longterm": 0.935,
+      "regime": "bull"
+    },
+    "CSCO": {
+      "mom": 0.652,
+      "value": 0.597,
+      "quality": 0.873,
+      "macro": 0.747,
+      "contrarian": 0.435,
+      "longterm": 0.921,
+      "regime": "bull"
+    },
+    "CVS": {
+      "mom": 0.667,
+      "value": 0.756,
+      "quality": 0.221,
+      "macro": 0.709,
+      "contrarian": 0.491,
+      "longterm": 0.321,
+      "regime": "bull"
+    },
+    "D05.SI": {
+      "mom": 0.782,
+      "value": 0.869,
+      "quality": 0.67,
+      "macro": 0.853,
+      "contrarian": 0.641,
+      "longterm": 0.821,
+      "regime": "bull"
+    },
+    "DBA": {
+      "mom": 0.504,
+      "value": 0,
+      "quality": 0.826,
+      "macro": 0.441,
+      "contrarian": 0.738,
+      "longterm": 0.579,
+      "regime": "bull"
+    },
+    "DBC": {
+      "mom": 0.791,
+      "value": 0,
+      "quality": 0.723,
+      "macro": 0.768,
+      "contrarian": 0.962,
+      "longterm": 0.868,
+      "regime": "bull"
+    },
+    "DDOG": {
+      "mom": 0.912,
+      "value": 0.059,
+      "quality": 0.44,
+      "macro": 0.959,
+      "contrarian": 0.153,
+      "longterm": 0.856,
+      "regime": "bull"
+    },
+    "DELL": {
+      "mom": 0.968,
+      "value": 0.534,
+      "quality": 0.121,
+      "macro": 0.985,
+      "contrarian": 0.329,
+      "longterm": 0.865,
+      "regime": "bull"
+    },
+    "DELTA.BK": {
+      "mom": 0.065,
+      "value": 0.054,
+      "quality": 0.233,
+      "macro": 0.112,
+      "contrarian": 0.056,
+      "longterm": 0.338,
+      "regime": "bull"
+    },
+    "DLR": {
+      "mom": 0.33,
+      "value": 0.145,
+      "quality": 0.726,
+      "macro": 0.412,
+      "contrarian": 0.282,
+      "longterm": 0.676,
+      "regime": "bull"
+    },
+    "DNN": {
+      "mom": 0.062,
+      "value": 0.421,
+      "quality": 0.012,
+      "macro": 0.053,
+      "contrarian": 0.159,
+      "longterm": 0.012,
+      "regime": "bull"
+    },
+    "DXCM": {
+      "mom": 0.814,
+      "value": 0.593,
+      "quality": 0.546,
+      "macro": 0.874,
+      "contrarian": 0.488,
+      "longterm": 0.647,
+      "regime": "bull"
+    },
+    "DXJ": {
+      "mom": 0.69,
+      "value": 0,
+      "quality": 0.788,
+      "macro": 0.685,
+      "contrarian": 0.738,
+      "longterm": 0.791,
+      "regime": "bull"
+    },
+    "ECL": {
+      "mom": 0.844,
+      "value": 0.683,
+      "quality": 0.64,
+      "macro": 0.785,
+      "contrarian": 0.632,
+      "longterm": 0.685,
+      "regime": "bull"
+    },
+    "ECO": {
+      "mom": 0.997,
+      "value": 0.946,
+      "quality": 0.971,
+      "macro": 0.994,
+      "contrarian": 0.868,
+      "longterm": 0.997,
+      "regime": "bull"
+    },
+    "EIDO": {
+      "mom": 0.112,
+      "value": 0,
+      "quality": 0.327,
+      "macro": 0.1,
+      "contrarian": 0.397,
+      "longterm": 0.124,
+      "regime": "bull"
+    },
+    "ELV": {
+      "mom": 0.805,
+      "value": 0.923,
+      "quality": 0.218,
+      "macro": 0.782,
+      "contrarian": 0.703,
+      "longterm": 0.465,
+      "regime": "bull"
+    },
+    "EMR": {
+      "mom": 0.82,
+      "value": 0.805,
+      "quality": 0.699,
+      "macro": 0.818,
+      "contrarian": 0.671,
+      "longterm": 0.741,
+      "regime": "bull"
+    },
+    "ENPH": {
+      "mom": 0.071,
+      "value": 0.109,
+      "quality": 0.068,
+      "macro": 0.094,
+      "contrarian": 0.041,
+      "longterm": 0.094,
+      "regime": "bull"
+    },
+    "EPHE": {
+      "mom": 0.286,
+      "value": 0,
+      "quality": 0.643,
+      "macro": 0.344,
+      "contrarian": 0.679,
+      "longterm": 0.4,
+      "regime": "bull"
+    },
+    "EPI": {
+      "mom": 0.36,
+      "value": 0,
+      "quality": 0.729,
+      "macro": 0.409,
+      "contrarian": 0.862,
+      "longterm": 0.391,
+      "regime": "bull"
+    },
+    "EQIX": {
+      "mom": 0.552,
+      "value": 0.271,
+      "quality": 0.676,
+      "macro": 0.462,
+      "contrarian": 0.379,
+      "longterm": 0.797,
+      "regime": "bull"
+    },
+    "EQT": {
+      "mom": 0.442,
+      "value": 0.661,
+      "quality": 0.959,
+      "macro": 0.456,
+      "contrarian": 0.462,
+      "longterm": 0.841,
+      "regime": "bull"
+    },
+    "ETH-USD": {
+      "mom": 0.823,
+      "value": 0,
+      "quality": 0.298,
+      "macro": 0.891,
+      "contrarian": 0.685,
+      "longterm": 0.35,
+      "regime": "bull"
+    },
+    "ETN": {
+      "mom": 0.357,
+      "value": 0.511,
+      "quality": 0.434,
+      "macro": 0.321,
+      "contrarian": 0.391,
+      "longterm": 0.374,
+      "regime": "bull"
+    },
+    "EURUSD=X": {
+      "mom": 0.336,
+      "value": 0,
+      "quality": 0.894,
+      "macro": 0.432,
+      "contrarian": 0.738,
+      "longterm": 0.55,
+      "regime": "bull"
+    },
+    "EW": {
+      "mom": 0.755,
+      "value": 0.715,
+      "quality": 0.867,
+      "macro": 0.732,
+      "contrarian": 0.624,
+      "longterm": 0.75,
+      "regime": "bull"
+    },
+    "EWJ": {
+      "mom": 0.614,
+      "value": 0,
+      "quality": 0.752,
+      "macro": 0.626,
+      "contrarian": 0.738,
+      "longterm": 0.662,
+      "regime": "bull"
+    },
+    "EWM": {
+      "mom": 0.342,
+      "value": 0,
+      "quality": 0.802,
+      "macro": 0.388,
+      "contrarian": 0.738,
+      "longterm": 0.582,
+      "regime": "bull"
+    },
+    "F": {
+      "mom": 0.381,
+      "value": 0.633,
+      "quality": 0.13,
+      "macro": 0.5,
+      "contrarian": 0.344,
+      "longterm": 0.176,
+      "regime": "bull"
+    },
+    "FBTC": {
+      "mom": 0.684,
+      "value": 0,
+      "quality": 0.363,
+      "macro": 0.562,
+      "contrarian": 0.562,
+      "longterm": 0.179,
+      "regime": "bull"
+    },
+    "FCG": {
+      "mom": 0.796,
+      "value": 0,
+      "quality": 0.619,
+      "macro": 0.756,
+      "contrarian": 0.988,
+      "longterm": 0.844,
+      "regime": "bull"
+    },
+    "FCX": {
+      "mom": 0.643,
+      "value": 0.629,
+      "quality": 0.419,
+      "macro": 0.624,
+      "contrarian": 0.418,
+      "longterm": 0.794,
+      "regime": "bull"
+    },
+    "FINX": {
+      "mom": 0.481,
+      "value": 0,
+      "quality": 0.413,
+      "macro": 0.376,
+      "contrarian": 0.582,
+      "longterm": 0.209,
+      "regime": "bull"
+    },
+    "FIW": {
+      "mom": 0.516,
+      "value": 0,
+      "quality": 0.779,
+      "macro": 0.665,
+      "contrarian": 0.95,
+      "longterm": 0.532,
+      "regime": "bull"
+    },
+    "FIX": {
+      "mom": 0.053,
+      "value": 0.281,
+      "quality": 0.18,
+      "macro": 0.115,
+      "contrarian": 0.182,
+      "longterm": 0.379,
+      "regime": "bull"
+    },
+    "FLEX": {
+      "mom": 0.316,
+      "value": 0.294,
+      "quality": 0.077,
+      "macro": 0.297,
+      "contrarian": 0.15,
+      "longterm": 0.262,
+      "regime": "bull"
+    },
+    "FLNC": {
+      "mom": 0.003,
+      "value": 0.104,
+      "quality": 0.029,
+      "macro": 0.012,
+      "contrarian": 0.012,
+      "longterm": 0.015,
+      "regime": "bull"
+    },
+    "FLR": {
+      "mom": 0.457,
+      "value": 0.692,
+      "quality": 0.056,
+      "macro": 0.335,
+      "contrarian": 0.465,
+      "longterm": 0.115,
+      "regime": "bull"
+    },
+    "FN": {
+      "mom": 0.027,
+      "value": 0.181,
+      "quality": 0.071,
+      "macro": 0.032,
+      "contrarian": 0.082,
+      "longterm": 0.079,
+      "regime": "bull"
+    },
+    "FRO": {
+      "mom": 0.988,
+      "value": 0.977,
+      "quality": 0.965,
+      "macro": 0.976,
+      "contrarian": 0.865,
+      "longterm": 0.991,
+      "regime": "bull"
+    },
+    "FSLR": {
+      "mom": 0.18,
+      "value": 0.362,
+      "quality": 0.522,
+      "macro": 0.194,
+      "contrarian": 0.176,
+      "longterm": 0.253,
+      "regime": "bull"
+    },
+    "FTNT": {
+      "mom": 0.847,
+      "value": 0.222,
+      "quality": 0.811,
+      "macro": 0.935,
+      "contrarian": 0.203,
+      "longterm": 0.95,
+      "regime": "bull"
+    },
+    "FXE": {
+      "mom": 0.348,
+      "value": 0,
+      "quality": 0.9,
+      "macro": 0.424,
+      "contrarian": 0.738,
+      "longterm": 0.553,
+      "regime": "bull"
+    },
+    "FXI": {
+      "mom": 0.289,
+      "value": 0,
+      "quality": 0.673,
+      "macro": 0.338,
+      "contrarian": 0.712,
+      "longterm": 0.318,
+      "regime": "bull"
+    },
+    "FXY": {
+      "mom": 0.608,
+      "value": 0,
+      "quality": 0.664,
+      "macro": 0.524,
+      "contrarian": 0.941,
+      "longterm": 0.462,
+      "regime": "bull"
+    },
+    "GBPUSD=X": {
+      "mom": 0.431,
+      "value": 0,
+      "quality": 0.906,
+      "macro": 0.515,
+      "contrarian": 0.944,
+      "longterm": 0.594,
+      "regime": "bull"
+    },
+    "GC=F": {
+      "mom": 0.242,
+      "value": 0,
+      "quality": 0.614,
+      "macro": 0.232,
+      "contrarian": 0.594,
+      "longterm": 0.456,
+      "regime": "bull"
+    },
+    "GD": {
+      "mom": 0.525,
+      "value": 0.814,
+      "quality": 0.372,
+      "macro": 0.712,
+      "contrarian": 0.644,
+      "longterm": 0.394,
+      "regime": "bull"
+    },
+    "GDX": {
+      "mom": 0.46,
+      "value": 0,
+      "quality": 0.401,
+      "macro": 0.265,
+      "contrarian": 0.521,
+      "longterm": 0.403,
+      "regime": "bull"
+    },
+    "GDXJ": {
+      "mom": 0.221,
+      "value": 0,
+      "quality": 0.351,
+      "macro": 0.188,
+      "contrarian": 0.474,
+      "longterm": 0.329,
+      "regime": "bull"
+    },
+    "GEV": {
+      "mom": 0.183,
+      "value": 0.267,
+      "quality": 0.307,
+      "macro": 0.25,
+      "contrarian": 0.241,
+      "longterm": 0.712,
+      "regime": "bull"
+    },
+    "GILD": {
+      "mom": 0.947,
+      "value": 0.941,
+      "quality": 0.737,
+      "macro": 0.915,
+      "contrarian": 0.871,
+      "longterm": 0.903,
+      "regime": "bull"
+    },
+    "GLD": {
+      "mom": 0.248,
+      "value": 0,
+      "quality": 0.59,
+      "macro": 0.235,
+      "contrarian": 0.571,
+      "longterm": 0.421,
+      "regime": "bull"
+    },
+    "GLW": {
+      "mom": 0.142,
+      "value": 0.122,
+      "quality": 0.177,
+      "macro": 0.165,
+      "contrarian": 0.074,
+      "longterm": 0.529,
+      "regime": "bull"
+    },
+    "GOLD": {
+      "mom": 0.263,
+      "value": 0.43,
+      "quality": 0.088,
+      "macro": 0.306,
+      "contrarian": 0.221,
+      "longterm": 0.353,
+      "regime": "bull"
+    },
+    "GOOGL": {
+      "mom": 0.1,
+      "value": 0.425,
+      "quality": 0.941,
+      "macro": 0.147,
+      "contrarian": 0.271,
+      "longterm": 0.771,
+      "regime": "bull"
+    },
+    "GPN": {
+      "mom": 0.926,
+      "value": 1.0,
+      "quality": 0.268,
+      "macro": 0.929,
+      "contrarian": 0.938,
+      "longterm": 0.526,
+      "regime": "bull"
+    },
+    "GRID": {
+      "mom": 0.236,
+      "value": 0,
+      "quality": 0.652,
+      "macro": 0.303,
+      "contrarian": 0.726,
+      "longterm": 0.521,
+      "regime": "bull"
+    },
+    "GSAT": {
+      "mom": 0.596,
+      "value": 0.041,
+      "quality": 0.555,
+      "macro": 0.638,
+      "contrarian": 0.226,
+      "longterm": 0.974,
+      "regime": "bull"
+    },
+    "GULF.BK": {
+      "mom": 0.658,
+      "value": 0.656,
+      "quality": 0.581,
+      "macro": 0.671,
+      "contrarian": 0.535,
+      "longterm": 0.818,
+      "regime": "bull"
+    },
+    "HACK": {
+      "mom": 0.95,
+      "value": 0,
+      "quality": 0.549,
+      "macro": 0.953,
+      "contrarian": 0.909,
+      "longterm": 0.774,
+      "regime": "bull"
+    },
+    "HCA": {
+      "mom": 0.661,
+      "value": 0.751,
+      "quality": 0.451,
+      "macro": 0.724,
+      "contrarian": 0.55,
+      "longterm": 0.453,
+      "regime": "bull"
+    },
+    "HDB": {
+      "mom": 0.28,
+      "value": 0.312,
+      "quality": 0.201,
+      "macro": 0.271,
+      "contrarian": 0.185,
+      "longterm": 0.106,
+      "regime": "bull"
+    },
+    "HDFCBANK.NS": {
+      "mom": 0.283,
+      "value": 0.538,
+      "quality": 0.304,
+      "macro": 0.288,
+      "contrarian": 0.303,
+      "longterm": 0.144,
+      "regime": "bull"
+    },
+    "HEWJ": {
+      "mom": 0.649,
+      "value": 0,
+      "quality": 0.791,
+      "macro": 0.644,
+      "contrarian": 0.738,
+      "longterm": 0.732,
+      "regime": "bull"
+    },
+    "HG=F": {
+      "mom": 0.705,
+      "value": 0,
+      "quality": 0.72,
+      "macro": 0.697,
+      "contrarian": 0.738,
+      "longterm": 0.691,
+      "regime": "bull"
+    },
+    "HIMS": {
+      "mom": 0.528,
+      "value": 0.136,
+      "quality": 0.142,
+      "macro": 0.579,
+      "contrarian": 0.126,
+      "longterm": 0.112,
+      "regime": "bull"
+    },
+    "HPE": {
+      "mom": 0.976,
+      "value": 0.62,
+      "quality": 0.224,
+      "macro": 0.982,
+      "contrarian": 0.374,
+      "longterm": 0.926,
+      "regime": "bull"
+    },
+    "HSAI": {
+      "mom": 0.038,
+      "value": 0.163,
+      "quality": 0.168,
+      "macro": 0.047,
+      "contrarian": 0.068,
+      "longterm": 0.091,
+      "regime": "bull"
+    },
+    "HUMN": {
+      "mom": 0.189,
+      "value": 0,
+      "quality": 0.496,
+      "macro": 0.197,
+      "contrarian": 0.553,
+      "longterm": 0.279,
+      "regime": "bull"
+    },
+    "IAU": {
+      "mom": 0.245,
+      "value": 0,
+      "quality": 0.593,
+      "macro": 0.238,
+      "contrarian": 0.576,
+      "longterm": 0.426,
+      "regime": "bull"
+    },
+    "IBB": {
+      "mom": 0.903,
+      "value": 0,
+      "quality": 0.714,
+      "macro": 0.9,
+      "contrarian": 0.985,
+      "longterm": 0.809,
+      "regime": "bull"
+    },
+    "IBIT": {
+      "mom": 0.681,
+      "value": 0,
+      "quality": 0.36,
+      "macro": 0.553,
+      "contrarian": 0.556,
+      "longterm": 0.174,
+      "regime": "bull"
+    },
+    "IBM": {
+      "mom": 0.693,
+      "value": 0.557,
+      "quality": 0.625,
+      "macro": 0.729,
+      "contrarian": 0.385,
+      "longterm": 0.438,
+      "regime": "bull"
+    },
+    "IBN": {
+      "mom": 0.735,
+      "value": 0.914,
+      "quality": 0.339,
+      "macro": 0.721,
+      "contrarian": 0.7,
+      "longterm": 0.271,
+      "regime": "bull"
+    },
+    "ICLN": {
+      "mom": 0.147,
+      "value": 0,
+      "quality": 0.563,
+      "macro": 0.15,
+      "contrarian": 0.503,
+      "longterm": 0.306,
+      "regime": "bull"
+    },
+    "IGF": {
+      "mom": 0.44,
+      "value": 0,
+      "quality": 0.832,
+      "macro": 0.491,
+      "contrarian": 0.929,
+      "longterm": 0.641,
+      "regime": "bull"
+    },
+    "IGV": {
+      "mom": 0.794,
+      "value": 0,
+      "quality": 0.487,
+      "macro": 0.806,
+      "contrarian": 0.738,
+      "longterm": 0.294,
+      "regime": "bull"
+    },
+    "IHE": {
+      "mom": 0.858,
+      "value": 0,
+      "quality": 0.758,
+      "macro": 0.838,
+      "contrarian": 0.982,
+      "longterm": 0.862,
+      "regime": "bull"
+    },
+    "IHF": {
+      "mom": 0.861,
+      "value": 0,
+      "quality": 0.631,
+      "macro": 0.859,
+      "contrarian": 0.956,
+      "longterm": 0.632,
+      "regime": "bull"
+    },
+    "IHI": {
+      "mom": 0.51,
+      "value": 0,
+      "quality": 0.617,
+      "macro": 0.674,
+      "contrarian": 0.832,
+      "longterm": 0.365,
+      "regime": "bull"
+    },
+    "ILMN": {
+      "mom": 0.962,
+      "value": 0.285,
+      "quality": 0.295,
+      "macro": 0.968,
+      "contrarian": 0.294,
+      "longterm": 0.944,
+      "regime": "bull"
+    },
+    "INDA": {
+      "mom": 0.389,
+      "value": 0,
+      "quality": 0.711,
+      "macro": 0.45,
+      "contrarian": 0.853,
+      "longterm": 0.382,
+      "regime": "bull"
+    },
+    "INDY": {
+      "mom": 0.41,
+      "value": 0,
+      "quality": 0.696,
+      "macro": 0.465,
+      "contrarian": 0.844,
+      "longterm": 0.359,
+      "regime": "bull"
+    },
+    "INFY": {
+      "mom": 0.487,
+      "value": 0.376,
+      "quality": 0.239,
+      "macro": 0.547,
+      "contrarian": 0.224,
+      "longterm": 0.188,
+      "regime": "bull"
+    },
+    "INFY.NS": {
+      "mom": 0.513,
+      "value": 0.493,
+      "quality": 0.313,
+      "macro": 0.538,
+      "contrarian": 0.315,
+      "longterm": 0.224,
+      "regime": "bull"
+    },
+    "INTC": {
+      "mom": 0.133,
+      "value": 0.095,
+      "quality": 0.044,
+      "macro": 0.106,
+      "contrarian": 0.065,
+      "longterm": 0.491,
+      "regime": "bull"
+    },
+    "IONQ": {
+      "mom": 0.059,
+      "value": 0.29,
+      "quality": 0.083,
+      "macro": 0.082,
+      "contrarian": 0.103,
+      "longterm": 0.056,
+      "regime": "bull"
+    },
+    "IPAY": {
+      "mom": 0.664,
+      "value": 0,
+      "quality": 0.572,
+      "macro": 0.621,
+      "contrarian": 0.885,
+      "longterm": 0.309,
+      "regime": "bull"
+    },
+    "IRWD": {
+      "mom": 0.171,
+      "value": 0.611,
+      "quality": 0.534,
+      "macro": 0.215,
+      "contrarian": 0.285,
+      "longterm": 0.976,
+      "regime": "bull"
+    },
+    "ISRG": {
+      "mom": 0.478,
+      "value": 0.231,
+      "quality": 0.773,
+      "macro": 0.447,
+      "contrarian": 0.238,
+      "longterm": 0.471,
+      "regime": "bull"
+    },
+    "ITA": {
+      "mom": 0.313,
+      "value": 0,
+      "quality": 0.681,
+      "macro": 0.391,
+      "contrarian": 0.729,
+      "longterm": 0.474,
+      "regime": "bull"
+    },
+    "IYR": {
+      "mom": 0.416,
+      "value": 0,
+      "quality": 0.794,
+      "macro": 0.506,
+      "contrarian": 0.912,
+      "longterm": 0.6,
+      "regime": "bull"
+    },
+    "J": {
+      "mom": 0.876,
+      "value": 0.91,
+      "quality": 0.254,
+      "macro": 0.835,
+      "contrarian": 0.841,
+      "longterm": 0.268,
+      "regime": "bull"
+    },
+    "JCI": {
+      "mom": 0.678,
+      "value": 0.801,
+      "quality": 0.537,
+      "macro": 0.65,
+      "contrarian": 0.626,
+      "longterm": 0.726,
+      "regime": "bull"
+    },
+    "JD": {
+      "mom": 0.186,
+      "value": 0.719,
+      "quality": 0.106,
+      "macro": 0.282,
+      "contrarian": 0.429,
+      "longterm": 0.097,
+      "regime": "bull"
+    },
+    "JNJ": {
+      "mom": 0.838,
+      "value": 0.819,
+      "quality": 0.926,
+      "macro": 0.812,
+      "contrarian": 0.697,
+      "longterm": 0.932,
+      "regime": "bull"
+    },
+    "JXN": {
+      "mom": 0.817,
+      "value": 0.991,
+      "quality": 0.569,
+      "macro": 0.824,
+      "contrarian": 0.888,
+      "longterm": 0.826,
+      "regime": "bull"
+    },
+    "KBANK.BK": {
+      "mom": 0.835,
+      "value": 0.959,
+      "quality": 0.466,
+      "macro": 0.879,
+      "contrarian": 0.738,
+      "longterm": 0.829,
+      "regime": "bull"
+    },
+    "KLAC": {
+      "mom": 0.23,
+      "value": 0.186,
+      "quality": 0.622,
+      "macro": 0.3,
+      "contrarian": 0.106,
+      "longterm": 0.782,
+      "regime": "bull"
+    },
+    "KMI": {
+      "mom": 0.761,
+      "value": 0.864,
+      "quality": 0.808,
+      "macro": 0.688,
+      "contrarian": 0.724,
+      "longterm": 0.859,
+      "regime": "bull"
+    },
+    "KOID": {
+      "mom": 0.26,
+      "value": 0,
+      "quality": 0.587,
+      "macro": 0.318,
+      "contrarian": 0.635,
+      "longterm": 0.494,
+      "regime": "bull"
+    },
+    "KWEB": {
+      "mom": 0.15,
+      "value": 0,
+      "quality": 0.493,
+      "macro": 0.179,
+      "contrarian": 0.468,
+      "longterm": 0.165,
+      "regime": "bull"
+    },
+    "LEU": {
+      "mom": 0.015,
+      "value": 0.072,
+      "quality": 0.062,
+      "macro": 0.018,
+      "contrarian": 0.009,
+      "longterm": 0.035,
+      "regime": "bull"
+    },
+    "LH.BK": {
+      "mom": 0.375,
+      "value": 0.792,
+      "quality": 0.289,
+      "macro": 0.421,
+      "contrarian": 0.506,
+      "longterm": 0.241,
+      "regime": "bull"
+    },
+    "LIT": {
+      "mom": 0.13,
+      "value": 0,
+      "quality": 0.558,
+      "macro": 0.132,
+      "contrarian": 0.512,
+      "longterm": 0.376,
+      "regime": "bull"
+    },
+    "LLY": {
+      "mom": 0.959,
+      "value": 0.729,
+      "quality": 0.968,
+      "macro": 0.944,
+      "contrarian": 0.688,
+      "longterm": 0.988,
+      "regime": "bull"
+    },
+    "LMT": {
+      "mom": 0.776,
+      "value": 0.846,
+      "quality": 0.236,
+      "macro": 0.844,
+      "contrarian": 0.674,
+      "longterm": 0.515,
+      "regime": "bull"
+    },
+    "LNG": {
+      "mom": 0.932,
+      "value": 0.955,
+      "quality": 0.457,
+      "macro": 0.909,
+      "contrarian": 0.876,
+      "longterm": 0.85,
+      "regime": "bull"
+    },
+    "LRCX": {
+      "mom": 0.333,
+      "value": 0.226,
+      "quality": 0.507,
+      "macro": 0.285,
+      "contrarian": 0.138,
+      "longterm": 0.835,
+      "regime": "bull"
+    },
+    "LUNR": {
+      "mom": 0.029,
+      "value": 0.131,
+      "quality": 0.018,
+      "macro": 0.009,
+      "contrarian": 0.026,
+      "longterm": 0.038,
+      "regime": "bull"
+    },
+    "MA": {
+      "mom": 0.906,
+      "value": 0.774,
+      "quality": 0.994,
+      "macro": 0.906,
+      "contrarian": 0.706,
+      "longterm": 0.959,
+      "regime": "bull"
+    },
+    "MAGS": {
+      "mom": 0.581,
+      "value": 0,
+      "quality": 0.69,
+      "macro": 0.606,
+      "contrarian": 0.738,
+      "longterm": 0.5,
+      "regime": "bull"
+    },
+    "MCHI": {
+      "mom": 0.227,
+      "value": 0,
+      "quality": 0.661,
+      "macro": 0.268,
+      "contrarian": 0.629,
+      "longterm": 0.282,
+      "regime": "bull"
+    },
+    "MCK": {
+      "mom": 0.891,
+      "value": 0.873,
+      "quality": 0.156,
+      "macro": 0.841,
+      "contrarian": 0.694,
+      "longterm": 0.312,
+      "regime": "bull"
+    },
+    "MDT": {
+      "mom": 0.879,
+      "value": 0.896,
+      "quality": 0.782,
+      "macro": 0.821,
+      "contrarian": 0.691,
+      "longterm": 0.688,
+      "regime": "bull"
+    },
+    "META": {
+      "mom": 0.56,
+      "value": 0.584,
+      "quality": 0.92,
+      "macro": 0.503,
+      "contrarian": 0.403,
+      "longterm": 0.618,
+      "regime": "bull"
+    },
+    "MLM": {
+      "mom": 0.392,
+      "value": 0.439,
+      "quality": 0.596,
+      "macro": 0.326,
+      "contrarian": 0.324,
+      "longterm": 0.371,
+      "regime": "bull"
+    },
+    "MLPX": {
+      "mom": 0.729,
+      "value": 0,
+      "quality": 0.761,
+      "macro": 0.679,
+      "contrarian": 0.976,
+      "longterm": 0.824,
+      "regime": "bull"
+    },
+    "MOD": {
+      "mom": 0.021,
+      "value": 0.167,
+      "quality": 0.109,
+      "macro": 0.029,
+      "contrarian": 0.071,
+      "longterm": 0.132,
+      "regime": "bull"
+    },
+    "MP": {
+      "mom": 0.106,
+      "value": 0.068,
+      "quality": 0.112,
+      "macro": 0.059,
+      "contrarian": 0.053,
+      "longterm": 0.085,
+      "regime": "bull"
+    },
+    "MRVL": {
+      "mom": 0.687,
+      "value": 0.217,
+      "quality": 0.357,
+      "macro": 0.779,
+      "contrarian": 0.165,
+      "longterm": 0.956,
+      "regime": "bull"
+    },
+    "MSFT": {
+      "mom": 0.85,
+      "value": 0.824,
+      "quality": 0.956,
+      "macro": 0.885,
+      "contrarian": 0.668,
+      "longterm": 0.744,
+      "regime": "bull"
+    },
+    "MSTR": {
+      "mom": 0.546,
+      "value": 0.303,
+      "quality": 0.127,
+      "macro": 0.241,
+      "contrarian": 0.129,
+      "longterm": 0.076,
+      "regime": "bull"
+    },
+    "MU": {
+      "mom": 0.935,
+      "value": 0.71,
+      "quality": 0.976,
+      "macro": 0.947,
+      "contrarian": 0.388,
+      "longterm": 1.0,
+      "regime": "bull"
+    },
+    "MUFG": {
+      "mom": 0.749,
+      "value": 0.697,
+      "quality": 0.366,
+      "macro": 0.797,
+      "contrarian": 0.547,
+      "longterm": 0.671,
+      "regime": "bull"
+    },
+    "NBIS": {
+      "mom": 0.319,
+      "value": 0.471,
+      "quality": 0.206,
+      "macro": 0.368,
+      "contrarian": 0.188,
+      "longterm": 0.535,
+      "regime": "bull"
+    },
+    "NEE": {
+      "mom": 0.363,
+      "value": 0.688,
+      "quality": 0.962,
+      "macro": 0.347,
+      "contrarian": 0.509,
+      "longterm": 0.815,
+      "regime": "bull"
+    },
+    "NEM": {
+      "mom": 0.634,
+      "value": 0.701,
+      "quality": 0.903,
+      "macro": 0.438,
+      "contrarian": 0.447,
+      "longterm": 0.897,
+      "regime": "bull"
+    },
+    "NET": {
+      "mom": 0.758,
+      "value": 0.009,
+      "quality": 0.333,
+      "macro": 0.868,
+      "contrarian": 0.079,
+      "longterm": 0.603,
+      "regime": "bull"
+    },
+    "NG=F": {
+      "mom": 0.463,
+      "value": 0,
+      "quality": 0.227,
+      "macro": 0.497,
+      "contrarian": 0.274,
+      "longterm": 0.203,
+      "regime": "bull"
+    },
+    "NLR": {
+      "mom": 0.097,
+      "value": 0,
+      "quality": 0.41,
+      "macro": 0.085,
+      "contrarian": 0.432,
+      "longterm": 0.141,
+      "regime": "bull"
+    },
+    "NOC": {
+      "mom": 0.472,
+      "value": 0.484,
+      "quality": 0.257,
+      "macro": 0.444,
+      "contrarian": 0.318,
+      "longterm": 0.256,
+      "regime": "bull"
+    },
+    "NOW": {
+      "mom": 0.572,
+      "value": 0.208,
+      "quality": 0.271,
+      "macro": 0.615,
+      "contrarian": 0.144,
+      "longterm": 0.162,
+      "regime": "bull"
+    },
+    "NTLA": {
+      "mom": 0.469,
+      "value": 0.724,
+      "quality": 0.024,
+      "macro": 0.397,
+      "contrarian": 0.365,
+      "longterm": 0.068,
+      "regime": "bull"
+    },
+    "NU": {
+      "mom": 0.159,
+      "value": 0.443,
+      "quality": 0.192,
+      "macro": 0.185,
+      "contrarian": 0.232,
+      "longterm": 0.138,
+      "regime": "bull"
+    },
+    "NVDA": {
+      "mom": 0.558,
+      "value": 0.783,
+      "quality": 0.991,
+      "macro": 0.582,
+      "contrarian": 0.532,
+      "longterm": 0.882,
+      "regime": "bull"
+    },
+    "NVO": {
+      "mom": 0.304,
+      "value": 0.48,
+      "quality": 0.838,
+      "macro": 0.35,
+      "contrarian": 0.256,
+      "longterm": 0.509,
+      "regime": "bull"
+    },
+    "NVT": {
+      "mom": 0.257,
+      "value": 0.394,
+      "quality": 0.274,
+      "macro": 0.218,
+      "contrarian": 0.253,
+      "longterm": 0.488,
+      "regime": "bull"
+    },
+    "O": {
+      "mom": 0.324,
+      "value": 0.412,
+      "quality": 0.979,
+      "macro": 0.365,
+      "contrarian": 0.421,
+      "longterm": 0.879,
+      "regime": "bull"
+    },
+    "OKLO": {
+      "mom": 0.006,
+      "value": 0.113,
+      "quality": 0.065,
+      "macro": 0.003,
+      "contrarian": 0.015,
+      "longterm": 0.044,
+      "regime": "bull"
+    },
+    "OKTA": {
+      "mom": 1.0,
+      "value": 0.308,
+      "quality": 0.23,
+      "macro": 1.0,
+      "contrarian": 0.382,
+      "longterm": 0.941,
+      "regime": "bull"
+    },
+    "ON": {
+      "mom": 0.156,
+      "value": 0.244,
+      "quality": 0.212,
+      "macro": 0.156,
+      "contrarian": 0.135,
+      "longterm": 0.571,
+      "regime": "bull"
+    },
+    "ORCL": {
+      "mom": 0.209,
+      "value": 0.253,
+      "quality": 0.448,
+      "macro": 0.182,
+      "contrarian": 0.124,
+      "longterm": 0.185,
+      "regime": "bull"
+    },
+    "PANW": {
+      "mom": 0.979,
+      "value": 0.086,
+      "quality": 0.428,
+      "macro": 0.988,
+      "contrarian": 0.215,
+      "longterm": 0.909,
+      "regime": "bull"
+    },
+    "PAVE": {
+      "mom": 0.351,
+      "value": 0,
+      "quality": 0.749,
+      "macro": 0.418,
+      "contrarian": 0.874,
+      "longterm": 0.615,
+      "regime": "bull"
+    },
+    "PDBC": {
+      "mom": 0.788,
+      "value": 0,
+      "quality": 0.705,
+      "macro": 0.765,
+      "contrarian": 0.959,
+      "longterm": 0.871,
+      "regime": "bull"
+    },
+    "PDD": {
+      "mom": 0.224,
+      "value": 0.416,
+      "quality": 0.584,
+      "macro": 0.206,
+      "contrarian": 0.194,
+      "longterm": 0.226,
+      "regime": "bull"
+    },
+    "PHO": {
+      "mom": 0.764,
+      "value": 0,
+      "quality": 0.776,
+      "macro": 0.718,
+      "contrarian": 0.968,
+      "longterm": 0.544,
+      "regime": "bull"
+    },
+    "PL": {
+      "mom": 0.009,
+      "value": 0.154,
+      "quality": 0.015,
+      "macro": 0.006,
+      "contrarian": 0.038,
+      "longterm": 0.071,
+      "regime": "bull"
+    },
+    "PLD": {
+      "mom": 0.301,
+      "value": 0.344,
+      "quality": 0.985,
+      "macro": 0.359,
+      "contrarian": 0.362,
+      "longterm": 0.888,
+      "regime": "bull"
+    },
+    "PLTR": {
+      "mom": 0.938,
+      "value": 0.081,
+      "quality": 0.944,
+      "macro": 0.894,
+      "contrarian": 0.206,
+      "longterm": 0.735,
+      "regime": "bull"
+    },
+    "PNR": {
+      "mom": 0.369,
+      "value": 0.385,
+      "quality": 0.33,
+      "macro": 0.256,
+      "contrarian": 0.212,
+      "longterm": 0.159,
+      "regime": "bull"
+    },
+    "PPA": {
+      "mom": 0.327,
+      "value": 0,
+      "quality": 0.735,
+      "macro": 0.4,
+      "contrarian": 0.847,
+      "longterm": 0.512,
+      "regime": "bull"
+    },
+    "PSX": {
+      "mom": 0.973,
+      "value": 0.968,
+      "quality": 0.251,
+      "macro": 0.962,
+      "contrarian": 0.85,
+      "longterm": 0.918,
+      "regime": "bull"
+    },
+    "PTT.BK": {
+      "mom": 0.87,
+      "value": 0.982,
+      "quality": 0.407,
+      "macro": 0.85,
+      "contrarian": 0.891,
+      "longterm": 0.718,
+      "regime": "bull"
+    },
+    "PTTEP.BK": {
+      "mom": 0.841,
+      "value": 0.986,
+      "quality": 0.932,
+      "macro": 0.809,
+      "contrarian": 0.903,
+      "longterm": 0.965,
+      "regime": "bull"
+    },
+    "PWR": {
+      "mom": 0.428,
+      "value": 0.371,
+      "quality": 0.171,
+      "macro": 0.332,
+      "contrarian": 0.335,
+      "longterm": 0.497,
+      "regime": "bull"
+    },
+    "PYPL": {
+      "mom": 0.752,
+      "value": 0.796,
+      "quality": 0.189,
+      "macro": 0.788,
+      "contrarian": 0.515,
+      "longterm": 0.191,
+      "regime": "bull"
+    },
+    "QBTS": {
+      "mom": 0.012,
+      "value": 0.172,
+      "quality": 0.162,
+      "macro": 0.024,
+      "contrarian": 0.044,
+      "longterm": 0.1,
+      "regime": "bull"
+    },
+    "QCOM": {
+      "mom": 0.543,
+      "value": 0.403,
+      "quality": 0.519,
+      "macro": 0.415,
+      "contrarian": 0.244,
+      "longterm": 0.424,
+      "regime": "bull"
+    },
+    "QQQ": {
+      "mom": 0.569,
+      "value": 0,
+      "quality": 0.755,
+      "macro": 0.591,
+      "contrarian": 0.738,
+      "longterm": 0.585,
+      "regime": "bull"
+    },
+    "QTUM": {
+      "mom": 0.484,
+      "value": 0,
+      "quality": 0.599,
+      "macro": 0.479,
+      "contrarian": 0.676,
+      "longterm": 0.591,
+      "regime": "bull"
+    },
+    "QUAL": {
+      "mom": 0.702,
+      "value": 0,
+      "quality": 0.858,
+      "macro": 0.691,
+      "contrarian": 0.738,
+      "longterm": 0.674,
+      "regime": "bull"
+    },
+    "QUBT": {
+      "mom": 0.091,
+      "value": 0.262,
+      "quality": 0.009,
+      "macro": 0.124,
+      "contrarian": 0.091,
+      "longterm": 0.006,
+      "regime": "bull"
+    },
+    "REET": {
+      "mom": 0.395,
+      "value": 0,
+      "quality": 0.823,
+      "macro": 0.485,
+      "contrarian": 0.9,
+      "longterm": 0.626,
+      "regime": "bull"
+    },
+    "REGN": {
+      "mom": 0.944,
+      "value": 0.964,
+      "quality": 0.49,
+      "macro": 0.924,
+      "contrarian": 0.879,
+      "longterm": 0.776,
+      "regime": "bull"
+    },
+    "RELIANCE.NS": {
+      "mom": 0.233,
+      "value": 0.502,
+      "quality": 0.431,
+      "macro": 0.226,
+      "contrarian": 0.338,
+      "longterm": 0.259,
+      "regime": "bull"
+    },
+    "REMX": {
+      "mom": 0.032,
+      "value": 0,
+      "quality": 0.342,
+      "macro": 0.021,
+      "contrarian": 0.341,
+      "longterm": 0.197,
+      "regime": "bull"
+    },
+    "RGTI": {
+      "mom": 0.05,
+      "value": 0.149,
+      "quality": 0.086,
+      "macro": 0.056,
+      "contrarian": 0.032,
+      "longterm": 0.053,
+      "regime": "bull"
+    },
+    "RIO": {
+      "mom": 0.345,
+      "value": 0.643,
+      "quality": 0.528,
+      "macro": 0.229,
+      "contrarian": 0.376,
+      "longterm": 0.574,
+      "regime": "bull"
+    },
+    "RKLB": {
+      "mom": 0.086,
+      "value": 0.005,
+      "quality": 0.059,
+      "macro": 0.091,
+      "contrarian": 0.003,
+      "longterm": 0.109,
+      "regime": "bull"
+    },
+    "ROBO": {
+      "mom": 0.448,
+      "value": 0,
+      "quality": 0.667,
+      "macro": 0.353,
+      "contrarian": 0.721,
+      "longterm": 0.541,
+      "regime": "bull"
+    },
+    "ROK": {
+      "mom": 0.622,
+      "value": 0.543,
+      "quality": 0.687,
+      "macro": 0.668,
+      "contrarian": 0.479,
+      "longterm": 0.724,
+      "regime": "bull"
+    },
+    "ROP": {
+      "mom": 0.929,
+      "value": 0.937,
+      "quality": 0.85,
+      "macro": 0.926,
+      "contrarian": 0.859,
+      "longterm": 0.7,
+      "regime": "bull"
+    },
+    "RSP": {
+      "mom": 0.726,
+      "value": 0,
+      "quality": 0.855,
+      "macro": 0.706,
+      "contrarian": 0.953,
+      "longterm": 0.703,
+      "regime": "bull"
+    },
+    "RTX": {
+      "mom": 0.737,
+      "value": 0.624,
+      "quality": 0.392,
+      "macro": 0.744,
+      "contrarian": 0.497,
+      "longterm": 0.479,
+      "regime": "bull"
+    },
+    "S": {
+      "mom": 0.965,
+      "value": 0.299,
+      "quality": 0.097,
+      "macro": 0.971,
+      "contrarian": 0.441,
+      "longterm": 0.503,
+      "regime": "bull"
+    },
+    "SBLK": {
+      "mom": 0.743,
+      "value": 0.9,
+      "quality": 0.658,
+      "macro": 0.791,
+      "contrarian": 0.606,
+      "longterm": 0.915,
+      "regime": "bull"
+    },
+    "SCC.BK": {
+      "mom": 0.77,
+      "value": 0.837,
+      "quality": 0.136,
+      "macro": 0.8,
+      "contrarian": 0.615,
+      "longterm": 0.315,
+      "regime": "bull"
+    },
+    "SCCO": {
+      "mom": 0.578,
+      "value": 0.507,
+      "quality": 0.891,
+      "macro": 0.565,
+      "contrarian": 0.394,
+      "longterm": 0.885,
+      "regime": "bull"
+    },
+    "SEDG": {
+      "mom": 0.103,
+      "value": 0.05,
+      "quality": 0.027,
+      "macro": 0.103,
+      "contrarian": 0.029,
+      "longterm": 0.062,
+      "regime": "bull"
+    },
+    "SEZL": {
+      "mom": 0.923,
+      "value": 0.448,
+      "quality": 0.369,
+      "macro": 0.95,
+      "contrarian": 0.276,
+      "longterm": 0.947,
+      "regime": "bull"
+    },
+    "SGOV": {
+      "mom": 0.655,
+      "value": 0,
+      "quality": 0.917,
+      "macro": 0.576,
+      "contrarian": 0.988,
+      "longterm": 0.659,
+      "regime": "bull"
+    },
+    "SHLD": {
+      "mom": 0.404,
+      "value": 0,
+      "quality": 0.649,
+      "macro": 0.394,
+      "contrarian": 0.715,
+      "longterm": 0.418,
+      "regime": "bull"
+    },
+    "SI=F": {
+      "mom": 0.088,
+      "value": 0,
+      "quality": 0.345,
+      "macro": 0.065,
+      "contrarian": 0.309,
+      "longterm": 0.297,
+      "regime": "bull"
+    },
+    "SLV": {
+      "mom": 0.094,
+      "value": 0,
+      "quality": 0.319,
+      "macro": 0.068,
+      "contrarian": 0.306,
+      "longterm": 0.291,
+      "regime": "bull"
+    },
+    "SMCI": {
+      "mom": 0.799,
+      "value": 0.516,
+      "quality": 0.038,
+      "macro": 0.759,
+      "contrarian": 0.259,
+      "longterm": 0.024,
+      "regime": "bull"
+    },
+    "SMH": {
+      "mom": 0.522,
+      "value": 0,
+      "quality": 0.552,
+      "macro": 0.571,
+      "contrarian": 0.656,
+      "longterm": 0.756,
+      "regime": "bull"
+    },
+    "SMIN": {
+      "mom": 0.566,
+      "value": 0,
+      "quality": 0.646,
+      "macro": 0.512,
+      "contrarian": 0.738,
+      "longterm": 0.388,
+      "regime": "bull"
+    },
+    "SMR": {
+      "mom": 0.018,
+      "value": 0.09,
+      "quality": 0.035,
+      "macro": 0.015,
+      "contrarian": 0.006,
+      "longterm": 0.021,
+      "regime": "bull"
+    },
+    "SNDK": {
+      "mom": 0.398,
+      "value": 0.321,
+      "quality": 0.708,
+      "macro": 0.382,
+      "contrarian": 0.147,
+      "longterm": 0.985,
+      "regime": "bull"
+    },
+    "SNOW": {
+      "mom": 0.985,
+      "value": 0.023,
+      "quality": 0.139,
+      "macro": 0.991,
+      "contrarian": 0.112,
+      "longterm": 0.303,
+      "regime": "bull"
+    },
+    "SOL-USD": {
+      "mom": 0.773,
+      "value": 0,
+      "quality": 0.209,
+      "macro": 0.871,
+      "contrarian": 0.662,
+      "longterm": 0.285,
+      "regime": "bull"
+    },
+    "SONY": {
+      "mom": 0.885,
+      "value": 0.602,
+      "quality": 0.286,
+      "macro": 0.865,
+      "contrarian": 0.45,
+      "longterm": 0.247,
+      "regime": "bull"
+    },
+    "SOXQ": {
+      "mom": 0.496,
+      "value": 0,
+      "quality": 0.499,
+      "macro": 0.529,
+      "contrarian": 0.591,
+      "longterm": 0.759,
+      "regime": "bull"
+    },
+    "SOXX": {
+      "mom": 0.49,
+      "value": 0,
+      "quality": 0.481,
+      "macro": 0.532,
+      "contrarian": 0.579,
+      "longterm": 0.806,
+      "regime": "bull"
+    },
+    "SPG": {
+      "mom": 0.732,
+      "value": 0.575,
+      "quality": 1.0,
+      "macro": 0.738,
+      "contrarian": 0.526,
+      "longterm": 0.982,
+      "regime": "bull"
+    },
+    "SPY": {
+      "mom": 0.67,
+      "value": 0,
+      "quality": 0.847,
+      "macro": 0.653,
+      "contrarian": 0.738,
+      "longterm": 0.65,
+      "regime": "bull"
+    },
+    "SWKS": {
+      "mom": 0.941,
+      "value": 0.932,
+      "quality": 0.15,
+      "macro": 0.921,
+      "contrarian": 0.732,
+      "longterm": 0.3,
+      "regime": "bull"
+    },
+    "SYK": {
+      "mom": 0.366,
+      "value": 0.52,
+      "quality": 0.702,
+      "macro": 0.406,
+      "contrarian": 0.347,
+      "longterm": 0.435,
+      "regime": "bull"
+    },
+    "TAN": {
+      "mom": 0.121,
+      "value": 0,
+      "quality": 0.375,
+      "macro": 0.109,
+      "contrarian": 0.424,
+      "longterm": 0.232,
+      "regime": "bull"
+    },
+    "TCS.NS": {
+      "mom": 0.534,
+      "value": 0.615,
+      "quality": 0.395,
+      "macro": 0.618,
+      "contrarian": 0.415,
+      "longterm": 0.265,
+      "regime": "bull"
+    },
+    "THD": {
+      "mom": 0.519,
+      "value": 0,
+      "quality": 0.678,
+      "macro": 0.474,
+      "contrarian": 0.738,
+      "longterm": 0.624,
+      "regime": "bull"
+    },
+    "TM": {
+      "mom": 0.493,
+      "value": 0.67,
+      "quality": 0.28,
+      "macro": 0.556,
+      "contrarian": 0.438,
+      "longterm": 0.25,
+      "regime": "bull"
+    },
+    "TSLA": {
+      "mom": 0.637,
+      "value": 0.018,
+      "quality": 0.159,
+      "macro": 0.612,
+      "contrarian": 0.1,
+      "longterm": 0.194,
+      "regime": "bull"
+    },
+    "TSM": {
+      "mom": 0.563,
+      "value": 0.665,
+      "quality": 0.973,
+      "macro": 0.594,
+      "contrarian": 0.482,
+      "longterm": 0.929,
+      "regime": "bull"
+    },
+    "TT": {
+      "mom": 0.198,
+      "value": 0.529,
+      "quality": 0.54,
+      "macro": 0.274,
+      "contrarian": 0.409,
+      "longterm": 0.415,
+      "regime": "bull"
+    },
+    "UEC": {
+      "mom": 0.044,
+      "value": 0.249,
+      "quality": 0.006,
+      "macro": 0.038,
+      "contrarian": 0.085,
+      "longterm": 0.003,
+      "regime": "bull"
+    },
+    "UFO": {
+      "mom": 0.195,
+      "value": 0,
+      "quality": 0.516,
+      "macro": 0.2,
+      "contrarian": 0.459,
+      "longterm": 0.459,
+      "regime": "bull"
+    },
+    "UNH": {
+      "mom": 0.746,
+      "value": 0.86,
+      "quality": 0.165,
+      "macro": 0.771,
+      "contrarian": 0.653,
+      "longterm": 0.288,
+      "regime": "bull"
+    },
+    "URA": {
+      "mom": 0.074,
+      "value": 0,
+      "quality": 0.383,
+      "macro": 0.062,
+      "contrarian": 0.426,
+      "longterm": 0.147,
+      "regime": "bull"
+    },
+    "URI": {
+      "mom": 0.867,
+      "value": 0.882,
+      "quality": 0.513,
+      "macro": 0.876,
+      "contrarian": 0.735,
+      "longterm": 0.729,
+      "regime": "bull"
+    },
+    "URNM": {
+      "mom": 0.109,
+      "value": 0,
+      "quality": 0.324,
+      "macro": 0.074,
+      "contrarian": 0.371,
+      "longterm": 0.168,
+      "regime": "bull"
+    },
+    "USDCAD=X": {
+      "mom": 0.599,
+      "value": 0,
+      "quality": 0.885,
+      "macro": 0.597,
+      "contrarian": 0.738,
+      "longterm": 0.565,
+      "regime": "bull"
+    },
+    "USDCNH=X": {
+      "mom": 0,
+      "value": 0,
+      "quality": 0,
+      "macro": 0.603,
+      "contrarian": 0.738,
+      "longterm": 0.409,
+      "regime": "bull"
+    },
+    "USDINR=X": {
+      "mom": 0.619,
+      "value": 0,
+      "quality": 0.897,
+      "macro": 0.568,
+      "contrarian": 0.738,
+      "longterm": 0.644,
+      "regime": "bull"
+    },
+    "USDJPY=X": {
+      "mom": 0.437,
+      "value": 0,
+      "quality": 0.876,
+      "macro": 0.55,
+      "contrarian": 0.935,
+      "longterm": 0.576,
+      "regime": "bull"
+    },
+    "USDMXN=X": {
+      "mom": 0.779,
+      "value": 0,
+      "quality": 0.746,
+      "macro": 0.75,
+      "contrarian": 0.988,
+      "longterm": 0.524,
+      "regime": "bull"
+    },
+    "USDTHB=X": {
+      "mom": 0.696,
+      "value": 0,
+      "quality": 0.805,
+      "macro": 0.647,
+      "contrarian": 0.979,
+      "longterm": 0.559,
+      "regime": "bull"
+    },
+    "USO": {
+      "mom": 0.92,
+      "value": 0,
+      "quality": 0.484,
+      "macro": 0.918,
+      "contrarian": 0.974,
+      "longterm": 0.953,
+      "regime": "bull"
+    },
+    "UUP": {
+      "mom": 0.714,
+      "value": 0,
+      "quality": 0.879,
+      "macro": 0.662,
+      "contrarian": 0.971,
+      "longterm": 0.638,
+      "regime": "bull"
+    },
+    "UVXY": {
+      "mom": 0.124,
+      "value": 0,
+      "quality": 0.118,
+      "macro": 0.044,
+      "contrarian": 0.229,
+      "longterm": 0.059,
+      "regime": "bull"
+    },
+    "V": {
+      "mom": 0.894,
+      "value": 0.842,
+      "quality": 0.997,
+      "macro": 0.897,
+      "contrarian": 0.821,
+      "longterm": 0.971,
+      "regime": "bull"
+    },
+    "VG": {
+      "mom": 0.864,
+      "value": 0.787,
+      "quality": 0.245,
+      "macro": 0.815,
+      "contrarian": 0.524,
+      "longterm": 0.832,
+      "regime": "bull"
+    },
+    "VKTX": {
+      "mom": 0.254,
+      "value": 0.638,
+      "quality": 0.021,
+      "macro": 0.276,
+      "contrarian": 0.291,
+      "longterm": 0.026,
+      "regime": "bull"
+    },
+    "VLTO": {
+      "mom": 0.897,
+      "value": 0.851,
+      "quality": 0.814,
+      "macro": 0.888,
+      "contrarian": 0.826,
+      "longterm": 0.721,
+      "regime": "bull"
+    },
+    "VMC": {
+      "mom": 0.445,
+      "value": 0.525,
+      "quality": 0.422,
+      "macro": 0.468,
+      "contrarian": 0.444,
+      "longterm": 0.324,
+      "regime": "bull"
+    },
+    "VNM": {
+      "mom": 0.292,
+      "value": 0,
+      "quality": 0.717,
+      "macro": 0.315,
+      "contrarian": 0.738,
+      "longterm": 0.441,
+      "regime": "bull"
+    },
+    "VNQ": {
+      "mom": 0.419,
+      "value": 0,
+      "quality": 0.799,
+      "macro": 0.526,
+      "contrarian": 0.915,
+      "longterm": 0.629,
+      "regime": "bull"
+    },
+    "VNQI": {
+      "mom": 0.31,
+      "value": 0,
+      "quality": 0.77,
+      "macro": 0.341,
+      "contrarian": 0.829,
+      "longterm": 0.482,
+      "regime": "bull"
+    },
+    "VOO": {
+      "mom": 0.673,
+      "value": 0,
+      "quality": 0.844,
+      "macro": 0.656,
+      "contrarian": 0.738,
+      "longterm": 0.653,
+      "regime": "bull"
+    },
+    "VRT": {
+      "mom": 0.174,
+      "value": 0.24,
+      "quality": 0.215,
+      "macro": 0.159,
+      "contrarian": 0.179,
+      "longterm": 0.397,
+      "regime": "bull"
+    },
+    "VRTX": {
+      "mom": 0.917,
+      "value": 0.778,
+      "quality": 0.912,
+      "macro": 0.903,
+      "contrarian": 0.709,
+      "longterm": 0.894,
+      "regime": "bull"
+    },
+    "VST": {
+      "mom": 0.265,
+      "value": 0.548,
+      "quality": 0.31,
+      "macro": 0.312,
+      "contrarian": 0.332,
+      "longterm": 0.206,
+      "regime": "bull"
+    },
+    "VXX": {
+      "mom": 0.192,
+      "value": 0,
+      "quality": 0.153,
+      "macro": 0.121,
+      "contrarian": 0.356,
+      "longterm": 0.074,
+      "regime": "bull"
+    },
+    "WCLD": {
+      "mom": 0.956,
+      "value": 0,
+      "quality": 0.301,
+      "macro": 0.956,
+      "contrarian": 0.918,
+      "longterm": 0.476,
+      "regime": "bull"
+    },
+    "WELL": {
+      "mom": 0.723,
+      "value": 0.118,
+      "quality": 0.611,
+      "macro": 0.726,
+      "contrarian": 0.279,
+      "longterm": 0.788,
+      "regime": "bull"
+    },
+    "WIT": {
+      "mom": 0.587,
+      "value": 0.498,
+      "quality": 0.183,
+      "macro": 0.694,
+      "contrarian": 0.312,
+      "longterm": 0.182,
+      "regime": "bull"
+    },
+    "WMB": {
+      "mom": 0.711,
+      "value": 0.674,
+      "quality": 0.923,
+      "macro": 0.585,
+      "contrarian": 0.585,
+      "longterm": 0.906,
+      "regime": "bull"
+    },
+    "XBI": {
+      "mom": 0.802,
+      "value": 0,
+      "quality": 0.608,
+      "macro": 0.803,
+      "contrarian": 0.894,
+      "longterm": 0.785,
+      "regime": "bull"
+    },
+    "XHE": {
+      "mom": 0.717,
+      "value": 0,
+      "quality": 0.543,
+      "macro": 0.735,
+      "contrarian": 0.921,
+      "longterm": 0.506,
+      "regime": "bull"
+    },
+    "XLI": {
+      "mom": 0.354,
+      "value": 0,
+      "quality": 0.796,
+      "macro": 0.453,
+      "contrarian": 0.738,
+      "longterm": 0.612,
+      "regime": "bull"
+    },
+    "XLV": {
+      "mom": 0.9,
+      "value": 0,
+      "quality": 0.767,
+      "macro": 0.882,
+      "contrarian": 0.988,
+      "longterm": 0.765,
+      "regime": "bull"
+    },
+    "XSD": {
+      "mom": 0.422,
+      "value": 0,
+      "quality": 0.454,
+      "macro": 0.371,
+      "contrarian": 0.559,
+      "longterm": 0.606,
+      "regime": "bull"
+    },
+    "XYL": {
+      "mom": 0.162,
+      "value": 0.357,
+      "quality": 0.354,
+      "macro": 0.168,
+      "contrarian": 0.2,
+      "longterm": 0.171,
+      "regime": "bull"
+    },
+    "XYZ": {
+      "mom": 0.64,
+      "value": 0.833,
+      "quality": 0.174,
+      "macro": 0.7,
+      "contrarian": 0.597,
+      "longterm": 0.244,
+      "regime": "bull"
+    },
+    "ZC=F": {
+      "mom": 0.501,
+      "value": 0,
+      "quality": 0.442,
+      "macro": 0.435,
+      "contrarian": 0.718,
+      "longterm": 0.356,
+      "regime": "bull"
+    },
+    "ZS": {
+      "mom": 0.991,
+      "value": 0.176,
+      "quality": 0.242,
+      "macro": 0.974,
+      "contrarian": 0.191,
+      "longterm": 0.221,
+      "regime": "bull"
+    },
+    "ZS=F": {
+      "mom": 0.617,
+      "value": 0,
+      "quality": 0.56,
+      "macro": 0.609,
+      "contrarian": 0.738,
+      "longterm": 0.518,
+      "regime": "bull"
+    },
+    "ZW=F": {
+      "mom": 0.466,
+      "value": 0,
+      "quality": 0.348,
+      "macro": 0.426,
+      "contrarian": 0.659,
+      "longterm": 0.385,
+      "regime": "bull"
+    }
+  }
+}

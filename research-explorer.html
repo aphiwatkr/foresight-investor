@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research explorer — Foresight Investor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2316233B'/%3E%3Cpath d='M8 22 L14 14 L19 18 L25 9' stroke='%23F3F4F6' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='25' cy='9' r='2.6' fill='%239A5B00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4F6; --surface:#FFFFFF; --ink:#16233B; --ink-2:#5A6472; --ink-3:#8A93A0;
+  --rule:#D8DCE2; --rule-2:#B9BFC8; --link:#1F4E8C; --link-hov:#0F2F5C;
+  --ok:#1A7F4B; --warn:#9A5B00; --bad:#B3261E; --wash:#E9ECEF; --wash-navy:#EEF1F6;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-hov);text-decoration:underline}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:no-preference){
+  .topstrip,.rail,.crumb{animation:none}
+}
+
+/* ── chrome ─────────────────────────────────────────────────────────────── */
+.topstrip{position:fixed;top:0;left:0;right:0;height:52px;z-index:40;display:flex;align-items:center;
+  gap:14px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--ink)}
+.brand .bmark{color:var(--link)}
+.crumb{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  flex:1;min-width:0}
+.crumb a{color:var(--ink-3)}
+.searchbox{position:relative;width:min(320px,34vw)}
+.searchbox input{width:100%;height:32px;padding:0 30px 0 30px;font:inherit;font-size:13.5px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--rule);border-radius:3px}
+.searchbox input:focus{outline:2px solid var(--link);outline-offset:-1px;background:var(--surface)}
+.searchbox .sicon{position:absolute;left:9px;top:7px;color:var(--ink-3);font-size:13px;pointer-events:none}
+.searchbox kbd{position:absolute;right:7px;top:7px;font:600 10.5px var(--sans);color:var(--ink-3);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:var(--surface)}
+.sresults{position:fixed;top:56px;right:12px;width:min(440px,92vw);max-height:70vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 10px 28px rgba(22,35,59,.14);
+  display:none;z-index:60}
+.sresults.open{display:block}
+.sr-group{font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:9px 14px 3px;
+  border-top:1px solid var(--rule)}
+.sr-group:first-child{border-top:none}
+.sr-item{display:block;padding:7px 14px;border-top:1px solid var(--wash)}
+.sr-item:first-child{border-top:none}
+.sr-item:hover,.sr-item.sel{background:var(--wash-navy)}
+.sr-item b{font-weight:600}
+.sr-item .sr-meta{font-size:11.5px;color:var(--ink-3)}
+.sr-item .sr-sum{font-size:12.5px;color:var(--ink-2);margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sr-empty{padding:16px 14px;color:var(--ink-2);font-size:13.5px}
+.rail-toggle{display:none;background:none;border:1px solid var(--rule);border-radius:3px;
+  font-size:15px;line-height:1;padding:5px 9px;color:var(--ink-2);cursor:pointer}
+
+.rail{position:fixed;top:52px;bottom:0;left:0;width:242px;overflow-y:auto;z-index:30;
+  background:var(--surface);border-right:1px solid var(--rule);padding:10px 0 40px;
+  scrollbar-width:thin}
+.rail section{margin:2px 0 14px}
+.rail h3{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
+  margin:10px 16px 4px}
+.rail a{display:flex;justify-content:space-between;gap:8px;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2);border-left:2px solid transparent}
+.rail a:hover{color:var(--ink);background:var(--wash-navy);text-decoration:none}
+.rail a.active{color:var(--ink);font-weight:600;border-left-color:var(--link);background:var(--wash-navy)}
+.rail a small{font-size:10.5px;color:var(--ink-3);font-weight:400}
+.rail details{margin:0}
+.rail summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 16px 4px 18px;font-size:13.2px;color:var(--ink-2)}
+.rail summary:hover{color:var(--ink);background:var(--wash-navy)}
+.rail summary .n{font-size:10.5px;color:var(--ink-3)}
+.rail details[open] summary{color:var(--ink);font-weight:600}
+.rail details a{padding-left:28px}
+
+.page{margin:52px 0 0 242px;min-height:calc(100vh - 52px)}
+.pwrap{max-width:960px;padding:30px 34px 90px}
+.pwrap.wide{max-width:1180px}
+
+
+/* ── content ────────────────────────────────────────────────────────────── */
+h1{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.22;margin:0 0 6px;
+   letter-spacing:-.01em}
+.docmeta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 26px;
+  font-size:12px;color:var(--ink-3)}
+.stamp{display:inline-block;border:1px solid var(--rule-2);border-radius:3px;padding:1.5px 8px;
+  font-size:11.5px;color:var(--ink-2);background:var(--surface)}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:34px 0 10px;padding-top:14px;
+   border-top:1px solid var(--rule)}
+h3{font-size:16px;font-weight:600;margin:22px 0 8px}
+p{margin:.65em 0;max-width:76ch}
+li{max-width:76ch}
+code{background:var(--wash);padding:2px 5px;border-radius:3px;font-size:.86em;
+     font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+pre{background:var(--wash);padding:14px 16px;border:1px solid var(--rule);border-radius:4px;
+    overflow-x:auto;font-size:13px}
+pre code{background:none;padding:0}
+blockquote{border-left:3px solid var(--rule-2);margin:1.1em 0;padding:4px 16px;color:var(--ink-2)}
+table{border-collapse:collapse;width:100%;margin:1em 0;font-size:13.5px;
+      font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule-2);background:var(--surface)}
+tbody tr:hover{background:var(--wash-navy)}
+.fm{border:1px solid var(--rule);border-left:3px solid var(--rule-2);background:var(--surface);
+    border-radius:3px;padding:8px 12px;font-size:11.5px;color:var(--ink-3);margin:0 0 22px;
+    font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;max-width:76ch}
+.toc{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:12px 18px;
+     margin:0 0 26px;font-size:13px}
+.toc a{display:block;padding:2px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:2.2em 0}
+img{max-width:100%}
+
+/* Obsidian vernacular: resolved wiki-links keep their brackets */
+p a, li a, td a, .sr-item b a{white-space:nowrap}
+.wikilink::before{content:"[[ ";color:var(--ink-3)}
+.wikilink::after{content:" ]]";color:var(--ink-3)}
+
+/* console */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 8px;
+  border:1px solid var(--rule-2);border-radius:4px;overflow:hidden;background:var(--surface)}
+.statecell{padding:14px 16px;border-right:1px solid var(--rule)}
+.statecell:last-child{border-right:none}
+@media (max-width:1080px){
+  .stategrid{grid-template-columns:1fr 1fr}
+  .statecell:nth-child(n+3){border-top:1px solid var(--rule)}
+  .statecell:nth-child(2n){border-right:none}
+}
+.statecell .k{font-size:12px;color:var(--ink-2);margin-bottom:6px}
+.statecell .v{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.statecell .s{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.dot.off{background:var(--ink-3)}
+.modgroup{margin:26px 0 0}
+.modgroup h2{margin-top:0}
+.modgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.mod{display:block;background:var(--surface);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:13px 16px 12px;min-height:88px}
+.mod:hover{background:var(--wash-navy);text-decoration:none}
+.mod b{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:14.5px;color:var(--ink)}
+.mod b .arr{color:var(--ink-3);font-weight:400}
+.mod span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.chain td:first-child{white-space:nowrap;font-weight:600}
+.chain td{font-size:13px}
+.chain code{font-size:11.5px}
+.foot{margin-top:46px;padding-top:14px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-3);max-width:76ch}
+
+/* portal button injected into the app dashboards */
+.portal-home{position:fixed;left:12px;bottom:12px;z-index:99;width:38px;height:38px;display:flex;
+  align-items:center;justify-content:center;background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 4px 14px rgba(22,35,59,.16);
+  font-size:17px;text-decoration:none}
+.portal-home:hover{background:var(--wash-navy);text-decoration:none;color:var(--ink)}
+
+@media (max-width:1080px){
+  .rail{transform:translateX(-100%);transition:transform .18s ease;width:262px}
+  .rail.open{transform:none;box-shadow:8px 0 24px rgba(22,35,59,.12)}
+  .page{margin-left:0}
+  .rail-toggle{display:block}
+  .crumb{display:none}
+  .searchbox{margin-left:auto}
+  .pwrap{padding:22px 18px 80px}
+}</style>
+</head>
+<body data-depth="">
+<div class="topstrip">
+  <button class="rail-toggle" id="railtoggle" aria-label="Toggle module map">☰</button>
+  <a class="brand" href="index.html"><span class="bmark">◼</span> Foresight Investor</a>
+  <div class="crumb"><a href="index.html">Console</a> › Research explorer</div>
+  <div class="searchbox">
+    <span class="sicon">⌕</span>
+    <input id="sbox" type="search" placeholder="Search the vault…" autocomplete="off" aria-label="Search the vault">
+    <kbd>⌘K</kbd>
+  </div>
+</div>
+<nav class="rail" id="rail" aria-label="Module map">
+<section>
+<h3>Today</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">live surfaces</div>
+<a href="index.html" title="Home — live state, module map, search">Console</a>
+<a href="analyst-workbench.html" title="11 tabs: ratings, allocator, review">Analyst Workbench</a>
+<a href="outlook-dashboard.html" title="Market outlook, themes, indicators">Outlook Dashboard</a>
+<a href="quant-desk.html" title="QAE factor engine + today&#x27;s book">Quant Desk</a>
+<a href="continuous-research.html" title="Recommendations + alerts feed">Continuous Research</a>
+<a href="ic-report.html" title="Fund-grade top-10 write-ups">IC Report</a>
+<a href="architecture-diagram.html" title="One-page block diagram">System Diagram</a>
+</section>
+<section>
+<h3>Research desk</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">decisions & syntheses</div>
+<a href="wiki/syntheses/ic-book-2026-10-05.html" title="Ranked sleeve with EV math">IC Book — Top 10</a>
+<a href="wiki/syntheses/q4-action-plan-2026-10-11.html" title="The current operating plan">Q4 Action Plan</a>
+<a href="wiki/syntheses/decision-register.html" title="Sized actions per ticker">Decision Register</a>
+<a href="wiki/syntheses/prediction-ledger.html" title="Dated, falsifiable calls">Prediction Ledger</a>
+<a href="wiki/syntheses/track-record.html" title="Scored outcomes + calibration">Track Record</a>
+<a href="wiki/syntheses/trend-radar.html" title="Themes × conviction × stage">Trend Radar</a>
+<a href="wiki/syntheses/watchlist.html" title="Entry triggers + invalidations">Watchlist</a>
+<a href="wiki/syntheses/signal-monitor.html" title="Sensor thresholds, weekly">Signal Monitor</a>
+<a href="wiki/syntheses/regime-monitor.html" title="Cycle-act verdict">Regime Monitor</a>
+</section>
+<section>
+<h3>Knowledge base</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">reference</div>
+<a href="wiki/syntheses/instrument-universe.html" title="Master table, ~347 instruments">Instrument Universe</a>
+<a href="wiki/concepts/foresight-factor-model.html" title="6-factor rating engine">Foresight Factor Model</a>
+<a href="wiki/concepts/mdaem-framework-v4.html" title="10 gates → 10 dims → sizing">MDAEM v4</a>
+<a href="wiki/syntheses/strategy-sleeves.html" title="4 sleeves + entry/exit rules">Strategy Sleeves</a>
+<a href="wiki/syntheses/portfolio-blueprint.html" title="Caps + construction">Portfolio Blueprint</a>
+<a href="wiki/syntheses/theme-linkage-map.html" title="Cross-theme dependencies">Theme Linkage Map</a>
+<a href="wiki/syntheses/macro-regime.html" title="Rates / cycle overlay">Macro Regime</a>
+</section>
+<section>
+<h3>Engines</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">quant layers</div>
+<a href="wiki/concepts/quant-alpha-methodology.html" title="Cross-sectional alpha spec">QAE v1 Methodology</a>
+<a href="wiki/syntheses/backtest-results-2026-07-18.html" title="5y walk-forward, 4 sleeves">Backtest Results</a>
+<a href="wiki/syntheses/hundred-x-hunt-framework.html" title="Rubric: Gate 0 + 5 pillars">100x Hunt — Framework</a>
+<a href="wiki/syntheses/hundredx-anatomy-2026-10-29.html" title="22 winners × SEC data + replay">100x Anatomy</a>
+<a href="wiki/syntheses/security-sourcing-pipeline.html" title="Screen → memo → decision">Sourcing Pipeline</a>
+</section>
+<section>
+<h3>System</h3>
+<div style="font-size:10.5px;color:var(--ink-3);margin:-2px 16px 4px 18px">how it runs</div>
+<a href="ARCHITECTURE.html" title="System map + change protocol">Architecture</a>
+<a href="AGENTS.html" title="Schema, ops, guardrails">Operations Manual</a>
+<a href="CADENCE.html" title="The staleness contract">Cadence</a>
+<a href="SYSTEM-RESEARCH-LOG.html" title="Dated system findings">System Research Log</a>
+<a href="home.html" title="The original orientation page">Start Here</a>
+<a href="catalog.html" title="index.md — all pages, one line each">Vault Catalog</a>
+<a href="hotcache.html" title="Operator state summary">Hotcache</a>
+</section>
+<section><details open>
+<summary>Themes <span class='n'>31</span></summary>
+<details><summary>M1 · Compute &amp; AI stack <span class='n'>5</span></summary>
+<a href="wiki/concepts/ai-infrastructure.html">AI Infrastructure</a>
+<a href="wiki/concepts/semiconductors.html">Semiconductors</a>
+<a href="wiki/concepts/ai-software-agents.html">AI Software &amp; Agents</a>
+<a href="wiki/concepts/networking-optical.html">Networking &amp; Optical (AI-cluster interconnect)</a>
+<a href="wiki/concepts/cybersecurity.html">Cybersecurity</a>
+</details>
+<details><summary>M2 · Energy, power &amp; materials <span class='n'>6</span></summary>
+<a href="wiki/concepts/power-grid-electrification.html">Power Grid &amp; Electrification</a>
+<a href="wiki/concepts/nuclear-uranium.html">Nuclear &amp; Uranium</a>
+<a href="wiki/concepts/renewables-storage.html">Renewables &amp; Storage</a>
+<a href="wiki/concepts/natural-gas-lng.html">Natural Gas &amp; LNG</a>
+<a href="wiki/concepts/data-center-cooling.html">Data-Center Cooling</a>
+<a href="wiki/concepts/critical-minerals.html">Critical Minerals</a>
+</details>
+<details><summary>M3 · Reindustrialization &amp; defense <span class='n'>5</span></summary>
+<a href="wiki/concepts/defense-security.html">Defense &amp; Security</a>
+<a href="wiki/concepts/infrastructure-capex.html">Infrastructure &amp; Capex Super-Cycle</a>
+<a href="wiki/concepts/automation-robotics.html">Automation &amp; Robotics</a>
+<a href="wiki/concepts/humanoid-robotics.html">Humanoid Robotics &amp; Physical AI</a>
+<a href="wiki/concepts/reshoring-supply-chain.html">Reshoring &amp; Supply-Chain Reconfiguration</a>
+</details>
+<details><summary>M4 · Health &amp; demographics <span class='n'>4</span></summary>
+<a href="wiki/concepts/glp1-obesity-metabolic.html">GLP-1 / Obesity / Metabolic</a>
+<a href="wiki/concepts/medtech-devices.html">MedTech &amp; Devices</a>
+<a href="wiki/concepts/biotech-genomics.html">Biotech &amp; Genomics</a>
+<a href="wiki/concepts/healthcare-aging-services.html">Healthcare &amp; Aging / Services</a>
+</details>
+<details><summary>M5 · Financial transformation <span class='n'>2</span></summary>
+<a href="wiki/concepts/fintech-payments.html">Fintech &amp; Payments</a>
+<a href="wiki/concepts/tokenization-digital-assets.html">Tokenization &amp; Digital Assets</a>
+</details>
+<details><summary>M6 · Geographies <span class='n'>5</span></summary>
+<a href="wiki/concepts/india-em-growth.html">India &amp; EM Growth</a>
+<a href="wiki/concepts/japan-corporate-reform.html">Japan Corporate Reform</a>
+<a href="wiki/concepts/us-megacap-quality.html">US Megacap Quality</a>
+<a href="wiki/concepts/asean-thailand.html">ASEAN &amp; Thailand</a>
+<a href="wiki/concepts/china-contrarian.html">China Contrarian</a>
+</details>
+<details><summary>M7 · Cross-cutting &amp; real assets <span class='n'>4</span></summary>
+<a href="wiki/concepts/water-resource-scarcity.html">Water &amp; Resource Scarcity</a>
+<a href="wiki/concepts/commodities-gold-real-assets.html">Commodities, Gold &amp; Real Assets</a>
+<a href="wiki/concepts/space-economy.html">Space Economy</a>
+<a href="wiki/concepts/quantum-computing.html">Quantum Computing</a>
+</details>
+</details></section>
+</nav>
+<main class="page"><div class="pwrap wide">
+
+
+<h1>Research explorer</h1>
+<p style="max-width:76ch;color:var(--ink-2)">Every piece of research the engine has produced — sliced by
+type, verdict, and date. Dated records stay dated (append-only); this page is the combined index, with
+each entry's <b>validation state</b> attached: did the call pass, what scored it, how stale is the hub.</p>
+<div class="stategrid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+  <div class="statecell"><div class="k">Falsifiable calls</div><div class="v" style="font-size:17px" id="cnt-pcall">…</div></div>
+  <div class="statecell"><div class="k">Passed / failed</div><div class="v" style="font-size:17px" id="cnt-verdict">…</div></div>
+  <div class="statecell"><div class="k">Research artifacts</div><div class="v" style="font-size:17px" id="cnt-all">…</div></div>
+  <div class="statecell"><div class="k">Living hubs OVERDUE</div><div class="v" style="font-size:17px" id="cnt-overdue">…</div></div>
+</div>
+<div class="searchbox" style="width:100%;max-width:520px;margin:14px 0 10px">
+  <span class="sicon">⌕</span><input id="rx-q" type="search" placeholder="Filter research (ticker, theme, word)…" autocomplete="off">
+</div>
+<div id="rx-chips" style="display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px"></div>
+<div id="rx-list"></div>
+
+<h2 style="margin-top:44px">Page health — living hubs vs their update mechanic</h2>
+<p style="max-width:76ch;color:var(--ink-2);font-size:13.5px">Living hubs are the pages an AI pass
+rewrites on a cadence (weekly MONITOR · monthly SCAN · quarterly REVIEW). Anything red is the
+rationalization backlog: the hub exists but its mechanic hasn't run.</p>
+<table><thead><tr><th>Living hub</th><th>Cadence</th><th>Last updated</th><th>Health</th></tr></thead><tbody><tr><td><a href="wiki/syntheses/decision-register.html">decision register</a></td><td>on decision</td><td>2026-07-14</td><td><span class="dot ok"></span>fresh</td></tr><tr><td><a href="wiki/syntheses/frontier-watch.html">frontier watch</a></td><td>monthly</td><td>2026-09-07</td><td><span class="dot bad"></span>OVERDUE</td></tr><tr><td><a href="wiki/syntheses/instrument-universe.html">instrument universe</a></td><td>weekly</td><td>2026-11-01</td><td><span class="dot ok"></span>fresh</td></tr><tr><td><a href="wiki/syntheses/macro-regime.html">macro regime</a></td><td>monthly</td><td>2026-07-14</td><td><span class="dot bad"></span>OVERDUE</td></tr><tr><td><a href="wiki/syntheses/portfolio-blueprint.html">portfolio blueprint</a></td><td>quarterly</td><td>2026-07-14</td><td><span class="dot warn"></span>due</td></tr><tr><td><a href="wiki/syntheses/prediction-ledger.html">prediction ledger</a></td><td>on resolve</td><td>2026-10-11</td><td><span class="dot ok"></span>fresh</td></tr><tr><td><a href="wiki/syntheses/regime-monitor.html">regime monitor</a></td><td>weekly</td><td>2026-07-14</td><td><span class="dot bad"></span>OVERDUE</td></tr><tr><td><a href="wiki/syntheses/signal-monitor.html">signal monitor</a></td><td>weekly</td><td>2026-11-01</td><td><span class="dot ok"></span>fresh</td></tr><tr><td><a href="wiki/syntheses/strategy-sleeves.html">strategy sleeves</a></td><td>quarterly</td><td>2026-07-18</td><td><span class="dot warn"></span>due</td></tr><tr><td><a href="wiki/syntheses/theme-linkage-map.html">theme linkage map</a></td><td>quarterly</td><td>2026-07-14</td><td><span class="dot warn"></span>due</td></tr><tr><td><a href="wiki/syntheses/track-record.html">track record</a></td><td>quarterly</td><td>2026-07-14</td><td><span class="dot warn"></span>due</td></tr><tr><td><a href="wiki/syntheses/trend-radar.html">trend radar</a></td><td>monthly</td><td>2026-10-03</td><td><span class="dot warn"></span>due</td></tr><tr><td><a href="wiki/syntheses/watchlist.html">watchlist</a></td><td>monthly</td><td>2026-09-07</td><td><span class="dot bad"></span>OVERDUE</td></tr></tbody></table>
+
+<p style="font-size:13px;color:var(--ink-2);max-width:76ch">Slicer data: <code>scripts/_hist/_research_index.json</code>
+— rebuilt with every site build; entries link straight to their source pages.</p>
+<div class="foot">Own-book research — never advice. Verdicts are scored per the
+<a href="wiki/syntheses/prediction-ledger.html">ledger protocol</a> (✅ passed · ❌ failed · ◐ partial · ⏳ open).</div>
+
+</div></main>
+<div class="sresults" id="sresults" role="listbox"></div>
+<script>
+(function(){
+  var box=document.getElementById('sbox'),panel=document.getElementById('sresults'),data=null,sel=-1,cur=[];
+  function rel(p){var d=document.body.dataset.depth||'';return d+p;}
+  function fetchIndex(){
+    if(data)return Promise.resolve(data);
+    return fetch(rel('_search.json')).then(function(r){return r.json();}).catch(function(){return null;});
+  }
+  function open(p){panel.classList.toggle('open',p);}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function render(q,items){
+    if(!items.length){panel.innerHTML='<div class="sr-empty">No pages match “'+esc(q)+'”. Try a ticker, a theme, or a report name.</div>';return;}
+    var last=null,html='';
+    items.forEach(function(it,i){
+      if(it.group!==last){html+='<div class="sr-group">'+esc(it.group)+'</div>';last=it.group;}
+      html+='<a class="sr-item'+(i===sel?' sel':'')+'" data-i="'+i+'" href="'+rel(it.url)+'"><b>'+esc(it.title)+'</b>'+
+            '<span class="sr-meta"> — '+esc(it.type)+(it.date?' · '+it.date:'')+'</span>'+
+            (it.summary?'<div class="sr-sum">'+esc(it.summary)+'</div>':'')+'</a>';
+    });
+    panel.innerHTML=html;
+  }
+  function search(q){
+    if(!data){fetchIndex().then(function(d){if(d){data=d;search(q);}});return;}
+    if(!q){open(false);return;}
+    q=q.toLowerCase();var scored=[];
+    data.pages.forEach(function(p){
+      var t=(p.title||'').toLowerCase(),s=(p.search||'').toLowerCase();
+      var sc=-1;
+      if(t.indexOf(q)===0)sc=100;else if(t.indexOf(q)>=0)sc=70;
+      else if(s.indexOf(q)>=0)sc=40;
+      else if(q.split(' ').every(function(w){return w&&(t.indexOf(w)>=0||s.indexOf(w)>=0);}))sc=20;
+      if(p.type==='decision')sc+=15;  // the decision view is a name's landing spot — outrank its own note/memo on ties
+      if(sc>=0)scored.push([sc,p]);
+    });
+    scored.sort(function(a,b){return b[0]-a[0]||((b[1].date||'').localeCompare(a[1].date||''));});
+    cur=scored.slice(0,12).map(function(x){return x[1];});sel=cur.length?0:-1;
+    render(q,cur);open(true);
+  }
+  box.addEventListener('input',function(){search(box.value.trim());});
+  box.addEventListener('focus',fetchIndex);
+  box.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);render(box.value.trim(),cur);e.preventDefault();}
+    else if(e.key==='Enter'&&cur[sel]){location.href=rel(cur[sel].url);}
+    else if(e.key==='Escape'){open(false);box.blur();}
+  });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();box.focus();box.select();}
+  });
+  document.addEventListener('click',function(e){if(!panel.contains(e.target)&&e.target!==box)open(false);});
+  var tg=document.getElementById('railtoggle'),railEl=document.getElementById('rail');
+  if(tg)tg.addEventListener('click',function(){railEl.classList.toggle('open');});
+})();
+</script><script>
+(function(){
+  var DATA={"built": "2026-11-01", "count": 117, "entries": [{"kind": "synthesis", "family": "Backtests & mechanics", "slug": "alpha-mechanics-2026-10-06", "title": "alpha mechanics 2026 10 06", "url": "alpha-mechanics-2026-10-06.html", "date": "2026-10-06", "summary": "Alpha Mechanics — Leading Indicators & the 100% CAGR Question", "age_days": 26, "cadence": null}, {"kind": "synthesis", "family": "Backtests & mechanics", "slug": "backtest-results-2026-07-18", "title": "backtest results 2026 07 18", "url": "backtest-results-2026-07-18.html", "date": "2026-07-18", "summary": "The 4-sleeve quantitative engine (MDAEM v4.0) beat VOO on every measure over the 5-year window 2021-07-17 → 2026-07-17: ensemble +19.1% CAGR vs VOO +8.7% (+10.4 pts alpha), Sharpe 1.02 vs 0.66, beat-benchmark 52% of months. Each sleeve is independently profita", "age_days": 106, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "book-rec-2026-09-13", "title": "book rec 2026 09 13", "url": "book-rec-2026-09-13.html", "date": "2026-09-13", "summary": "Operator book memo — post-SA-sweep allocation read (2026-09-13)", "age_days": 49, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "book-rec-2026-09-25", "title": "book rec 2026 09 25", "url": "book-rec-2026-09-25.html", "date": "2026-09-26", "summary": "Operator book memo — post-FOMC refresh (data as-of 2026-09-25)", "age_days": 36, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "bubble-implications-by-theme", "title": "bubble implications by theme", "url": "bubble-implications-by-theme.html", "date": "2026-06-28", "summary": "Bubble-Framework Implications → Per-Theme Investment Stance", "age_days": 126, "cadence": null}, {"kind": "synthesis", "family": "Bubble watches", "slug": "bubble-risk-us-equity-2026-06-28", "title": "bubble risk us equity 2026 06 28", "url": "bubble-risk-us-equity-2026-06-28.html", "date": "2026-06-28", "summary": "Bubble-Risk Analysis — US Equity Market (with AI/Tech sub-read)", "age_days": 126, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "cross-theme-idea-ranking", "title": "cross theme idea ranking", "url": "cross-theme-idea-ranking.html", "date": "2026-06-01", "summary": "Cross-theme idea ranking — risk-adjusted shortlist", "age_days": 153, "cadence": null}, {"kind": "synthesis", "family": "Plans & operating", "slug": "d365-for-sme-rebuild-blueprint", "title": "d365 for sme rebuild blueprint", "url": "d365-for-sme-rebuild-blueprint.html", "date": "2026-10-31", "summary": "Blueprint — reverse-engineering \"D365 for SME\" (easy-setup ERP)", "age_days": 1, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "decision-register", "title": "decision register", "url": "decision-register.html", "date": "2026-07-14", "summary": "The engine's sized-decision output for the operator's own book — *what to hold, how much, when to add, when to exit.* Each row is a dated, accountable call: it carries conviction, target weight, entry zone, scale-in plan, and an explicit invalidation. Every de", "age_days": 110, "cadence": "on decision"}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "dual-model-shortlist-scorecard-2026-06-03", "title": "dual model shortlist scorecard 2026 06 03", "url": "dual-model-shortlist-scorecard-2026-06-03.html", "date": "2026-06-03", "summary": "Dual-model shortlist scorecard — 2026-06-03", "age_days": 151, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "frontier-watch", "title": "frontier watch", "url": "frontier-watch.html", "date": "2026-09-07", "summary": "The foresight/trend-capture skill — a disciplined way to detect *emerging* themes before consensus, the way AI / bitcoin / clean energy once were. Each candidate is scored on four axes; only those crossing the threshold earn a `wiki/concepts/` page. This is wh", "age_days": 55, "cadence": "monthly"}, {"kind": "synthesis", "family": "Backtests & mechanics", "slug": "gold-timing-strategy-2026-10-06", "title": "gold timing strategy 2026 10 06", "url": "gold-timing-strategy-2026-10-06.html", "date": "2026-10-06", "summary": "Gold — 10-Year Study & Fee-Aware Timing Strategy", "age_days": 26, "cadence": null}, {"kind": "synthesis", "family": "Backtests & mechanics", "slug": "hundred-x-hunt-framework", "title": "hundred x hunt framework", "url": "hundred-x-hunt-framework.html", "date": "2026-10-03", "summary": "The 100x Hunt — A Framework for Finding the Next Decade's 100-Baggers", "age_days": 29, "cadence": null}, {"kind": "synthesis", "family": "Backtests & mechanics", "slug": "hundredx-anatomy-2026-10-29", "title": "hundredx anatomy 2026 10 29", "url": "hundredx-anatomy-2026-10-29.html", "date": "2026-10-29", "summary": "100x Anatomy — What the Last Decade's Winners Looked Like at the Base", "age_days": 3, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "ic-book-2026-10-05", "title": "ic book 2026 10 05", "url": "ic-book-2026-10-05.html", "date": "2026-10-05", "summary": "IC Book — Top-10 Fund-Grade Recommendations (2026-10-05)", "age_days": 27, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "instrument-universe", "title": "instrument universe", "url": "instrument-universe.html", "date": "2026-11-01", "summary": "Every instrument across the 29-theme radar, with the live decision-relevant figures — market cap (or AUM for ETFs), valuation, growth, margins, yield, beta, and where each sits vs its 52-week high. The sortable master view; per-theme tables live on each trend-", "age_days": 0, "cadence": "weekly"}, {"kind": "synthesis", "family": "Living hubs", "slug": "macro-regime", "title": "macro regime", "url": "macro-regime.html", "date": "2026-07-14", "summary": "Macro Regime", "age_days": 110, "cadence": "monthly"}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "mdaem-backtest-2026-06-28", "title": "mdaem backtest 2026 06 28", "url": "mdaem-backtest-2026-06-28.html", "date": "2026-06-28", "summary": "MDAEM v3.4 Back-Test & Calibration — interim (2026-06-28)", "age_days": 126, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "mdaem-validation-database", "title": "mdaem validation database", "url": "mdaem-validation-database.html", "date": "2026-06-03", "summary": "The live empirical record of Aphiwat's mdaem-framework|MDAEM v3.4 decisions as of 2026-05-24/25, framed as falsifiable predictions with measurable 3-month criteria. Full review due 2026-08-24 (2-month flag 2026-07-24). This is the framework's \"nervous system\" ", "age_days": 151, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "mdaem-vs-futurist-investor", "title": "mdaem vs futurist investor", "url": "mdaem-vs-futurist-investor.html", "date": "2026-06-03", "summary": "MDAEM vs the Futurist Investor engine — two complementary systems", "age_days": 151, "cadence": null}, {"kind": "synthesis", "family": "Plans & operating", "slug": "mirofish-how-to-use-and-applications", "title": "mirofish how to use and applications", "url": "mirofish-how-to-use-and-applications.html", "date": "2026-05-30", "summary": "MiroFish is a \"rehearse-the-future\" sandbox. You install it, plug in two API keys (an LLM + a memory service), feed it a real-world situation, and it runs a world of thousands of AI agents to produce a prediction report you can interrogate. Below: how to set i", "age_days": 155, "cadence": null}, {"kind": "synthesis", "family": "Reviews & post-mortems", "slug": "model-review-2026-10-03", "title": "model review 2026 10 03", "url": "model-review-2026-10-03.html", "date": "2026-10-03", "summary": "Model review — engine state & validation record (2026-10-03)", "age_days": 29, "cadence": null}, {"kind": "synthesis", "family": "Screens & reads", "slug": "monitor-alert-latest", "title": "monitor alert latest", "url": "monitor-alert-latest.html", "date": "2026-10-30", "summary": "Signal Monitor Alert — 2026-10-30", "age_days": 2, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "page-portfolio-rationalization-2026-10-31", "title": "page portfolio rationalization 2026 10 31", "url": "page-portfolio-rationalization-2026-10-31.html", "date": "2026-10-31", "summary": "Page-Portfolio Rationalization — what to combine, keep-live, and eliminate", "age_days": 1, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "portfolio-blueprint", "title": "portfolio blueprint", "url": "portfolio-blueprint.html", "date": "2026-07-14", "summary": "Portfolio Blueprint", "age_days": 110, "cadence": "quarterly"}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "portfolio-recommendations-2026-07-18", "title": "portfolio recommendations 2026 07 18", "url": "portfolio-recommendations-2026-07-18.html", "date": "2026-07-18", "summary": "Applies the v4.0 methodology to (a) show what each sleeve *would have recommended* going into each year of the backtest, and (b) recommend a specific portfolio for today (as-of 2026-07-17 close). The recommended book: 29 positions, ~10% cash, weighted to the b", "age_days": 106, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "post-bubble-multi-agent-sim-2026-06-28", "title": "post bubble multi agent sim 2026 06 28", "url": "post-bubble-multi-agent-sim-2026-06-28.html", "date": "2026-06-28", "summary": "Post-Bubble Multi-Agent Simulation — what happens after, and when", "age_days": 126, "cadence": null}, {"kind": "synthesis", "family": "Reviews & post-mortems", "slug": "post-mortem-2026-10-03", "title": "post mortem 2026 10 03", "url": "post-mortem-2026-10-03.html", "date": "2026-10-03", "summary": "Post-mortem #1 — scoring the engine's September calls (2026-10-03)", "age_days": 29, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "prediction-ledger", "title": "prediction ledger", "url": "prediction-ledger.html", "date": "2026-10-11", "summary": "A dated, falsifiable record of the engine's calls — and how they turn out. This is the accountability layer: it lets the \"Futurist Investor\" engine measure its own hit-rate and calibration, instead of quietly forgetting wrong calls. Insight only — not advice.", "age_days": 21, "cadence": "on resolve"}, {"kind": "synthesis", "family": "Plans & operating", "slug": "q4-action-plan-2026-10-11", "title": "q4 action plan 2026 10 11", "url": "q4-action-plan-2026-10-11.html", "date": "2026-10-11", "summary": "For the operator's own book — never advice to others. Data fully refreshed through the 2026-10-09 close (monthly + quarterly chains, incl. 10y prices, backtest, tournament). Four things decide Q4:", "age_days": 21, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "qae-book-2026-08-29", "title": "qae book 2026 08 29", "url": "qae-book-2026-08-29.html", "date": "2026-08-29", "summary": "QAE book — 2026-08-29", "age_days": 64, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "qae-book-2026-09-06", "title": "qae book 2026 09 06", "url": "qae-book-2026-09-06.html", "date": "2026-09-06", "summary": "System book — 2026-09-06", "age_days": 56, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "qae-book-2026-09-20", "title": "qae book 2026 09 20", "url": "qae-book-2026-09-20.html", "date": "2026-09-20", "summary": "QAE / system book — 2026-09-20", "age_days": 42, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "qae-book-2026-09-25", "title": "qae book 2026 09 25", "url": "qae-book-2026-09-25.html", "date": "2026-09-26", "summary": "QAE book — 2026-09-25 (vol-targeted momentum, regime risk-on)", "age_days": 36, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "qualified-100x-list-2026-10-05", "title": "qualified 100x list 2026 10 05", "url": "qualified-100x-list-2026-10-05.html", "date": "2026-10-05", "summary": "Qualified 100x-Hunt List — 2026-10-05", "age_days": 27, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "refresh-ai-compute-stack-2026-07-14", "title": "refresh ai compute stack 2026 07 14", "url": "refresh-ai-compute-stack-2026-07-14.html", "date": "2026-07-14", "summary": "AI Compute Stack — July 2026 Deep Refresh", "age_days": 110, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "refresh-energy-transition-2026-07-14", "title": "refresh energy transition 2026 07 14", "url": "refresh-energy-transition-2026-07-14.html", "date": "2026-07-14", "summary": "Energy Transition — July 2026 Deep Refresh", "age_days": 110, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "refresh-geopolitics-defense-2026-07-14", "title": "refresh geopolitics defense 2026 07 14", "url": "refresh-geopolitics-defense-2026-07-14.html", "date": "2026-07-14", "summary": "Geopolitics & Defense — July 2026 Deep Refresh", "age_days": 110, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "regime-monitor", "title": "regime monitor", "url": "regime-monitor.html", "date": "2026-07-14", "summary": "Where are we in the cycle, *right now*? Formalizes the post-bubble-multi-agent-sim-2026-06-28 3-act structure into a live regime-state verdict, with the sensor thresholds that mark each transition and the per-regime portfolio stance. Extends macro-regime (stru", "age_days": 110, "cadence": "weekly"}, {"kind": "synthesis", "family": "Reviews & post-mortems", "slug": "research-quality-review-2026-10-05", "title": "research quality review 2026 10 05", "url": "research-quality-review-2026-10-05.html", "date": "2026-10-05", "summary": "Research Quality Review — Self-Audit of the 100x-Hunt Chain", "age_days": 27, "cadence": null}, {"kind": "synthesis", "family": "Screens & reads", "slug": "sa-market-read-2026-09-12", "title": "sa market read 2026 09 12", "url": "sa-market-read-2026-09-12.html", "date": "2026-09-12", "summary": "SA market read 2026-09-12 — policy hinge, war shock, hardware-over-software", "age_days": 50, "cadence": null}, {"kind": "synthesis", "family": "Screens & reads", "slug": "sa-microcap-100x-screen-2026-10-04", "title": "sa microcap 100x screen 2026 10 04", "url": "sa-microcap-100x-screen-2026-10-04.html", "date": "2026-10-04", "summary": "SA Micro-Cap 100x Screen — 2026-10-04", "age_days": 28, "cadence": null}, {"kind": "synthesis", "family": "Reviews & post-mortems", "slug": "scan-recap-2026-10-03", "title": "scan recap 2026 10 03", "url": "scan-recap-2026-10-03.html", "date": "2026-10-03", "summary": "Scan Recap 2026-10-03 — Themes & Securities: Last Time vs This Time", "age_days": 29, "cadence": null}, {"kind": "synthesis", "family": "Screens & reads", "slug": "security-recommendations-latest", "title": "security recommendations latest", "url": "security-recommendations-latest.html", "date": "2026-10-30", "summary": "Security Recommendations — 2026-10-30", "age_days": 2, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "security-sourcing-pipeline", "title": "security sourcing pipeline", "url": "security-sourcing-pipeline.html", "date": "2026-07-18", "summary": "The day-to-day workflow that turns the quantitative signal engine into investment decisions. Replaces v3.4's \"evaluate one name at a time\" approach with a daily universe screen → shortlist → MDAEM verdict flow that scales across all 280 instruments. For the op", "age_days": 106, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "signal-monitor", "title": "signal monitor", "url": "signal-monitor.html", "date": "2026-11-01", "summary": "The engine's rolling sensor panel — the early-warning layer that catches regime shifts between scans. One row per metric the engine watches; each carries a warn level (attention) and a flip level (thesis-changing). Updated every weekly MONITOR (`CADENCE.md`) f", "age_days": 0, "cadence": "weekly"}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "skill-catalog", "title": "skill catalog", "url": "skill-catalog.html", "date": "2026-10-31", "summary": "The agent runs this vault with ~10 load-bearing skills; the rest are client-work tools. This page is the single catalog: what each does, when it fires (which cadence mechanic), and where its know-how lives. The Research Explorer indexes it under \"Plans & opera", "age_days": 1, "cadence": null}, {"kind": "synthesis", "family": "Theses & analyses", "slug": "start-here", "title": "start here", "url": "start-here.html", "date": "2026-10-31", "summary": "One investor runs a research engine that screens ~350 instruments, rates them with its own factor model, sizes decisions through a 10-gate discipline, files every call as a dated falsifiable prediction, and scores itself honestly. This page explains the five w", "age_days": 1, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "strategy-sleeves", "title": "strategy sleeves", "url": "strategy-sleeves.html", "date": "2026-07-18", "summary": "The 4 backtested strategy sleeves that compose the v4.0 portfolio. Each is a rules-based, quantitatively-scored allocation with measured CAGR/Sharpe/drawdown. The blend allocates capital across styles so the book works in any regime (the backtest-results-2026-", "age_days": 106, "cadence": "quarterly"}, {"kind": "synthesis", "family": "Backtests & mechanics", "slug": "strategy-tournament-2026-09-06", "title": "strategy tournament 2026 09 06", "url": "strategy-tournament-2026-09-06.html", "date": "2026-09-06", "summary": "Strategy tournament — 39 systematic strategies, 10 years, split-sample selection", "age_days": 56, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "thai-value-dividend-play-2026-09-26", "title": "thai value dividend play 2026 09 26", "url": "thai-value-dividend-play-2026-09-26.html", "date": "2026-09-26", "summary": "Thai value & dividend income play — SET income sleeve (2026-09-26)", "age_days": 36, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "theme-linkage-map", "title": "theme linkage map", "url": "theme-linkage-map.html", "date": "2026-07-14", "summary": "Theme Linkage Map", "age_days": 110, "cadence": "quarterly"}, {"kind": "synthesis", "family": "Books & picks", "slug": "top10-picks-2026-07-19", "title": "top10 picks 2026 07 19", "url": "top10-picks-2026-07-19.html", "date": "2026-07-19", "summary": "🏆 10 หุ้นที่น่าลงทุนที่สุดวันนี้", "age_days": 105, "cadence": null}, {"kind": "synthesis", "family": "Books & picks", "slug": "top5-themes-deep-dive-2026-06-28", "title": "top5 themes deep dive 2026 06 28", "url": "top5-themes-deep-dive-2026-06-28.html", "date": "2026-06-28", "summary": "Top-5 Themes — Opportunity, Threats, Winner & Framework Read", "age_days": 126, "cadence": null}, {"kind": "synthesis", "family": "Living hubs", "slug": "track-record", "title": "track record", "url": "track-record.html", "date": "2026-07-14", "summary": "The P&L and accountability layer for the engine's sized decisions — the answer to \"does this actually work?\" Every ADD/EXIT in decision-register is scored here on close; hit-rate and alpha are computed by conviction so the engine can *calibrate itself*. Extend", "age_days": 110, "cadence": "quarterly"}, {"kind": "synthesis", "family": "Living hubs", "slug": "trend-radar", "title": "trend radar", "url": "trend-radar.html", "date": "2026-10-03", "summary": "The master dashboard of long-term investment megatrends — now structured into 7 meta-forces → 29 themes, each with conviction, maturity stage, horizon, and the cleanest instruments. Rewritten every scan (`CLAUDE.md` §10). Cross-theme dependencies live in theme", "age_days": 29, "cadence": "monthly"}, {"kind": "synthesis", "family": "Living hubs", "slug": "watchlist", "title": "watchlist", "url": "watchlist.html", "date": "2026-09-07", "summary": "Watchlist", "age_days": 55, "cadence": "monthly"}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P1", "title": "P1 · conv 3 — Aggregate 2026 hyperscaler capex (MSFT+GOOGL+AMZN+META+ORCL) comes in ≥ +50% YoY — i.e. the AI-infra buildout ", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Aggregate 2026 hyperscaler capex (MSFT+GOOGL+AMZN+META+ORCL) comes in ≥ +50% YoY — i.e. the AI-infra buildout does not stall in 2026.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P2", "title": "P2 · conv 3 — At least one ≥20% drawdown in SMH (or NVDA) from a 2026 high occurs before 2027-01-01.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · At least one ≥20% drawdown in SMH (or NVDA) from a 2026 high occurs before 2027-01-01.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P3", "title": "P3 · conv 4 — CRWD, PANW and ZS each report ≥15% YoY revenue/ARR growth in their next FY2026 results.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · CRWD, PANW and ZS each report ≥15% YoY revenue/ARR growth in their next FY2026 results.", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P4", "title": "P4 · conv 3 — Long-term U3O8 contract price stays ≥ $80/lb through end-2026.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Long-term U3O8 contract price stays ≥ $80/lb through end-2026.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P5", "title": "P5 · conv 3 — India (INDA) monthly FPI flows turn net-positive for ≥2 consecutive months before 2026-12-31.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · India (INDA) monthly FPI flows turn net-positive for ≥2 consecutive months before 2026-12-31.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P6", "title": "P6 · conv 2 — The Thai SET index ends 2026 higher than its 2026-06-01 level.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · The Thai SET index ends 2026 higher than its 2026-06-01 level.", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P7", "title": "P7 · conv 4 — TSE Prime average PBR stays ≥ 1.3x (governance re-rating holds) through end-2026.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · TSE Prime average PBR stays ≥ 1.3x (governance re-rating holds) through end-2026.", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P8", "title": "P8 · conv 4 — Eli Lilly's incretin franchise (Mounjaro+Zepbound) grows ≥ +30% YoY in FY2026.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Eli Lilly's incretin franchise (Mounjaro+Zepbound) grows ≥ +30% YoY in FY2026.", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P9", "title": "P9 · conv 4 — Intuitive Surgical (ISRG) revenue grows ≥ +15% YoY in FY2026.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Intuitive Surgical (ISRG) revenue grows ≥ +15% YoY in FY2026.", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P10", "title": "P10 · conv 4 — Nifty 50 ends 2026 above ~23,548 (its late-May-2026 level).", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Nifty 50 ends 2026 above ~23,548 (its late-May-2026 level).", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P11", "title": "P11 · conv 4 — At least one new ≥1 GW nuclear or gas data-center PPA is publicly announced in 2026.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · At least one new ≥1 GW nuclear or gas data-center PPA is publicly announced in 2026.", "verdict": "⏳", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P13", "title": "P13 · conv 3 — Total stablecoin market cap ends 2026 ≥ $350B (up from ~$320B May-26).", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Total stablecoin market cap ends 2026 ≥ $350B (up from ~$320B May-26).", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P14", "title": "P14 · conv 3 — IonQ, Rigetti and D-Wave each suffer a ≥30% drawdown from a 2026 high before 2027.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · IonQ, Rigetti and D-Wave each suffer a ≥30% drawdown from a 2026 high before 2027.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P15", "title": "P15 · conv 3 — Mag-7 share of the S&P 500 stays ≥ 30% at end-2026 (no concentration unwind yet).", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Mag-7 share of the S&P 500 stays ≥ 30% at end-2026 (no concentration unwind yet).", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P16", "title": "P16 · conv 3 — Gold ends 2026 ≥ $4,000/oz (debasement bid holds despite the correction).", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ⏳ · Gold ends 2026 ≥ $4,000/oz (debasement bid holds despite the correction).", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P17", "title": "P17 · conv 2 — No credit-stress event: ICE BofA US HY OAS (FRED BAMLH0A0HYM2) does not close any month ≥ 4.00% before 2027-01", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · No credit-stress event: ICE BofA US HY OAS (FRED BAMLH0A0HYM2) does not close any month ≥ 4.00% before 2027-01-01 (from ~2.6% now).", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P18", "title": "P18 · conv 2 — Rich ≠ imminent top: the S&P 500 does not suffer a ≥20% drawdown (peak-to-trough, closing) before 2027-01-01 d", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · Rich ≠ imminent top: the S&P 500 does not suffer a ≥20% drawdown (peak-to-trough, closing) before 2027-01-01 despite CAPE near a record.", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P19", "title": "P19 · conv 3 — Euphoria completes first: CNN Fear & Greed reaches Extreme Greed (>75) at some point before 2027-07-01.", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · Euphoria completes first: CNN Fear & Greed reaches Extreme Greed (>75) at some point before 2027-07-01.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P20", "title": "P20 · conv 3 — The trigger: ≥1 Mag-7 hyperscaler trims/guides-down forward AI capex by 2027-12-31.", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · The trigger: ≥1 Mag-7 hyperscaler trims/guides-down forward AI capex by 2027-12-31.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P21", "title": "P21 · conv 2 — Credit cracks: HY OAS (FRED BAMLH0A0HYM2) pierces 4.0% at some point during 2027.", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · Credit cracks: HY OAS (FRED BAMLH0A0HYM2) pierces 4.0% at some point during 2027.", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P22", "title": "P22 · conv 3 — Rotation: Ex-US (EAFE or EM) beats the S&P 500 cumulatively over 2026-06-28 → 2029-06-30.", "url": "prediction-ledger.html", "date": "2026-06-28", "summary": "resolve-by ⏳ · Rotation: Ex-US (EAFE or EM) beats the S&P 500 cumulatively over 2026-06-28 → 2029-06-30.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P24", "title": "P24 · conv 3 — The fundamental cross-check adds value: QAE Tier A (FFM-confirmed) beats Tier B (momentum-only: FTNT, INTC, CR", "url": "prediction-ledger.html", "date": "2026-08-29", "summary": "resolve-by ⏳ · The fundamental cross-check adds value: QAE Tier A (FFM-confirmed) beats Tier B (momentum-only: FTNT, INTC, CRWD, USO, DDOG, CNC) over 63 trading days.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P25", "title": "P25 · conv 2 — The avoid list underperforms: the QAE bottom-decile basket (EIDO, SMR, KWEB, HDB, ACM, AVAV, PNR) trails SPY o", "url": "prediction-ledger.html", "date": "2026-08-29", "summary": "resolve-by ⏳ · The avoid list underperforms: the QAE bottom-decile basket (EIDO, SMR, KWEB, HDB, ACM, AVAV, PNR) trails SPY over 63 trading days.", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P27", "title": "P27 · conv 3 — The v2 system beats SPY on Sharpe over the 12 months from 2026-09-08 (2-engine `ens_R2_top10vt15+dualdef`, sim", "url": "prediction-ledger.html", "date": "2026-09-06", "summary": "resolve-by ⏳ · The v2 system beats SPY on Sharpe over the 12 months from 2026-09-08 (2-engine `ens_R2_top10vt15+dualdef`, simulated live with the same rules and 10 bps costs).", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P28", "title": "P28 · conv 3 — The v2 system's max drawdown is smaller than SPY's over the same 12 months.", "url": "prediction-ledger.html", "date": "2026-09-06", "summary": "resolve-by ⏳ · The v2 system's max drawdown is smaller than SPY's over the same 12 months.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P29", "title": "P29 · conv 3 — Theme-ETF rotation underperforms SPY again (`theme_rot_top5_12m`, same 12 months) — the tournament's negative ", "url": "prediction-ledger.html", "date": "2026-09-06", "summary": "resolve-by ⏳ · Theme-ETF rotation underperforms SPY again (`theme_rot_top5_12m`, same 12 months) — the tournament's negative result is structural, not sample-specific.", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P30", "title": "P30 · conv 3 — Humanoid commercialization is real: a published industry count (Omdia/IDC or TrendForce) puts global humanoid ", "url": "prediction-ledger.html", "date": "2026-09-07", "summary": "resolve-by ⏳ · Humanoid commercialization is real: a published industry count (Omdia/IDC or TrendForce) puts global humanoid shipments in calendar 2026 at ≥ 40,000 units (vs 13–18k in 2025; forec", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P31", "title": "P31 · conv 2 — Purity earns a premium: etf-koid", "url": "prediction-ledger.html", "date": "2026-09-07", "summary": "resolve-by 2027-09-15 · Purity earns a premium: etf-koid", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P32", "title": "P32 · conv QAE 09-25 FFM-confirmed tranche (AMD·MU·MRVL·HPE·DELL·PANW·ECO) beats SPY by >2pts over 63td — fail if tranche < SPY − 2pts", "url": "prediction-ledger.html", "date": "2026-09-26", "summary": "resolve-by open · fail if tranche < SPY − 2pts", "verdict": "?", "conviction": "QAE 09-25 FFM-confirmed tranche (AMD·MU·MRVL·HPE·DELL·PANW·ECO) beats SPY by >2pts over 63td", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P33", "title": "P33 · conv Thai income sleeve (PTTEP+ADVANC+KBANK eq-wt) ≥ +8% total return (THB) by 2027-03-31 — fail if < −5% or any div cut", "url": "prediction-ledger.html", "date": "2026-09-26", "summary": "resolve-by open · fail if < −5% or any div cut", "verdict": "?", "conviction": "Thai income sleeve (PTTEP+ADVANC+KBANK eq-wt) ≥ +8% total return (THB) by 2027-03-31", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P34", "title": "P34 · conv 3 — The gate adds value: the FFM-confirmed tier (DELL, AMD, MU, MRVL — equal-weight) beats the gated momentum-only", "url": "prediction-ledger.html", "date": "2026-09-20", "summary": "resolve-by ⏳ · The gate adds value: the FFM-confirmed tier (DELL, AMD, MU, MRVL — equal-weight) beats the gated momentum-only tier (ILMN, FTNT, INTC, CNC, ARKG — equal-weight) over the 63 trading", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P35", "title": "P35 · conv 2 — Revisions F is informative: AVGO underperforms the confirmed tier (DELL, AMD, MU, MRVL) over the 63 trading da", "url": "prediction-ledger.html", "date": "2026-09-20", "summary": "resolve-by ⏳ · Revisions F is informative: AVGO underperforms the confirmed tier (DELL, AMD, MU, MRVL) over the 63 trading days from 2026-09-18. AVGO was the book-rec-2026-09-13 memo's conv-4 top", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P36", "title": "P36 · conv 3 — The tournament winner keeps winning: Engine A's 2026-10-09 ten (ECO, DELL, ILMN, FRO, HPE, PSX, MU, FTNT, MRVL", "url": "prediction-ledger.html", "date": "2026-10-11", "summary": "resolve-by ⏳ · The tournament winner keeps winning: Engine A's 2026-10-09 ten (ECO, DELL, ILMN, FRO, HPE, PSX, MU, FTNT, MRVL, OKTA — equal-weight) beats SPY over the 63 trading days from 2026-10", "verdict": "⏳", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P37", "title": "P37 · conv 2 — Don't chase above consensus: the IC-sleeve names trading above their Street mean target on 2026-10-09 (IOVA, G", "url": "prediction-ledger.html", "date": "2026-10-11", "summary": "resolve-by ⏳ · Don't chase above consensus: the IC-sleeve names trading above their Street mean target on 2026-10-09 (IOVA, GRAL, HTFL) underperform the rest of the memo'd sleeve (equal-weight, e", "verdict": "⏳", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P23", "title": "P23 · conv 2 — QAE Tier-A basket (DELL, AMD, MRVL, MU, ILMN, PANW — equal-weight) outperforms SPY over the 21 trading days fr", "url": "prediction-ledger.html", "date": "2026-08-29", "summary": "resolve-by ✅ · QAE Tier-A basket (DELL, AMD, MRVL, MU, ILMN, PANW — equal-weight) outperforms SPY over the 21 trading days from 2026-08-28.", "verdict": "✅", "conviction": "2", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P26", "title": "P26 · conv 3 — The signal survives: `mom_12_1` 21-day rank IC stays positive on the next monthly QAE re-run.", "url": "prediction-ledger.html", "date": "2026-08-29", "summary": "resolve-by ✅ · The signal survives: `mom_12_1` 21-day rank IC stays positive on the next monthly QAE re-run.", "verdict": "✅", "conviction": "3", "age_days": null, "cadence": null}, {"kind": "pcall", "family": "P-calls (falsifiable)", "slug": "P12", "title": "P12 · conv 4 — Global military spending for 2025 (SIPRI, pub. ~Apr 2026) exceeds 2024's ~$2.72T.", "url": "prediction-ledger.html", "date": "2026-06-01", "summary": "resolve-by ✅ · Global military spending for 2025 (SIPRI, pub. ~Apr 2026) exceeds 2024's ~$2.72T.", "verdict": "✅", "conviction": "4", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D1", "title": "D1 · TSM ADD — P&L 0.0%", "url": "track-record.html", "date": "2026-07-14", "summary": "TSM | ADD | 2026-07-14 | $422.03 | $422.03 | 0.0% | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D2", "title": "D2 · LLY ADD — P&L 0.0%", "url": "track-record.html", "date": "2026-07-14", "summary": "LLY | ADD | 2026-07-14 | $1,155.18 | $1,155.18 | 0.0% | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D3", "title": "D3 · GRID ADD — P&L 0.0%", "url": "track-record.html", "date": "2026-07-14", "summary": "GRID | ADD | 2026-07-14 | $184.46 | $184.46 | 0.0% | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D4", "title": "D4 · ITA/RTX ADD — P&L 0.0%", "url": "track-record.html", "date": "2026-07-14", "summary": "ITA/RTX | ADD | 2026-07-14 | RTX $197.19 | $197.19 | 0.0% | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D5", "title": "D5 · DXJ ADD — P&L —", "url": "track-record.html", "date": "2026-07-14", "summary": "DXJ | ADD | 2026-07-14 | — | — | — | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "dtrade", "family": "D-series trades", "slug": "D6", "title": "D6 · PHO ADD — P&L —", "url": "track-record.html", "date": "2026-07-14", "summary": "PHO | ADD | 2026-07-14 | — | — | — | —", "verdict": "⏳", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "ABCL", "title": "ABCL — investment memo", "url": "wiki/research/memos/ABCL.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "ASIC", "title": "ASIC — investment memo", "url": "wiki/research/memos/ASIC.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "ATEX", "title": "ATEX — investment memo", "url": "wiki/research/memos/ATEX.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "DAVE", "title": "DAVE — investment memo", "url": "wiki/research/memos/DAVE.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "DCTH", "title": "DCTH — investment memo", "url": "wiki/research/memos/DCTH.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "DGII", "title": "DGII — investment memo", "url": "wiki/research/memos/DGII.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "FENC", "title": "FENC — investment memo", "url": "wiki/research/memos/FENC.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "GCT", "title": "GCT — investment memo", "url": "wiki/research/memos/GCT.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "GRAL", "title": "GRAL — investment memo", "url": "wiki/research/memos/GRAL.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "HRMY", "title": "HRMY — investment memo", "url": "wiki/research/memos/HRMY.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "HTFL", "title": "HTFL — investment memo", "url": "wiki/research/memos/HTFL.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "IOVA", "title": "IOVA — investment memo", "url": "wiki/research/memos/IOVA.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "NLST", "title": "NLST — investment memo", "url": "wiki/research/memos/NLST.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "OABI", "title": "OABI — investment memo", "url": "wiki/research/memos/OABI.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "PNTG", "title": "PNTG — investment memo", "url": "wiki/research/memos/PNTG.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "RELY", "title": "RELY — investment memo", "url": "wiki/research/memos/RELY.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}, {"kind": "memo", "family": "Investment memos", "slug": "SEZL", "title": "SEZL — investment memo", "url": "wiki/research/memos/SEZL.html", "date": "2026-10-05", "summary": "FFM n/a · conviction n/a", "age_days": null, "cadence": null}]},q='',fam='All',ver='All';
+  var list=document.getElementById('rx-list'),chips=document.getElementById('rx-chips');
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+  function cls(v){return {'✅':'ok','❌':'bad','◐':'warn','⏳':'off'}[v]||'off';}
+  var FAMS=['All'].concat([...new Set(DATA.entries.map(function(e){return e.family;}))].sort());
+  var VERS=['All','✅','❌','◐','⏳'];
+  function chip(label,cur,fn){var a=document.createElement('a');a.href='javascript:void(0)';
+    a.style.cssText='padding:3px 10px;border:1px solid var(--rule);border-radius:3px;font-size:12.5px;text-decoration:none;color:var(--ink-2)';
+    if(cur)a.style.cssText+=';background:var(--wash-navy);color:var(--ink);font-weight:600;border-color:var(--rule-2)';
+    a.textContent=label;a.onclick=fn;chips.appendChild(a);}
+  function drawChips(){
+    chips.innerHTML='';chip('Type: '+fam,fam!=='All',function(){fam='All';draw();});
+    FAMS.filter(function(f){return f!=='All';}).forEach(function(f){chip(f,fam===f,function(){fam=(fam===f?'All':f);draw();});});
+    var sp=document.createElement('span');sp.style.width='10px';chips.appendChild(sp);
+    VERS.forEach(function(v){chip(v==='All'?'Verdict: All':v,ver===v,function(){ver=(ver===v?'All':v);draw();});});}
+  function draw(){
+    drawChips();
+    var ql=q.toLowerCase();
+    var rows=DATA.entries.filter(function(e){
+      if(fam!=='All'&&e.family!==fam)return false;
+      if(ver!=='All'&&(e.verdict||'')!==ver)return false;
+      if(ql&&((e.title||'')+' '+(e.summary||'')+' '+(e.slug||'')).toLowerCase().indexOf(ql)<0)return false;
+      return true;});
+    rows.sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
+    document.getElementById('cnt-pcall').textContent=DATA.entries.filter(function(e){return e.kind==='pcall';}).length;
+    document.getElementById('cnt-verdict').textContent=
+      DATA.entries.filter(function(e){return e.verdict==='✅';}).length+' / '+
+      DATA.entries.filter(function(e){return e.verdict==='❌';}).length;
+    document.getElementById('cnt-all').textContent=DATA.count;
+    document.getElementById('cnt-overdue').textContent=
+      DATA.entries.filter(function(e){return e.kind==='synthesis'&&e.cadence&&e.age_days>={"weekly":10,"monthly":40,"quarterly":110,"on decision":999,"on resolve":999}[e.cadence];}).length;
+    var last=null,html='';
+    if(!rows.length)html='<div class="sr-empty">Nothing matches — widen the filters.</div>';
+    rows.forEach(function(e){
+      if(e.family!==last){html+='<div class="fi-sr-group" style="font:600 11px var(--sans);letter-spacing:.04em;color:var(--ink-3);padding:10px 0 3px">'+esc(e.family)+'</div>';last=e.family;}
+      html+='<a class="sr-item" style="display:block;padding:7px 0;border-bottom:1px solid var(--rule)" href="'+e.url+'">'+
+        '<b>'+esc(e.title)+'</b>'+(e.verdict?' <span class="dot '+cls(e.verdict)+'"></span>'+e.verdict:'')+
+        '<span class="fi-sr-meta" style="font-size:11.5px;color:var(--ink-3)"> — '+esc(e.family)+(e.date?' · '+e.date:'')+(e.cadence?' · '+e.cadence:'')+'</span>'+
+        (e.summary?'<div class="fi-sr-sum" style="font-size:12.5px;color:var(--ink-2)">'+esc(e.summary)+'</div>':'')+'</a>';});
+    list.innerHTML=html;
+  }
+  var qi=document.getElementById('rx-q');
+  qi.addEventListener('input',function(){q=qi.value.trim();draw();});
+  draw();
+})();
+</script>
+</body>
+</html>

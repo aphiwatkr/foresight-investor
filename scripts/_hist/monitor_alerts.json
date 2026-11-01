@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "generated_utc": "2026-11-01T00:17:10Z",
+    "as_of": "2026-10-30",
+    "threshold": 0.15,
+    "previous_as_of": "2026-10-30"
+  },
+  "summary": {
+    "total": 35,
+    "high": 6,
+    "medium": 29,
+    "low": 0,
+    "entries": 22,
+    "exits": 10,
+    "moves": 3,
+    "tier_changes": 0
+  },
+  "alerts": {
+    "high": [
+      {
+        "ticker": "005930.KS",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0,
+        "new_score": 0.979,
+        "severity": "high",
+        "message": "005930.KS entered top decile in longterm sleeve (0% \u2192 98%)"
+      },
+      {
+        "ticker": "600519.SS",
+        "type": "entry",
+        "sleeve": "quality",
+        "old_score": 0,
+        "new_score": 0.988,
+        "severity": "high",
+        "message": "600519.SS entered top decile in quality sleeve (0% \u2192 99%)"
+      },
+      {
+        "ticker": "000660.KS",
+        "type": "entry",
+        "sleeve": "quality",
+        "old_score": 0,
+        "new_score": 0.95,
+        "severity": "high",
+        "message": "000660.KS entered top decile in quality sleeve (0% \u2192 95%)"
+      },
+      {
+        "ticker": "000660.KS",
+        "type": "entry",
+        "sleeve": "longterm",
+        "old_score": 0,
+        "new_score": 0.994,
+        "severity": "high",
+        "message": "000660.KS entered top decile in longterm sleeve (0% \u2192 99%)"
+      },
+      {
+        "ticker": "000333.SZ",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0,
+        "new_score": 0.973,
+        "severity": "high",
+        "message": "000333.SZ entered top decile in value sleeve (0% \u2192 97%)"
+      },
+      {
+        "ticker": "0939.HK",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0,
+        "new_score": 0.995,
+        "severity": "high",
+        "message": "0939.HK entered top decile in value sleeve (0% \u2192 100%)"
+      }
+    ],
+    "medium": [
+      {
+        "ticker": "ELV",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.892,
+        "new_score": 0.923,
+        "severity": "medium",
+        "message": "ELV entered top decile in value sleeve (89% \u2192 92%)"
+      },
+      {
+        "ticker": "USDJPY=X",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.72,
+        "new_score": 0.935,
+        "severity": "medium",
+        "message": "USDJPY=X entered top decile in contrarian sleeve (72% \u2192 94%)"
+      },
+      {
+        "ticker": "SEZL",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.897,
+        "new_score": 0.923,
+        "severity": "medium",
+        "message": "SEZL entered top decile in mom sleeve (90% \u2192 92%)"
+      },
+      {
+        "ticker": "CNC",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.882,
+        "new_score": 0.912,
+        "severity": "medium",
+        "message": "CNC entered top decile in macro sleeve (88% \u2192 91%)"
+      },
+      {
+        "ticker": "GPN",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.81,
+        "new_score": 0.926,
+        "severity": "medium",
+        "message": "GPN entered top decile in mom sleeve (81% \u2192 93%)"
+      },
+      {
+        "ticker": "GPN",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.817,
+        "new_score": 0.929,
+        "severity": "medium",
+        "message": "GPN entered top decile in macro sleeve (82% \u2192 93%)"
+      },
+      {
+        "ticker": "GPN",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0.82,
+        "new_score": 0.938,
+        "severity": "medium",
+        "message": "GPN entered top decile in contrarian sleeve (82% \u2192 94%)"
+      },
+      {
+        "ticker": "NEM",
+        "type": "entry",
+        "sleeve": "quality",
+        "old_score": 0.891,
+        "new_score": 0.903,
+        "severity": "medium",
+        "message": "NEM entered top decile in quality sleeve (89% \u2192 90%)"
+      },
+      {
+        "ticker": "SBLK",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.872,
+        "new_score": 0.9,
+        "severity": "medium",
+        "message": "SBLK entered top decile in value sleeve (87% \u2192 90%)"
+      },
+      {
+        "ticker": "MA",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.891,
+        "new_score": 0.906,
+        "severity": "medium",
+        "message": "MA entered top decile in macro sleeve (89% \u2192 91%)"
+      },
+      {
+        "ticker": "IBB",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.888,
+        "new_score": 0.9,
+        "severity": "medium",
+        "message": "IBB entered top decile in macro sleeve (89% \u2192 90%)"
+      },
+      {
+        "ticker": "0939.HK",
+        "type": "entry",
+        "sleeve": "contrarian",
+        "old_score": 0,
+        "new_score": 0.926,
+        "severity": "medium",
+        "message": "0939.HK entered top decile in contrarian sleeve (0% \u2192 93%)"
+      },
+      {
+        "ticker": "DDOG",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.888,
+        "new_score": 0.912,
+        "severity": "medium",
+        "message": "DDOG entered top decile in mom sleeve (89% \u2192 91%)"
+      },
+      {
+        "ticker": "BZ=F",
+        "type": "entry",
+        "sleeve": "mom",
+        "old_score": 0.875,
+        "new_score": 0.909,
+        "severity": "medium",
+        "message": "BZ=F entered top decile in mom sleeve (88% \u2192 91%)"
+      },
+      {
+        "ticker": "IBN",
+        "type": "entry",
+        "sleeve": "value",
+        "old_score": 0.887,
+        "new_score": 0.914,
+        "severity": "medium",
+        "message": "IBN entered top decile in value sleeve (89% \u2192 91%)"
+      },
+      {
+        "ticker": "VRTX",
+        "type": "entry",
+        "sleeve": "macro",
+        "old_score": 0.898,
+        "new_score": 0.903,
+        "severity": "medium",
+        "message": "VRTX entered top decile in macro sleeve (90% \u2192 90%)"
+      },
+      {
+        "ticker": "HG=F",
+        "type": "exit",
+        "sleeve": "contrarian",
+        "old_score": 0.929,
+        "new_score": 0.738,
+        "severity": "medium",
+        "message": "HG=F dropped out of top decile in contrarian sleeve (93% \u2192 74%)"
+      },
+      {
+        "ticker": "MCK",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.9,
+        "new_score": 0.891,
+        "severity": "medium",
+        "message": "MCK dropped out of top decile in mom sleeve (90% \u2192 89%)"
+      },
+      {
+        "ticker": "USDINR=X",
+        "type": "exit",
+        "sleeve": "quality",
+        "old_score": 0.9,
+        "new_score": 0.897,
+        "severity": "medium",
+        "message": "USDINR=X dropped out of top decile in quality sleeve (90% \u2192 90%)"
+      },
+      {
+        "ticker": "LMT",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.906,
+        "new_score": 0.846,
+        "severity": "medium",
+        "message": "LMT dropped out of top decile in value sleeve (91% \u2192 85%)"
+      },
+      {
+        "ticker": "DXCM",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.901,
+        "new_score": 0.874,
+        "severity": "medium",
+        "message": "DXCM dropped out of top decile in macro sleeve (90% \u2192 87%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "exit",
+        "sleeve": "mom",
+        "old_score": 0.916,
+        "new_score": 0.897,
+        "severity": "medium",
+        "message": "VLTO dropped out of top decile in mom sleeve (92% \u2192 90%)"
+      },
+      {
+        "ticker": "VLTO",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.91,
+        "new_score": 0.888,
+        "severity": "medium",
+        "message": "VLTO dropped out of top decile in macro sleeve (91% \u2192 89%)"
+      },
+      {
+        "ticker": "MDT",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.926,
+        "new_score": 0.896,
+        "severity": "medium",
+        "message": "MDT dropped out of top decile in value sleeve (93% \u2192 90%)"
+      },
+      {
+        "ticker": "PLTR",
+        "type": "exit",
+        "sleeve": "macro",
+        "old_score": 0.907,
+        "new_score": 0.894,
+        "severity": "medium",
+        "message": "PLTR dropped out of top decile in macro sleeve (91% \u2192 89%)"
+      },
+      {
+        "ticker": "AWK",
+        "type": "exit",
+        "sleeve": "value",
+        "old_score": 0.901,
+        "new_score": 0.878,
+        "severity": "medium",
+        "message": "AWK dropped out of top decile in value sleeve (90% \u2192 88%)"
+      },
+      {
+        "ticker": "USDJPY=X",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.72,
+        "new_score": 0.935,
+        "delta": 0.215,
+        "severity": "medium",
+        "message": "USDJPY=X \u25b2 contrarian: 72% \u2192 94% (+22%)"
+      },
+      {
+        "ticker": "HG=F",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.929,
+        "new_score": 0.738,
+        "delta": -0.191,
+        "severity": "medium",
+        "message": "HG=F \u25bc contrarian: 93% \u2192 74% (-19%)"
+      },
+      {
+        "ticker": "CNC",
+        "type": "move",
+        "sleeve": "contrarian",
+        "old_score": 0.683,
+        "new_score": 0.838,
+        "delta": 0.155,
+        "severity": "medium",
+        "message": "CNC \u25b2 contrarian: 68% \u2192 84% (+15%)"
+      }
+    ],
+    "low": []
+  }
+}
